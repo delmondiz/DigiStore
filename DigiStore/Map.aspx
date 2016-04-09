@@ -13,6 +13,7 @@
         var map;
         var service;
         var infowindow;
+        var markers = [];
         
         // Prompt the user for their physical location.  If they give it, this will set
         // the map to their location.
@@ -84,22 +85,21 @@
                 console.error(status);
                 return;
             }
+            if (markers.length > 0)
+                deleteMarkers();
+
             for (var i = 0, result; result = results[i]; i++) {
                 addMarker(result);
             }
+            setMapOnAll(map);
         }
 
         function addMarker(place) {
             var marker = new google.maps.Marker({
                 map: map,
-                position: place.geometry.location,
-                icon: {
-                    url: 'http://maps.gstatic.com/mapfiles/circle.png',
-                    anchor: new google.maps.Point(10, 10),
-                    scaledSize: new google.maps.Size(10, 17)
-                }
+                position: place.geometry.location
             });
-
+            
             google.maps.event.addListener(marker, 'click', function () {
                 service.getDetails(place, function (result, status) {
                     if (status !== google.maps.places.PlacesServiceStatus.OK) {
@@ -110,6 +110,26 @@
                     infoWindow.open(map, marker);
                 });
             });
+            markers.push(marker);
+        }
+
+        function setMapOnAll(map)
+        {
+            for (var i = 0 ; i < markers.length; i++)
+            {
+                markers[i].setMap(map);
+            }
+        }
+        
+        function clearMarkers()
+        {
+            setMapOnAll(null);
+        }
+
+        function deleteMarkers()
+        {
+            clearMarkers();
+            markers = [];
         }
     </script>
 </head>
