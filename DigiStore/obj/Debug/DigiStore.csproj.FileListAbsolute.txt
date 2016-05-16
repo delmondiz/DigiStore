@@ -1,66 +1,32 @@
-D:\Capston Project\DigiStore\DigiStore\bin\ApplicationInsights.config
-D:\Capston Project\DigiStore\DigiStore\bin\roslyn\csc.exe
-D:\Capston Project\DigiStore\DigiStore\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
-D:\Capston Project\DigiStore\DigiStore\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-D:\Capston Project\DigiStore\DigiStore\bin\roslyn\Microsoft.CodeAnalysis.dll
-D:\Capston Project\DigiStore\DigiStore\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
-D:\Capston Project\DigiStore\DigiStore\bin\roslyn\Microsoft.CSharp.Core.targets
-D:\Capston Project\DigiStore\DigiStore\bin\roslyn\Microsoft.VisualBasic.Core.targets
-D:\Capston Project\DigiStore\DigiStore\bin\roslyn\System.Collections.Immutable.dll
-D:\Capston Project\DigiStore\DigiStore\bin\roslyn\System.Reflection.Metadata.dll
-D:\Capston Project\DigiStore\DigiStore\bin\roslyn\vbc.exe
-D:\Capston Project\DigiStore\DigiStore\bin\roslyn\VBCSCompiler.exe
-D:\Capston Project\DigiStore\DigiStore\bin\roslyn\VBCSCompiler.exe.config
-D:\Capston Project\DigiStore\DigiStore\bin\DigiStore.dll.config
-D:\Capston Project\DigiStore\DigiStore\bin\DigiStore.dll
-D:\Capston Project\DigiStore\DigiStore\bin\DigiStore.pdb
-D:\Capston Project\DigiStore\DigiStore\bin\Microsoft.AI.Agent.Intercept.dll
-D:\Capston Project\DigiStore\DigiStore\bin\Microsoft.AI.DependencyCollector.dll
-D:\Capston Project\DigiStore\DigiStore\bin\Microsoft.AI.PerfCounterCollector.dll
-D:\Capston Project\DigiStore\DigiStore\bin\Microsoft.AI.ServerTelemetryChannel.dll
-D:\Capston Project\DigiStore\DigiStore\bin\Microsoft.AI.Web.dll
-D:\Capston Project\DigiStore\DigiStore\bin\Microsoft.AI.WindowsServer.dll
-D:\Capston Project\DigiStore\DigiStore\bin\Microsoft.ApplicationInsights.dll
-D:\Capston Project\DigiStore\DigiStore\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-D:\Capston Project\DigiStore\DigiStore\bin\Microsoft.AI.DependencyCollector.xml
-D:\Capston Project\DigiStore\DigiStore\bin\Microsoft.AI.ServerTelemetryChannel.xml
-D:\Capston Project\DigiStore\DigiStore\bin\Microsoft.AI.Web.xml
-D:\Capston Project\DigiStore\DigiStore\bin\Microsoft.AI.WindowsServer.xml
-D:\Capston Project\DigiStore\DigiStore\bin\Microsoft.ApplicationInsights.xml
-D:\Capston Project\DigiStore\DigiStore\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\Capston Project\DigiStore\DigiStore\obj\Debug\DigiStore.csprojResolveAssemblyReference.cache
-D:\Capston Project\DigiStore\DigiStore\obj\Debug\DigiStore.dll
-D:\Capston Project\DigiStore\DigiStore\obj\Debug\DigiStore.pdb
-C:\Users\delmond\Desktop\DigiStore\DigiStore\bin\ApplicationInsights.config
-C:\Users\delmond\Desktop\DigiStore\DigiStore\bin\roslyn\csc.exe
-C:\Users\delmond\Desktop\DigiStore\DigiStore\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
-C:\Users\delmond\Desktop\DigiStore\DigiStore\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-C:\Users\delmond\Desktop\DigiStore\DigiStore\bin\roslyn\Microsoft.CodeAnalysis.dll
-C:\Users\delmond\Desktop\DigiStore\DigiStore\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
-C:\Users\delmond\Desktop\DigiStore\DigiStore\bin\roslyn\Microsoft.CSharp.Core.targets
-C:\Users\delmond\Desktop\DigiStore\DigiStore\bin\roslyn\Microsoft.VisualBasic.Core.targets
-C:\Users\delmond\Desktop\DigiStore\DigiStore\bin\roslyn\System.Collections.Immutable.dll
-C:\Users\delmond\Desktop\DigiStore\DigiStore\bin\roslyn\System.Reflection.Metadata.dll
-C:\Users\delmond\Desktop\DigiStore\DigiStore\bin\roslyn\vbc.exe
-C:\Users\delmond\Desktop\DigiStore\DigiStore\bin\roslyn\VBCSCompiler.exe
-C:\Users\delmond\Desktop\DigiStore\DigiStore\bin\roslyn\VBCSCompiler.exe.config
-C:\Users\delmond\Desktop\DigiStore\DigiStore\bin\DigiStore.dll.config
-C:\Users\delmond\Desktop\DigiStore\DigiStore\bin\DigiStore.dll
-C:\Users\delmond\Desktop\DigiStore\DigiStore\bin\DigiStore.pdb
-C:\Users\delmond\Desktop\DigiStore\DigiStore\bin\Microsoft.AI.Agent.Intercept.dll
-C:\Users\delmond\Desktop\DigiStore\DigiStore\bin\Microsoft.AI.DependencyCollector.dll
-C:\Users\delmond\Desktop\DigiStore\DigiStore\bin\Microsoft.AI.PerfCounterCollector.dll
-C:\Users\delmond\Desktop\DigiStore\DigiStore\bin\Microsoft.AI.ServerTelemetryChannel.dll
-C:\Users\delmond\Desktop\DigiStore\DigiStore\bin\Microsoft.AI.Web.dll
-C:\Users\delmond\Desktop\DigiStore\DigiStore\bin\Microsoft.AI.WindowsServer.dll
-C:\Users\delmond\Desktop\DigiStore\DigiStore\bin\Microsoft.ApplicationInsights.dll
-C:\Users\delmond\Desktop\DigiStore\DigiStore\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-C:\Users\delmond\Desktop\DigiStore\DigiStore\bin\Microsoft.AI.DependencyCollector.xml
-C:\Users\delmond\Desktop\DigiStore\DigiStore\bin\Microsoft.AI.ServerTelemetryChannel.xml
-C:\Users\delmond\Desktop\DigiStore\DigiStore\bin\Microsoft.AI.Web.xml
-C:\Users\delmond\Desktop\DigiStore\DigiStore\bin\Microsoft.AI.WindowsServer.xml
-C:\Users\delmond\Desktop\DigiStore\DigiStore\bin\Microsoft.ApplicationInsights.xml
-C:\Users\delmond\Desktop\DigiStore\DigiStore\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\delmond\Desktop\DigiStore\DigiStore\obj\Debug\DigiStore.csprojResolveAssemblyReference.cache
-C:\Users\delmond\Desktop\DigiStore\DigiStore\obj\Debug\DigiStore.dll
-C:\Users\delmond\Desktop\DigiStore\DigiStore\obj\Debug\DigiStore.pdb
+C:\Users\delmond\Downloads\DigiStore\DigiStore\bin\roslyn\csc.exe
+C:\Users\delmond\Downloads\DigiStore\DigiStore\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\delmond\Downloads\DigiStore\DigiStore\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\delmond\Downloads\DigiStore\DigiStore\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\delmond\Downloads\DigiStore\DigiStore\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\delmond\Downloads\DigiStore\DigiStore\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\delmond\Downloads\DigiStore\DigiStore\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\delmond\Downloads\DigiStore\DigiStore\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\delmond\Downloads\DigiStore\DigiStore\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\delmond\Downloads\DigiStore\DigiStore\bin\roslyn\vbc.exe
+C:\Users\delmond\Downloads\DigiStore\DigiStore\bin\roslyn\VBCSCompiler.exe
+C:\Users\delmond\Downloads\DigiStore\DigiStore\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\delmond\Downloads\DigiStore\DigiStore\bin\DigiStore.dll.config
+C:\Users\delmond\Downloads\DigiStore\DigiStore\bin\DigiStore.dll
+C:\Users\delmond\Downloads\DigiStore\DigiStore\bin\DigiStore.pdb
+C:\Users\delmond\Downloads\DigiStore\DigiStore\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\delmond\Downloads\DigiStore\DigiStore\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\delmond\Downloads\DigiStore\DigiStore\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\delmond\Downloads\DigiStore\DigiStore\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\delmond\Downloads\DigiStore\DigiStore\bin\Microsoft.AI.Web.dll
+C:\Users\delmond\Downloads\DigiStore\DigiStore\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\delmond\Downloads\DigiStore\DigiStore\bin\Microsoft.ApplicationInsights.dll
+C:\Users\delmond\Downloads\DigiStore\DigiStore\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\delmond\Downloads\DigiStore\DigiStore\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\delmond\Downloads\DigiStore\DigiStore\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\delmond\Downloads\DigiStore\DigiStore\bin\Microsoft.AI.Web.xml
+C:\Users\delmond\Downloads\DigiStore\DigiStore\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\delmond\Downloads\DigiStore\DigiStore\bin\Microsoft.ApplicationInsights.xml
+C:\Users\delmond\Downloads\DigiStore\DigiStore\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\delmond\Downloads\DigiStore\DigiStore\obj\Debug\DigiStore.csprojResolveAssemblyReference.cache
+C:\Users\delmond\Downloads\DigiStore\DigiStore\obj\Debug\DigiStore.dll
+C:\Users\delmond\Downloads\DigiStore\DigiStore\obj\Debug\DigiStore.pdb

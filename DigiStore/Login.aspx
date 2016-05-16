@@ -16,7 +16,7 @@
 </head>
 <body>
     <!-- nav bar at the top of page  -->
-  <nav class="navbar navbar-inverse navbar-fixed-top">
+  <nav class="navbar navbar-inverse navbar-fixed-top" data-role="navbar">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="Home.aspx">DigiStore</a>
