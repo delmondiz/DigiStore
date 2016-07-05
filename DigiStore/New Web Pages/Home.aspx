@@ -51,6 +51,16 @@
     <link rel="stylesheet" href="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
     <link href="Style/StyleSheet.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#login").click(function () {
+                $("#Change1").hide(); $("#Change2").show();
+            });
+            $("#lsProducts").click(function () {
+                $("#pageone").show(); $("#pagetwo").hide();
+            });
+        });
+    </script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script>
 		$( document ).on( "pageinit", "#demo-page", function() {
@@ -73,23 +83,23 @@
 <body>
     <form id="form1" runat="server">
     <div id="back">
-        <div  data-role="page" id="pageone">
-  <div id="HeaderTag" data-role="header">
+        <div data-role="page" id="pageone">
+ <div id="HeaderTag" data-role="header">
     <h1>DigiStore</h1>
       <a href="#left-panel" data-theme="d" data-icon="arrow-r" data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-icon-nodisc">Open left panel</a>
   </div>
             <div data-role="panel" id="left-panel" data-theme="b">
         <p>Left reveal panel.</p>
                  <ul class="submenu menu vertical is-dropdown-submenu first-sub" data-submenu="" aria-hidden="true" tabindex="-1" role="menu">
-                    <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item" tabindex="0"><a href="Login.aspx" tabindex="-1">Login</a></li>
+                    <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item" tabindex="0"><a href="Home..aspx" tabindex="-1" >Home</a></li>
+                    <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item" tabindex="0"><a href="Login.aspx" tabindex="-1" id="login">Login</a></li>
                     <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item" tabindex="0"><a href="Register.aspx" tabindex="-1">Register</a></li>
                     <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item" tabindex="0"><a href="ContactUs.aspx" tabindex="-1">Contact</a></li>
                 </ul>
         <a href="#" data-rel="close" data-role="button" data-mini="true" data-inline="true" data-icon="delete" data-iconpos="right">Close</a>
     </div><!-- /panel -->
- 
-  <div id="context" data-role="main" class="ui-content">
-    <div class="col-sm-4">
+ <div data-role="main" class="ui-content">
+    <div class="col-sm-4" id="Change1">
             <!-- title for this section -->
             <h4 style="color: red;">This Weeks Featured Stores</h4>
             <!-- this is the link to all the picture needed for the display//We can also add them locally to have out own display -->
@@ -136,8 +146,58 @@
                 <br>
             </div>
   </div>
+     <div id="Change2" data-role="page" style="display: none;">
+		 
+			<form  action="UserHome.aspx" autocomplete="on" id="Change2" style="display: none;"> 
+                <br />
+                <br />
+				<h1>Log in</h1> 
+				<p> 
+					<label for="username" class="uname" data-icon="u" > Your email or username </label>
+					<input id="username" name="username" required="required" type="text" placeholder="myusername or mymail@mail.com"/>
+				</p>
+				<p> 
+					<label for="password" class="youpasswd" data-icon="p"> Your password </label>
+					<input id="password" name="password" required="required" type="password" placeholder="eg. X8df!90EO" /> 
+				</p>
+				<p class="keeplogin"> 
+					<input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping" /> 
+					<label for="loginkeeping">Keep me logged in</label>
+				</p>
+                <br />
+				<p class="login button"> 
+					<input type="submit" value="Login"  /> 
+				</p>
+				<p class="change_link">
+					Not a member yet ?
+					<a href="Register.aspx" class="to_register">Join us</a>
+				</p>
+			</form>
+		
+        </div>
 
-  <div id="FooterTag" data-role="footer" class="ui-bar">
+ 
+    
+    </div>
+            
+  
+       </div>
+
+    
+
+
+        </div>
+        
+        
+
+        </div>
+
+      
+ </div>
+
+
+
+              <div id="FooterTag" data-role="footer" class="ui-bar">
     <footer>
         <div id="navcontainer">
             
@@ -155,9 +215,7 @@
     <script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
     <script src="js/bootstrap-image-gallery.min.js"></script>
     </footer>
-</div> 
-    
-    </div>
+</div>
     </form>
 </body>
 </html>

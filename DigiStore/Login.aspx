@@ -57,6 +57,9 @@
 				</p>
 			</form>
 		</div>
+        </div>
+       </div>
+    
     <!-- simple footer -->
         <footer>
   <div id="navcontainer">
