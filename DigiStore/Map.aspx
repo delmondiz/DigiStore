@@ -33,7 +33,7 @@
                     stylers: [{ visibility: 'simplified' }]
                 }, {
                     elementType: 'labels',
-                    stylers: [{ visibility: 'off' }]
+                    stylers: [{ visibility: 'on' }]
                 }]
             });
 
@@ -53,7 +53,7 @@
                     stylers: [{ visibility: 'simplified' }]
                 }, {
                     elementType: 'labels',
-                    stylers: [{ visibility: 'off' }]
+                    stylers: [{ visibility: 'on' }]
                 }]
             });
             service = new google.maps.places.PlacesService(map);
