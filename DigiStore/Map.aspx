@@ -15,10 +15,30 @@
         var infowindow;
         var markers = [];
         
+        startUpFunctions();
+
+        function startUpFunctions()
+        {
+            detectCurrentPosition();
+            detectBrowser();
+        }
+        
         // Prompt the user for their physical location.  If they give it, this will set
         // the map to their location.
-        if (navigator.geolocation){
-            navigator.geolocation.getCurrentPosition(createMapWithPosition);
+        function detectCurrentPosition() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(createMapWithPosition);
+            }
+        }
+
+        function detectBrowser() {
+            var useragent = navigator.userAgent;
+            var mapdiv = document.getElementById("map");
+
+            if (useragent.indexOf('iPhone') != -1 || useragent.indexOf('Android') != -1) {
+                mapdiv.style.width = '100%';
+                mapdiv.style.height = '100%';
+            }
         }
 
         function createMapWithPosition(userInfo) {
@@ -29,6 +49,7 @@
             map = new google.maps.Map(document.getElementById('goggleMap'), {
                 center: { lat: 43.6532, lng: -79.3832 },
                 zoom: 15,
+                mapTypeControl: false,
                 styles: [{
                     stylers: [{ visibility: 'simplified' }]
                 }, {
@@ -49,6 +70,7 @@
             map = new google.maps.Map(document.getElementById('goggleMap'), {
                 center: { lat: lati, lng: longi },
                 zoom: 15,
+                mapTypeControl: false,
                 styles: [{
                     stylers: [{ visibility: 'simplified' }]
                 }, {
