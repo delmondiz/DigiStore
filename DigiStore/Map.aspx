@@ -173,8 +173,9 @@
         </form>
         <br />
         <div style="width:100%; height:100%">
-            <div id="goggleMap" style="width:500px auto; height:500px"></div>
-            <asp:Image ID="Image1" runat="server" ImageUrl="~/img/powered_by_google_on_white_hdpi.png" />
+            <div id="goggleResults" style="background-color:slategrey; color:darkorange; width:40%; height:500px; float: left;"></div>
+            <div id="goggleMap" style="width:60%; height:500px; float: left;"></div>
+            <asp:Image ID="Image1" runat="server" style="clear:both;" ImageUrl="~/img/powered_by_google_on_white_hdpi.png" />
         </div>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3d4spAr0FMskq0UBEVofzNutc9Q9lrig&callback=initMap&libraries=places,visualization" async defer></script>
 </body>
