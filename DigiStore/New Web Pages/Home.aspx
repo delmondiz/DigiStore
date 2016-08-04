@@ -52,13 +52,38 @@
     <link href="Style/StyleSheet.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script>
+         <!-- Code Here changes the page features (HIDE AND SHOW) data role -->
         $(document).ready(function () {
+
             $("#login").click(function () {
-                $("#Change1").hide(); $("#Change2").show();
+                $("#homepage").hide();
+                $("#registrationpage").hide();
+                $("#loginpage").show();
+                $("#contactpage").hide();
             });
-            $("#lsProducts").click(function () {
-                $("#pageone").show(); $("#pagetwo").hide();
+
+            $("#home").click(function () {
+                $("#homepage").show();
+                $("#registrationpage").hide();
+                $("#loginpage").hide();
+                $("#contactpage").hide();
             });
+
+            $("#register").click(function () {
+                $("#homepage").hide();
+                $("#registrationpage").show();
+                $("#loginpage").hide();
+                $("#contactpage").hide();
+            });
+
+            $("#contact").click(function () {
+                $("#homepage").hide();
+                $("#registrationpage").hide();
+                $("#contactpage").show();
+                $("#loginpage").hide();
+            });
+
+           
         });
     </script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -91,16 +116,16 @@
             <div data-role="panel" id="left-panel" data-theme="b">
         <p>Left reveal panel.</p>
                  <ul class="submenu menu vertical is-dropdown-submenu first-sub" data-submenu="" aria-hidden="true" tabindex="-1" role="menu">
-                    <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item" tabindex="0"><a href="Home..aspx" tabindex="-1" >Home</a></li>
+                    <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item" tabindex="0"><a href="Home.aspx" tabindex="-1" id="home">Home</a></li>
                     <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item" tabindex="0"><a href="Login.aspx" tabindex="-1" id="login">Login</a></li>
-                    <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item" tabindex="0"><a href="Register.aspx" tabindex="-1">Register</a></li>
-                    <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item" tabindex="0"><a href="ContactUs.aspx" tabindex="-1">Contact</a></li>
+                    <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item" tabindex="0"><a href="Register.aspx" tabindex="-1" id="register">Register</a></li>
+                    <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item" tabindex="0"><a href="ContactUs.aspx" tabindex="-1" id="contact">Contact</a></li>
                 </ul>
         <a href="#" data-rel="close" data-role="button" data-mini="true" data-inline="true" data-icon="delete" data-iconpos="right">Close</a>
     </div><!-- /panel -->
  <div data-role="main" class="ui-content">
-    <div class="col-sm-4" id="Change1">
-            <!-- title for this section -->
+    <div id="homepage">
+           <!-- title for this section -->
             <h4 style="color: red;">This Weeks Featured Stores</h4>
             <!-- this is the link to all the picture needed for the display//We can also add them locally to have out own display -->
             <div id="links">
@@ -145,11 +170,61 @@
 
                 <br>
             </div>
+
   </div>
-     <div id="Change2" data-role="page" style="display: none;">
-		 
-			<form  action="UserHome.aspx" autocomplete="on" id="Change2" style="display: none;"> 
+     <div id="registrationpage" style="display: none;">
+		 <form   autocomplete="on"  > 
+                
                 <br />
+				<h1> Sign up </h1> 
+                <p> 
+					<label for="FirstName" class="Fname" data-icon="p">First Name: </label>
+					<input id="FirstName" name="FirstName"  type="text" placeholder="eg. John"/>
+				</p>
+                 <p> 
+					<label for="LastName" class="Lname" data-icon="p">Last Name: </label>
+					<input id="LastName" name="LastName"  type="text" placeholder="eg. Johnson"/>
+				</p>
+                 <p> 
+					<label for="Address" class="uAddress" data-icon="p">Address: </label>
+					<input id="Address" name="Address"  type="text" placeholder="eg. 30 street name crt"/>
+				</p>
+                <p> 
+					<label for="PostalCode" class="uPostalCode" data-icon="p">Postal Code: </label>
+					<input id="PostalCode" name="PostalCode"  type="text" placeholder="eg. L4Z4R5"/>
+				</p>
+                	<p> 
+					<label for="usernamesignup" class="uname" data-icon="u">Your username</label>
+					<input id="usernamesignup" name="usernamesignup"  type="text" placeholder="mysuperusername690" />
+				</p>
+				<p> 
+					<label for="emailsignup" class="youmail" data-icon="e" > Your email</label>
+					<input id="emailsignup" name="emailsignup"  type="email" placeholder="mysupermail@mail.com"/> 
+				</p>
+				<p> 
+					<label for="passwordsignup" class="youpasswd" data-icon="p">Your password </label>
+					<input id="passwordsignup" name="passwordsignup"  type="password" placeholder="eg. X8df!90EO"/>
+				</p>
+				<p> 
+					<label for="passwordsignup_confirm" class="youpasswd" data-icon="p">Please confirm your password </label>
+					<input id="passwordsignup_confirm" name="passwordsignup_confirm"  type="password" placeholder="eg. X8df!90EO"/>
+				</p>
+				<p class="signin button"> 
+					<input type="submit" value="Sign up" /> 
+				</p>
+				<p class="change_link">  
+					Already a member ?
+					<a href="Login.aspx" class="to_register"> Go and log in </a>
+				</p>
+			</form>
+
+		
+        </div>
+
+
+     <div id="loginpage" style="display: none;">
+          <form  autocomplete="on"  > 
+              
                 <br />
 				<h1>Log in</h1> 
 				<p> 
@@ -172,9 +247,27 @@
 					Not a member yet ?
 					<a href="Register.aspx" class="to_register">Join us</a>
 				</p>
-			</form>
+
+
+          </form>
+	
+			
 		
         </div>
+
+        <div id="contactpage" style="display: none;">
+            <br />
+				<h1>im just writing a whole leap of foolishness i am assuming i can put like one of those fields like name email and question so we can contact them back and iw as thinking about doing a help page i think that would be smart</h1> 
+
+        </div>
+
+
+    
+		
+        </div>
+
+
+
 
  
     
@@ -182,20 +275,6 @@
             
   
        </div>
-
-    
-
-
-        </div>
-        
-        
-
-        </div>
-
-      
- </div>
-
-
 
               <div id="FooterTag" data-role="footer" class="ui-bar">
     <footer>
