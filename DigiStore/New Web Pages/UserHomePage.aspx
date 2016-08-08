@@ -27,12 +27,12 @@
 {
     background: transparent !important;
 }
-        #back, #pageone {
-            background-image: url('../Images/Storefront1.jpg') !important;
-            background-repeat:repeat-y !important;
-           background-position:center center !important;
-           background-attachment:scroll !important;
-          background-size:100% 100% !important;
+        #pageone > .ui-panel-wrapper {
+            background-image: url('../Images/Storefront3.jpg') !important;
+             background-repeat: repeat-y !important;
+            background-position: center center !important;
+            background-attachment: scroll !important;
+            background-size: 100% 100% !important
         }
         
     </style>
@@ -52,39 +52,17 @@
     <link rel="stylesheet" href="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
     <link href="Style/StyleSheet.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script>
          <!-- Code Here changes the page features (HIDE AND SHOW) data role -->
         $(document).ready(function () {
 
-            $("#login").click(function () {
-                $("#homepage").hide();
-                $("#registrationpage").hide();
-                $("#loginpage").show();
-                $("#contactpage").hide();
+            $("#Items").click(function () {
+                $("#Item").show();
             });
 
-            $("#home").click(function () {
-                $("#homepage").show();
-                $("#registrationpage").hide();
-                $("#loginpage").hide();
-                $("#contactpage").hide();
-            });
-
-            $("#register").click(function () {
-                $("#homepage").hide();
-                $("#registrationpage").show();
-                $("#loginpage").hide();
-                $("#contactpage").hide();
-            });
-
-            $("#contact").click(function () {
-                $("#homepage").hide();
-                $("#registrationpage").hide();
-                $("#contactpage").show();
-                $("#loginpage").hide();
-            });
-
-           
+                      
         });
     </script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -114,45 +92,148 @@
     <h1>DigiStore</h1>
       <a href="#left-panel" data-theme="d" data-icon="arrow-r" data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-icon-nodisc">Open left panel</a>
      <a href="#right-panel" class="ui-icon-nodisc">Hello (Username)</a>
+     <ul class="nav navbar-nav navbar-right">
+            <!-- nav bar items   -->
+            <!-- Class badge give the items the # we can use do $(this).text()); to update and modify text-->
+            <
+            <li><a href="ViewCart.aspx" id="Items"><span class="glyphicon glyphicon-user"></span>Cart Items<span class="badge">2</span></a></li>
+           
+        </ul>
   </div>
             <div data-role="panel" id="left-panel" data-theme="b">
         <p>Left reveal panel.</p>
                  <ul class="submenu menu vertical is-dropdown-submenu first-sub" data-submenu="" aria-hidden="true" tabindex="-1" role="menu">
-                    <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item" tabindex="0"><a href="Home.aspx" tabindex="-1" id="home">Home</a></li>
-                    <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item" tabindex="0"><a href="Login.aspx" tabindex="-1" id="login">Browse</a></li>
-                    <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item" tabindex="0"><a href="Register.aspx" tabindex="-1" id="register">Categories</a></li>
-                    <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item" tabindex="0"><a href="ContactUs.aspx" tabindex="-1" id="contact">Whats Hot!</a></li>
+                    <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item" tabindex="0"><a href="Home.aspx" tabindex="-1">Home</a></li>
+                    <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item" tabindex="0"><a href="Login.aspx" tabindex="-1" >Browse</a></li>
+                    <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item" tabindex="0"><a href="Register.aspx" tabindex="-1" >Categories</a></li>
+                    <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item" tabindex="0"><a href="ContactUs.aspx" tabindex="-1" >Whats Hot!</a></li>
                 </ul>
         <a href="#" data-rel="close" data-role="button" data-mini="true" data-inline="true" data-icon="delete" data-iconpos="right">Close</a>
     </div><!-- /panel -->
             <div data-role="panel" id="right-panel" data-theme="b" data-position="right">
         <p>Right reveal panel.</p>
                  <ul class="submenu menu vertical is-dropdown-submenu first-sub" data-submenu="" aria-hidden="true" tabindex="-1" role="menu">
-                    <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item" tabindex="0"><a href="Home.aspx" tabindex="-1" id="home">Anything</a></li>
-                    <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item" tabindex="0"><a href="Login.aspx" tabindex="-1" id="login">Cart</a></li>
-                    <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item" tabindex="0"><a href="Register.aspx" tabindex="-1" id="register">Manage Profile</a></li>
-                    <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item" tabindex="0"><a href="ContactUs.aspx" tabindex="-1" id="contact">LogOut</a></li>
+                    <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item" tabindex="0"><a href="Home.aspx" tabindex="-1">Anything</a></li>
+                    <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item" tabindex="0"><a href="Login.aspx" tabindex="-1" >Cart</a></li>
+                    <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item" tabindex="0"><a href="Register.aspx" tabindex="-1" >Manage Profile</a></li>
+                    <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item" tabindex="0"><a href="ContactUs.aspx" tabindex="-1" >LogOut</a></li>
                 </ul>
         <a href="#" data-rel="close" data-role="button" data-mini="true" data-inline="true" data-icon="delete" data-iconpos="right">Close</a>
     </div><!-- /panel -->
+
  <div data-role="main" class="ui-content">
-  
+   <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%">
+            Select Location
+    <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" style="width: 100%">
+            <li class="text-center"><a href="#">Downtown Toronto</a></li>
+            <li class="text-center"><a href="#">Brampton</a></li>
+            <li class="text-center"><a href="#">Mississauga</a></li>
+            <li class="text-center"><a href="#">Vaughn</a></li>
+            <li class="text-center"><a href="#">Bolton</a></li>
+            <li class="text-center"><a href="#">North York</a></li>
+            <li class="text-center"><a href="#">Oakville</a></li>
+
+        </ul>
+    </div>
+
+     <div id="Item" style="display: none;">
+        <div id="wrapper">
+            <h1 style="color: white;">Your Cart</h1>
+        </div>
+        <div class="col-sm-3">
+            <h4 style="color: white;">Here Whats In Your Cart</h4>
+            <div class="row">
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                <a class="thumbnail" href="#">
+                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                <a class="thumbnail" href="#">
+                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+                </a>
+            </div>
+            
+        </div>
+
+        </div>
+        <div class="col-sm-4">
+            <h4 style="color: green;">Cart Total:</h4>
+            	<table id="cart" class="table table-hover table-condensed">
+    				<thead>
+						<tr>
+							<th style="width:50%">Product</th>
+							<th style="width:10%">Price</th>
+							<th style="width:8%">Quantity</th>
+							<th style="width:22%" class="text-center">Subtotal</th>
+							<th style="width:10%"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td data-th="Product">
+								<div class="row">
+									<div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100x100" alt="..." class="img-responsive"/></div>
+									<div class="col-sm-5">
+										<h7 class="nomargin">Product 1</h7>
+		
+									</div>
+								</div>
+							</td>
+							<td data-th="Price">$1.99</td>
+							<td data-th="Quantity">
+								<input type="number" class="form-control text-center" value="1">
+							</td>
+							<td data-th="Subtotal" class="text-center">1.99</td>
+							<td class="actions" data-th="">
+								<button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
+								<button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>								
+							</td>
+						</tr>
+                        <tr>
+							<td data-th="Product">
+								<div class="row">
+									<div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100x100" alt="..." class="img-responsive"/></div>
+									<div class="col-sm-5">
+										<h7 class="nomargin">Product 2</h7>
+		
+									</div>
+								</div>
+							</td>
+							<td data-th="Price">$11.99</td>
+							<td data-th="Quantity">
+								<input type="number" class="form-control text-center" value="1">
+							</td>
+							<td data-th="Subtotal" class="text-center">11.99</td>
+							<td class="actions" data-th="">
+								<button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
+								<button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>								
+							</td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr class="visible-xs">
+							<td class="text-center"><strong>Total 13.98</strong></td>
+						</tr>
+						<tr>
+							<td><a href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
+							<td colspan="2" class="hidden-xs"></td>
+							<td class="hidden-xs text-center"><strong>Total $13.98</strong></td>
+							<td><a href="#" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
+						</tr>
+					</tfoot>
+				</table>
+
+        </div>
+        
+    </div>
 
 
     
 		
-        </div>
-
-
-
-
- 
-    
-    </div>
-            
-  
-       </div>
-
               <div id="FooterTag" data-role="footer" class="ui-bar">
     <footer>
         <div id="navcontainer">
@@ -172,6 +253,19 @@
     <script src="js/bootstrap-image-gallery.min.js"></script>
     </footer>
 </div>
+        </div>
+
+
+
+
+ 
+    
+    </div>
+            
+  
+       </div>
+
+     
     </form>
 </body>
 </html>

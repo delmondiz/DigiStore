@@ -121,6 +121,7 @@
                     <h1>DigiStore</h1>
                     <a href="#left-panel" data-theme="d" data-icon="arrow-r" data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-icon-nodisc">Open left panel</a>
                 </div>
+
                  <!-- This is the list in the side bar -->
                 <div data-role="panel" id="left-panel" data-theme="b">
                     <p>Left reveal panel.</p>
@@ -132,8 +133,26 @@
                     </ul>
                     <a href="#" data-rel="close" data-role="button" data-mini="true" data-inline="true" data-icon="delete" data-iconpos="right">Close</a>
                 </div>
+                
                 <!-- /panel -->
+
                 <div data-role="main" class="ui-content" >
+                    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%">
+            Select Location
+    <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" style="width: 100%">
+            <li class="text-center"><a href="#">Downtown Toronto</a></li>
+            <li class="text-center"><a href="#">Brampton</a></li>
+            <li class="text-center"><a href="#">Mississauga</a></li>
+            <li class="text-center"><a href="#">Vaughn</a></li>
+            <li class="text-center"><a href="#">Bolton</a></li>
+            <li class="text-center"><a href="#">North York</a></li>
+            <li class="text-center"><a href="#">Oakville</a></li>
+
+        </ul>
+    </div>
                     <div id="homepage">
                         <!-- title for this section -->
                         <h4 style="color: red;">This Weeks Featured Stores</h4>
