@@ -115,6 +115,13 @@
     <Compile Include="New Web Pages\Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
+    <Compile Include="New Web Pages\ProductPage.aspx.cs">
+      <DependentUpon>ProductPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="New Web Pages\ProductPage.aspx.designer.cs">
+      <DependentUpon>ProductPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="New Web Pages\UserHomePage.aspx.cs">
       <DependentUpon>UserHomePage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -186,6 +193,7 @@
     <Content Include="New Web Pages\Images\Storefront4.jpg" />
     <Content Include="New Web Pages\Images\Storefront5.jpg" />
     <Content Include="New Web Pages\Images\Up-There-flagship-storefront-Melbourne.jpg" />
+    <Content Include="New Web Pages\ProductPage.aspx" />
     <Content Include="New Web Pages\StyleSheet1.css" />
     <Content Include="New Web Pages\UserHomePage.aspx" />
     <Content Include="Register.aspx" />

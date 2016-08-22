@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
+      <!--title and style might need to move this to a style sheet page make it look neater -->
 <head runat="server">
     <title>DigiStore</title>
     <style>
@@ -148,7 +149,7 @@
 
         </ul>
     </div>
-
+       <!--this display the cart page which we will have to modify what has been clicked to display what the user acutlly puts *use this as a template* -->
      <div id="Item" style="display: none;">
         <div id="wrapper">
             <h1 style="color: white;">Your Cart</h1>
@@ -168,6 +169,7 @@
             </div>
             
         </div>
+              <!--here we set the configuration for the check out page size look color and imagages -->
 
         </div>
         <div class="col-sm-4">
@@ -209,7 +211,7 @@
 									<div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100x100" alt="..." class="img-responsive"/></div>
 									<div class="col-sm-5">
 										<h7 class="nomargin">Product 2</h7>
-		
+		  <!--one thing we have to do is be able to add a field to this to when ever usuer select new image -->
 									</div>
 								</div>
 							</td>
@@ -244,9 +246,11 @@
      <div>
          <br><br>
        <div class="container">
+             <!--Here im designing the footer *problem is its not showing have to fix it -->    
   <div class="row">
     <div class="col-md-4">
         <div>
+              <!--here im giving the user promts to select service or products which will open up a list option -->
           <a id="UserServicesPage" href="#" data-role="button">SEVICES</a>
         <p id="text">*we can use this to type and example of what they may be looking for</p>
       <a id="UserProductsPage" href="#" data-role="button">PRODUCTS</a>
@@ -255,6 +259,7 @@
 
         <div>
             <div>
+                  <!--Here i am congiuring the list panel with some search features -->
          <div  id="DropdownServices" style="display: none;" class="dropdown">
     <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">list
     <span class="caret"></span></button>
@@ -276,8 +281,58 @@
 
     </div>
 
-    <div class="col-md-4" style="display: none;"> 
-
+    <div class="col-md-8" > 
+        <div class="row small-up-2 medium-up-3 large-up-4" style="display: none;">
+            <h3 style>this section is to be hidden and only open once category is selected</h3>
+<div class="column">
+<img class="thumbnail" src="http://placehold.it/550x550">
+<h5>My Site 1</h5>
+</div>
+<div class="column">
+<img class="thumbnail" src="http://placehold.it/550x550">
+<h5>My Site 2</h5>
+</div>
+<div class="column">
+<img class="thumbnail" src="http://placehold.it/550x550">
+<h5>My Site 3</h5>
+</div>
+<div class="column">
+<img class="thumbnail" src="http://placehold.it/550x550">
+<h5>My Site 4</h5>
+</div>
+<div class="column">
+<img class="thumbnail" src="http://placehold.it/550x550">
+<h5>My Site 5</h5>
+</div>
+<div class="column">
+<img class="thumbnail" src="http://placehold.it/550x550">
+<h5>My Site 6</h5>
+</div>
+<div class="column">
+<img class="thumbnail" src="http://placehold.it/550x550">
+<h5>My Site 7</h5>
+</div>
+<div class="column">
+<img class="thumbnail" src="http://placehold.it/550x550">
+<h5>My Site 8</h5>
+</div>
+<div class="column">
+<img class="thumbnail" src="http://placehold.it/550x550">
+<h5>My Site 9</h5>
+</div>
+<div class="column">
+<img class="thumbnail" src="http://placehold.it/550x550">
+<h5>My Site 10</h5>
+</div>
+<div class="column">
+<img class="thumbnail" src="http://placehold.it/550x550">
+<h5>My Site 11</h5>
+</div>
+<div class="column">
+<img class="thumbnail" src="http://placehold.it/550x550">
+<h5>My Site 12</h5>
+</div>
+</div>
     </div>
   </div>
 </div>
