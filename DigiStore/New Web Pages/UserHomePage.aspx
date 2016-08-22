@@ -6,6 +6,10 @@
 <head runat="server">
     <title>DigiStore</title>
     <style>
+
+        #text {
+            color: white;
+        }
         #FooterTag {
   position: absolute;
   right: 0;
@@ -28,7 +32,7 @@
     background: transparent !important;
 }
         #pageone > .ui-panel-wrapper {
-            background-image: url('../Images/Storefront3.jpg') !important;
+             background-image: url('../Images/Storefront5.jpg') ;//!important;
              background-repeat: repeat-y !important;
             background-position: center center !important;
             background-attachment: scroll !important;
@@ -60,6 +64,12 @@
 
             $("#Items").click(function () {
                 $("#Item").show();
+            });
+            $("#HomePage").click(function () {
+                $("#Item").hide();
+            });
+            $('#UserServicesPage').click(function () {
+                $("#DropdownServices").show();
             });
 
                       
@@ -103,7 +113,7 @@
             <div data-role="panel" id="left-panel" data-theme="b">
         <p>Left reveal panel.</p>
                  <ul class="submenu menu vertical is-dropdown-submenu first-sub" data-submenu="" aria-hidden="true" tabindex="-1" role="menu">
-                    <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item" tabindex="0"><a href="Home.aspx" tabindex="-1">Home</a></li>
+                    <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item" tabindex="0"><a href="UserHomePage.aspx" id="HomePage" tabindex="-1">Home</a></li>
                     <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item" tabindex="0"><a href="Login.aspx" tabindex="-1" >Browse</a></li>
                     <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item" tabindex="0"><a href="Register.aspx" tabindex="-1" >Categories</a></li>
                     <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item" tabindex="0"><a href="ContactUs.aspx" tabindex="-1" >Whats Hot!</a></li>
@@ -113,10 +123,10 @@
             <div data-role="panel" id="right-panel" data-theme="b" data-position="right">
         <p>Right reveal panel.</p>
                  <ul class="submenu menu vertical is-dropdown-submenu first-sub" data-submenu="" aria-hidden="true" tabindex="-1" role="menu">
-                    <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item" tabindex="0"><a href="Home.aspx" tabindex="-1">Anything</a></li>
-                    <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item" tabindex="0"><a href="Login.aspx" tabindex="-1" >Cart</a></li>
-                    <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item" tabindex="0"><a href="Register.aspx" tabindex="-1" >Manage Profile</a></li>
-                    <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item" tabindex="0"><a href="ContactUs.aspx" tabindex="-1" >LogOut</a></li>
+                    <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item" tabindex="0"><a href="#" tabindex="-1">Anything</a></li>
+                    <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item" tabindex="0"><a href="#" tabindex="-1" >Cart</a></li>
+                    <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item" tabindex="0"><a href="#" tabindex="-1" >Manage Profile</a></li>
+                    <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item" tabindex="0"><a href="#" tabindex="-1" >LogOut</a></li>
                 </ul>
         <a href="#" data-rel="close" data-role="button" data-mini="true" data-inline="true" data-icon="delete" data-iconpos="right">Close</a>
     </div><!-- /panel -->
@@ -230,6 +240,49 @@
         </div>
         
     </div>
+
+     <div>
+         <br><br>
+       <div class="container">
+  <div class="row">
+    <div class="col-md-4">
+        <div>
+          <a id="UserServicesPage" href="#" data-role="button">SEVICES</a>
+        <p id="text">*we can use this to type and example of what they may be looking for</p>
+      <a id="UserProductsPage" href="#" data-role="button">PRODUCTS</a>
+        <p id="text">*we can use this to type and example of what they may be looking for</p> 
+        </div>
+
+        <div>
+            <div>
+         <div  id="DropdownServices" style="display: none;" class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">list
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1" style="width: 100%">
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">resturants</a></li>
+      <li role="presentation" class="divider"></li>
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">housing</a></li>
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">somethingelse</a></li>
+      <li role="presentation" class="divider"></li>
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">cant think</a></li>
+    </ul>
+  </div>
+            </div>
+             <div>
+     
+            </div>
+        </div>
+      
+
+    </div>
+
+    <div class="col-md-4" style="display: none;"> 
+
+    </div>
+  </div>
+</div>
+
+     </div>
 
 
     
