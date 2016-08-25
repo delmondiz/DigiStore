@@ -145,10 +145,10 @@
         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%">
             Select Location
     <select>
-<option value="husker">Small</option>
-<option value="starbuck">Medium</option>
-<option value="hotdog">Large</option>
-<option value="apollo">Yeti</option>
+<option value="husker">Toronto</option>
+<option value="starbuck">Brampton</option>
+<option value="hotdog">Mississauaga</option>
+<option value="apollo">Milton</option>
 </select>
     </div>
 
@@ -207,7 +207,7 @@
 </div>
 <div class="media-object-section">
 <h5>Mike Stevenson</h5>
-<p>I'm going to improvise. Listen, there's something you should know about me... about inception. An idea is like a virus, resilient, highly contagious. The smallest seed of an idea can grow. It can grow to define or destroy you.</p>
+<p>THIS PRODUCT WAS SHIT IT GAVE ME BUBBLES AND SHIT CAME OUT LIQUID</p>
 </div>
 </div>
 <div class="media-object stack-for-small">
@@ -216,7 +216,7 @@
 </div>
 <div class="media-object-section">
 <h5>Mike Stevenson</h5>
-<p>I'm going to improvise. Listen, there's something you should know about me... about inception. An idea is like a virus, resilient, highly contagious. The smallest seed of an idea can grow. It can grow to define or destroy you</p>
+<p>FOOD TASTE NICE BLESS UP FROM THE FAM UP</p>
 </div>
 </div>
 <div class="media-object stack-for-small">
