@@ -107,8 +107,10 @@
                 console.error(status);
                 return;
             }
-            if (markers.length > 0)
+            if (markers.length > 0) {
                 deleteMarkers();
+                clearResultsList();
+            }
 
             for (var i = 0, result; result = results[i]; i++) {
                 addMarker(result);
@@ -119,19 +121,39 @@
         function addMarker(place) {
             var marker = new google.maps.Marker({
                 map: map,
-                position: place.geometry.location
+                position: place.geometry.location,
+                id: document.getElementById("goggleResultsList").childElementCount
             });
-            
+            service.getDetails(place, function (result, status) {
+                if (status !== google.maps.places.PlacesServiceStatus.OK) {
+                    console.error(status);
+                    return;
+                }
+                console.log(document.getElementById("goggleResultsList").childElementCount);
+
+                var open = "";
+                if (result.opening_hours.open_now)
+                    open = "Open!";
+                else if (result.permanently_closed)
+                    open = "PERMANENTLY CLOSED!";
+                else
+                    open = "Closed!";
+                var resultsHTML = "<div><img src='" + result.icon + "' alt='Store Icon' width='25' height='25'><b>Store Name: </b>" + result.name + "</div><br/>" +
+                    "<div><b>Address: </b>" + result.formatted_address + "</div><br/>" +
+                    "<div><b>Open Now: </b>" + open + "</div><br/>" +
+                    "<div><b>Rating: </b>" + result.rating + "/5</div><br/>";
+                document.getElementById("goggleResultsList").innerHTML +=
+                    "<li id='" + document.getElementById("goggleResultsList").childElementCount + "'>" +
+                    resultsHTML
+                "</li><hr/>";
+            });
+
             google.maps.event.addListener(marker, 'click', function () {
-                service.getDetails(place, function (result, status) {
-                    if (status !== google.maps.places.PlacesServiceStatus.OK) {
-                        console.error(status);
-                        return;
-                    }
-                    infoWindow.setContent(result.name);
+                    infoWindow.setContent(
+                        document.getElementById("goggleResultsList").children[marker.get("id")].innerHTML
+                        );
                     infoWindow.open(map, marker);
                 });
-            });
             markers.push(marker);
         }
 
@@ -146,6 +168,11 @@
         function clearMarkers()
         {
             setMapOnAll(null);
+        }
+
+        function clearResultsList()
+        {
+            document.getElementById("goggleResultsList").innerHTML = "";
         }
 
         function deleteMarkers()
@@ -173,7 +200,9 @@
         </form>
         <br />
         <div style="width:100%; height:100%">
-            <div id="goggleResults" style="background-color:slategrey; color:darkorange; width:40%; height:500px; float: left;"></div>
+            <div id="goggleResults" style="background-color:slategrey; color:darkorange; width:40%; height:500px; float: left; overflow-y:scroll">
+                <ul id="goggleResultsList"></ul>
+            </div>
             <div id="goggleMap" style="width:60%; height:500px; float: left;"></div>
             <asp:Image ID="Image1" runat="server" style="clear:both;" ImageUrl="~/img/powered_by_google_on_white_hdpi.png" />
         </div>
