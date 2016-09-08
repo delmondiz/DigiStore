@@ -1,145 +1,137 @@
 ﻿<html class="" lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digital Store Front</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+
+
     <!-- All the sources needed and try and make it look pretty -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
-    <link rel="stylesheet" href="css/bootstrap-image-gallery.min.css">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../Styles/newcss.css">
-    <link rel="stylesheet" href="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
-    <link href="Style/StyleSheet.css" rel="stylesheet" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
-    <style>
-        body {
-            background-image: url('../Images/Storefront1.jpg');
-            background-size: 100% 100%;
-        }
-    </style>
-</head>
-<body>
-    <!-- Creating a nav bar -->
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <!-- Creating the drop down menu in the nav bar -->
-        <ul class="dropdown menu" data-dropdown-menu="" role="menubar" data-dropdownmenu="bcfom2-dropdownmenu">
-            <a class="navbar-brand" href="Home.aspx">DigiStore</a>
-            <li class="has-submenu is-dropdown-submenu-parent is-down-arrow" role="menuitem" tabindex="0" title="Menu" aria-haspopup="true">
-                <a href="#" tabindex="-1">Menu</a>
-                <!-- Creating the items inside the dropdown menu in the nav bar -->
-                <ul class="submenu menu vertical is-dropdown-submenu first-sub" data-submenu="" aria-hidden="true" tabindex="-1" role="menu">
-                    <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item" tabindex="0"><a href="Login.aspx" tabindex="-1">Login</a></li>
-                    <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item" tabindex="0"><a href="Register.aspx" tabindex="-1">Register</a></li>
-                    <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item" tabindex="0"><a href="ContactUs.aspx" tabindex="-1">Contact</a></li>
-                </ul>
-            </li>
-        </ul>
-
-    </nav>
-    <br />
-    <br />
-    <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%; background-color: red;">
-            Select Location
-    <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" style="width: 100%">
-            <li class="text-center"><a href="#">Downtown Toronto</a></li>
-            <li class="text-center"><a href="#">Brampton</a></li>
-            <li class="text-center"><a href="#">Mississauga</a></li>
-            <li class="text-center"><a href="#">Vaughn</a></li>
-            <li class="text-center"><a href="#">Bolton</a></li>
-            <li class="text-center"><a href="#">North York</a></li>
-            <li class="text-center"><a href="#">Oakville</a></li>
-
-        </ul>
-    </div>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
     
-
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
     
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+
+    <!-- Materialize Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Custom CSS  -->
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
    
-    <div id="container_demo">
-        <div class="col-sm-4">
-            <!-- title for this section -->
-            <h4 style="color: red;">This Weeks Featured Stores</h4>
-            <!-- this is the link to all the picture needed for the display//We can also add them locally to have out own display -->
-            <div id="links">
-                <a href="https://farm8.static.flickr.com/7111/26273035544_6237d0bbe7_b.jpg" title="Crimson Flower" data-gallery="">
-                    <img src="https://farm8.static.flickr.com/7111/26273035544_6237d0bbe7_s.jpg" class="img-circle"></a><a href="https://farm8.static.flickr.com/7459/26614132050_605033e9d4_b.jpg" title="Shine a Light - Explore # 2" data-gallery=""><img src="https://farm8.static.flickr.com/7459/26614132050_605033e9d4_s.jpg" class="img-circle"></a><a href="https://farm8.static.flickr.com/7635/26859074676_bce1f41fcf_b.jpg" title="Happy Mother's Day!!!" data-gallery=""><img src="https://farm8.static.flickr.com/7635/26859074676_bce1f41fcf_s.jpg" class="img-circle"></a><a href="https://farm8.static.flickr.com/7548/26844176656_9aa41bfb27_b.jpg" title="Country Road Killdeer" data-gallery=""><img src="https://farm8.static.flickr.com/7548/26844176656_9aa41bfb27_s.jpg" class="img-circle"></a><a href="https://farm8.static.flickr.com/7691/26860556426_1c9990f48a_b.jpg" title="Blue Moon Butterfly" data-gallery=""><img src="https://farm8.static.flickr.com/7691/26860556426_1c9990f48a_s.jpg" class="img-circle"></a><a href="https://farm8.static.flickr.com/7001/26614711280_b0553988a2_b.jpg" title="Golden" data-gallery=""><img src="https://farm8.static.flickr.com/7001/26614711280_b0553988a2_s.jpg" class="img-circle"></a><a href="https://farm8.static.flickr.com/7580/26283695194_16345a4f4e_b.jpg" title="Muttertag" data-gallery=""><img src="https://farm8.static.flickr.com/7580/26283695194_16345a4f4e_s.jpg" class="img-circle"></a>
-                <div id="blueimp-gallery" class="blueimp-gallery">
-                    <!-- The container for the modal slides -->
-                    <div class="slides"></div>
-                    <!-- Controls for the borderless lightbox -->
-                    <h3 class="title"></h3>
-                    <a class="prev">‹</a>
-                    <a class="next">›</a>
-                    <a class="close">×</a>
-                    <a class="play-pause"></a>
-                    <ol class="indicator"></ol>
-                    <!-- The modal dialog, which will be used to wrap the lightbox content -->
-                    <div class="modal fade">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" aria-hidden="true">×</button>
-                                    <h4 class="modal-title"></h4>
-                                </div>
-                                <div class="modal-body next"></div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default pull-left prev">
-                                        <i class="glyphicon glyphicon-chevron-left"></i>
-                                        Previous
-                                    </button>
-                                    <button type="button" class="btn btn-primary next">
-                                        Next
-                        <i class="glyphicon glyphicon-chevron-right"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+</head>
+
+<body>
+    <nav class="light-blue lighten-1" role="navigation">
+        <div class="nav-wrapper container">
+            <a id="logo-container" href="#" class="brand-logo">Logo</a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="#">Navbar Link</a></li>
+            </ul>
+
+            <ul id="nav-mobile" class="side-nav">
+                <li><a href="#">Navbar Link</a></li>
+            </ul>
+            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+        </div>
+    </nav>
+    <div class="section no-pad-bot" id="index-banner">
+        <div class="container">
+            <br>
+            <br>
+            <h1 class="header center orange-text">Starter Template</h1>
+            <div class="row center">
+                <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+            </div>
+            <div class="row center">
+                <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light orange">Get Started</a>
+            </div>
+            <br>
+            <br>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="section">
+
+            <!--   Icon Section   -->
+            <div class="row">
+                <div class="col s12 m4">
+                    <div class="icon-block">
+                        <h2 class="center light-blue-text"><i class="material-icons">flash_on</i></h2>
+                        <h5 class="center">Speeds up development</h5>
+
+                        <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
                     </div>
                 </div>
 
+                <div class="col s12 m4">
+                    <div class="icon-block">
+                        <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
+                        <h5 class="center">User Experience Focused</h5>
 
+                        <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
+                    </div>
+                </div>
 
+                <div class="col s12 m4">
+                    <div class="icon-block">
+                        <h2 class="center light-blue-text"><i class="material-icons">settings</i></h2>
+                        <h5 class="center">Easy to work with</h5>
 
-                <br>
+                        <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="col-sm-4">
-            <h4 style="color: red;">Can Do Something With this Column</h4>
-        </div>
 
+        </div>
+        <br>
+        <br>
 
+        <div class="section">
+        </div>
     </div>
 
+    <footer class="page-footer orange">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Company Bio</h5>
+                    <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
 
 
-    <!--simple footer  -->
-    <footer>
-        <div id="navcontainer">
-            <ul id="navlist">
-                <li id="active"><a href="#" id="current">Contact</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Employment</a></li>
-                <li><a href="#">Legal</a></li>
-            </ul>
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="white-text">Settings</h5>
+                    <ul>
+                        <li><a class="white-text" href="#!">Link 1</a></li>
+                        <li><a class="white-text" href="#!">Link 2</a></li>
+                        <li><a class="white-text" href="#!">Link 3</a></li>
+                        <li><a class="white-text" href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="white-text">Connect</h5>
+                    <ul>
+                        <li><a class="white-text" href="#!">Link 1</a></li>
+                        <li><a class="white-text" href="#!">Link 2</a></li>
+                        <li><a class="white-text" href="#!">Link 3</a></li>
+                        <li><a class="white-text" href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+            </div>
         </div>
     </footer>
-    <!-- more source codes needed to make page look pretty  -->
-    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
-    <script>
-        $(document).foundation();
-    </script>
-    <script type="text/javascript" src="https://intercom.zurb.com/scripts/zcom.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
-    <script src="js/bootstrap-image-gallery.min.js"></script>
 
+
+    <script type="text/javascript" src="js/init.js"></script>
 
 </body>
 </html>
