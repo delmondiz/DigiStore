@@ -140,6 +140,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="DigiStore.mdf" />
+    <Content Include="DigiStore_log.ldf">
+      <DependentUpon>DigiStore.mdf</DependentUpon>
+    </Content>
     <Content Include="Home.aspx" />
     <Content Include="htmls\ContactUs.html" />
     <Content Include="htmls\Home.html" />
