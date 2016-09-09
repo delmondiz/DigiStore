@@ -29,8 +29,8 @@
         <div class="nav-wrapper container">
             <a id="logo-container" href="#" class="brand-logo left yellow-text accent-3">DigiStore</a>
             <ul class="right">
-                <li><a href="#">Join</a></li>
-                <li><a href="#">Sign In</a></li>
+                <li><a href="#" class="yellow-text accent-3">Join</a></li>
+                <li><a href="#" class="yellow-text accent-3">Sign In</a></li>
             </ul>
         </div>
     </nav>
@@ -43,7 +43,7 @@
                 <h5 class="header col s12 light">A new way to connect to local shops</h5>
             </div>
             <div class="row center">
-                <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light orange">Get Started</a>
+                <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light blue darken-3 yellow-text accent-3">Get Started</a>
             </div>
             <br>
             <br>
@@ -91,17 +91,17 @@
         </div>
     </div>
 
-    <footer class="page-footer orange">
+    <footer class="page-footer blue darken-3">
         <div class="container">
             <div class="row">
                 <div class="col l6 s12">
-                    <h5 class="white-text">Company Bio</h5>
+                    <h5 class="yellow-text accent-3">Company Bio</h5>
                     <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
 
 
                 </div>
                 <div class="col l3 s12">
-                    <h5 class="white-text">Settings</h5>
+                    <h5 class="yellow-text">Settings</h5>
                     <ul>
                         <li><a class="white-text" href="#!">Link 1</a></li>
                         <li><a class="white-text" href="#!">Link 2</a></li>
@@ -110,7 +110,7 @@
                     </ul>
                 </div>
                 <div class="col l3 s12">
-                    <h5 class="white-text">Connect</h5>
+                    <h5 class="yellow-text">Connect</h5>
                     <ul>
                         <li><a class="white-text" href="#!">Link 1</a></li>
                         <li><a class="white-text" href="#!">Link 2</a></li>
@@ -122,7 +122,7 @@
         </div>
         <div class="footer-copyright">
             <div class="container">
-                Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+                Made by <a class="yellow-text accent-3" href="http://materializecss.com">Materialize</a>
             </div>
         </div>
     </footer>
