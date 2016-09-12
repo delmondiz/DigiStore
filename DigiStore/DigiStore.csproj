@@ -109,6 +109,13 @@
       <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StorePage.aspx.cs">
+      <DependentUpon>StorePage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StorePage.aspx.designer.cs">
+      <DependentUpon>StorePage.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="images\" />
@@ -120,6 +127,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="js\init.js" />
+    <Content Include="StorePage.aspx" />
     <Content Include="Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
