@@ -193,7 +193,6 @@
   <ItemGroup>
     <Content Include="css\style.css" />
     <Content Include="Profile.aspx" />
-    <Content Include="Home.aspx" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>
