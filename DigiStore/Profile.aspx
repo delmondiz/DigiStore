@@ -77,6 +77,7 @@
                         <div class="collapsible-header"><i class="material-icons">place</i>Order History</div>
                         <div class="collapsible-body">
                             <p>Nothing yet, you cheap fucker!</p>
+                            <p><a href="Link to Order History Page">View All</a></p>
                         </div>
                     </li>
                 </ul>
@@ -130,3 +131,4 @@
 
 </body>
 </html>
+
