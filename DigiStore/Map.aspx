@@ -40,12 +40,11 @@
             <a href="#" data-activates="slideOut" class="button-collapse"><i class="material-icons">menu</i></a>
         </div>
     </nav>    
-    <div class="carousel">
-    <a class="carousel-item" href="#one!"><img src="http://lorempixel.com/250/250/nature/1"></a>
-    <a class="carousel-item" href="#two!"><img src="http://lorempixel.com/250/250/nature/2"></a>
-    <a class="carousel-item" href="#three!"><img src="http://lorempixel.com/250/250/nature/3"></a>
-    <a class="carousel-item" href="#four!"><img src="http://lorempixel.com/250/250/nature/4"></a>
-    <a class="carousel-item" href="#five!"><img src="http://lorempixel.com/250/250/nature/5"></a>
+     <div class="carousel carousel-slider">
+    <a class="carousel-item" href="#one!"><img src="http://lorempixel.com/800/400/food/1"></a>
+    <a class="carousel-item" href="#two!"><img src="http://lorempixel.com/800/400/food/2"></a>
+    <a class="carousel-item" href="#three!"><img src="http://lorempixel.com/800/400/food/3"></a>
+    <a class="carousel-item" href="#four!"><img src="http://lorempixel.com/800/400/food/4"></a>
   </div>
     <form id="form2" onsubmit="return performUserSearch()">
             <div class="row">
@@ -76,7 +75,9 @@
             Materialize.updateTextFields();
             $(".dropdown-button").dropdown();
             $(".button-collapse").sideNav();
-            $('.carousel').carousel();
+            //$('.carousel').carousel();
+            ////$('.carousel.carousel-slider').carousel();
+            $('.carousel.carousel-slider').carousel({ full_width: true });
         });
 
         /*
