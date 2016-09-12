@@ -110,6 +110,7 @@
     <Content Include="css\foundation-rtl.css" />
     <Content Include="css\foundation.css" />
     <Content Include="css\foundation.min.css" />
+    <Content Include="img\icon.png" />
     <Content Include="img\powered_by_google_on_non_white.png" />
     <Content Include="img\powered_by_google_on_non_white_hdpi.png" />
     <Content Include="img\powered_by_google_on_white.png" />
