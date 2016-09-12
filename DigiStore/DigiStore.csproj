@@ -94,6 +94,13 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Profile.aspx.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -122,6 +129,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\style.css" />
+    <Content Include="Login.aspx" />
     <Content Include="Profile.aspx" />
     <Content Include="Home.aspx" />
   </ItemGroup>
