@@ -58,7 +58,7 @@
                 <div class="col s12 m4">
                     <div class="icon-block">
                         <h2 class="center light-blue-text"><i class="material-icons">location_on</i></h2>
-                        <h5 class="center">Find Shops Near You</h5>
+                        <h5 class="center">Find Local Shops</h5>
 
                         <p class="grey-text ">Using your device's geolocation, we can connect you to shops in your area, no matter where you are. You can also search for stores without geolocation, if you're having a tin foil hat kinda day. With Google maps support, our site is familiar and easy to use.</p>
                     </div>
@@ -67,7 +67,7 @@
                 <div class="col s12 m4">
                     <div class="icon-block">
                         <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
-                        <h5 class="center">Join the community</h5>
+                        <h5 class="center">Join the Community</h5>
 
                         <p class="grey-text ">Share reviews and picures of your experiences with others using DigiStore. For our vendor partners, you gain easy access to your client base to help tailor your customer experience and grow your business.</p>
                     </div>
@@ -100,8 +100,8 @@
 
 
                 </div>
-                <div class="col l3 s12">
-                    <h5 class="yellow-text">Settings</h5>
+                <div class="col l3 m3 s12">
+                    <h5 class="yellow-text accent-3">Settings</h5>
                     <ul>
                         <li><a class="white-text" href="#!">Link 1</a></li>
                         <li><a class="white-text" href="#!">Link 2</a></li>
@@ -109,8 +109,8 @@
                         <li><a class="white-text" href="#!">Link 4</a></li>
                     </ul>
                 </div>
-                <div class="col l3 s12">
-                    <h5 class="yellow-text">Connect</h5>
+                <div class="col l3 m3 s12">
+                    <h5 class="yellow-text accent-3">Connect</h5>
                     <ul>
                         <li><a class="white-text" href="#!">Link 1</a></li>
                         <li><a class="white-text" href="#!">Link 2</a></li>
@@ -120,13 +120,12 @@
                 </div>
             </div>
         </div>
-        <div class="footer-copyright">
-            <div class="container">
-                Made by <a class="yellow-text accent-3" href="http://materializecss.com">Materialize</a>
+        <div class="footer-copyright blue darken-4">
+            <div class="container yellow-text accent-3">
+                <p>Made by Oceans4 | Powered by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a></p>
             </div>
         </div>
     </footer>
-
 
     <script type="text/javascript" src="js/init.js"></script>
 
