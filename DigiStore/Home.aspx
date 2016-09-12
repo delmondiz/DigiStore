@@ -55,22 +55,22 @@
     </div>
 
     <div class="container">
+            <div class="center col l12 m12 s12">
+                <div class="carousel">
+                    <a class="carousel-item" href="#one!">
+                        <img src="http://lorempixel.com/250/250/nature/1"></a>
+                    <a class="carousel-item" href="#two!">
+                        <img src="http://lorempixel.com/250/250/nature/2"></a>
+                    <a class="carousel-item" href="#three!">
+                        <img src="http://lorempixel.com/250/250/nature/3"></a>
+                    <a class="carousel-item" href="#four!">
+                        <img src="http://lorempixel.com/250/250/nature/4"></a>
+                    <a class="carousel-item" href="#five!">
+                        <img src="http://lorempixel.com/250/250/nature/5"></a>
+                </div>
+
+        </div>
         <div class="section">
-
-
-            <div class="carousel">
-                <a class="carousel-item" href="#one!">
-                    <img width="500" height="500" src="http://lorempixel.com/250/250/nature/1"></a>
-                <a class="carousel-item" href="#two!">
-                    <img width="500" height="500" src="http://lorempixel.com/250/250/nature/2"></a>
-                <a class="carousel-item" href="#three!">
-                    <img width="500" height="500" src="http://lorempixel.com/250/250/nature/3"></a>
-                <a class="carousel-item" href="#four!">
-                    <img width="500" height="500" src="http://lorempixel.com/250/250/nature/4"></a>
-                <a class="carousel-item" href="#five!">
-                    <img width="500" height="500" src="http://lorempixel.com/250/250/nature/5"></a>
-            </div>
-
             <!--   Icon Section   -->
             <div class="row">
                 <div class="col s12 m4">
