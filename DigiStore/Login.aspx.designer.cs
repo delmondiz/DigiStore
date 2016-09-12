@@ -10,6 +10,6 @@
 namespace DigiStore {
     
     
-    public partial class Login1 {
+    public partial class Login {
     }
 }
