@@ -40,7 +40,14 @@
             <a href="#" data-activates="slideOut" class="button-collapse"><i class="material-icons">menu</i></a>
         </div>
     </nav>    
-        <form id="form2" onsubmit="return performUserSearch()">
+    <div class="carousel">
+    <a class="carousel-item" href="#one!"><img src="http://lorempixel.com/250/250/nature/1"></a>
+    <a class="carousel-item" href="#two!"><img src="http://lorempixel.com/250/250/nature/2"></a>
+    <a class="carousel-item" href="#three!"><img src="http://lorempixel.com/250/250/nature/3"></a>
+    <a class="carousel-item" href="#four!"><img src="http://lorempixel.com/250/250/nature/4"></a>
+    <a class="carousel-item" href="#five!"><img src="http://lorempixel.com/250/250/nature/5"></a>
+  </div>
+    <form id="form2" onsubmit="return performUserSearch()">
             <div class="row">
                 <div class="input-field col s10">
                     <input type="text" id="inputSearch" class="validate" />
@@ -53,7 +60,7 @@
                 </div>
             </div>
         </form>
-        <div style="width:100%; height:100%; position:fixed;">
+    <div style="width:100%; height:100%; position:fixed;">
             <div id="goggleResults" style="background-color: slategrey; color: #FFFFFF; width: 40%; height: 100%; float: left; overflow-y: scroll">
                 <ol id="goggleResultsList"></ol>
             </div>
@@ -69,6 +76,7 @@
             Materialize.updateTextFields();
             $(".dropdown-button").dropdown();
             $(".button-collapse").sideNav();
+            $('.carousel').carousel();
         });
 
         /*
