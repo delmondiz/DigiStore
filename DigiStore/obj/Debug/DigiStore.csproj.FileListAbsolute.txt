@@ -77,14 +77,6 @@ F:\ewchr_000\Sheridan\Capstone\DigiStore\DigiStore\bin\roslyn\VBCSCompiler.exe.c
 F:\ewchr_000\Sheridan\Capstone\DigiStore\DigiStore\bin\DigiStore.dll.config
 F:\ewchr_000\Sheridan\Capstone\DigiStore\DigiStore\bin\DigiStore.dll
 F:\ewchr_000\Sheridan\Capstone\DigiStore\DigiStore\bin\DigiStore.pdb
-F:\ewchr_000\Sheridan\Capstone\DigiStore\DigiStore\bin\Microsoft.AI.Agent.Intercept.dll
-F:\ewchr_000\Sheridan\Capstone\DigiStore\DigiStore\bin\Microsoft.AI.DependencyCollector.dll
-F:\ewchr_000\Sheridan\Capstone\DigiStore\DigiStore\bin\Microsoft.AI.PerfCounterCollector.dll
-F:\ewchr_000\Sheridan\Capstone\DigiStore\DigiStore\bin\Microsoft.AI.ServerTelemetryChannel.dll
-F:\ewchr_000\Sheridan\Capstone\DigiStore\DigiStore\bin\Microsoft.AI.Web.dll
-F:\ewchr_000\Sheridan\Capstone\DigiStore\DigiStore\bin\Microsoft.AI.WindowsServer.dll
-F:\ewchr_000\Sheridan\Capstone\DigiStore\DigiStore\bin\Microsoft.ApplicationInsights.dll
-F:\ewchr_000\Sheridan\Capstone\DigiStore\DigiStore\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 F:\ewchr_000\Sheridan\Capstone\DigiStore\DigiStore\bin\Microsoft.AI.DependencyCollector.xml
 F:\ewchr_000\Sheridan\Capstone\DigiStore\DigiStore\bin\Microsoft.AI.ServerTelemetryChannel.xml
 F:\ewchr_000\Sheridan\Capstone\DigiStore\DigiStore\bin\Microsoft.AI.Web.xml
