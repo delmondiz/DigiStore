@@ -130,6 +130,7 @@
     <Content Include="js\init.js" />
     <Content Include="js\vendor\jquery.min.js" />
     <Content Include="js\vendor\what-input.min.js" />
+    <Content Include="Login.aspx" />
     <Content Include="Map.aspx" />
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <Content Include="bin\DigiStore.dll.config" />
@@ -156,6 +157,13 @@
     </Compile>
     <Compile Include="ContactUs.aspx.designer.cs">
       <DependentUpon>ContactUs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Profile.aspx.designer.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
