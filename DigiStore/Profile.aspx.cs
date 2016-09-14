@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace DigiStore.New_Web_Pages
+namespace DigiStore
 {
-    public partial class Home : System.Web.UI.Page
+    public partial class Login1 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

@@ -94,13 +94,6 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Home.aspx.cs">
-      <DependentUpon>Home.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Home.aspx.designer.cs">
-      <DependentUpon>Home.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -108,107 +101,42 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="New Web Pages\Home.aspx.cs">
+    <Compile Include="Profile.aspx.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile.aspx.designer.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="New Web Pages\Home.aspx.designer.cs">
+    <Compile Include="Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="New Web Pages\ProductPage.aspx.cs">
-      <DependentUpon>ProductPage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="New Web Pages\ProductPage.aspx.designer.cs">
-      <DependentUpon>ProductPage.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="New Web Pages\UserHomePage.aspx.cs">
-      <DependentUpon>UserHomePage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="New Web Pages\UserHomePage.aspx.designer.cs">
-      <DependentUpon>UserHomePage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Register.aspx.cs">
-      <DependentUpon>Register.aspx</DependentUpon>
+    <Compile Include="TEST.aspx.cs">
+      <DependentUpon>TEST.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Register.aspx.designer.cs">
-      <DependentUpon>Register.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UserHome.aspx.cs">
-      <DependentUpon>UserHome.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserHome.aspx.designer.cs">
-      <DependentUpon>UserHome.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UserHomePage.aspx.cs">
-      <DependentUpon>UserHomePage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserHomePage.aspx.designer.cs">
-      <DependentUpon>UserHomePage.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ViewCart.aspx.cs">
-      <DependentUpon>ViewCart.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ViewCart.aspx.designer.cs">
-      <DependentUpon>ViewCart.aspx</DependentUpon>
+    <Compile Include="TEST.aspx.designer.cs">
+      <DependentUpon>TEST.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="css\" />
-    <Folder Include="js\" />
+    <Folder Include="images\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Home.aspx" />
-    <Content Include="htmls\ContactUs.html" />
-    <Content Include="htmls\Home.html" />
-    <Content Include="htmls\Login.html" />
-    <Content Include="htmls\Register.html" />
-    <Content Include="htmls\UserHome.html" />
-    <Content Include="img\20151214_shunpike_storefronts_035.jpg" />
-    <Content Include="img\KarkulaFurnitureStorefront.jpg" />
-    <Content Include="img\photo+1+%282%29.jpg" />
-    <Content Include="img\sgm-design-storefront.jpg" />
-    <Content Include="img\Storefront-Transformer-New-York-City-Untapped-Cities.jpg.jpg" />
-    <Content Include="img\Storefront.jpg" />
-    <Content Include="img\Storefront1.jpg" />
-    <Content Include="img\Storefront2.jpg" />
-    <Content Include="img\Storefront3.jpg" />
-    <Content Include="img\Storefront4.jpg" />
-    <Content Include="img\Storefront5.jpg" />
-    <Content Include="img\Up-There-flagship-storefront-Melbourne.jpg" />
+    <Content Include="css\style.css" />
     <Content Include="Login.aspx" />
-    <Content Include="New Web Pages\Home.aspx" />
-    <Content Include="New Web Pages\Images\20151214_shunpike_storefronts_035.jpg" />
-    <Content Include="New Web Pages\Images\KarkulaFurnitureStorefront.jpg" />
-    <Content Include="New Web Pages\Images\photo+1+%282%29.jpg" />
-    <Content Include="New Web Pages\Images\sgm-design-storefront.jpg" />
-    <Content Include="New Web Pages\Images\Storefront-Transformer-New-York-City-Untapped-Cities.jpg.jpg" />
-    <Content Include="New Web Pages\Images\Storefront.jpg" />
-    <Content Include="New Web Pages\Images\Storefront1.jpg" />
-    <Content Include="New Web Pages\Images\Storefront2.jpg" />
-    <Content Include="New Web Pages\Images\Storefront3.jpg" />
-    <Content Include="New Web Pages\Images\Storefront4.jpg" />
-    <Content Include="New Web Pages\Images\Storefront5.jpg" />
-    <Content Include="New Web Pages\Images\Up-There-flagship-storefront-Melbourne.jpg" />
-    <Content Include="New Web Pages\ProductPage.aspx" />
-    <Content Include="New Web Pages\StyleSheet1.css" />
-    <Content Include="New Web Pages\UserHomePage.aspx" />
-    <Content Include="Register.aspx" />
-    <Content Include="UserHome.aspx" />
-    <Content Include="UserHomePage.aspx" />
-    <Content Include="ViewCart.aspx" />
+    <Content Include="Profile.aspx" />
+    <Content Include="Home.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages.config" />
+    <Content Include="js\init.js" />
+    <Content Include="TEST.aspx" />
     <Content Include="Web.config" />
-    <Content Include="img\Thumbs.db" />
-    <Content Include="New Web Pages\Images\Thumbs.db" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
