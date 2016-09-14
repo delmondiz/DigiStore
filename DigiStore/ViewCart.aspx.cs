@@ -7,11 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace DigiStore
 {
-    public partial class Login : System.Web.UI.Page
+    public partial class ViewCart : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+           
         }
     }
 }
