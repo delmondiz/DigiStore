@@ -104,8 +104,6 @@
     <Content Include="img\powered_by_google_on_white.png" />
     <Content Include="img\powered_by_google_on_white_hdpi.png" />
     <Content Include="js\init.js" />
-    <Content Include="js\vendor\jquery.min.js" />
-    <Content Include="js\vendor\what-input.min.js" />
     <Content Include="Map.aspx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
