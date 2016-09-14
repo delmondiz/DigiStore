@@ -159,7 +159,10 @@
       <DependentUpon>ViewCart.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="css\" />
+    <Folder Include="js\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Home.aspx" />
     <Content Include="htmls\ContactUs.html" />
@@ -167,18 +170,18 @@
     <Content Include="htmls\Login.html" />
     <Content Include="htmls\Register.html" />
     <Content Include="htmls\UserHome.html" />
-    <Content Include="Images\20151214_shunpike_storefronts_035.jpg" />
-    <Content Include="Images\KarkulaFurnitureStorefront.jpg" />
-    <Content Include="Images\photo+1+%282%29.jpg" />
-    <Content Include="Images\sgm-design-storefront.jpg" />
-    <Content Include="Images\Storefront-Transformer-New-York-City-Untapped-Cities.jpg.jpg" />
-    <Content Include="Images\Storefront.jpg" />
-    <Content Include="Images\Storefront1.jpg" />
-    <Content Include="Images\Storefront2.jpg" />
-    <Content Include="Images\Storefront3.jpg" />
-    <Content Include="Images\Storefront4.jpg" />
-    <Content Include="Images\Storefront5.jpg" />
-    <Content Include="Images\Up-There-flagship-storefront-Melbourne.jpg" />
+    <Content Include="img\20151214_shunpike_storefronts_035.jpg" />
+    <Content Include="img\KarkulaFurnitureStorefront.jpg" />
+    <Content Include="img\photo+1+%282%29.jpg" />
+    <Content Include="img\sgm-design-storefront.jpg" />
+    <Content Include="img\Storefront-Transformer-New-York-City-Untapped-Cities.jpg.jpg" />
+    <Content Include="img\Storefront.jpg" />
+    <Content Include="img\Storefront1.jpg" />
+    <Content Include="img\Storefront2.jpg" />
+    <Content Include="img\Storefront3.jpg" />
+    <Content Include="img\Storefront4.jpg" />
+    <Content Include="img\Storefront5.jpg" />
+    <Content Include="img\Up-There-flagship-storefront-Melbourne.jpg" />
     <Content Include="Login.aspx" />
     <Content Include="New Web Pages\Home.aspx" />
     <Content Include="New Web Pages\Images\20151214_shunpike_storefronts_035.jpg" />
@@ -204,7 +207,7 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="Web.config" />
-    <Content Include="Images\Thumbs.db" />
+    <Content Include="img\Thumbs.db" />
     <Content Include="New Web Pages\Images\Thumbs.db" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
