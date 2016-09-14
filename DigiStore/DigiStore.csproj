@@ -94,6 +94,13 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContactUs.aspx.cs">
+      <DependentUpon>ContactUs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContactUs.aspx.designer.cs">
+      <DependentUpon>ContactUs.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -123,19 +130,44 @@
     <Compile Include="TEST.aspx.designer.cs">
       <DependentUpon>TEST.aspx</DependentUpon>
     </Compile>
+    <Compile Include="UserHome.aspx.cs">
+      <DependentUpon>UserHome.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserHome.aspx.designer.cs">
+      <DependentUpon>UserHome.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserHomePage.aspx.cs">
+      <DependentUpon>UserHomePage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewCart.aspx.cs">
+      <DependentUpon>ViewCart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewCart.aspx.designer.cs">
+      <DependentUpon>ViewCart.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="images\" />
+    <Folder Include="img\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ContactUs.aspx" />
     <Content Include="css\style.css" />
+    <Content Include="css\StyleSheet.css" />
     <Content Include="Login.aspx" />
     <Content Include="Profile.aspx" />
     <Content Include="Home.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="js\init.js" />
+    <Content Include="Register.aspx" />
     <Content Include="TEST.aspx" />
+    <Content Include="TestLogin.html" />
+    <Content Include="UserHome.aspx" />
+    <Content Include="UserHomePage.aspx" />
+    <Content Include="ViewCart.aspx" />
     <Content Include="Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
