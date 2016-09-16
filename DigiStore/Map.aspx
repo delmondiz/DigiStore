@@ -40,12 +40,6 @@
             <a href="#" data-activates="slideOut" class="button-collapse"><i class="material-icons">menu</i></a>
         </div>
     </nav>    
-     <div class="carousel carousel-slider">
-    <a class="carousel-item" href="#one!"><img src="http://lorempixel.com/800/400/food/1"></a>
-    <a class="carousel-item" href="#two!"><img src="http://lorempixel.com/800/400/food/2"></a>
-    <a class="carousel-item" href="#three!"><img src="http://lorempixel.com/800/400/food/3"></a>
-    <a class="carousel-item" href="#four!"><img src="http://lorempixel.com/800/400/food/4"></a>
-  </div>
     <form id="form2" onsubmit="return performUserSearch()">
             <div class="row">
                 <div class="input-field col s10">
