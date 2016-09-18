@@ -9,7 +9,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{33CAB4ED-4AB2-4210-A5E7-0919EEFB11F2}</ProjectGuid>
+    <ProjectGuid>{CAC9C8F1-14A5-4C02-B637-3E1549A6C4B3}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -94,58 +94,16 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ContactUs.aspx" />
-    <Content Include="css\StoreInventory.css" />
-    <Content Include="css\style.css" />
-    <Content Include="css\StyleSheet.css" />
-    <Content Include="Home.aspx" />
-    <Content Include="img\icon.png" />
-    <Content Include="img\jinx.png" />
-    <Content Include="img\kha.png" />
-    <Content Include="img\mf.png" />
-    <Content Include="img\powered_by_google_on_non_white.png" />
-    <Content Include="img\powered_by_google_on_non_white_hdpi.png" />
-    <Content Include="img\powered_by_google_on_white.png" />
-    <Content Include="img\powered_by_google_on_white_hdpi.png" />
-    <Content Include="img\tryn.png" />
-    <Content Include="img\vi.png" />
-    <Content Include="js\init.js" />
-    <Content Include="js\vendor\jquery.min.js" />
-    <Content Include="js\vendor\what-input.min.js" />
-    <Content Include="Login.aspx" />
-    <Content Include="Map.aspx" />
-    <None Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-    <None Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Register.aspx" />
-    <Content Include="StoreInventory.aspx" />
-    <Content Include="StorePage.aspx" />
-    <Content Include="TEST.aspx" />
-    <Content Include="TestLogin.html" />
-    <Content Include="UserHome.aspx" />
-    <Content Include="UserHomePage.aspx" />
-    <Content Include="ViewCart.aspx" />
-    <Content Include="Web.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="ContactUs.aspx.cs">
-      <DependentUpon>ContactUs.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ContactUs.aspx.designer.cs">
-      <DependentUpon>ContactUs.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile.aspx.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Profile.aspx.designer.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
@@ -157,28 +115,7 @@
     <Compile Include="Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Map.aspx.cs">
-      <DependentUpon>Map.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Map.aspx.designer.cs">
-      <DependentUpon>Map.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StoreInventory.aspx.cs">
-      <DependentUpon>StoreInventory.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="StoreInventory.aspx.designer.cs">
-      <DependentUpon>StoreInventory.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="StorePage.aspx.cs">
-      <DependentUpon>StorePage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="StorePage.aspx.designer.cs">
-      <DependentUpon>StorePage.aspx</DependentUpon>
-    </Compile>
     <Compile Include="TEST.aspx.cs">
       <DependentUpon>TEST.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -186,30 +123,27 @@
     <Compile Include="TEST.aspx.designer.cs">
       <DependentUpon>TEST.aspx</DependentUpon>
     </Compile>
-    <Compile Include="UserHome.aspx.cs">
-      <DependentUpon>UserHome.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserHome.aspx.designer.cs">
-      <DependentUpon>UserHome.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UserHomePage.aspx.cs">
-      <DependentUpon>UserHomePage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ViewCart.aspx.cs">
-      <DependentUpon>ViewCart.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ViewCart.aspx.designer.cs">
-      <DependentUpon>ViewCart.aspx</DependentUpon>
-    </Compile>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Content Include="Profile.aspx" />
+    <Folder Include="images\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="css\style.css" />
+    <Content Include="Login.aspx" />
+    <Content Include="Profile.aspx" />
+    <Content Include="Home.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="js\init.js" />
+    <Content Include="TEST.aspx" />
+    <Content Include="Web.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
