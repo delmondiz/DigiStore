@@ -13,7 +13,7 @@
     <!--
       SO jQuery must be loaded before materialize. I will never forget this, and nither should you!  
       -->
-    <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
 
     <!-- Materialize Icons -->
@@ -77,6 +77,7 @@
                         <div class="collapsible-header"><i class="material-icons">place</i>Order History</div>
                         <div class="collapsible-body">
                             <p>Nothing yet, you cheap fucker!</p>
+                            <p><a href="Link to Order History Page">View All</a></p>
                         </div>
                     </li>
                 </ul>
@@ -130,3 +131,4 @@
 
 </body>
 </html>
+
