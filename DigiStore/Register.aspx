@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 </head>
 <body>
-<ul id="accountDropdown" class="dropdown-content">
+    <ul id="accountDropdown" class="dropdown-content">
         <li>Manage Store</li>
         <li>Order History</li>
         <li>Settings</li>
@@ -47,77 +47,82 @@
         </div>
     </nav>
     <!-- registration form  -->
-    <form class="row">
-        <div class="col s12">
-            <div class="row">
-                <div class="input-field col s6">
-                    <input placeholder="John" id="firstName" />
-                    <label for="firstName">First Name</label>
+    <div class="container">
+        <form class="row">
+            <div class="col s12">
+                <div class="row center valign-wrapper">
+                    <div class="col s12 l6 valign">
+                        <h1>Sign up</h1>
+                    </div>
+                    <div class="col s12 l6 valign">
+                        <h5>Already a member? <a href="Login.aspx" class="to_register">Go to log in </a></h5>
+                    </div>
                 </div>
-                <div class="input-field col s6">
-                    <input placeholder="Doe" id="lastName" />
-                    <label for="lastName">Last Name</label>
+                    <div class="row">
+                        <div class="input-field col s10">
+                            <label for="username">Username</label>
+                            <input type="text" placeholder="coolone1234" id="username" required="required" />
+                        </div>
+                        <div class="col s2">
+                            <input type="button" value="Check Username" id="confirmUsername" class="btn waves-effect" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <label for="password">Password</label>
+                            <input type="password" placeholder="hunter2" id="password" required="required" />
+                        </div>
+                        <div class="input-field col s6">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <input type="password" placeholder="hunter2" id="confirmPassword" required="required" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <label for="firstName">First Name</label>
+                            <input type="text" placeholder="John" id="firstName" required="required" />
+                        </div>
+                        <div class="input-field col s6">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" placeholder="Doe" id="lastName" required="required" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <label for="email">E-mail</label>
+                            <input type="email" placeholder="example@hotmail.com" id="email" required="required" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12 l4">
+                            <label for="addressCity">Town/City</label>
+                            <input type="text" placeholder="Toronto" id="addressCity" required="required" />
+                        </div>
+                        <div class="input-field col s12 l4">
+                            <label for="addressProvince">State/Province</label>
+                            <input type="text" placeholder="Ontario" id="addressProvince" required="required" />
+                        </div>
+                        <div class="input-field col s12 l4">
+                            <input type="text" placeholder="H0H0H0" id="addressPostal" required="required" />
+                            <label for="addressPostal">Postal Code</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input type="text" placeholder="9 Sussex Street" id="addressStreet" />
+                            <label for="addressStreet">Address</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <input type="submit" value="Signup" id="submitSignup" class="btn waves-light" style="width:100%" />
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </form>
-    <div id="register" class="animate form">
-			<form  action="UserHome.aspx" autocomplete="on"> 
-				<h1> Sign up </h1> 
-                <p> 
-					<label for="FirstName" class="Fname" data-icon="p">First Name: </label>
-					<input id="FirstName" name="FirstName"  type="text" placeholder="eg. John"/>
-				</p>
-                 <p> 
-					<label for="LastName" class="Lname" data-icon="p">Last Name: </label>
-					<input id="LastName" name="LastName"  type="text" placeholder="eg. Johnson"/>
-				</p>
-                 <p> 
-					<label for="Address" class="uAddress" data-icon="p">Address: </label>
-					<input id="Address" name="Address"  type="text" placeholder="eg. 30 street name crt"/>
-				</p>
-                <p> 
-					<label for="PostalCode" class="uPostalCode" data-icon="p">Postal Code: </label>
-					<input id="PostalCode" name="PostalCode"  type="text" placeholder="eg. L4Z4R5"/>
-				</p>
-                	<p> 
-					<label for="usernamesignup" class="uname" data-icon="u">Your username</label>
-					<input id="usernamesignup" name="usernamesignup"  type="text" placeholder="mysuperusername690" />
-				</p>
-				<p> 
-					<label for="emailsignup" class="youmail" data-icon="e" > Your email</label>
-					<input id="emailsignup" name="emailsignup"  type="email" placeholder="mysupermail@mail.com"/> 
-				</p>
-				<p> 
-					<label for="passwordsignup" class="youpasswd" data-icon="p">Your password </label>
-					<input id="passwordsignup" name="passwordsignup"  type="password" placeholder="eg. X8df!90EO"/>
-				</p>
-				<p> 
-					<label for="passwordsignup_confirm" class="youpasswd" data-icon="p">Please confirm your password </label>
-					<input id="passwordsignup_confirm" name="passwordsignup_confirm"  type="password" placeholder="eg. X8df!90EO"/>
-				</p>
-				<p class="signin button"> 
-					<input type="submit" value="Sign up" /> 
-				</p>
-				<p class="change_link">  
-					Already a member ?
-					<a href="Login.aspx" class="to_register"> Go and log in </a>
-				</p>
-			</form>
-		</div>
+        </form>
+    </div>
     <!-- simple footer -->
-        <footer>
-  <div id="navcontainer">
-<ul id="navlist">
-<li id="active"><a href="#" id="current">Contact</a></li>
-<li><a href="#">About</a></li>
-<li><a href="#">Employment</a></li>
-<li><a href="#">Legal</a></li>
-</ul>
-</div>
-</footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3d4spAr0FMskq0UBEVofzNutc9Q9lrig&callback=initMap&libraries=places,visualization" async defer></script>
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
     <script>
