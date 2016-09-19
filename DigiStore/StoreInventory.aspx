@@ -83,7 +83,7 @@
             <li>
                 <div class="collapsible-header">
                     <img src="img\jinx.png" height="50" width="50" />
-                    Jinx's Mini Chibi Figure ~-~ Quantity Remaining: 15
+                    Jinx's Mini Chibi Figure ~-~ Remaining: 15
                 </div>
                 <div class="collapsible-body">
                     <p>Serial No#: RIOTLOL0000000101<br />
@@ -108,7 +108,7 @@
             <li>
                 <div class="collapsible-header">
                     <img src="img\kha.png" height="50" width="50" />
-                    Kha'zix's Mini Chibi Figure ~-~ Quantity Remaining: 11
+                    Kha'zix's Mini Chibi Figure ~-~ Remaining: 11
                 </div>
                 <div class="collapsible-body">
                     <p>Serial No#: RIOTLOL0000000102<br />
@@ -133,7 +133,7 @@
             <li>
                 <div class="collapsible-header">
                     <img src="img\mf.png" height="50" width="50" />
-                    Miss Fortune's Mini Chibi Figure ~-~ Quantity Remaining: 16
+                    Miss Fortune's Mini Chibi Figure ~-~ Remaining: 16
                 </div>
                 <div class="collapsible-body">
                     <p>Serial No#: RIOTLOL0000000103<br />
@@ -159,7 +159,7 @@
             <li>
                 <div class="collapsible-header">
                     <img src="img\tryn.png" height="50" width="50" />
-                    Tryndamere's Mini Chibi Figure ~-~ Quantity Remaining: 17
+                    Tryndamere's Mini Chibi Figure ~-~ Remaining: 17
                 </div>
                 <div class="collapsible-body">
                     <p>Serial No#: RIOTLOL0000000104<br />
@@ -185,7 +185,7 @@
             <li>
                 <div class="collapsible-header">
                     <img src="img\vi.png" height="50" width="50" />
-                    Vi's Mini Chibi Figure ~-~ Quantity Remaining: 14
+                    Vi's Mini Chibi Figure ~-~ Remaining: 14
                 </div>
                 <div class="collapsible-body">
                     <p>Serial No#: RIOTLOL0000000105<br />

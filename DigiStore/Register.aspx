@@ -4,30 +4,63 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <!-- again making it look pretty -->
-     <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <link rel="stylesheet" href="../Styles/newcss.css">
-  <link rel="stylesheet" href="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
-   <link href="Style/StyleSheet.css" rel="stylesheet" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <title>_Store_ Inventory</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 </head>
 <body>
-  <nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="Home.aspx">DigiStore</a>
-    </div>
-       <ul class="nav navbar-nav navbar-right">
-      <li><a href="Login.aspx"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-     
+<ul id="accountDropdown" class="dropdown-content">
+        <li>Manage Store</li>
+        <li>Order History</li>
+        <li>Settings</li>
+        <li>Log In/Out</li>
     </ul>
-  </div>
-</nav>
-       <br><br>
+    <nav>
+        <div class="nav-wrapper">
+            <a class="brand-logo center" href="#">DigiStore</a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="#">Browse</a></li>
+                <li><a href="#">Cart</a></li>
+                <li><a class="dropdown-button" href="#" data-activates="accountDropdown">
+                    <img class="circle" src="/img/icon.png" height="30" width="30" /></a></li>
+            </ul>
+            <ul id="slideOut" class="side-nav" style="padding: 0 3px 0 3px;">
+                <li>
+                    <h3 style="color: #e57373" class="center">Digistore</h3>
+                </li>
+                <li>
+                    <div class="divider"></div>
+                </li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Browse</a></li>
+                <li><a href="#">Cart</a></li>
+                <li>
+                    <div class="divider"></div>
+                </li>
+                <li><a href="#">Manage Store</a></li>
+                <li><a href="#">Order History</a></li>
+                <li><a href="#">Settings</a></li>
+                <li><a href="#">Log In/Out</a></li>
+            </ul>
+            <a href="#" data-activates="slideOut" class="button-collapse"><i class="material-icons">menu</i></a>
+        </div>
+    </nav>
     <!-- registration form  -->
+    <form class="row">
+        <div class="col s12">
+            <div class="row">
+                <div class="input-field col s6">
+                    <input placeholder="John" id="firstName" />
+                    <label for="firstName">First Name</label>
+                </div>
+                <div class="input-field col s6">
+                    <input placeholder="Doe" id="lastName" />
+                    <label for="lastName">Last Name</label>
+                </div>
+            </div>
+        </div>
+    </form>
     <div id="register" class="animate form">
 			<form  action="UserHome.aspx" autocomplete="on"> 
 				<h1> Sign up </h1> 
@@ -72,10 +105,6 @@
 				</p>
 			</form>
 		</div>
-		
-	</div>
-</div>  
-    
     <!-- simple footer -->
         <footer>
   <div id="navcontainer">
@@ -87,5 +116,20 @@
 </ul>
 </div>
 </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3d4spAr0FMskq0UBEVofzNutc9Q9lrig&callback=initMap&libraries=places,visualization" async defer></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            Materialize.updateTextFields();
+            //$('select').material_select();
+            //$(".dropdown-button").dropdown();
+            //$(".button-collapse").sideNav();
+            //$('.carousel').carousel();
+            ////$('.carousel.carousel-slider').carousel();
+            //$('.carousel.carousel-slider').carousel({ full_width: true });
+        });
+    </script>
 </body>
 </html>
