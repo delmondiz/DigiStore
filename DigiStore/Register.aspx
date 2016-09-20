@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>_Store_ Inventory</title>
+    <title>Register</title>
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
@@ -55,7 +55,7 @@
                         <h1>Sign up</h1>
                     </div>
                     <div class="col s12 l6 valign">
-                        <h5>Already a member? <a href="Login.aspx" class="to_register">Go to log in </a></h5>
+                        <h5>Already a member? <a href="Login.aspx" class="btn waves-light" style="width:100%">Go to Log In!</a></h5>
                     </div>
                 </div>
                     <div class="row">
@@ -115,7 +115,7 @@
                     </div>
                     <div class="row">
                         <div class="col s12">
-                            <input type="submit" value="Signup" id="submitSignup" class="btn waves-light" style="width:100%" />
+                            <input type="submit" value="Sign up" id="submitSignup" class="btn waves-light" style="width:100%" />
                         </div>
                     </div>
                 </div>
@@ -128,12 +128,8 @@
     <script>
         $(document).ready(function () {
             Materialize.updateTextFields();
-            //$('select').material_select();
-            //$(".dropdown-button").dropdown();
-            //$(".button-collapse").sideNav();
-            //$('.carousel').carousel();
-            ////$('.carousel.carousel-slider').carousel();
-            //$('.carousel.carousel-slider').carousel({ full_width: true });
+            $(".dropdown-button").dropdown();
+            $(".button-collapse").sideNav();
         });
     </script>
 </body>
