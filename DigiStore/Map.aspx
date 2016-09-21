@@ -6,60 +6,74 @@
 <head runat="server">
     <title>Also known as Search!</title>
     <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css"/>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 </head>
 <body>
-    <form id="form1" runat="server"></form>
-    <ul id="accountDropdown" class="dropdown-content">
-        <li>Manage Store</li>
-        <li>Order History</li>
-        <li>Settings</li>
-        <li>Log In/Out</li>
-    </ul>
-    <nav>
-        <div class="nav-wrapper">
-            <a class="brand-logo center" href="#">DigiStore</a>
+    <nav class="blue darken-3" role="navigation">
+        <div class="nav-wrapper container">
+            <a id="logo-container" href="#" class="brand-logo center yellow-text accent-3">DigiStore</a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="#">Browse</a></li>
-                <li><a href="#">Cart</a></li>
-                <li><a class="dropdown-button" href="#" data-activates="accountDropdown"><img class="circle" src="/img/icon.png" height="30" width="30"/></a></li>
+                <li><a href="#" class="yellow-text accent-3">Home</a></li>
+                <li><a href="#" class="yellow-text accent-3">Search</a></li>
+                <li><a href="#" class="yellow-text accent-3">Sales</a></li>
+                <li><a class="dropdown-button centered" href="#" data-activates="accountDropdown">
+                    <img class="circle" src="/img/icon.png" height="30" width="30" /></a></li>
             </ul>
-            <ul id="slideOut" class="side-nav" style="padding:0 3px 0 3px;">
-                <li><h3 style="color: #e57373" class="center">Digistore</h3></li>
-                <li><div class="divider"></div></li>
+
+            <ul id="nav-mobile" class="side-nav">
+                <h4 class="center blue-text darken-3">Menu</h4>
+                <li>
+                    <div class="divider"></div>
+                </li>
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Browse</a></li>
                 <li><a href="#">Cart</a></li>
-                <li><div class="divider"></div></li>
+                <li>
+                    <div class="divider"></div>
+                </li>
                 <li><a href="#">Manage Store</a></li>
                 <li><a href="#">Order History</a></li>
                 <li><a href="#">Settings</a></li>
                 <li><a href="#">Log In/Out</a></li>
             </ul>
-            <a href="#" data-activates="slideOut" class="button-collapse"><i class="material-icons">menu</i></a>
+            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+
+            <ul id="accountDropdown" class="dropdown-content">
+                <li>Manage Profile</li>
+                <li>View Cart</li>
+                <li>Order History</li>
+                <li>Settings</li>
+                <li>Log In/Out</li>
+            </ul>
         </div>
-    </nav>    
-    <form id="form2" onsubmit="return performUserSearch()">
+    </nav>
+
+    <div class="container">
+        <br />
+        <form id="form2" onsubmit="return performUserSearch()">
             <div class="row">
-                <div class="input-field col s10">
+                <div class="input-field col l10 m10 s10">
                     <input type="text" id="inputSearch" class="validate" />
                     <label for="inputSearch">Store Name</label>
                 </div>
                 <div class="col s2">
-                    <button class="btn-large waves-effect waves-light" type="submit" name="submitSearch" style="width:100%">
+                    <button class="btn-large waves-effect waves-light blue darken-3 yellow-text accent-3" type="submit" name="submitSearch">
                         <i class="material-icons left">search</i>Search  
                     </button>
                 </div>
             </div>
         </form>
-    <div style="width:100%; height:100%; position:fixed;">
-            <div id="goggleResults" style="background-color: slategrey; color: #FFFFFF; width: 40%; height: 100%; float: left; overflow-y: scroll">
-                <ol id="goggleResultsList"></ol>
-            </div>
-            <div id="goggleMap" style="width:60%; height:100%; float: right;"></div>
-            <%--<asp:Image ID="Image1" runat="server" style="clear:both;" ImageUrl="~/img/powered_by_google_on_white_hdpi.png" />--%>
+    </div>
+
+    <div style="width: 100%; height: 100%; position: fixed;">
+        <div id="goggleResults" style="background-color: slategrey; color: #FFFFFF; width: 40%; height: 100%; float: left; overflow-y: scroll">
+            <ol id="goggleResultsList"></ol>
         </div>
+        <div id="goggleMap" style="width: 60%; height: 100%; float: right;"></div>
+        <%--<asp:Image ID="Image1" runat="server" style="clear:both;" ImageUrl="~/img/powered_by_google_on_white_hdpi.png" />--%>
+    </div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3d4spAr0FMskq0UBEVofzNutc9Q9lrig&callback=initMap&libraries=places,visualization" async defer></script>
     <!-- Compiled and minified JavaScript -->
