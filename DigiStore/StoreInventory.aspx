@@ -17,19 +17,19 @@
         <li>Settings</li>
         <li>Log In/Out</li>
     </ul>
-    <nav>
-        <div class="nav-wrapper">
-            <a class="brand-logo center" href="#">DigiStore</a>
+    <nav class="blue darken-3" role="navigation">
+        <div class="nav-wrapper container">
+            <a id="logo-container" href="#" class="brand-logo center yellow-text accent-3">DigiStore</a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="#">Browse</a></li>
-                <li><a href="#">Cart</a></li>
-                <li><a class="dropdown-button" href="#" data-activates="accountDropdown">
+                <li><a href="#" class="yellow-text accent-3">Home</a></li>
+                <li><a href="#" class="yellow-text accent-3">Search</a></li>
+                <li><a href="#" class="yellow-text accent-3">Sales</a></li>
+                <li><a class="dropdown-button centered" href="#" data-activates="accountDropdown">
                     <img class="circle" src="/img/icon.png" height="30" width="30" /></a></li>
             </ul>
-            <ul id="slideOut" class="side-nav" style="padding: 0 3px 0 3px;">
-                <li>
-                    <h3 style="color: #e57373" class="center">Digistore</h3>
-                </li>
+
+            <ul id="nav-mobile" class="side-nav">
+                <h4 class="center blue-text darken-3">Menu</h4>
                 <li>
                     <div class="divider"></div>
                 </li>
@@ -44,7 +44,15 @@
                 <li><a href="#">Settings</a></li>
                 <li><a href="#">Log In/Out</a></li>
             </ul>
-            <a href="#" data-activates="slideOut" class="button-collapse"><i class="material-icons">menu</i></a>
+            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+
+            <ul id="accountDropdown" class="dropdown-content">
+                <li>Manage Profile</li>
+                <li>View Cart</li>
+                <li>Order History</li>
+                <li>Settings</li>
+                <li>Log In/Out</li>
+            </ul>
         </div>
     </nav>
     <form id="form2" onsubmit="return performItemSearch()">

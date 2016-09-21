@@ -17,22 +17,45 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <ul class="nav navbar-nav navbar-right">
-            <li><a href="Home.aspx"><span class="glyphicon glyphicon-user"></span>Log Out</a></li>
-        </ul>
-        <ul class="dropdown menu" data-dropdown-menu="" role="menubar" data-dropdownmenu="bcfom2-dropdownmenu">
-            <a class="navbar-brand" href="Home.aspx">DigiStore</a>
-            <li class="has-submenu is-dropdown-submenu-parent is-down-arrow" role="menuitem" tabindex="0" title="Menu" aria-haspopup="true">
-                <a href="#" tabindex="-1">Menu</a>
-                <ul class="submenu menu vertical is-dropdown-submenu first-sub" data-submenu="" aria-hidden="true" tabindex="-1" role="menu">
-                    <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item" tabindex="0"><a href="#" tabindex="-1">browse</a></li>
-                    <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item" tabindex="0"><a href="#" tabindex="-1">etc</a></li>
-                </ul>
-            </li>
-        </ul>
+    <nav class="blue darken-3" role="navigation">
+        <div class="nav-wrapper container">
+            <a id="logo-container" href="#" class="brand-logo center yellow-text accent-3">DigiStore</a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="#" class="yellow-text accent-3">Home</a></li>
+                <li><a href="#" class="yellow-text accent-3">Search</a></li>
+                <li><a href="#" class="yellow-text accent-3">Sales</a></li>
+                <li><a class="dropdown-button centered" href="#" data-activates="accountDropdown">
+                    <img class="circle" src="/img/icon.png" height="30" width="30" /></a></li>
+            </ul>
 
+            <ul id="nav-mobile" class="side-nav">
+                <h4 class="center blue-text darken-3">Menu</h4>
+                <li>
+                    <div class="divider"></div>
+                </li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Browse</a></li>
+                <li><a href="#">Cart</a></li>
+                <li>
+                    <div class="divider"></div>
+                </li>
+                <li><a href="#">Manage Store</a></li>
+                <li><a href="#">Order History</a></li>
+                <li><a href="#">Settings</a></li>
+                <li><a href="#">Log In/Out</a></li>
+            </ul>
+            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+
+            <ul id="accountDropdown" class="dropdown-content">
+                <li>Manage Profile</li>
+                <li>View Cart</li>
+                <li>Order History</li>
+                <li>Settings</li>
+                <li>Log In/Out</li>
+            </ul>
+        </div>
     </nav>
+
     <div id="container_demo">
         <div id="wrapper">
             <br />
