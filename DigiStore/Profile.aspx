@@ -29,8 +29,10 @@
         <div class="nav-wrapper container">
             <a id="logo-container" href="#" class="brand-logo left yellow-text accent-3">DigiStore</a>
             <ul class="right">
-                <li><a href="#" class="yellow-text accent-3">Join</a></li>
-                <li><a href="#" class="yellow-text accent-3">Sign In</a></li>
+                <li><a href="#" class="yellow-text accent-3">Home</a></li>
+                <li><a href="#" class="yellow-text accent-3">Search</a></li>
+                <li><a href="#" class="yellow-text accent-3">Sales</a></li>
+                <li><a href="#" class="yellow-text accent-3">Profile</a></li>
             </ul>
 
 
