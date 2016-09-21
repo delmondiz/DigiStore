@@ -38,6 +38,11 @@
         <div class="container">
             <br>
             <br>
+            <div class="row center">
+                <p>Test Img Below</p>
+                <img class="materialboxed" src="/img/icon.png" width="60" height="60" />
+                <p>Test Img Above</p>
+            </div>
             <h1 class="header center blue-text darken-3">Welcome to DigiStore</h1>
             <div class="row center">
                 <h5 class="header col s12 light">A new way to connect to local shops</h5>
@@ -52,41 +57,33 @@
 
     <div class="container">
         <div class="section">
-
             <!--   Icon Section   -->
             <div class="row">
                 <div class="col s12 m4">
                     <div class="icon-block">
                         <h2 class="center light-blue-text"><i class="material-icons">location_on</i></h2>
                         <h5 class="center">Find Local Shops</h5>
-
                         <p class="grey-text ">Using your device's geolocation, we can connect you to shops in your area, no matter where you are. You can also search for stores without geolocation, if you're having a tin foil hat kinda day. With Google maps support, our site is familiar and easy to use.</p>
                     </div>
                 </div>
-
                 <div class="col s12 m4">
                     <div class="icon-block">
                         <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
                         <h5 class="center">Join the Community</h5>
-
                         <p class="grey-text ">Share reviews and picures of your experiences with others using DigiStore. For our vendor partners, you gain easy access to your client base to help tailor your customer experience and grow your business.</p>
                     </div>
                 </div>
-
                 <div class="col s12 m4">
                     <div class="icon-block">
                         <h2 class="center light-blue-text"><i class="material-icons">shopping_cart</i></h2>
                         <h5 class="center">Shop Online</h5>
-
                         <p class="grey-text ">Search though a large catalog of shops, from bistros, hair salons, flower shops and more, make appointments or orders for delivery or pick up. We want to connect you to all your local shops no matter the business type.</p>
                     </div>
                 </div>
             </div>
-
         </div>
         <br>
         <br>
-
         <div class="section">
         </div>
     </div>
@@ -97,8 +94,6 @@
                 <div class="col l6 s12">
                     <h5 class="yellow-text accent-3">Company Bio</h5>
                     <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
-
-
                 </div>
                 <div class="col l3 m3 s12">
                     <h5 class="yellow-text accent-3">Settings</h5>

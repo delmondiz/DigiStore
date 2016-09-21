@@ -11,7 +11,7 @@
 </head>
 <body>
     <nav class="blue darken-3" role="navigation">
-        <div class="nav-wrapper container">
+        <div class="nav-wrapper">
             <a id="logo-container" href="#" class="brand-logo center yellow-text accent-3">DigiStore</a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="#" class="yellow-text accent-3">Home</a></li>
@@ -66,13 +66,49 @@
         </form>
     </div>
 
-    <div style="width: 100%; height: 100%; position: fixed;">
-        <div id="goggleResults" style="background-color: slategrey; color: #FFFFFF; width: 40%; height: 100%; float: left; overflow-y: scroll">
-            <ol id="goggleResultsList"></ol>
+    <div class="center container">
+        <div class="center" style="height: 700px">
+            <div id="goggleResults" style="background-color: slategrey; color: #FFFFFF; width: 40%; height: 100%; float: left; overflow-y: scroll">
+                <ol id="goggleResultsList"></ol>
+            </div>
+            <div id="goggleMap" style="width: 60%; height: 100%; float: right;"></div>
+            <%--<asp:Image ID="Image1" runat="server" style="clear:both;" ImageUrl="~/img/powered_by_google_on_white_hdpi.png" />--%>
         </div>
-        <div id="goggleMap" style="width: 60%; height: 100%; float: right;"></div>
-        <%--<asp:Image ID="Image1" runat="server" style="clear:both;" ImageUrl="~/img/powered_by_google_on_white_hdpi.png" />--%>
     </div>
+
+    <footer class="page-footer blue darken-3">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="yellow-text accent-3">Company Bio</h5>
+                    <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+                </div>
+                <div class="col l3 m3 s12">
+                    <h5 class="yellow-text accent-3">Settings</h5>
+                    <ul>
+                        <li><a class="white-text" href="#!">Link 1</a></li>
+                        <li><a class="white-text" href="#!">Link 2</a></li>
+                        <li><a class="white-text" href="#!">Link 3</a></li>
+                        <li><a class="white-text" href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+                <div class="col l3 m3 s12">
+                    <h5 class="yellow-text accent-3">Connect</h5>
+                    <ul>
+                        <li><a class="white-text" href="#!">Link 1</a></li>
+                        <li><a class="white-text" href="#!">Link 2</a></li>
+                        <li><a class="white-text" href="#!">Link 3</a></li>
+                        <li><a class="white-text" href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright blue darken-4">
+            <div class="container yellow-text accent-3">
+                <p>Made by Oceans4 | Powered by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a></p>
+            </div>
+        </div>
+    </footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3d4spAr0FMskq0UBEVofzNutc9Q9lrig&callback=initMap&libraries=places,visualization" async defer></script>

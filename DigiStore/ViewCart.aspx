@@ -4,7 +4,6 @@
 
 <html class="" lang="en">
 <head>
-    <head>
     <!-- All the sources needed and try and make it look pretty -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

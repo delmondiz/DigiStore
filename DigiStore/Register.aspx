@@ -10,14 +10,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 </head>
 <body>
-    <ul id="accountDropdown" class="dropdown-content">
-        <li>Manage Store</li>
-        <li>Order History</li>
-        <li>Settings</li>
-        <li>Log In/Out</li>
-    </ul>
-    <nav>
-        <nav class="blue darken-3" role="navigation">
+ <nav class="blue darken-3" role="navigation">
         <div class="nav-wrapper container">
             <a id="logo-container" href="#" class="brand-logo center yellow-text accent-3">DigiStore</a>
             <ul class="right hide-on-med-and-down">
