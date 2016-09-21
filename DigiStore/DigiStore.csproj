@@ -95,22 +95,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ContactUs.aspx" />
+    <Content Include="css\StoreInventory.css" />
     <Content Include="css\style.css" />
     <Content Include="css\StyleSheet.css" />
     <Content Include="Home.aspx" />
-    <Content Include="img\blackpoloshirt.jpg" />
-    <Content Include="img\bluedressshirt.jpg" />
     <Content Include="img\icon.png" />
+    <Content Include="img\jinx.png" />
+    <Content Include="img\kha.png" />
+    <Content Include="img\mf.png" />
     <Content Include="img\powered_by_google_on_non_white.png" />
     <Content Include="img\powered_by_google_on_non_white_hdpi.png" />
     <Content Include="img\powered_by_google_on_white.png" />
     <Content Include="img\powered_by_google_on_white_hdpi.png" />
-    <Content Include="img\redtshirt.jpg" />
-    <Content Include="img\sample_tailor_shop.jpg" />
-    <Content Include="img\store.jpg" />
-    <Content Include="img\whitedressshirt.png" />
+    <Content Include="img\tryn.png" />
+    <Content Include="img\vi.png" />
     <Content Include="js\init.js" />
-    <Content Include="js\parallax.js" />
     <Content Include="js\vendor\jquery.min.js" />
     <Content Include="js\vendor\what-input.min.js" />
     <Content Include="Login.aspx" />
@@ -124,11 +123,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Register.aspx" />
+    <Content Include="StoreInventory.aspx" />
     <Content Include="StorePage.aspx" />
-    <Content Include="TEST.aspx" />
-    <Content Include="TestLogin.html" />
-    <Content Include="UserHome.aspx" />
-    <Content Include="UserHomePage.aspx" />
     <Content Include="ViewCart.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -165,30 +161,26 @@
       <DependentUpon>Map.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StoreInventory.aspx.cs">
+      <DependentUpon>StoreInventory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StoreInventory.aspx.designer.cs">
+      <DependentUpon>StoreInventory.aspx</DependentUpon>
+    </Compile>
     <Compile Include="StorePage.aspx.cs">
       <DependentUpon>StorePage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="StorePage.aspx.designer.cs">
       <DependentUpon>StorePage.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="TEST.aspx.cs">
-      <DependentUpon>TEST.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="TEST.aspx.designer.cs">
-      <DependentUpon>TEST.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UserHome.aspx.cs">
-      <DependentUpon>UserHome.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserHome.aspx.designer.cs">
-      <DependentUpon>UserHome.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UserHomePage.aspx.cs">
-      <DependentUpon>UserHomePage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ViewCart.aspx.cs">
       <DependentUpon>ViewCart.aspx</DependentUpon>

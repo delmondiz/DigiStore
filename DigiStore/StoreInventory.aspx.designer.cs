@@ -10,6 +10,6 @@
 namespace DigiStore {
     
     
-    public partial class TEST {
+    public partial class StoreInventory {
     }
 }
