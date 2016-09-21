@@ -13,7 +13,7 @@
     <!--
       SO jQuery must be loaded before materialize. I will never forget this, and nither should you!  
       -->
-    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
 
     <!-- Materialize Icons -->
