@@ -107,6 +107,7 @@
     <Content Include="img\powered_by_google_on_non_white_hdpi.png" />
     <Content Include="img\powered_by_google_on_white.png" />
     <Content Include="img\powered_by_google_on_white_hdpi.png" />
+    <Content Include="img\sample_store.jpg" />
     <Content Include="img\tryn.png" />
     <Content Include="img\vi.png" />
     <Content Include="js\init.js" />
