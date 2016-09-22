@@ -5,6 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Also known as Search!</title>
+
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
@@ -57,9 +58,9 @@
                     <input type="text" id="inputSearch" class="validate" />
                     <label for="inputSearch">Store Name</label>
                 </div>
-                <div class="col s2">
-                    <button class="btn-large waves-effect waves-light blue darken-3 yellow-text accent-3" type="submit" name="submitSearch">
-                        <i class="material-icons left">search</i>Search  
+                <div class="col s2 valign-wrapper">
+                    <button class="btn-tiny valign waves-effect waves-light blue darken-3 yellow-text accent-3" type="submit" name="submitSearch">
+                        <i class="material-icons left">search</i>  
                     </button>
                 </div>
             </div>
@@ -67,9 +68,9 @@
     </div>
 
     <div class="center container">
-        <div class="center" style="height: 700px">
-            <div id="goggleResults" style="background-color: slategrey; color: #FFFFFF; width: 40%; height: 100%; float: left; overflow-y: scroll">
-                <ol id="goggleResultsList"></ol>
+        <div class="center" style="height: 500px">
+            <div id="goggleResults"      style="width: 40%; height: 100%; float: left; overflow-y: scroll">
+                <ul class="collection yellow-text accent-3" id="goggleResultsList"></ul>
             </div>
             <div id="goggleMap" style="width: 60%; height: 100%; float: right;"></div>
             <%--<asp:Image ID="Image1" runat="server" style="clear:both;" ImageUrl="~/img/powered_by_google_on_white_hdpi.png" />--%>
@@ -110,7 +111,7 @@
         </div>
     </footer>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3d4spAr0FMskq0UBEVofzNutc9Q9lrig&callback=initMap&libraries=places,visualization" async defer></script>
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
@@ -119,9 +120,6 @@
             Materialize.updateTextFields();
             $(".dropdown-button").dropdown();
             $(".button-collapse").sideNav();
-            //$('.carousel').carousel();
-            ////$('.carousel.carousel-slider').carousel();
-            $('.carousel.carousel-slider').carousel({ full_width: true });
         });
 
         /*
@@ -135,7 +133,23 @@
 
         startUpFunctions();
 
+        // Hides the google results div before the user has searched at least once.
+        // Also makes the google map full size within it's containing div.
+        function hideBeforeSearch() {
+            $("#goggleResults").hide();
+            $("#goggleMap").css("width", "100%");
+        }
+
+        // Shows the google results div before the user has searched at least once.
+        // Also makes the google map return to 60% size within it's containing div
+        // so it shares the space with the google results.
+        function unHideBeforeSearch() {
+            $("#goggleResults").show();
+            $("#goggleMap").css("width", "60%");
+        }
+
         function startUpFunctions() {
+            hideBeforeSearch();
             detectCurrentPosition();
             detectBrowser();
         }
@@ -199,16 +213,17 @@
             //map.addListener('idle', performUserSearch);
         }
 
-        function performSearch() {
-            var request = {
-                location: map.getCenter(),
-                radius: '100',
-                query: 'wendy'
-            };
-            service.textSearch(request, callback);
-        }
+        //function performSearch() {
+        //    var request = {
+        //        location: map.getCenter(),
+        //        radius: '100',
+        //        query: 'wendy'
+        //    };
+        //    service.textSearch(request, callback);
+        //}
 
         function performUserSearch() {
+            unHideBeforeSearch();
             var userQuery = document.getElementById('inputSearch').value;
             if (userQuery.length > 0)
                 var request = {
@@ -244,7 +259,8 @@
                 open = "PERMANENTLY CLOSED!";
             else
                 open = "Closed!";
-            var resultsHTML = "<div><img src='" + result.icon + "' alt='Store Icon' width='25' height='25'><b>Store Name: </b>" + result.name + "</div><br/>";
+            var resultsHTML = "<img class='circle' src='" + result.icon + "' alt='Store Icon' width='25' height='25'>";
+            resultsHTML += "<span class='title'><b>Store Name: </b></span>";
             resultsHTML += "<div><b>Address: </b>" + result.formatted_address + "</div><br/>";
             if (result.opening_hours.open_now != null)
                 resultsHTML += "<div><b>Open Now: </b>" + open + "</div><br/>";
@@ -267,14 +283,14 @@
                 //console.log(document.getElementById("goggleResultsList").childElementCount);
                 //console.log(marker.get("position"));
                 document.getElementById("goggleResultsList").innerHTML +=
-                    "<li id='" + document.getElementById("goggleResultsList").childElementCount + "'>" +
+                    "<li class='collection-item blue darken-3' id='" + document.getElementById("goggleResultsList").childElementCount + "'>" +
                     getResultsDiv(result)
                 "</li>";
             });
 
             google.maps.event.addListener(marker, 'click', function () {
                 infoWindow.setContent(
-                    document.getElementById("goggleResultsList").children[marker.get("id")].innerHTML
+                    document.getElementById("goggleResultsList").children[marker.get("nid")].innerHTML
                     );
                 infoWindow.open(map, marker);
             });
