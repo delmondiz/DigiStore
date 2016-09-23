@@ -98,7 +98,11 @@
     <Content Include="css\style.css" />
     <Content Include="css\StyleSheet.css" />
     <Content Include="Home.aspx" />
+    <Content Include="img\download %281%29.jpg" />
+    <Content Include="img\download.jpg" />
     <Content Include="img\icon.png" />
+    <Content Include="img\images %281%29.jpg" />
+    <Content Include="img\images.jpg" />
     <Content Include="img\powered_by_google_on_non_white.png" />
     <Content Include="img\powered_by_google_on_non_white_hdpi.png" />
     <Content Include="img\powered_by_google_on_white.png" />
@@ -117,6 +121,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Register.aspx" />
+    <Content Include="ShoppingCart.aspx" />
     <Content Include="StorePage.aspx" />
     <Content Include="TEST.aspx" />
     <Content Include="TestLogin.html" />
@@ -158,6 +163,13 @@
       <DependentUpon>Map.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShoppingCart.aspx.cs">
+      <DependentUpon>ShoppingCart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ShoppingCart.aspx.designer.cs">
+      <DependentUpon>ShoppingCart.aspx</DependentUpon>
+    </Compile>
     <Compile Include="StorePage.aspx.cs">
       <DependentUpon>StorePage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
