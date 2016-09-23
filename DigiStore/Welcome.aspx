@@ -38,11 +38,7 @@
         <div class="container">
             <br>
             <br>
-            <div class="row center">
-                <p>Test Img Below</p>
-                <img class="materialboxed" src="/img/icon.png" width="60" height="60" />
-                <p>Test Img Above</p>
-            </div>
+            
             <h1 class="header center blue-text darken-3">Welcome to DigiStore</h1>
             <div class="row center">
                 <h5 class="header col s12 light">A new way to connect to local shops</h5>
