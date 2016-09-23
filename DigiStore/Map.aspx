@@ -259,8 +259,8 @@
                 open = "PERMANENTLY CLOSED!";
             else
                 open = "Closed!";
-            var resultsHTML = "<img class='circle' src='" + result.icon + "' alt='Store Icon' width='25' height='25'>";
-            resultsHTML += "<span class='title'><b>Store Name: </b></span>";
+            var resultsHTML = "<img class='circle' src='" + result.icon + "' alt='Store Icon' width='25' height='25' />";
+            resultsHTML += "<span class='title'><b>Store Name: </b></span>" + result.name;
             resultsHTML += "<div><b>Address: </b>" + result.formatted_address + "</div><br/>";
             if (result.opening_hours.open_now != null)
                 resultsHTML += "<div><b>Open Now: </b>" + open + "</div><br/>";
