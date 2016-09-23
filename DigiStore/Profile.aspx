@@ -13,7 +13,7 @@
     <!--
       SO jQuery must be loaded before materialize. I will never forget this, and nither should you!  
       -->
-    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
 
     <!-- Materialize Icons -->
@@ -27,14 +27,40 @@
 <body>
     <nav class="blue darken-3" role="navigation">
         <div class="nav-wrapper container">
-            <a id="logo-container" href="#" class="brand-logo left yellow-text accent-3">DigiStore</a>
-            <ul class="right">
-                <li><a href="#" class="yellow-text accent-3">Join</a></li>
-                <li><a href="#" class="yellow-text accent-3">Sign In</a></li>
+            <a id="logo-container" href="#" class="brand-logo center yellow-text accent-3">DigiStore</a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="#" class="yellow-text accent-3">Home</a></li>
+                <li><a href="#" class="yellow-text accent-3">Search</a></li>
+                <li><a href="#" class="yellow-text accent-3">Sales</a></li>
+                <li><a class="dropdown-button centered" href="#" data-activates="accountDropdown">
+                    <img class="circle" src="/img/icon.png" height="30" width="30" /></a></li>
             </ul>
 
+            <ul id="nav-mobile" class="side-nav">
+                <h4 class="center blue-text darken-3">Menu</h4>
+                <li>
+                    <div class="divider"></div>
+                </li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Browse</a></li>
+                <li><a href="#">Cart</a></li>
+                <li>
+                    <div class="divider"></div>
+                </li>
+                <li><a href="#">Manage Store</a></li>
+                <li><a href="#">Order History</a></li>
+                <li><a href="#">Settings</a></li>
+                <li><a href="#">Log In/Out</a></li>
+            </ul>
+            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
 
-
+            <ul id="accountDropdown" class="dropdown-content">
+                <li>Manage Profile</li>
+                <li>View Cart</li>
+                <li>Order History</li>
+                <li>Settings</li>
+                <li>Log In/Out</li>
+            </ul>
         </div>
     </nav>
 

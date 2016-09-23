@@ -10,6 +10,6 @@
 namespace DigiStore {
     
     
-    public partial class UserHome {
+    public partial class Register {
     }
 }

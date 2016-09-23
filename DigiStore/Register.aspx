@@ -4,88 +4,135 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <!-- again making it look pretty -->
-     <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <link rel="stylesheet" href="../Styles/newcss.css">
-  <link rel="stylesheet" href="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
-   <link href="Style/StyleSheet.css" rel="stylesheet" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <title>Register</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 </head>
 <body>
-  <nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="Home.aspx">DigiStore</a>
-    </div>
-       <ul class="nav navbar-nav navbar-right">
-      <li><a href="Login.aspx"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-     
-    </ul>
-  </div>
-</nav>
-       <br><br>
+ <nav class="blue darken-3" role="navigation">
+        <div class="nav-wrapper container">
+            <a id="logo-container" href="#" class="brand-logo center yellow-text accent-3">DigiStore</a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="#" class="yellow-text accent-3">Home</a></li>
+                <li><a href="#" class="yellow-text accent-3">Search</a></li>
+                <li><a href="#" class="yellow-text accent-3">Sales</a></li>
+                <li><a class="dropdown-button centered" href="#" data-activates="accountDropdown">
+                    <img class="circle" src="/img/icon.png" height="30" width="30" /></a></li>
+            </ul>
+
+            <ul id="nav-mobile" class="side-nav">
+                <h4 class="center blue-text darken-3">Menu</h4>
+                <li>
+                    <div class="divider"></div>
+                </li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Browse</a></li>
+                <li><a href="#">Cart</a></li>
+                <li>
+                    <div class="divider"></div>
+                </li>
+                <li><a href="#">Manage Store</a></li>
+                <li><a href="#">Order History</a></li>
+                <li><a href="#">Settings</a></li>
+                <li><a href="#">Log In/Out</a></li>
+            </ul>
+            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+
+            <ul id="accountDropdown" class="dropdown-content">
+                <li>Manage Profile</li>
+                <li>View Cart</li>
+                <li>Order History</li>
+                <li>Settings</li>
+                <li>Log In/Out</li>
+            </ul>
+        </div>
+    </nav>
     <!-- registration form  -->
-    <div id="register" class="animate form">
-			<form  action="UserHome.aspx" autocomplete="on"> 
-				<h1> Sign up </h1> 
-                <p> 
-					<label for="FirstName" class="Fname" data-icon="p">First Name: </label>
-					<input id="FirstName" name="FirstName"  type="text" placeholder="eg. John"/>
-				</p>
-                 <p> 
-					<label for="LastName" class="Lname" data-icon="p">Last Name: </label>
-					<input id="LastName" name="LastName"  type="text" placeholder="eg. Johnson"/>
-				</p>
-                 <p> 
-					<label for="Address" class="uAddress" data-icon="p">Address: </label>
-					<input id="Address" name="Address"  type="text" placeholder="eg. 30 street name crt"/>
-				</p>
-                <p> 
-					<label for="PostalCode" class="uPostalCode" data-icon="p">Postal Code: </label>
-					<input id="PostalCode" name="PostalCode"  type="text" placeholder="eg. L4Z4R5"/>
-				</p>
-                	<p> 
-					<label for="usernamesignup" class="uname" data-icon="u">Your username</label>
-					<input id="usernamesignup" name="usernamesignup"  type="text" placeholder="mysuperusername690" />
-				</p>
-				<p> 
-					<label for="emailsignup" class="youmail" data-icon="e" > Your email</label>
-					<input id="emailsignup" name="emailsignup"  type="email" placeholder="mysupermail@mail.com"/> 
-				</p>
-				<p> 
-					<label for="passwordsignup" class="youpasswd" data-icon="p">Your password </label>
-					<input id="passwordsignup" name="passwordsignup"  type="password" placeholder="eg. X8df!90EO"/>
-				</p>
-				<p> 
-					<label for="passwordsignup_confirm" class="youpasswd" data-icon="p">Please confirm your password </label>
-					<input id="passwordsignup_confirm" name="passwordsignup_confirm"  type="password" placeholder="eg. X8df!90EO"/>
-				</p>
-				<p class="signin button"> 
-					<input type="submit" value="Sign up" /> 
-				</p>
-				<p class="change_link">  
-					Already a member ?
-					<a href="Login.aspx" class="to_register"> Go and log in </a>
-				</p>
-			</form>
-		</div>
-		
-	</div>
-</div>  
-    
+    <div class="container">
+        <form class="row">
+            <div class="col s12">
+                <div class="row center valign-wrapper">
+                    <div class="col s12 l6 valign">
+                        <h1>Sign up</h1>
+                    </div>
+                    <div class="col s12 l6 valign">
+                        <h5>Already a member? <a href="Login.aspx" class="btn waves-light" style="width:100%">Go to Log In!</a></h5>
+                    </div>
+                </div>
+                    <div class="row">
+                        <div class="input-field col s10">
+                            <label for="username">Username</label>
+                            <input type="text" placeholder="coolone1234" id="username" required="required" />
+                        </div>
+                        <div class="col s2">
+                            <input type="button" value="Check Username" id="confirmUsername" class="btn waves-effect" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <label for="password">Password</label>
+                            <input type="password" placeholder="hunter2" id="password" required="required" />
+                        </div>
+                        <div class="input-field col s6">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <input type="password" placeholder="hunter2" id="confirmPassword" required="required" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <label for="firstName">First Name</label>
+                            <input type="text" placeholder="John" id="firstName" required="required" />
+                        </div>
+                        <div class="input-field col s6">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" placeholder="Doe" id="lastName" required="required" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <label for="email">E-mail</label>
+                            <input type="email" placeholder="example@hotmail.com" id="email" required="required" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12 l4">
+                            <label for="addressCity">Town/City</label>
+                            <input type="text" placeholder="Toronto" id="addressCity" required="required" />
+                        </div>
+                        <div class="input-field col s12 l4">
+                            <label for="addressProvince">State/Province</label>
+                            <input type="text" placeholder="Ontario" id="addressProvince" required="required" />
+                        </div>
+                        <div class="input-field col s12 l4">
+                            <input type="text" placeholder="H0H0H0" id="addressPostal" required="required" />
+                            <label for="addressPostal">Postal Code</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input type="text" placeholder="9 Sussex Street" id="addressStreet" />
+                            <label for="addressStreet">Address</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <input type="submit" value="Sign up" id="submitSignup" class="btn waves-light" style="width:100%" />
+                        </div>
+                    </div>
+                </div>
+        </form>
+    </div>
     <!-- simple footer -->
-        <footer>
-  <div id="navcontainer">
-<ul id="navlist">
-<li id="active"><a href="#" id="current">Contact</a></li>
-<li><a href="#">About</a></li>
-<li><a href="#">Employment</a></li>
-<li><a href="#">Legal</a></li>
-</ul>
-</div>
-</footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            Materialize.updateTextFields();
+            $(".dropdown-button").dropdown();
+            $(".button-collapse").sideNav();
+        });
+    </script>
 </body>
 </html>

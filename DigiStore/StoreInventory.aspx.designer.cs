@@ -10,6 +10,6 @@
 namespace DigiStore {
     
     
-    public partial class Map {
+    public partial class StoreInventory {
     }
 }
