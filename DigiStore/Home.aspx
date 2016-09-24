@@ -40,24 +40,24 @@
                 <li>
                     <div class="divider"></div>
                 </li>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Browse</a></li>
-                <li><a href="#">Cart</a></li>
+                <li><a href="Home.aspx">Home</a></li>
+                <li><a href="Map.aspx">Browse</a></li>
+                <li><a href="ViewCart.aspx">Cart</a></li>
                 <li>
                     <div class="divider"></div>
                 </li>
-                <li><a href="#">Manage Store</a></li>
+                <li><a href="StoreInventory.aspx">Manage Store</a></li>
                 <li><a href="#">Order History</a></li>
-                <li><a href="#">Settings</a></li>
+                <li><a href="Profile.aspx">Profile</a></li>
                 <li><a href="#">Log In/Out</a></li>
             </ul>
             <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
 
             <ul id="accountDropdown" class="dropdown-content">
-                <li>Manage Profile</li>
-                <li>View Cart</li>
-                <li>Order History</li>
-                <li>Settings</li>
+                <li><a href="Profile.aspx">Profile</a></li>
+                <li><a href="ViewCart">Cart</a></li>
+                <li><a href="#">Order History</a></li>
+                
                 <li>Log In/Out</li>
             </ul>
         </div>
@@ -249,8 +249,6 @@
                 <div class="col l6 s12">
                     <h5 class="yellow-text accent-3">Company Bio</h5>
                     <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
-
-
                 </div>
                 <div class="col l3 m3 s12">
                     <h5 class="yellow-text accent-3">Settings</h5>

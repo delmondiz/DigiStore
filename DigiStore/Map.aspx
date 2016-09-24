@@ -27,24 +27,24 @@
                 <li>
                     <div class="divider"></div>
                 </li>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Browse</a></li>
-                <li><a href="#">Cart</a></li>
+                <li><a href="Home.aspx">Home</a></li>
+                <li><a href="Map.aspx">Browse</a></li>
+                <li><a href="ViewCart.aspx">Cart</a></li>
                 <li>
                     <div class="divider"></div>
                 </li>
-                <li><a href="#">Manage Store</a></li>
+                <li><a href="StoreInventory.aspx">Manage Store</a></li>
                 <li><a href="#">Order History</a></li>
-                <li><a href="#">Settings</a></li>
+                <li><a href="Profile.aspx">Profile</a></li>
                 <li><a href="#">Log In/Out</a></li>
             </ul>
             <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
 
             <ul id="accountDropdown" class="dropdown-content">
-                <li>Manage Profile</li>
-                <li>View Cart</li>
-                <li>Order History</li>
-                <li>Settings</li>
+                <li><a href="Profile.aspx">Profile</a></li>
+                <li><a href="ViewCart">Cart</a></li>
+                <li><a href="#">Order History</a></li>
+                
                 <li>Log In/Out</li>
             </ul>
         </div>
@@ -54,13 +54,13 @@
         <br />
         <form id="form2" onsubmit="return performUserSearch()">
             <div class="row">
-                <div class="input-field col l10 m10 s10">
+                <div class="input-field s9">
                     <input type="text" id="inputSearch" class="validate" />
                     <label for="inputSearch">Store Name</label>
                 </div>
-                <div class="col s2 valign-wrapper">
-                    <button class="btn-tiny valign waves-effect waves-light blue darken-3 yellow-text accent-3" type="submit" name="submitSearch">
-                        <i class="material-icons left">search</i>  
+                <div class="col s3 valign-wrapper">
+                    <button class="btn-large valign waves-effect waves-light blue darken-3 yellow-text accent-3" type="submit" name="submitSearch" style="padding:0; width:100%">
+                        <i class="material-icons left">search</i>Search
                     </button>
                 </div>
             </div>
@@ -73,7 +73,6 @@
                 <ul class="collection yellow-text accent-3" id="goggleResultsList"></ul>
             </div>
             <div id="goggleMap" style="width: 60%; height: 100%; float: right;"></div>
-            <%--<asp:Image ID="Image1" runat="server" style="clear:both;" ImageUrl="~/img/powered_by_google_on_white_hdpi.png" />--%>
         </div>
     </div>
 
