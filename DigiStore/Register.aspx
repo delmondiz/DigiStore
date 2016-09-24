@@ -12,7 +12,7 @@
 <body>
  <nav class="blue darken-3" role="navigation">
         <div class="nav-wrapper container">
-            <a id="logo-container" href="#" class="brand-logo center yellow-text accent-3">DigiStore</a>
+            <a id="logo-container" href="Home.aspx" class="brand-logo center yellow-text accent-3">DigiStore</a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="Home.aspx" class="yellow-text accent-3">Home</a></li>
                 <li><a href="Map.aspx" class="yellow-text accent-3">Search</a></li>
