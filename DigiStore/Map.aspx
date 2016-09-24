@@ -12,13 +12,13 @@
 </head>
 <body>
     <nav class="blue darken-3" role="navigation">
-        <div class="nav-wrapper">
+        <div class="nav-wrapper container">
             <a id="logo-container" href="Home.aspx" class="brand-logo center yellow-text accent-3">DigiStore</a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="Home.aspx" class="yellow-text accent-3">Home</a></li>
                 <li><a href="Map.aspx" class="yellow-text accent-3">Search</a></li>
                 <li><a href="#" class="yellow-text accent-3">Sales</a></li>
-                <li><a class="dropdown-button centered" href="#" data-activates="accountDropdown">
+                <li><a class="dropdown-button centered" href="#" data-activates="accountDropdown" style="height:100%">
                     <img class="circle" src="/img/icon.png" height="30" width="30" /></a></li>
             </ul>
 
@@ -42,16 +42,15 @@
 
             <ul id="accountDropdown" class="dropdown-content">
                 <li><a href="Profile.aspx">Profile</a></li>
-                <li><a href="ViewCart">Cart</a></li>
+                <li><a href="ViewCart.aspx">Cart</a></li>
                 <li><a href="#">Order History</a></li>
                 
-                <li>Log In/Out</li>
+                <li><a href="#">Log In/Out</a></li>
             </ul>
         </div>
     </nav>
 
     <div class="container">
-        <br />
         <form id="form2" onsubmit="return performUserSearch()">
             <div class="row">
                 <div class="input-field s9">
