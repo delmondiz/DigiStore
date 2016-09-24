@@ -85,44 +85,161 @@
                     <a class="carousel-item" href="#five!">
                         <img src="http://lorempixel.com/250/250/nature/5"></a>
                 </div>
-
         </div>
         <div class="section">
-            <!--   Icon Section   -->
             <div class="row">
-                <div class="col s12 m4">
-                    <div class="icon-block">
-                        <h2 class="center light-blue-text"><i class="material-icons">location_on</i></h2>
-                        <h5 class="center">Find Shops Near You</h5>
-
-                        <p class="grey-text ">Using your device's geolocation, we can connect you to shops in your area, no matter where you are. You can also search for stores without geolocation, if you're having a tin foil hat kinda day. With Google maps support, our site is familiar and easy to use.</p>
-                    </div>
+                <div class="col s12">
+                    <ul class="tabs">
+                        <li class="tab col s3"><a href="#highestRating">Highest Rated Stores</a></li>
+                        <li class="tab col s3"><a href="#mostPopular">Most Popular Stores</a></li>
+                        <li class="tab col s3"><a href="#newestStores">Newest Stores</a></li>
+                        <li class="tab col s3"><a href="#random">Random</a></li>
+                    </ul>
                 </div>
-
-                <div class="col s12 m4">
-                    <div class="icon-block">
-                        <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
-                        <h5 class="center">Join the community</h5>
-
-                        <p class="grey-text ">Share reviews and picures of your experiences with others using DigiStore. For our vendor partners, you gain easy access to your client base to help tailor your customer experience and grow your business.</p>
-                    </div>
+                <div id="highestRating" class="col s12">
+                    <ul class="collection">
+                        <a href="#">
+                            <li class="collection-item avatar">
+                                <img src="img/kijiji.png" alt="Kijiji" class="circle" />
+                                <span class="title">Kijiji</span>
+                                <p>A site where people can connect with others in their community.</p>
+                                <p>Products: Everything.</p>
+                            </li>
+                        </a>
+                        <a href="#">
+                            <li class="collection-item avatar">
+                                <img src="img/aliexpress.png" alt="AliExpress" class="circle" />
+                                <span class="title">AliExpress</span>
+                                <p>Online shopping marketplace.  Buy directly from the source!</p>
+                                <p>Products: Everything.</p>
+                            </li>
+                        </a>
+                        <a href="#">
+                            <li class="collection-item avatar">
+                                <img src="img/steam.png" alt="Steam" class="circle" />
+                                <span class="title">Steam</span>
+                                <p>The ultimate place for all your gaming needs.</p>
+                                <p>Products: Video Games, Video Game Hardware.</p>
+                            </li>
+                        </a>
+                        <a href="#">
+                            <li class="collection-item avatar">
+                                <img src="img/amazon.png" alt="Amazon" class="circle" />
+                                <span class="title">Amazon</span>
+                                <p>Earth's most customer-centric company.  Discover anything you want online!</p>
+                                <p>Products: Everything.</p>
+                            </li>
+                        </a>
+                        <a href="#">
+                            <li class="collection-item avatar">
+                                <img src="img/ebay.png" alt="Ebay" class="circle" />
+                                <span class="title">Ebay</span>
+                                <p>Connecting buyers and sellers globally since 1995.</p>
+                                <p>Products: Everything.</p>
+                            </li>
+                        </a>
+                    </ul>
                 </div>
-
-                <div class="col s12 m4">
-                    <div class="icon-block">
-                        <h2 class="center light-blue-text"><i class="material-icons">shopping_cart</i></h2>
-                        <h5 class="center">Shop Online</h5>
-
-                        <p class="grey-text ">Search though a large catalog of shops, from bistros, hair salons, flower shops and more, make appointments or orders for delivery or pick up. We want to connect you to all your local shops no matter the business type.</p>
-                    </div>
+                <div id="mostPopular" class="col s12">
+                    <ul class="collection">
+                        <a href="#">
+                            <li class="collection-item avatar">
+                                <img src="img/aliexpress.png" alt="AliExpress" class="circle" />
+                                <span class="title">AliExpress</span>
+                                <p>Online shopping marketplace.  Buy directly from the source!</p>
+                                <p>Products: Everything.</p>
+                            </li>
+                        </a>
+                        <a href="#">
+                            <li class="collection-item avatar">
+                                <img src="img/amazon.png" alt="Amazon" class="circle" />
+                                <span class="title">Amazon</span>
+                                <p>Earth's most customer-centric company.  Discover anything you want online!</p>
+                                <p>Products: Everything.</p>
+                            </li>
+                        </a>
+                        <a href="#">
+                            <li class="collection-item avatar">
+                                <img src="img/ebay.png" alt="Ebay" class="circle" />
+                                <span class="title">Ebay</span>
+                                <p>Connecting buyers and sellers globally since 1995.</p>
+                                <p>Products: Everything.</p>
+                            </li>
+                        </a>
+                        <a href="#">
+                            <li class="collection-item avatar">
+                                <img src="img/steam.png" alt="Steam" class="circle" />
+                                <span class="title">Steam</span>
+                                <p>The ultimate place for all your gaming needs.</p>
+                                <p>Products: Video Games, Video Game Hardware.</p>
+                            </li>
+                        </a>
+                        <a href="#">
+                            <li class="collection-item avatar">
+                                <img src="img/kijiji.png" alt="Kijiji" class="circle" />
+                                <span class="title">Kijiji</span>
+                                <p>A site where people can connect with others in their community.</p>
+                                <p>Products: Everything.</p>
+                            </li>
+                        </a>
+                    </ul>
+                </div>
+                <div id="newestStores" class="col s12">
+                    <ul class="collection">
+                        <a href="#">
+                            <li class="collection-item avatar">
+                                <img src="img/aliexpress.png" alt="AliExpress" class="circle" />
+                                <span class="title">AliExpress</span>
+                                <p>Online shopping marketplace.  Buy directly from the source!</p>
+                                <p>Products: Everything.</p>
+                            </li>
+                        </a>
+                        <a href="#">
+                            <li class="collection-item avatar">
+                                <img src="img/kijiji.png" alt="Kijiji" class="circle" />
+                                <span class="title">Kijiji</span>
+                                <p>A site where people can connect with others in their community.</p>
+                                <p>Products: Everything.</p>
+                            </li>
+                        </a>
+                        <a href="#">
+                            <li class="collection-item avatar">
+                                <img src="img/steam.png" alt="Steam" class="circle" />
+                                <span class="title">Steam</span>
+                                <p>The ultimate place for all your gaming needs.</p>
+                                <p>Products: Video Games, Video Game Hardware.</p>
+                            </li>
+                        </a>
+                        <a href="#">
+                            <li class="collection-item avatar">
+                                <img src="img/ebay.png" alt="Ebay" class="circle" />
+                                <span class="title">Ebay</span>
+                                <p>Connecting buyers and sellers globally since 1995.</p>
+                                <p>Products: Everything.</p>
+                            </li>
+                        </a>
+                        <a href="#">
+                            <li class="collection-item avatar">
+                                <img src="img/amazon.png" alt="Amazon" class="circle" />
+                                <span class="title">Amazon</span>
+                                <p>Earth's most customer-centric company.  Discover anything you want online!</p>
+                                <p>Products: Everything.</p>
+                            </li>
+                        </a>
+                    </ul>
+                </div>
+                <div id="random" class="col s12">
+                    <ul class="collection">
+                        <a href="#">
+                            <li class="collection-item avatar">
+                               <img src="img/help.png" alt="Random" class="circle" />
+                                <span class="title">Click here for a random store!</span>
+                                <p>Feeling lucky?</p>
+                            </li>
+                        </a>
+                    </ul>
                 </div>
             </div>
-
-        </div>
-        <br>
-        <br>
-
-        <div class="section">
         </div>
     </div>
 
