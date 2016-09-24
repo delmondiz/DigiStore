@@ -9,13 +9,6 @@
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
 
-    <!-- Compiled and minified JavaScript -->
-    <!--
-      SO jQuery must be loaded before materialize. I will never forget this, and nither should you!  
-      -->
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
-
     <!-- Materialize Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -109,11 +102,6 @@
                 </ul>
             </div>
         </div>
-        <br>
-        <br>
-
-        <div class="section">
-        </div>
     </div>
 
     <footer class="page-footer blue darken-3">
@@ -122,11 +110,9 @@
                 <div class="col l6 s12">
                     <h5 class="yellow-text accent-3">Company Bio</h5>
                     <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
-
-
                 </div>
-                <div class="col l3 s12">
-                    <h5 class="yellow-text">Settings</h5>
+                <div class="col l3 m3 s12">
+                    <h5 class="yellow-text accent-3">Settings</h5>
                     <ul>
                         <li><a class="white-text" href="#!">Link 1</a></li>
                         <li><a class="white-text" href="#!">Link 2</a></li>
@@ -134,8 +120,8 @@
                         <li><a class="white-text" href="#!">Link 4</a></li>
                     </ul>
                 </div>
-                <div class="col l3 s12">
-                    <h5 class="yellow-text">Connect</h5>
+                <div class="col l3 m3 s12">
+                    <h5 class="yellow-text accent-3">Connect</h5>
                     <ul>
                         <li><a class="white-text" href="#!">Link 1</a></li>
                         <li><a class="white-text" href="#!">Link 2</a></li>
@@ -145,14 +131,16 @@
                 </div>
             </div>
         </div>
-        <div class="footer-copyright">
-            <div class="container">
-                Made by <a class="yellow-text accent-3" href="http://materializecss.com">Materialize</a>
+        <div class="footer-copyright blue darken-4">
+            <div class="container yellow-text accent-3">
+                <p>Made by Oceans4 | Powered by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a></p>
             </div>
         </div>
     </footer>
 
-
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
     <script type="text/javascript" src="js/init.js"></script>
 
 </body>
