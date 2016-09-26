@@ -1,18 +1,26 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ContactUs.aspx.cs" Inherits="DigiStore.ContactUs" %>
-
-<!DOCTYPE html>
-<html class="" lang="en">
+﻿<html class="" lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Store Front</title>
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../Styles/newcss.css">
-    <link rel="stylesheet" href="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
-    <link href="Style/StyleSheet.css" rel="stylesheet" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <title>DigiStore - Contact Us</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+
+
+    <!-- All the sources needed and try and make it look pretty -->
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <!--
+      SO jQuery must be loaded before materialize. I will never forget this, and nither should you!  
+      -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+
+    <!-- Materialize Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Custom CSS  -->
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
 
 </head>
 
@@ -56,39 +64,127 @@
         </div>
     </nav>
 
-    <div id="container_demo">
-        <div id="wrapper">
-            <br />
-            <br />
-            <h1>Contact Us</h1>
-        </div>
-        <div class="col-sm-4">
-            <h4>Please fill out</h4>
 
-        </div>
 
+    <div class="container">
+        <div class="section">
+
+            <div class="row">
+                <div class="section no-pad-bot" id="index-banner">
+                    <h1 class="header center blue-text darken-3">Contact Us</h1>
+                </div>
+
+                <div class="row">
+
+                    <div class="col s12 m6">
+                        <div class="card">
+                            <div class="card-content">
+                                <span class="card-title">Info</span>
+                                <br />
+                                <p><i class="material-icons">location_on</i>
+                                5555 Main St.<br />
+                                    Toronto, Ontario<br />
+                                    ABC 123</p>
+                                <br />
+                                <p><i class="material-icons">phone</i>
+                                        (555) 555-5555</p>
+                                <br />
+                                <p><i class="material-icons">email</i>
+                                        contact@digistore.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col s12 m6">
+                        <div class="card">
+                            <div class="card-content">
+                                <span class="card-title">Social Media</span>
+                                <br />
+                                <p><i class="material-icons">thumb_up</i>
+                                    <a href="https://www.facebook.com/">Facebook</a>
+
+                                </p><br />
+                                <p><i class="material-icons">delete</i>
+                                    <a href="https://twitter.com/">Twitter</a>
+
+                                </p><br />
+                                <p><i class="material-icons">radio</i>
+                                    <a href="https://instagram.com/">Instagram</a>
+
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col s12" style="padding: 0px">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">Give us feedback!</span>
+                            <br />
+                            <div class="input-field">
+                                <input placeholder="Tell us what you think!" id="feedback" type="text" class="validate">
+                            </div>
+
+                            <br />
+                            <button class="btn waves-effect waves-light blue darken-3 yellow-text accent-3" type="submit" name="action">
+                                Submit<i class="material-icons right">send</i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+        <br>
+        <br>
+
+        <div class="section">
+        </div>
     </div>
 
-    <br>
+    <footer class="page-footer blue darken-3">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="yellow-text accent-3">Company Bio</h5>
+                    <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
 
 
-    <footer>
-        <div id="navcontainer">
-            <ul id="navlist">
-                <li id="active"><a href="#" id="current">Contact</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Employment</a></li>
-                <li><a href="#">Legal</a></li>
-            </ul>
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="yellow-text">Settings</h5>
+                    <ul>
+                        <li><a class="white-text" href="#!">Link 1</a></li>
+                        <li><a class="white-text" href="#!">Link 2</a></li>
+                        <li><a class="white-text" href="#!">Link 3</a></li>
+                        <li><a class="white-text" href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="yellow-text">Connect</h5>
+                    <ul>
+                        <li><a class="white-text" href="#!">Link 1</a></li>
+                        <li><a class="white-text" href="#!">Link 2</a></li>
+                        <li><a class="white-text" href="#!">Link 3</a></li>
+                        <li><a class="white-text" href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                Made by <a class="yellow-text accent-3" href="http://materializecss.com">Materialize</a>
+            </div>
         </div>
     </footer>
-    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
-    <script>
-        $(document).foundation();
-    </script>
-    <script type="text/javascript" src="https://intercom.zurb.com/scripts/zcom.js"></script>
 
+
+    <script type="text/javascript" src="js/init.js"></script>
 
 </body>
 </html>
+

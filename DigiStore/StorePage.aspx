@@ -1,6 +1,6 @@
 ﻿<html class="" lang="en">
 <head>
-    <title>DigiStore</title>
+    <title>DigiStore - Storepage</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
 
@@ -92,11 +92,7 @@
     <div class="container">
         <div class="section">
             <div class="row">
-
-
-
                 <div class="container col s12">
-
                     <div class="parallax-container">
                         <div class="parallax">
                             <img src="img/sample_store.jpg">
@@ -142,7 +138,6 @@
                                 </div>
                             </li>
                         </ul>
-
                     </div>
 
                     <div class="col l6 m6 s12" style="padding-right: 0px">
@@ -221,14 +216,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <br>
-            <br>
-            <div class="card-panel blue darken-3">
-                <h5 class="card-title yellow-text accent-3">Appointments</h5>
-                <input type="date" class="datepicker">
-            </div>
-            <div class="section">
             </div>
         </div>
     </div>

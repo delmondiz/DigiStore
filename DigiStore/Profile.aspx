@@ -1,6 +1,6 @@
 ﻿<html class="" lang="en">
 <head>
-    <title>DigiStore</title>
+    <title>DigiStore - Profile</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
 
@@ -75,44 +75,59 @@
                 </div>
                 <ul class="collapsible" data-collapsible="accordion">
                     <li>
-                        <div class="collapsible-header"><i class="material-icons">filter_drama</i>General</div>
+                        <div class="collapsible-header active"><i class="material-icons">settings</i>General</div>
                         <div class="collapsible-body">
+
                             <p>
-                                Edit your information here.<br /><br />
-                                <input placeholder="Bob Barker" id="name" type="text" class="validate">
+                                <label for="firstname">First Name</label>
+                                <input placeholder="Bob" id="firstname" type="text" class="validate">
+                                <label for="lastname">Last Name</label>
+                                <input placeholder="Barker" id="lastname" type="text" class="validate">
+                                <label for="email">Email</label>
                                 <input placeholder="bobbarker@gmail.com" id="email" type="text" class="validate">
-                                <input placeholder="555 Main St." id="address" type="text" class="validate">
+                                <label for="addresStreet">Street</label>
+                                <input placeholder="555 Main St." id="addressStreet" type="text" class="validate">
+                                <label for="addressCity">Town/City</label>
+                                <input placeholder="Toronto" id="addressCity" type="text" class="validate">
+                                <label for="addressProvince">State/Province</label>
+                                <input placeholder="Ontario" id="addressProvince" type="text" class="validate">
+                                <label for="addressPostal">Address</label>
+                                <input placeholder="H0H0H0" id="addressPostal" type="text" class="validate">
+                                <a class="waves-effect waves-light btn blue darken-3 yellow-text accent-3">Save Changes</a>
                             </p>
-                            <p><input placeholder="Old Password" id="old_pass" type="text" class="validate">
-                            <input placeholder="New Password" id="new_pass" type="text" class="validate">                        
-                            <p><a class="waves-effect waves-light btn">Save Changes</a></p>
                         </div>
                     </li>
                     <li>
-                        <div class="collapsible-header"><i class="material-icons">whatshot</i>Payment</div>
+                        <div class="collapsible-header"><i class="material-icons">lock</i>Change Password</div>
                         <div class="collapsible-body">
                             <p>
-                                <input placeholder="Card Number: 5555 5555 5555 5555" id="card_number" type="text" class="validate">
-                                <input placeholder="Expiry Date: TODAY!!?!??!" id="expiry" type="text" class="validate">
-                                <input placeholder="Cardholder Name: Bob Barker" id="cardholder" type="text" class="validate">
+                                <label for="old_pass">Old Password</label>
+                                <input placeholder="Old Password" id="old_pass" type="text" class="validate">
+                                <input placeholder="New Password" id="new_pass" type="text" class="validate">
+                                <input placeholder="Confirm Password" id="confirm_pass" type="text" class="validate">
+                                <br />
+                                <a class="waves-effect waves-light btn blue darken-3 yellow-text accent-3">Save Changes</a>
                             </p>
-                            <p><a class="waves-effect waves-light btn">Save Changes</a></p>
                         </div>
                     </li>
-                     <li>
-                        <div class="collapsible-header"><i class="material-icons">place</i>Order History</div>
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons">credit_card</i>Payment</div>
                         <div class="collapsible-body">
-                            <p>Nothing yet, you cheap fucker!</p>
-                            <p><a href="Link to Order History Page">View All</a></p>
+                            <p>
+                                <label for="cardholder">Cardholder Name</label>
+                                <input placeholder="Bob Barker" id="cardholder" type="text" class="validate">
+                                <label for="card_number">Card Number</label>
+                                <input placeholder="5555 5555 5555 5555" id="card_number" type="text" class="validate">
+                                <label for="expiry">Expiry Date</label>
+                                <input placeholder="TODAY!!?!??!" id="expiry" type="text" class="validate">
+                                <br />
+                                <a class="waves-effect waves-light btn blue darken-3 yellow-text accent-3">Save Changes</a>
+                            </p>
                         </div>
                     </li>
+
                 </ul>
             </div>
-        </div>
-        <br>
-        <br>
-
-        <div class="section">
         </div>
     </div>
 

@@ -99,7 +99,9 @@
     <Content Include="css\style.css" />
     <Content Include="css\StyleSheet.css" />
     <Content Include="Home.aspx" />
+    <Content Include="img\facebook.png" />
     <Content Include="img\icon.png" />
+    <Content Include="img\instagram.png" />
     <Content Include="img\jinx.png" />
     <Content Include="img\kha.png" />
     <Content Include="img\mf.png" />
@@ -110,6 +112,7 @@
     <Content Include="img\sample_store.jpg" />
     <Content Include="img\shoe_store_2.jpeg" />
     <Content Include="img\tryn.png" />
+    <Content Include="img\twitter.png" />
     <Content Include="img\vi.png" />
     <Content Include="js\init.js" />
     <Content Include="js\vendor\jquery.min.js" />
