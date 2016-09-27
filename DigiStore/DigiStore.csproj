@@ -124,7 +124,6 @@
     <Content Include="js\vendor\what-input.min.js" />
     <Content Include="Login.aspx" />
     <Content Include="StoreEdit.aspx" />
-    <Content Include="TEST.aspx" />
     <Content Include="Welcome.aspx" />
     <Content Include="Map.aspx" />
     <None Include="Web.Debug.config">
@@ -162,13 +161,6 @@
     </Compile>
     <Compile Include="StoreEdit.aspx.designer.cs">
       <DependentUpon>StoreEdit.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="TEST.aspx.cs">
-      <DependentUpon>TEST.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="TEST.aspx.designer.cs">
-      <DependentUpon>TEST.aspx</DependentUpon>
     </Compile>
     <Compile Include="Welcome.aspx.cs">
       <DependentUpon>Welcome.aspx</DependentUpon>
