@@ -1,6 +1,6 @@
 ﻿<html class="" lang="en">
 <head>
-    <title>DigiStore - VIEW CART</title>
+    <title>DigiStore - Order History</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
 
@@ -71,7 +71,7 @@
 
             <div class="row">
                 <div class="section no-pad-bot" id="index-banner">
-                    <h1 class="header center blue-text darken-3">VIEW CART</h1>
+                    <h1 class="header center blue-text darken-3">Order History</h1>
                 </div>
 
                 <div class="row">
