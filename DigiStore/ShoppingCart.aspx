@@ -1,6 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ShoppingCart.aspx.cs" Inherits="DigiStore.ShoppingCart" %>
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -48,314 +46,189 @@
             <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
         </div>
     </nav>
-    <ul class="checkout-types top right">
-        <li class="payMethods_1">
-            <div class="paypal-logo">
-                <a data-action="checkout-form-submit" id="ec_shortcut_e122aed1e26b17e1dfc2d507881d46be"
-                    href="https://rdxsports.com/paypal/express/start/button/1/">
-                    <img
-                        src="http://rdxsports.com/skin/frontend/rdxsports/default/materialize/images/paypal-exp-checkout.png"
-                        alt="Checkout with PayPal" class="waves-red waves-effect" title="Checkout with PayPal"></a>
-            </div>
 
-        </li>
-    </ul>
-
-
-
-    </div>
+    <div class="container">
         <div class="section">
-            <!--   Icon Section   -->
-            <div class="cart-total clearfix">
-                <h3>
-                    <table id="shopping-cart-totals-table">
-                        <colgroup>
-                            <col>
-                            <col width="1">
-                        </colgroup>
-                        <tfoot>
-                            <tr>
-                                <td style="" class="a-right" colspan="1">
-                                    <strong>Grand Total</strong>
+            <ul class="collapsible collapsible-accordion" data-collapsible="accordion">
+
+                <li class="">
+                    <div class="collapsible-header">
+                        <i class="material-icons">
+                            <img src="img/download.jpg" height="28" width="43" /></i>Beauty
+                    </div>
+                    <div class="collapsible-body">
+                        <div class="row">
+                            <div class="col s2">
+
+                                <img src="img/download.jpg" />
+                            </div>
+                            <div class="col s3">
+                                <p>Here We can put the deatail of this cup cake it does look mighty delicious man im hungry</p>
+                            </div>
+                            <div class="col s2">
+                                <br />
+                                <a href="#">Remove</a><br />
+                                <br />
+                                <a href="#">Edit</a>
+                            </div>
+                             <div class="col s2"> 
+                                <td class="product-cart-actions" data-rwd-label="Qty">
+                                    <p>Quantity</p>
+                                    <input type="number" pattern="\d*" name="cart[184090][qty]" value="1" size="4" data-cart-item-id="GGR-T7P-M" title="Qty" class="input-text qty" maxlength="12">
+                                    <button type="submit" name="update_cart_action" data-cart-item-update="" value="update_qty" title="Update" class="button btn-update hide">
+                                        <span><span>Update</span></span>
+                                    </button>
+                                    <ul class="cart-links hide">
+                                        <li></li>
+                                    </ul>
                                 </td>
-                                <td style="" class="a-right">
-                                    <strong><span class="price">$19.74</span></strong>
+                                 <a href="#">update</a><br />
+                            </div>
+                            <br />
+                            <div class="col s2">price: $5.99</div>
+                        </div>
+
+
+                    </div>
+
+                </li>
+                <li class="">
+                    <div class="collapsible-header">
+                        <i class="material-icons">
+                            <img src="img/download%20(1).jpg" height="28" width="43" /></i>Lovley
+                    </div>
+                    <div class="collapsible-body">
+                        <div class="row">
+                            <div class="col s3">
+
+                                <img src="img/download%20(1).jpg" />
+                            </div>
+                            <div class="col s3">
+                                <p>Here We can put the deatail of this cup cake it does look mighty delicious man im hungry</p>
+                            </div>
+                            <div class="col s2">
+                                <br />
+                                <a href="#">Remove</a><br />
+                                <br />
+                                <a href="#">Edit</a>
+                            </div>
+                            <div class="col s2"> 
+                                <td class="product-cart-actions" data-rwd-label="Qty">
+                                    <p>Quantity</p>
+                                    <input type="number" pattern="\d*" name="cart[184090][qty]" value="1" size="4" data-cart-item-id="GGR-T7P-M" title="Qty" class="input-text qty" maxlength="12">
+                                    <button type="submit" name="update_cart_action" data-cart-item-update="" value="update_qty" title="Update" class="button btn-update hide">
+                                        <span><span>Update</span></span>
+                                    </button>
+                                    <ul class="cart-links hide">
+                                        <li></li>
+                                    </ul>
                                 </td>
-                            </tr>
-                        </tfoot>
-                   
-                    </table>
-                </h3>
-                <div class="clear"></div>
-            </div>
-            <form  method="post" class="shippingform-main">
-                <input name="form_key" type="hidden" value="BBRNpFVqGY0hxc9f">
-                <table id="shopping-cart-table" class="cart-table data-table responsive-table">
-                    <thead class="hide-on-med-and-down">
-                        <tr class="first last">
-                            <th rowspan="1"><span class="nobr">Item</span></th>
-                            <th rowspan="1">&nbsp;</th>
-                            <th class="a-center cart-price-head" colspan="1">
+                                 <a href="#">update</a><br />
+                            </div>
+                            <div class="col s2">price: $5.99</div>
+                        </div>
 
-                                <span class="nobr">Unit Price</span>
 
-                            </th>
-                            <th rowspan="1" class="a-center">Qty
-                            </th>
-                            <th class="a-center cart-total-head" colspan="1">Total Price 
-                            </th>
-                            <th class="a-center hide" rowspan="1">&nbsp;</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="first last odd">
-                            <td class="product-cart-image">
-                                <a href="http://rdxsports.com/rdx-power-lifting-knee-wraps-bandages-support-training" title="CupeCakes!!!!" class="product-image">
-                                    <img src="img/download.jpg"  alt=CupeCakes!!!!">
-                                </a>
-                                <ul class="cart-links hide">
-                                    <li>
-                                        <a href="http://rdxsports.com/checkout/cart/configure/id/179672/" title="Edit item parameters">Edit</a>
-                                    </li>
-                                </ul>
-                            </td>
-                            <td class="product-cart-info">
-                                <a href="http://rdxsports.com/checkout/cart/delete/id/179672/uenc/aHR0cDovL3JkeHNwb3J0cy5jb20vY2hlY2tvdXQvY2FydC8,/" title="Remove Item" class="btn-remove hide btn-remove2">Remove Item</a>
-                                <h2 class="product-name">
-                                    <a href="">CupeCakes!!!!</a>
-                                </h2>
-                                <div class="product-cart-sku">
-                                    <span class="label">SKU:</span> WAH-K2B
-                                </div>
-                                <div class="product-edit"><a href="" title="Edit item parameters">Edit Item <i class="fa fa-pencil-square"></i></a></div>
-                                <div class="product-delete">
-                                    <a href="" title="Remove Item" class="btn-remove btn-remove2">Remove <i class="fa fa-times-circle"></i></a>
-                                </div>
-                            </td>
-                            <td class="product-cart-price" data-rwd-label="Price" data-rwd-tax-label="Excl. Tax">
-                                <span class="cart-price">
-                                    <span class="price">$19.74</span>
-                                </span>
-                            </td>
+                    </div>
+                </li>
+                <li class="">
+                    <div class="collapsible-header">
+                        <i class="material-icons">
+                            <img src="img/images%20(1).jpg" height="28" width="43" /></i>Crazy
+                    </div>
+                    <div class="collapsible-body">
+                        <div class="row">
+                            <div class="col s2">
 
-                            <td class="product-cart-actions" data-rwd-label="Qty">
-                                <input type="number" pattern="\d*" name="cart[179672][qty]" value="1" size="4" data-cart-item-id="WAH-K2B" title="Qty" class="input-text qty" maxlength="12">
-                                <button type="submit" name="update_cart_action" data-cart-item-update="" value="update_qty" title="Update" class="button btn-update hide">
-                                    <span><span>Update</span></span>
-                                </button>
-                                <ul class="cart-links hide">
-                                    <li>
-                                        <a href="http://rdxsports.com/checkout/cart/configure/id/179672/" title="Edit item parameters">Edit</a>
-                                    </li>
-                                </ul>
-                            </td>
+                                <img src="img/images%20(1).jpg" />
+                            </div>
+                            <div class="col s3">
+                                <p>Here We can put the deatail of this cup cake it does look mighty delicious man im hungry</p>
+                            </div>
+                            <div class="col s2">
+                                <br />
+                                <a href="#">Remove</a><br />
+                                <br />
+                                <a href="#">Edit</a>
+                            </div>
+                             <div class="col s2"> 
+                                <td class="product-cart-actions" data-rwd-label="Qty">
+                                    <p>Quantity</p>
+                                    <input type="number" pattern="\d*" name="cart[184090][qty]" value="1" size="4" data-cart-item-id="GGR-T7P-M" title="Qty" class="input-text qty" maxlength="12">
+                                    <button type="submit" name="update_cart_action" data-cart-item-update="" value="update_qty" title="Update" class="button btn-update hide">
+                                        <span><span>Update</span></span>
+                                    </button>
+                                    <ul class="cart-links hide">
+                                        <li></li>
+                                    </ul>
+                                </td>
+                                 <a href="#">update</a><br />
+                            </div>
+                            <div class="col s2">price: $5.99</div>
+                        </div>
 
-                            <td class="product-cart-total" data-rwd-label="Subtotal">
-                                <span class="cart-price">
-                                    <span class="price">$19.74</span>
-                                </span>
-                            </td>
-                            <td class="a-center product-cart-remove hide last">
-                                <a href="http://rdxsports.com/checkout/cart/delete/id/179672/uenc/aHR0cDovL3JkeHNwb3J0cy5jb20vY2hlY2tvdXQvY2FydC8,/" title="Remove Item" class="btn-remove btn-remove2">Remove Item</a>
-                            </td>
-                        </tr>
-                         <tr class="first last odd">
-                            <td class="product-cart-image">
-                                <a href="http://rdxsports.com/rdx-power-lifting-knee-wraps-bandages-support-training" title="CupeCakes!!!!" class="product-image">
-                                    <img src="img/download%20(1).jpg"  alt=CupeCakes!!!!">
-                                </a>
-                                <ul class="cart-links hide">
-                                    <li>
-                                        <a href="http://rdxsports.com/checkout/cart/configure/id/179672/" title="Edit item parameters">Edit</a>
-                                    </li>
-                                </ul>
-                            </td>
-                            <td class="product-cart-info">
-                                <a href="http://rdxsports.com/checkout/cart/delete/id/179672/uenc/aHR0cDovL3JkeHNwb3J0cy5jb20vY2hlY2tvdXQvY2FydC8,/" title="Remove Item" class="btn-remove hide btn-remove2">Remove Item</a>
-                                <h2 class="product-name">
-                                    <a href="">CupeCakes!!!!</a>
-                                </h2>
-                                <div class="product-cart-sku">
-                                    <span class="label">SKU:</span> WAH-K2B
-                                </div>
-                                <div class="product-edit"><a href="" title="Edit item parameters">Edit Item <i class="fa fa-pencil-square"></i></a></div>
-                                <div class="product-delete">
-                                    <a href="" title="Remove Item" class="btn-remove btn-remove2">Remove <i class="fa fa-times-circle"></i></a>
-                                </div>
-                            </td>
-                            <td class="product-cart-price" data-rwd-label="Price" data-rwd-tax-label="Excl. Tax">
-                                <span class="cart-price">
-                                    <span class="price">$19.74</span>
-                                </span>
-                            </td>
 
-                            <td class="product-cart-actions" data-rwd-label="Qty">
-                                <input type="number" pattern="\d*" name="cart[179672][qty]" value="1" size="4" data-cart-item-id="WAH-K2B" title="Qty" class="input-text qty" maxlength="12">
-                                <button type="submit" name="update_cart_action" data-cart-item-update="" value="update_qty" title="Update" class="button btn-update hide">
-                                    <span><span>Update</span></span>
-                                </button>
-                                <ul class="cart-links hide">
-                                    <li>
-                                        <a href="http://rdxsports.com/checkout/cart/configure/id/179672/" title="Edit item parameters">Edit</a>
-                                    </li>
-                                </ul>
-                            </td>
+                    </div>
+                </li>
+                <li class="">
+                    <div class="collapsible-header">
+                        <i class="material-icons">
+                            <img src="img/images.jpg" height="28" width="43" /></i>Nasty
+                    </div>
+                    <div class="collapsible-body">
+                        <div class="row">
+                            <div class="col s2">
 
-                            <td class="product-cart-total" data-rwd-label="Subtotal">
-                                <span class="cart-price">
-                                    <span class="price">$19.74</span>
-                                </span>
-                            </td>
-                            <td class="a-center product-cart-remove hide last">
-                                <a href="http://rdxsports.com/checkout/cart/delete/id/179672/uenc/aHR0cDovL3JkeHNwb3J0cy5jb20vY2hlY2tvdXQvY2FydC8,/" title="Remove Item" class="btn-remove btn-remove2">Remove Item</a>
-                            </td>
-                        </tr>
-                         <tr class="first last odd">
-                            <td class="product-cart-image">
-                                <a href="http://rdxsports.com/rdx-power-lifting-knee-wraps-bandages-support-training" title="CupeCakes!!!!" class="product-image">
-                                    <img src="img/images%20(1).jpg"   alt=CupeCakes!!!!"/>
-                                </a>
-                                <ul class="cart-links hide">
-                                    <li>
-                                        <a href="http://rdxsports.com/checkout/cart/configure/id/179672/" title="Edit item parameters">Edit</a>
-                                    </li>
-                                </ul>
-                            </td>
-                            <td class="product-cart-info">
-                                <a href="http://rdxsports.com/checkout/cart/delete/id/179672/uenc/aHR0cDovL3JkeHNwb3J0cy5jb20vY2hlY2tvdXQvY2FydC8,/" title="Remove Item" class="btn-remove hide btn-remove2">Remove Item</a>
-                                <h2 class="product-name">
-                                    <a href="">CupeCakes!!!!</a>
-                                </h2>
-                                <div class="product-cart-sku">
-                                    <span class="label">SKU:</span> WAH-K2B
-                                </div>
-                                <div class="product-edit"><a href="" title="Edit item parameters">Edit Item <i class="fa fa-pencil-square"></i></a></div>
-                                <div class="product-delete">
-                                    <a href="" title="Remove Item" class="btn-remove btn-remove2">Remove <i class="fa fa-times-circle"></i></a>
-                                </div>
-                            </td>
-                            <td class="product-cart-price" data-rwd-label="Price" data-rwd-tax-label="Excl. Tax">
-                                <span class="cart-price">
-                                    <span class="price">$19.74</span>
-                                </span>
-                            </td>
+                                <img src="img/images.jpg" />
+                            </div>
+                            <div class="col s3">
+                                <p>Here We can put the deatail of this cup cake it does look mighty delicious man im hungry</p>
+                            </div>
+                            <div class="col s2">
+                                <br />
+                                <a href="#">Remove</a><br />
+                                <br />
+                                <a href="#">Edit</a>
+                            </div>
+                             <div class="col s2"> 
+                                <td class="product-cart-actions" data-rwd-label="Qty">
+                                    <p>Quantity</p>
+                                    <input type="number" pattern="\d*" name="cart[184090][qty]" value="1" size="4" data-cart-item-id="GGR-T7P-M" title="Qty" class="input-text qty" maxlength="12">
+                                    <button type="submit" name="update_cart_action" data-cart-item-update="" value="update_qty" title="Update" class="button btn-update hide">
+                                        <span><span>Update</span></span>
+                                    </button>
+                                    <ul class="cart-links hide">
+                                        <li></li>
+                                    </ul>
+                                </td>
+                                 <a href="#">update</a><br />
+                            </div>
+                            <div class="col s2">price: $5.99</div>
+                        </div>
 
-                            <td class="product-cart-actions" data-rwd-label="Qty">
-                                <input type="number" pattern="\d*" name="cart[179672][qty]" value="1" size="4" data-cart-item-id="WAH-K2B" title="Qty" class="input-text qty" maxlength="12">
-                                <button type="submit" name="update_cart_action" data-cart-item-update="" value="update_qty" title="Update" class="button btn-update hide">
-                                    <span><span>Update</span></span>
-                                </button>
-                                <ul class="cart-links hide">
-                                    <li>
-                                        <a href="http://rdxsports.com/checkout/cart/configure/id/179672/" title="Edit item parameters">Edit</a>
-                                    </li>
-                                </ul>
-                            </td>
 
-                            <td class="product-cart-total" data-rwd-label="Subtotal">
-                                <span class="cart-price">
-                                    <span class="price">$19.74</span>
-                                </span>
-                            </td>
-                            <td class="a-center product-cart-remove hide last">
-                                <a href="http://rdxsports.com/checkout/cart/delete/id/179672/uenc/aHR0cDovL3JkeHNwb3J0cy5jb20vY2hlY2tvdXQvY2FydC8,/" title="Remove Item" class="btn-remove btn-remove2">Remove Item</a>
-                            </td>
-                        </tr>
-                         <tr class="first last odd">
-                            <td class="product-cart-image">
-                                <a href="http://rdxsports.com/rdx-power-lifting-knee-wraps-bandages-support-training" title="CupeCakes!!!!" class="product-image">
-                                    <img src="img/images.jpg"  alt=CupeCakes!!!!"/>
-                                </a>
-                                <ul class="cart-links hide">
-                                    <li>
-                                        <a href="http://rdxsports.com/checkout/cart/configure/id/179672/" title="Edit item parameters">Edit</a>
-                                    </li>
-                                </ul>
-                            </td>
-                            <td class="product-cart-info">
-                                <a href="http://rdxsports.com/checkout/cart/delete/id/179672/uenc/aHR0cDovL3JkeHNwb3J0cy5jb20vY2hlY2tvdXQvY2FydC8,/" title="Remove Item" class="btn-remove hide btn-remove2">Remove Item</a>
-                                <h2 class="product-name">
-                                    <a href="">CupeCakes!!!!</a>
-                                </h2>
-                                <div class="product-cart-sku">
-                                    <span class="label">SKU:</span> WAH-K2B
-                                </div>
-                                <div class="product-edit"><a href="" title="Edit item parameters">Edit Item <i class="fa fa-pencil-square"></i></a></div>
-                                <div class="product-delete">
-                                    <a href="" title="Remove Item" class="btn-remove btn-remove2">Remove <i class="fa fa-times-circle"></i></a>
-                                </div>
-                            </td>
-                            <td class="product-cart-price" data-rwd-label="Price" data-rwd-tax-label="Excl. Tax">
-                                <span class="cart-price">
-                                    <span class="price">$19.74</span>
-                                </span>
-                            </td>
+                    </div>
 
-                            <td class="product-cart-actions" data-rwd-label="Qty">
-                                <input type="number" pattern="\d*" name="cart[179672][qty]" value="1" size="4" data-cart-item-id="WAH-K2B" title="Qty" class="input-text qty" maxlength="12">
-                                <button type="submit" name="update_cart_action" data-cart-item-update="" value="update_qty" title="Update" class="button btn-update hide">
-                                    <span><span>Update</span></span>
-                                </button>
-                                <ul class="cart-links hide">
-                                    <li>
-                                        <a href="http://rdxsports.com/checkout/cart/configure/id/179672/" title="Edit item parameters">Edit</a>
-                                    </li>
-                                </ul>
-                            </td>
-
-                            <td class="product-cart-total" data-rwd-label="Subtotal">
-                                <span class="cart-price">
-                                    <span class="price">$19.74</span>
-                                </span>
-                            </td>
-                            <td class="a-center product-cart-remove hide last">
-                                <a href="http://rdxsports.com/checkout/cart/delete/id/179672/uenc/aHR0cDovL3JkeHNwb3J0cy5jb20vY2hlY2tvdXQvY2FydC8,/" title="Remove Item" class="btn-remove btn-remove2">Remove Item</a>
-                            </td>
-                        </tr>
-                    </tbody>
-
-                </table>
-                <div class="cart-action-btn-all">
-
-                    <button type="submit" style="visibility: hidden;" data-cart-item-update="" name="update_cart_action" value="update_qty" title="Update Shopping Cart" class="button2 btn-update hide"><span><span>Update Shopping Cart</span></span></button>
-                    <button type="submit" name="update_cart_action" data-cart-empty="" value="empty_cart" title="Empty Cart" class="button2 btn-empty hide-on-med-and-down waves-effect waves-red btn btn-flat" id="empty_cart_button"><span><span>Empty Cart</span></span></button>
-                    <button type="submit" name="update_cart_action" data-cart-item-update="" value="update_qty" title="Update Shopping Cart" class="button2 btn-update waves-effect waves-light btn grey darken-1 right btn-update-shopping-cart"><span><span>Update Shopping Cart</span></span></button>
-                    <a href="javascript:;" class="btn-empty modal-trigger calc-shipping-model waves-effect white-text waves-light btn black mr10 darken-1 right">Estimate Shipping</a>
-                    <span class="or hide">-or-</span>
-                    <!--[if lt IE 8]>
-                        <input type="hidden" id="update_cart_action_container" data-cart-item-update />
-                        <script type="text/javascript">
-                        //<![CDATA[
-                            Event.observe(window, 'load', function()
-                            {
-                                // Internet Explorer (lt 8) does not support value attribute in button elements
-                                $emptyCartButton = $('empty_cart_button');
-                                $cartActionContainer = $('update_cart_action_container');
-                                if ($emptyCartButton && $cartActionContainer) {
-                                    Event.observe($emptyCartButton, 'click', function()
-                                    {
-                                        $emptyCartButton.setAttribute('name', 'update_cart_action_temp');
-                                        $cartActionContainer.setAttribute('name', 'update_cart_action');
-                                        $cartActionContainer.setValue('empty_cart');
-                                    });
-                                }
-
-                            });
-                        //]]>
-                        </script>
-                        <![endif]-->
-                    <div class="clear"></div>
-                </div>
-                <script type="text/javascript">decorateTable('shopping-cart-table')</script>
-            </form>
+                </li>
+            </ul>
 
         </div>
-    <br>
-    <br>
+        
+            <button type="button" title="Proceed to Checkout" class="button waves-effect waves-light btn red accent-4  btn-proceed-checkout btn-checkout"><span><span>Proceed to Checkout</span></span></button>
+       
 
-    <div class="section">
     </div>
+
+
+
+
+
+
+
+
+
     </div>
+    
 
     <footer class="page-footer blue darken-3">
         <div class="container">
