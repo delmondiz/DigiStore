@@ -87,8 +87,6 @@
         </div>
     </nav>
 
-
-
     <div class="container">
         <div class="section">
             <div class="row">
@@ -99,19 +97,93 @@
                         </div>
                     </div>
 
+                    <div class="card-panel blue darken-3">
+                        <h5 class="card-title yellow-text accent-3">Store Information</h5>
+                        <div class="card-content row">
+                            <div class="card col l6 m6 s12">
+                                <div class="card-content">
+                                    <span class="card-title">Contact</span>
+                                    <p>
+                                        100 Main St.
+                                <br />
+                                        Toronto, Ontario
+                                <br />
+                                        ABC123
+                                <br />
+                                        <br />
+                                        (555) 555-5555
+                                <br />
+                                        <br />
+                                        sample@gmail.com
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="card col l6 m6 s12">
+                                <div class="card-content">
+                                    <span class="card-title">Store Hours</span>
+                                    <p>
+                                        Monday: 9am - 5pm<br />
+                                        Tuesday: 9am - 5pm<br />
+                                        Wednesday: 9am - 5pm<br />
+                                        Thursday: 9am - 5pm<br />
+                                        Friday: 9am - 5pm<br />
+                                        Saturday: 9am - 5pm<br />
+                                        Sunday: 9am - 5pm<br />
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="card col l6 m6 s12">
+                                <div class="card-content">
+                                    <span class="card-title">Rate this store</span>
+                                    <p class="range-field">
+                                        Select a rating between 1 - 5.
+                                        <input style="background-color: #1565c0" type="range" id="test5" min="1" max="5" />
+                                    </p>
+                                    <div class="input-field">
+                                        <label for="textarea1">Leave a Review!</label>
+                                        <textarea id="textarea1" class="materialize-textarea"></textarea>
+                                    </div>
+                                    <br />
+                                    <div class="center-align">
+                                        <button class="btn waves-effect waves-light blue darken-3 yellow-text accent-3" type="submit" name="action">
+                                            Submit<i class="material-icons right">send</i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card col l6 m6 s12">
+                                <div class="card-content">
+                                    <span class="card-title">Reviews</span>
+                                    <p>Populated from Database.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--
                     <div class="col l6 m6 s12" style="padding-left: 0px">
                         <ul class="collapsible" data-collapsible="accordion">
                             <li>
                                 <div class="collapsible-header active blue darken-3 yellow-text accent-3">Store Information</div>
                                 <div class="collapsible-body">
                                     <p>
-                                        1000 Main St.
-                                <br />
-                                        Toronto, Ontario
-                                <br />
-                                        (555) 555-5555
-                                <br />
-                                        sample@gmail.com
+                                        Monday: 9am - 5pm<br />
+                                        <br />
+                                        Tuesday: 9am - 5pm<br />
+                                        <br />
+                                        Wednesday: 9am - 5pm<br />
+                                        <br />
+                                        Thursday: 9am - 5pm<br />
+                                        <br />
+                                        Friday: 9am - 5pm<br />
+                                        <br />
+                                        Saturday: 9am - 5pm<br />
+                                        <br />
+                                        Sunday: 9am - 5pm<br />
+                                        <br />
                                     </p>
                                 </div>
                             </li>
@@ -138,9 +210,9 @@
                                 </div>
                             </li>
                         </ul>
-                    </div>
+                    </div> -->
 
-                    <div class="col l6 m6 s12" style="padding-right: 0px">
+                    <%--<div class="col l6 m6 s12" style="padding-right: 0px">
                         <ul class="collapsible" data-collapsible="accordion">
                             <li>
                                 <div class="collapsible-header active blue darken-3 yellow-text accent-3">Reviews</div>
@@ -170,9 +242,10 @@
                                 </div>
                             </li>
                         </ul>
-                    </div>
+                    </div>--%>
                 </div>
             </div>
+
             <div class="card-panel blue darken-3">
                 <h5 class="card-title yellow-text accent-3">Products</h5>
                 <div class="card-content row">

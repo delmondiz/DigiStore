@@ -76,73 +76,79 @@
 
                 <div class="row">
 
-                    <div class="col s12 m6">
-                        <div class="card">
-                            <div class="card-content">
-                                <span class="card-title">Info</span>
-                                <br />
-                                <p><i class="material-icons">location_on</i>
-                                5555 Main St.<br />
-                                    Toronto, Ontario<br />
-                                    ABC 123</p>
-                                <br />
-                                <p><i class="material-icons">phone</i>
-                                        (555) 555-5555</p>
-                                <br />
-                                <p><i class="material-icons">email</i>
-                                        contact@digistore.com</p>
+                    <div class="card-panel blue darken-3">
+                        <div class="card-content row">
+                            <div class="col s12 m6">
+                                <div class="card">
+                                    <div class="card-content">
+                                        <span class="card-title">Info</span>
+                                        <br />
+                                        <p>
+                                            <i class="material-icons">location_on</i>
+                                            5555 Main St.<br />
+                                            Toronto, Ontario<br />
+                                            ABC 123
+                                        </p>
+                                        <br />
+                                        <p>
+                                            <i class="material-icons">phone</i>
+                                            (555) 555-5555
+                                        </p>
+                                        <br />
+                                        <p>
+                                            <i class="material-icons">email</i>
+                                            contact@digistore.com
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
 
-                    <div class="col s12 m6">
-                        <div class="card">
-                            <div class="card-content">
-                                <span class="card-title">Social Media</span>
-                                <br />
-                                <p><i class="material-icons">thumb_up</i>
-                                    <a href="https://www.facebook.com/">Facebook</a>
+                            <div class="col s12 m6">
+                                <div class="card">
+                                    <div class="card-content">
+                                        <span class="card-title">Social Media</span>
+                                        <br />
+                                        <p>
+                                            <i class="material-icons">thumb_up</i>
+                                            <a href="https://www.facebook.com/">Facebook</a>
 
-                                </p><br />
-                                <p><i class="material-icons">delete</i>
-                                    <a href="https://twitter.com/">Twitter</a>
+                                        </p>
+                                        <br />
+                                        <p>
+                                            <i class="material-icons">delete</i>
+                                            <a href="https://twitter.com/">Twitter</a>
 
-                                </p><br />
-                                <p><i class="material-icons">radio</i>
-                                    <a href="https://instagram.com/">Instagram</a>
+                                        </p>
+                                        <br />
+                                        <p>
+                                            <i class="material-icons">radio</i>
+                                            <a href="https://instagram.com/">Instagram</a>
 
-                                </p>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col s12">
+                                <div class="card">
+                                    <div class="card-content">
+                                        <span class="card-title">Give us feedback!</span>
+                                        <br />
+                                        <div class="input-field">
+                                            <input placeholder="Tell us what you think!" id="feedback" type="text" class="validate">
+                                        </div>
+
+                                        <br />
+                                        <button class="btn waves-effect waves-light blue darken-3 yellow-text accent-3" type="submit" name="action">
+                                            Submit<i class="material-icons right">send</i>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="col s12" style="padding: 0px">
-                    <div class="card">
-                        <div class="card-content">
-                            <span class="card-title">Give us feedback!</span>
-                            <br />
-                            <div class="input-field">
-                                <input placeholder="Tell us what you think!" id="feedback" type="text" class="validate">
-                            </div>
-
-                            <br />
-                            <button class="btn waves-effect waves-light blue darken-3 yellow-text accent-3" type="submit" name="action">
-                                Submit<i class="material-icons right">send</i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-
-
-
             </div>
-        </div>
-        <br>
-        <br>
-
-        <div class="section">
         </div>
     </div>
 
