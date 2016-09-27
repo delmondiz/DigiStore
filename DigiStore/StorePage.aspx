@@ -23,70 +23,87 @@
     <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
 
 
+    <style type="text/css">
+        .auto-style1 {
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+            position: fixed;
+            width: 300px;
+            left: -1;
+            top: -152;
+            -webkit-transform: translateX(-105%);
+            transform: translateX(-105%);
+            height: -moz-calc(100%);
+            z-index: 999;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            overflow-y: auto;
+            will-change: transform;
+            margin: 0;
+            padding-bottom: 60px;
+            background-color: #fff;
+        }
+    </style>
+
+
 </head>
 
 <body>
     <nav class="blue darken-3" role="navigation">
         <div class="nav-wrapper container">
-            <a id="logo-container" href="#" class="brand-logo center yellow-text accent-3">DigiStore</a>
+            <a id="logo-container" href="Home.aspx" class="brand-logo center yellow-text accent-3">DigiStore</a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="#" class="yellow-text accent-3">Home</a></li>
-                <li><a href="#" class="yellow-text accent-3">Search</a></li>
+                <li><a href="Home.aspx" class="yellow-text accent-3">Home</a></li>
+                <li><a href="Map.aspx" class="yellow-text accent-3">Search</a></li>
                 <li><a href="#" class="yellow-text accent-3">Sales</a></li>
-                <li><a class="dropdown-button centered" href="#" data-activates="accountDropdown">
+                <li><a class="dropdown-button centered" href="#" data-activates="accountDropdown" style="height:100%">
                     <img class="circle" src="/img/icon.png" height="30" width="30" /></a></li>
             </ul>
 
-            <ul id="nav-mobile" class="side-nav">
+            <ul id="nav-mobile" class="auto-style1">
                 <h4 class="center blue-text darken-3">Menu</h4>
                 <li>
                     <div class="divider"></div>
                 </li>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Browse</a></li>
-                <li><a href="#">Cart</a></li>
+                <li><a href="Home.aspx">Home</a></li>
+                <li><a href="Map.aspx">Search</a></li>
+                <li><a href="ViewCart.aspx">Cart</a></li>
                 <li>
                     <div class="divider"></div>
                 </li>
-                <li><a href="#">Manage Store</a></li>
+                <li><a href="StoreInventory.aspx">Manage Store</a></li>
                 <li><a href="#">Order History</a></li>
-                <li><a href="#">Settings</a></li>
+                <li><a href="Profile.aspx">Profile</a></li>
                 <li><a href="#">Log In/Out</a></li>
             </ul>
             <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
 
             <ul id="accountDropdown" class="dropdown-content">
-                <li>Manage Profile</li>
-                <li>View Cart</li>
-                <li>Order History</li>
-                <li>Settings</li>
-                <li>Log In/Out</li>
+                <li><a href="Profile.aspx">Profile</a></li>
+                <li><a href="ViewCart.aspx">Cart</a></li>
+                <li><a href="#">Order History</a></li>
+                
+                <li><a href="#">Log In/Out</a></li>
             </ul>
         </div>
     </nav>
+
+
 
     <div class="container">
         <div class="section">
             <div class="row">
 
-                <div class="parallax-container">
-                    <div class="parallax">
-                        <img src="img/sample_store.jpg">
-                    </div>
-                </div>
 
-                <ul class="collection with-header">
-                    <li class="collection-header">
-                        <div class="section white">
-                            <div class="row container">
-                                <h2 class="header">Store Name</h2>
-                                <p class="grey-text text-darken-3 lighten-3">Description about the store here.</p>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+
                 <div class="container col s12">
-                    <div class="col l6 m6 s12">
+
+                    <div class="parallax-container">
+                        <div class="parallax">
+                            <img src="img/sample_store.jpg">
+                        </div>
+                    </div>
+
+                    <div class="col l6 m6 s12" style="padding-left: 0px">
                         <ul class="collapsible" data-collapsible="accordion">
                             <li>
                                 <div class="collapsible-header active blue darken-3 yellow-text accent-3">Store Information</div>
@@ -128,7 +145,7 @@
 
                     </div>
 
-                    <div class="col l6 m6 s12">
+                    <div class="col l6 m6 s12" style="padding-right: 0px">
                         <ul class="collapsible" data-collapsible="accordion">
                             <li>
                                 <div class="collapsible-header active blue darken-3 yellow-text accent-3">Reviews</div>
@@ -142,7 +159,7 @@
                                 <div class="container collapsible-body">
                                     <p class="range-field">
                                         Select a rating between 1 - 5.
-                                        <input style="background-color:#1565c0" type="range" id="test5" min="1" max="5" />
+                                        <input style="background-color: #1565c0" type="range" id="test5" min="1" max="5" />
                                     </p>
                                     <div class="input-field">
                                         <label for="textarea1">Leave a Review!</label>
@@ -207,48 +224,52 @@
             </div>
             <br>
             <br>
-
+            <div class="card-panel blue darken-3">
+                <h5 class="card-title yellow-text accent-3">Appointments</h5>
+                <input type="date" class="datepicker">
+            </div>
             <div class="section">
             </div>
         </div>
+    </div>
 
-        <footer class="page-footer blue darken-3">
+    <footer class="page-footer blue darken-3">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="yellow-text accent-3">Company Bio</h5>
+                    <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+
+
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="yellow-text">Settings</h5>
+                    <ul>
+                        <li><a class="white-text" href="#!">Link 1</a></li>
+                        <li><a class="white-text" href="#!">Link 2</a></li>
+                        <li><a class="white-text" href="#!">Link 3</a></li>
+                        <li><a class="white-text" href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="yellow-text">Connect</h5>
+                    <ul>
+                        <li><a class="white-text" href="#!">Link 1</a></li>
+                        <li><a class="white-text" href="#!">Link 2</a></li>
+                        <li><a class="white-text" href="#!">Link 3</a></li>
+                        <li><a class="white-text" href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
             <div class="container">
-                <div class="row">
-                    <div class="col l6 s12">
-                        <h5 class="yellow-text accent-3">Company Bio</h5>
-                        <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
-
-
-                    </div>
-                    <div class="col l3 s12">
-                        <h5 class="yellow-text">Settings</h5>
-                        <ul>
-                            <li><a class="white-text" href="#!">Link 1</a></li>
-                            <li><a class="white-text" href="#!">Link 2</a></li>
-                            <li><a class="white-text" href="#!">Link 3</a></li>
-                            <li><a class="white-text" href="#!">Link 4</a></li>
-                        </ul>
-                    </div>
-                    <div class="col l3 s12">
-                        <h5 class="yellow-text">Connect</h5>
-                        <ul>
-                            <li><a class="white-text" href="#!">Link 1</a></li>
-                            <li><a class="white-text" href="#!">Link 2</a></li>
-                            <li><a class="white-text" href="#!">Link 3</a></li>
-                            <li><a class="white-text" href="#!">Link 4</a></li>
-                        </ul>
-                    </div>
-                </div>
+                Made by <a class="yellow-text accent-3" href="http://materializecss.com">Materialize</a>
             </div>
-            <div class="footer-copyright">
-                <div class="container">
-                    Made by <a class="yellow-text accent-3" href="http://materializecss.com">Materialize</a>
-                </div>
-            </div>
-        </footer>
+        </div>
+    </footer>
 
 
-        <script type="text/javascript" src="js/init.js"></script>
+    <script type="text/javascript" src="js/init.js"></script>
 </body>
 </html>

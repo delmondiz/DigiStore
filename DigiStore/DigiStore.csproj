@@ -99,17 +99,22 @@
     <Content Include="css\style.css" />
     <Content Include="css\StyleSheet.css" />
     <Content Include="Home.aspx" />
-    <Content Include="img\download %281%29.jpg" />
-    <Content Include="img\download.jpg" />
+    <Content Include="img\aliexpress.png" />
+    <Content Include="img\amazon.png" />
+    <Content Include="img\ebay.png" />
+    <Content Include="img\help.png" />
     <Content Include="img\icon.png" />
     <Content Include="img\jinx.png" />
     <Content Include="img\kha.png" />
+    <Content Include="img\kijiji.png" />
     <Content Include="img\mf.png" />
     <Content Include="img\powered_by_google_on_non_white.png" />
     <Content Include="img\powered_by_google_on_non_white_hdpi.png" />
     <Content Include="img\powered_by_google_on_white.png" />
     <Content Include="img\powered_by_google_on_white_hdpi.png" />
     <Content Include="img\sample_store.jpg" />
+    <Content Include="img\shoe_store_2.jpeg" />
+    <Content Include="img\steam.png" />
     <Content Include="img\tryn.png" />
     <Content Include="img\vi.png" />
     <Content Include="js\init.js" />
@@ -128,7 +133,6 @@
   <ItemGroup>
     <Content Include="Register.aspx" />
     <Content Include="StoreInventory.aspx" />
-    <Content Include="ShoppingCart.aspx" />
     <Content Include="StorePage.aspx" />
     <Content Include="ViewCart.aspx" />
     <Content Include="Web.config" />
