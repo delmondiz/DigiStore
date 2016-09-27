@@ -102,6 +102,8 @@
     <Content Include="img\download %281%29.jpg" />
     <Content Include="img\download.jpg" />
     <Content Include="img\icon.png" />
+    <Content Include="img\images %281%29.jpg" />
+    <Content Include="img\images.jpg" />
     <Content Include="img\jinx.png" />
     <Content Include="img\kha.png" />
     <Content Include="img\mf.png" />
@@ -116,6 +118,8 @@
     <Content Include="js\vendor\jquery.min.js" />
     <Content Include="js\vendor\what-input.min.js" />
     <Content Include="Login.aspx" />
+    <Content Include="StoreEdit.aspx" />
+    <Content Include="TEST.aspx" />
     <Content Include="Welcome.aspx" />
     <Content Include="Map.aspx" />
     <None Include="Web.Debug.config">
@@ -147,6 +151,20 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StoreEdit.aspx.cs">
+      <DependentUpon>StoreEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StoreEdit.aspx.designer.cs">
+      <DependentUpon>StoreEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TEST.aspx.cs">
+      <DependentUpon>TEST.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TEST.aspx.designer.cs">
+      <DependentUpon>TEST.aspx</DependentUpon>
     </Compile>
     <Compile Include="Welcome.aspx.cs">
       <DependentUpon>Welcome.aspx</DependentUpon>
