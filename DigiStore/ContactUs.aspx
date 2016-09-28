@@ -75,7 +75,6 @@
                 </div>
 
                 <div class="row">
-
                     <div class="card-panel blue darken-3">
                         <div class="card-content row">
                             <div class="col s12 m6">
