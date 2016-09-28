@@ -123,6 +123,7 @@
     <Content Include="js\vendor\jquery.min.js" />
     <Content Include="js\vendor\what-input.min.js" />
     <Content Include="Login.aspx" />
+    <Content Include="Service Page.aspx" />
     <Content Include="StoreEdit.aspx" />
     <Content Include="Welcome.aspx" />
     <Content Include="Map.aspx" />
@@ -154,6 +155,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Service Page.aspx.cs">
+      <DependentUpon>Service Page.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Service Page.aspx.designer.cs">
+      <DependentUpon>Service Page.aspx</DependentUpon>
     </Compile>
     <Compile Include="StoreEdit.aspx.cs">
       <DependentUpon>StoreEdit.aspx</DependentUpon>

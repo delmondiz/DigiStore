@@ -1,4 +1,4 @@
-﻿<html class="" lang="en">
+﻿ <html class="" lang="en">
 <head>
     <title>DigiStore</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
