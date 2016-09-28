@@ -31,19 +31,40 @@
         <div class="nav-wrapper container">
             <a id="logo-container" href="#" class="brand-logo center yellow-text accent-3">DigiStore</a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="sass.html"><i class="material-icons left">shopping_cart</i><span class="new badge">4</span></a></li>
-
+                <li><a href="#" class="yellow-text accent-3">Home</a></li>
+                <li><a href="#" class="yellow-text accent-3">Search</a></li>
+                <li><a href="#" class="yellow-text accent-3">Sales</a></li>
+                <li><a href="3"><i class="material-icons left">shopping_cart</i><span class="new badge">4</span></a></li>
+                <li><a class="dropdown-button centered" href="#" data-activates="accountDropdown">
+                    <img class="circle" src="/img/icon.png" height="30" width="30" /></a></li>
             </ul>
 
             <ul id="nav-mobile" class="side-nav">
                 <h4 class="center blue-text darken-3">Menu</h4>
-                <hr />
+                <li>
+                    <div class="divider"></div>
+                </li>
                 <li><a href="#">Home</a></li>
-                <li><a href="#">Search</a></li>
-                <li><a href="#">Sales</a></li>
-                <li><a href="#">Profile</a></li>
+                <li><a href="#">Browse</a></li>
+                <li><a href="#">Cart</a></li>
+		
+                <li>
+                    <div class="divider"></div>
+                </li>
+                <li><a href="#">Manage Store</a></li>
+                <li><a href="#">Order History</a></li>
+                <li><a href="#">Settings</a></li>
+                <li><a href="#">Log In/Out</a></li>
             </ul>
             <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+
+            <ul id="accountDropdown" class="dropdown-content">
+                <li>Manage Profile</li>
+                <li>View Cart</li>
+                <li>Order History</li>
+                <li>Settings</li>
+                <li>Log In/Out</li>
+            </ul>
         </div>
     </nav>
 
@@ -58,7 +79,7 @@
                     </div>
                     <div class="collapsible-body">
                         <div class="row">
-                            <div class="col s2">
+                            <div class="col s3">
 
                                 <img src="img/download.jpg" />
                             </div>
@@ -125,6 +146,7 @@
                                 </td>
                                  <a href="#">update</a><br />
                             </div>
+                            <br />
                             <div class="col s2">price: $5.99</div>
                         </div>
 
@@ -138,7 +160,7 @@
                     </div>
                     <div class="collapsible-body">
                         <div class="row">
-                            <div class="col s2">
+                            <div class="col s3">
 
                                 <img src="img/images%20(1).jpg" />
                             </div>
@@ -164,6 +186,7 @@
                                 </td>
                                  <a href="#">update</a><br />
                             </div>
+                            <br />
                             <div class="col s2">price: $5.99</div>
                         </div>
 
@@ -177,7 +200,7 @@
                     </div>
                     <div class="collapsible-body">
                         <div class="row">
-                            <div class="col s2">
+                            <div class="col s3">
 
                                 <img src="img/images.jpg" />
                             </div>
@@ -203,6 +226,7 @@
                                 </td>
                                  <a href="#">update</a><br />
                             </div>
+                            <br />
                             <div class="col s2">price: $5.99</div>
                         </div>
 
@@ -213,8 +237,11 @@
             </ul>
 
         </div>
-        
-            <button type="button" title="Proceed to Checkout" class="button waves-effect waves-light btn red accent-4  btn-proceed-checkout btn-checkout"><span><span>Proceed to Checkout</span></span></button>
+            <h4>Total:$23.94</h4>
+            <h7>Tax:$3.11</h7>
+            <h4>Grand Total:$27.05</h4>
+            <button type="button" title="Proceed to Checkout" class="button waves-effect waves-light btn blue accent-4  btn-proceed-checkout btn-checkout"><span><span>Proceed to Checkout</span></span></button>
+        <button type="button" title="Continue Shopping" class="button waves-effect waves-light btn green accent-4  btn-proceed-checkout btn-checkout"><span><span>Continue Shopping</span></span></button>
        
 
     </div>
