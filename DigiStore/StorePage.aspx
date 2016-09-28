@@ -42,12 +42,40 @@
             padding-bottom: 60px;
             background-color: #fff;
         }
+        .loaded #loader {
+    opacity: 0;
+    -webkit-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+#loader {
+    display: block;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #3498db;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+    z-index: 1001;
+}
+
     </style>
 
 
 </head>
 
 <body>
+       <!-- Start Page Loading -->
+    <div id="loader-wrapper">
+      <div id="loader"></div>        
+      <div class="loader-section section-left"></div>
+      <div class="loader-section section-right"></div>
+  </div>
+
     <nav class="blue darken-3" role="navigation">
         <div class="nav-wrapper container">
             <a id="logo-container" href="Home.aspx" class="brand-logo center yellow-text accent-3">DigiStore</a>
@@ -57,6 +85,7 @@
                 <li><a href="#" class="yellow-text accent-3">Sales</a></li>
                 <li><a class="dropdown-button centered" href="#" data-activates="accountDropdown" style="height:100%">
                     <img class="circle" src="/img/icon.png" height="30" width="30" /></a></li>
+                <li><a href="3"><i class="material-icons left">shopping_cart</i><span class="new badge">4</span></a></li>
             </ul>
 
             <ul id="nav-mobile" class="auto-style1">

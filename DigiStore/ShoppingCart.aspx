@@ -239,8 +239,23 @@
             <h4>Total:$23.94</h4>
             <h7>Tax:$3.11</h7>
             <h4>Grand Total:$27.05</h4>
-            <button type="button" title="Proceed to Checkout" class="button waves-effect waves-light btn blue accent-4  btn-proceed-checkout btn-checkout"><span><span>Proceed to Checkout</span></span></button>
+            
         <button type="button" title="Continue Shopping" class="button waves-effect waves-light btn green accent-4  btn-proceed-checkout btn-checkout"><span><span>Continue Shopping</span></span></button>
+        <a class="modal-trigger waves-effect waves-light btn" href="#modal1">Proceed to Checkout</a>
+         <!-- Modal Structure -->
+  <div id="modal1" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <h4>AGREEMENT</h4>
+      <p>This is not just a bunch a text but this is you telling me i can take you credit card and do what the hell i want with it. i mean i can go buy a house a car dinner for me and my gf and because you hit agree you cant sue me after once you  find out
+          that i robbed your ass of all your money which if your usuing this website at the early stage mean you dont have any money so im fucked anyways. DAMN I HATE LOOSING 
+      </p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Disagree</a>
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+    
+    </div>
+  </div>
        
 
     </div>
@@ -292,6 +307,11 @@
         </div>
     </footer>
 
+    <script>
+        $(document).ready(function () {
+      // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+      $('.modal-trigger').leanModal();
+  });</script>
     <script type="text/javascript" src="js/init.js"></script>
 
 </body>

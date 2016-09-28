@@ -21,9 +21,11 @@ body {
      background-image: url('Images/Storefront.jpg');
      background-size: 100% 100%;
 }
+
 </style>
 </head>
 <body>
+ 
      <!-- Simple Nav Bar -->
     <nav class="blue darken-3" role="navigation">
         <div class="nav-wrapper container">

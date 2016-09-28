@@ -26,6 +26,7 @@
                 <li><a href="#" class="yellow-text accent-3">Sales</a></li>
                 <li><a class="dropdown-button centered" href="#" data-activates="accountDropdown" style="height:100%">
                     <img class="circle" src="/img/icon.png" height="30" width="30" /></a></li>
+                <li><a href="3"><i class="material-icons left">shopping_cart</i><span class="new badge">4</span></a></li>
             </ul>
 
             <ul id="nav-mobile" class="side-nav">

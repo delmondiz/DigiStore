@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
 
     <link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+    <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
     <link href="css/dropify.css" rel="stylesheet" />
     <link href="css/dropify.min.css" rel="stylesheet" />
     <link href="css/demo.css" rel="stylesheet" />
@@ -68,7 +68,7 @@
              reader.readAsDataURL(input.files[0]);
          }
      }</script>
-    
+
 </head>
 
 <body>
@@ -81,6 +81,7 @@
                 <li><a href="#" class="yellow-text accent-3">Sales</a></li>
                 <li><a class="dropdown-button centered" href="#" data-activates="accountDropdown">
                     <img class="circle" src="/img/icon.png" height="30" width="30" /></a></li>
+                <li><a href="3"><i class="material-icons left">shopping_cart</i><span class="new badge">4</span></a></li>
             </ul>
 
             <ul id="nav-mobile" class="side-nav">
@@ -116,9 +117,9 @@
             <div class="row">
 
                 <div class="parallax-container">
-                    
-                 <input type="file" class="dropify" data-height="300" />
-                                      
+
+                    <input type="file" class="dropify" data-height="500" data-default-file="img/sample_store.jpg" />
+
                 </div>
 
                 <ul class="collection with-header">
@@ -191,7 +192,7 @@
                                 <div class="container collapsible-body">
                                     <p class="range-field">
                                         Select a rating between 1 - 5.
-                                        <input style="background-color:#1565c0" type="range" id="test5" min="1" max="5" />
+                                        <input style="background-color: #1565c0" type="range" id="test5" min="1" max="5" />
                                     </p>
                                     <div class="input-field">
                                         <label for="textarea1">Leave a Review!</label>
@@ -215,8 +216,8 @@
                 <div class="card-content row">
                     <div class="card horizontal col s12 m6 l4">
                         <div class="card-image">
-                 <input type='file' onchange="readURL(this);" />
-                <img id="blah2" src="#" alt="your image" />
+                            <input type="file" class="dropify" data-height="100" />
+
                         </div>
                         <div class="card-stacked">
                             <div class="card-action">
@@ -229,8 +230,8 @@
                     </div>
                     <div class="card horizontal col s12 m6 l4">
                         <div class="card-image">
-             <input type='file' onchange="readURL(this);" />
-    <img id="blah2" src="#" alt="your image" />
+                            <input type="file" class="dropify" data-height="100" />
+
                         </div>
                         <div class="card-stacked">
                             <div class="card-action">
@@ -243,8 +244,8 @@
                     </div>
                     <div class="card horizontal col s12 m6 l4">
                         <div class="card-image">
-                                                <input type='file' onchange="readURL(this);" />
-    <img id="blah3" src="#" alt="your image" />
+                            <input type="file" class="dropify" data-height="100" />
+
                         </div>
                         <div class="card-stacked">
                             <div class="card-action">
