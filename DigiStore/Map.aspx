@@ -55,7 +55,7 @@
     <div class="container">
         <form id="form2" onsubmit="return performUserSearch()">
             <div class="row">
-                <div class="input-field s9">
+                <div class="col input-field s9">
                     <input type="text" id="inputSearch" class="validate" />
                     <label for="inputSearch">Store Name</label>
                 </div>
@@ -70,7 +70,7 @@
 
     <div class="center container">
         <div class="center" style="height: 500px">
-            <div id="goggleResults"      style="width: 40%; height: 100%; float: left; overflow-y: scroll">
+            <div id="goggleResults" style="width: 40%; height: 100%; float: left; overflow-y: scroll">
                 <ul class="collection yellow-text accent-3" id="goggleResultsList"></ul>
             </div>
             <div id="goggleMap" style="width: 60%; height: 100%; float: right;"></div>
