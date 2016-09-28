@@ -7,7 +7,9 @@
     <link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
-
+    <link href="css/dropify.css" rel="stylesheet" />
+    <link href="css/dropify.min.css" rel="stylesheet" />
+    <link href="css/demo.css" rel="stylesheet" />
     <!-- All the sources needed and try and make it look pretty -->
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
@@ -66,7 +68,7 @@
              reader.readAsDataURL(input.files[0]);
          }
      }</script>
-
+    
 </head>
 
 <body>
@@ -115,10 +117,8 @@
 
                 <div class="parallax-container">
                     
-                         <input type='file' onchange="readURL(this);" />
-    <img id="blah" src="#" alt="your image" />
-
-                    
+                 <input type="file" class="dropify" data-height="300" />
+                                      
                 </div>
 
                 <ul class="collection with-header">
@@ -302,5 +302,7 @@
 
 
         <script type="text/javascript" src="js/init.js"></script>
+        <script src="js/vendor/dropify.js"></script>
+        <script src="js/vendor/dropify.min.js"></script>
 </body>
 </html>

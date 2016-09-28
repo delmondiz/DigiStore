@@ -95,9 +95,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ContactUs.aspx" />
+    <Content Include="css\demo.css" />
+    <Content Include="css\dropify.css" />
+    <Content Include="css\dropify.min.css" />
     <Content Include="css\StoreInventory.css" />
     <Content Include="css\style.css" />
     <Content Include="css\StyleSheet.css" />
+    <Content Include="fonts\dropify.svg" />
     <Content Include="Home.aspx" />
     <Content Include="img\aliexpress.png" />
     <Content Include="img\amazon.png" />
@@ -120,6 +124,8 @@
     <Content Include="img\tryn.png" />
     <Content Include="img\vi.png" />
     <Content Include="js\init.js" />
+    <Content Include="js\vendor\dropify.js" />
+    <Content Include="js\vendor\dropify.min.js" />
     <Content Include="js\vendor\jquery.min.js" />
     <Content Include="js\vendor\what-input.min.js" />
     <Content Include="Login.aspx" />
@@ -128,6 +134,9 @@
     <Content Include="StoreEdit.aspx" />
     <Content Include="Welcome.aspx" />
     <Content Include="Map.aspx" />
+    <Content Include="fonts\dropify.eot" />
+    <Content Include="fonts\dropify.ttf" />
+    <Content Include="fonts\dropify.woff" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
