@@ -8,7 +8,7 @@
     <!-- All the sources needed and try and make it look pretty -->
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
-
+    <link href="css/theme.css" rel="stylesheet" />
     <!-- Compiled and minified JavaScript -->
     <!--
       SO jQuery must be loaded before materialize. I will never forget this, and nither should you!  
