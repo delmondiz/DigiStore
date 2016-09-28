@@ -124,6 +124,7 @@
     <Content Include="js\vendor\what-input.min.js" />
     <Content Include="Login.aspx" />
     <Content Include="Service Page.aspx" />
+    <Content Include="ShoppingCart.aspx" />
     <Content Include="StoreEdit.aspx" />
     <Content Include="Welcome.aspx" />
     <Content Include="Map.aspx" />
@@ -162,6 +163,13 @@
     </Compile>
     <Compile Include="Service Page.aspx.designer.cs">
       <DependentUpon>Service Page.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ShoppingCart.aspx.cs">
+      <DependentUpon>ShoppingCart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ShoppingCart.aspx.designer.cs">
+      <DependentUpon>ShoppingCart.aspx</DependentUpon>
     </Compile>
     <Compile Include="StoreEdit.aspx.cs">
       <DependentUpon>StoreEdit.aspx</DependentUpon>
