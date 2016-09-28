@@ -95,15 +95,24 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ContactUs.aspx" />
+    <Content Include="css\map.css" />
     <Content Include="css\StoreInventory.css" />
     <Content Include="css\style.css" />
     <Content Include="css\StyleSheet.css" />
+    <Content Include="css\theme.css" />
     <Content Include="Home.aspx" />
+    <Content Include="img\aliexpress.png" />
+    <Content Include="img\amazon.png" />
+    <Content Include="img\ebay.png" />
+    <Content Include="img\help.png" />
     <Content Include="img\facebook.png" />
     <Content Include="img\icon.png" />
+    <Content Include="img\images %281%29.jpg" />
+    <Content Include="img\images.jpg" />
     <Content Include="img\instagram.png" />
     <Content Include="img\jinx.png" />
     <Content Include="img\kha.png" />
+    <Content Include="img\kijiji.png" />
     <Content Include="img\mf.png" />
     <Content Include="img\powered_by_google_on_non_white.png" />
     <Content Include="img\powered_by_google_on_non_white_hdpi.png" />
@@ -111,6 +120,7 @@
     <Content Include="img\powered_by_google_on_white_hdpi.png" />
     <Content Include="img\sample_store.jpg" />
     <Content Include="img\shoe_store_2.jpeg" />
+    <Content Include="img\steam.png" />
     <Content Include="img\tryn.png" />
     <Content Include="img\twitter.png" />
     <Content Include="img\vi.png" />
@@ -118,7 +128,9 @@
     <Content Include="js\vendor\jquery.min.js" />
     <Content Include="js\vendor\what-input.min.js" />
     <Content Include="Login.aspx" />
-    <Content Include="OrderHistory.aspx" />
+    <Content Include="Service Page.aspx" />
+    <Content Include="ShoppingCart.aspx" />
+    <Content Include="StoreEdit.aspx" />
     <Content Include="Welcome.aspx" />
     <Content Include="Map.aspx" />
     <None Include="Web.Debug.config">
@@ -150,12 +162,26 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="OrderHistory.aspx.cs">
-      <DependentUpon>OrderHistory.aspx</DependentUpon>
+    <Compile Include="Service Page.aspx.cs">
+      <DependentUpon>Service Page.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="OrderHistory.aspx.designer.cs">
-      <DependentUpon>OrderHistory.aspx</DependentUpon>
+    <Compile Include="Service Page.aspx.designer.cs">
+      <DependentUpon>Service Page.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ShoppingCart.aspx.cs">
+      <DependentUpon>ShoppingCart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ShoppingCart.aspx.designer.cs">
+      <DependentUpon>ShoppingCart.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StoreEdit.aspx.cs">
+      <DependentUpon>StoreEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StoreEdit.aspx.designer.cs">
+      <DependentUpon>StoreEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Welcome.aspx.cs">
       <DependentUpon>Welcome.aspx</DependentUpon>

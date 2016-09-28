@@ -1,0 +1,10 @@
+﻿input[type=text]:focus:not([readonly])
+{
+    border-bottom: 1px #ffeb3b !important;
+    box-shadow: 0 1px 0 0 #ffeb3b !important;
+}
+
+input[type=text]:focus:not([readonly])+label
+{
+    color: #0D47A1 !important;
+}

@@ -5,20 +5,24 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Also known as Search!</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
 
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link href="css/map.css" rel="stylesheet" />
+    <link href="css/theme.css" rel="stylesheet" />
 </head>
 <body>
     <nav class="blue darken-3" role="navigation">
-        <div class="nav-wrapper">
-            <a id="logo-container" href="#" class="brand-logo center yellow-text accent-3">DigiStore</a>
+        <div class="nav-wrapper container">
+            <a id="logo-container" href="Home.aspx" class="brand-logo center yellow-text accent-3">DigiStore</a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="#" class="yellow-text accent-3">Home</a></li>
-                <li><a href="#" class="yellow-text accent-3">Search</a></li>
-                <li><a href="#" class="yellow-text accent-3">Sales</a></li>
-                <li><a class="dropdown-button centered" href="#" data-activates="accountDropdown">
+                <li><a href="Home.aspx" class="yellow-text accent-3">Home</a></li>
+                <li><a href="Map.aspx" class="yellow-text accent-3">Search</a></li>
+                
+                <li><a class="dropdown-button centered" href="#" data-activates="accountDropdown" style="height:100%">
                     <img class="circle" src="/img/icon.png" height="30" width="30" /></a></li>
             </ul>
 
@@ -27,40 +31,39 @@
                 <li>
                     <div class="divider"></div>
                 </li>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Browse</a></li>
-                <li><a href="#">Cart</a></li>
+                <li><a href="Home.aspx">Home</a></li>
+                <li><a href="Map.aspx">Search</a></li>
+                <li><a href="ShoppingCart.aspx">Cart</a></li>
                 <li>
                     <div class="divider"></div>
                 </li>
-                <li><a href="#">Manage Store</a></li>
+                <li><a href="StoreInventory.aspx">Manage Store</a></li>
                 <li><a href="#">Order History</a></li>
-                <li><a href="#">Settings</a></li>
+                <li><a href="Profile.aspx">Profile</a></li>
                 <li><a href="#">Log In/Out</a></li>
             </ul>
             <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
 
             <ul id="accountDropdown" class="dropdown-content">
-                <li>Manage Profile</li>
-                <li>View Cart</li>
-                <li>Order History</li>
-                <li>Settings</li>
-                <li>Log In/Out</li>
+                <li><a href="Profile.aspx">Profile</a></li>
+                <li><a href="ShoppingCart.aspx">Cart</a></li>
+                <li><a href="#">Order History</a></li>
+                
+                <li><a href="#">Log In/Out</a></li>
             </ul>
         </div>
     </nav>
 
     <div class="container">
-        <br />
         <form id="form2" onsubmit="return performUserSearch()">
             <div class="row">
-                <div class="input-field col l10 m10 s10">
+                <div class="col input-field s9">
                     <input type="text" id="inputSearch" class="validate" />
                     <label for="inputSearch">Store Name</label>
                 </div>
-                <div class="col s2 valign-wrapper">
-                    <button class="btn-tiny valign waves-effect waves-light blue darken-3 yellow-text accent-3" type="submit" name="submitSearch">
-                        <i class="material-icons left">search</i>  
+                <div class="col s3 valign-wrapper">
+                    <button class="btn-large valign waves-effect waves-light blue darken-3 yellow-text accent-3" type="submit" name="submitSearch" style="padding:0; width:100%">
+                        <i class="material-icons left">search</i>Search
                     </button>
                 </div>
             </div>
@@ -69,11 +72,10 @@
 
     <div class="center container">
         <div class="center" style="height: 500px">
-            <div id="goggleResults"      style="width: 40%; height: 100%; float: left; overflow-y: scroll">
+            <div id="goggleResults" style="width: 40%; height: 100%; float: left; overflow-y: scroll">
                 <ul class="collection yellow-text accent-3" id="goggleResultsList"></ul>
             </div>
             <div id="goggleMap" style="width: 60%; height: 100%; float: right;"></div>
-            <%--<asp:Image ID="Image1" runat="server" style="clear:both;" ImageUrl="~/img/powered_by_google_on_white_hdpi.png" />--%>
         </div>
     </div>
 

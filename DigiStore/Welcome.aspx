@@ -37,8 +37,7 @@
     <div class="section no-pad-bot" id="index-banner">
         <div class="container">
             <br>
-            <br>
-            
+            <br>        
             <h1 class="header center blue-text darken-3">Welcome to DigiStore</h1>
             <div class="row center">
                 <h5 class="header col s12 light">A new way to connect to local shops</h5>
