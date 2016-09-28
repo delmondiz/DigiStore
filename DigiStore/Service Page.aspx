@@ -35,7 +35,7 @@
             <ul class="right hide-on-med-and-down">
                 <li><a href="#" class="yellow-text accent-3">Home</a></li>
                 <li><a href="#" class="yellow-text accent-3">Search</a></li>
-                <li><a href="#" class="yellow-text accent-3">Sales</a></li>
+                
                 <li><a class="dropdown-button centered" href="#" data-activates="accountDropdown">
                     <img class="circle" src="/img/icon.png" height="30" width="30" /></a></li>
             </ul>

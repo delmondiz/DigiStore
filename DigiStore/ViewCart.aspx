@@ -31,7 +31,7 @@ body {
             <ul class="right hide-on-med-and-down">
                 <li><a href="Home.aspx" class="yellow-text accent-3">Home</a></li>
                 <li><a href="Map.aspx" class="yellow-text accent-3">Search</a></li>
-                <li><a href="#" class="yellow-text accent-3">Sales</a></li>
+                
                 <li><a class="dropdown-button centered" href="#" data-activates="accountDropdown" style="height:100%">
                     <img class="circle" src="/img/icon.png" height="30" width="30" /></a></li>
             </ul>
@@ -43,7 +43,7 @@ body {
                 </li>
                 <li><a href="Home.aspx">Home</a></li>
                 <li><a href="Map.aspx">Search</a></li>
-                <li><a href="ViewCart.aspx">Cart</a></li>
+                <li><a href="ShoppingCart.aspx">Cart</a></li>
                 <li>
                     <div class="divider"></div>
                 </li>
@@ -56,7 +56,7 @@ body {
 
             <ul id="accountDropdown" class="dropdown-content">
                 <li><a href="Profile.aspx">Profile</a></li>
-                <li><a href="ViewCart.aspx">Cart</a></li>
+                <li><a href="ShoppingCart.aspx">Cart</a></li>
                 <li><a href="#">Order History</a></li>
                 
                 <li><a href="#">Log In/Out</a></li>
