@@ -95,21 +95,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ContactUs.aspx" />
-    <Content Include="css\demo.css" />
-    <Content Include="css\dropify.css" />
-    <Content Include="css\dropify.min.css" />
+    <Content Include="css\map.css" />
     <Content Include="css\StoreInventory.css" />
     <Content Include="css\style.css" />
     <Content Include="css\StyleSheet.css" />
-    <Content Include="fonts\dropify.svg" />
+    <Content Include="css\theme.css" />
     <Content Include="Home.aspx" />
     <Content Include="img\aliexpress.png" />
     <Content Include="img\amazon.png" />
     <Content Include="img\ebay.png" />
     <Content Include="img\help.png" />
+    <Content Include="img\facebook.png" />
     <Content Include="img\icon.png" />
     <Content Include="img\images %281%29.jpg" />
     <Content Include="img\images.jpg" />
+    <Content Include="img\instagram.png" />
     <Content Include="img\jinx.png" />
     <Content Include="img\kha.png" />
     <Content Include="img\kijiji.png" />
@@ -122,10 +122,9 @@
     <Content Include="img\shoe_store_2.jpeg" />
     <Content Include="img\steam.png" />
     <Content Include="img\tryn.png" />
+    <Content Include="img\twitter.png" />
     <Content Include="img\vi.png" />
     <Content Include="js\init.js" />
-    <Content Include="js\vendor\dropify.js" />
-    <Content Include="js\vendor\dropify.min.js" />
     <Content Include="js\vendor\jquery.min.js" />
     <Content Include="js\vendor\what-input.min.js" />
     <Content Include="Login.aspx" />
@@ -134,9 +133,6 @@
     <Content Include="StoreEdit.aspx" />
     <Content Include="Welcome.aspx" />
     <Content Include="Map.aspx" />
-    <Content Include="fonts\dropify.eot" />
-    <Content Include="fonts\dropify.ttf" />
-    <Content Include="fonts\dropify.woff" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -11,6 +11,8 @@
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link href="css/map.css" rel="stylesheet" />
+    <link href="css/theme.css" rel="stylesheet" />
 </head>
 <body>
     <nav class="blue darken-3" role="navigation">
@@ -19,7 +21,7 @@
             <ul class="right hide-on-med-and-down">
                 <li><a href="Home.aspx" class="yellow-text accent-3">Home</a></li>
                 <li><a href="Map.aspx" class="yellow-text accent-3">Search</a></li>
-                <li><a href="#" class="yellow-text accent-3">Sales</a></li>
+                
                 <li><a class="dropdown-button centered" href="#" data-activates="accountDropdown" style="height:100%">
                     <img class="circle" src="/img/icon.png" height="30" width="30" /></a></li>
                 <li><a href="3"><i class="material-icons left">shopping_cart</i><span class="new badge">4</span></a></li>
@@ -32,7 +34,7 @@
                 </li>
                 <li><a href="Home.aspx">Home</a></li>
                 <li><a href="Map.aspx">Search</a></li>
-                <li><a href="ViewCart.aspx">Cart</a></li>
+                <li><a href="ShoppingCart.aspx">Cart</a></li>
                 <li>
                     <div class="divider"></div>
                 </li>
@@ -45,7 +47,7 @@
 
             <ul id="accountDropdown" class="dropdown-content">
                 <li><a href="Profile.aspx">Profile</a></li>
-                <li><a href="ViewCart.aspx">Cart</a></li>
+                <li><a href="ShoppingCart.aspx">Cart</a></li>
                 <li><a href="#">Order History</a></li>
                 
                 <li><a href="#">Log In/Out</a></li>
@@ -56,7 +58,7 @@
     <div class="container">
         <form id="form2" onsubmit="return performUserSearch()">
             <div class="row">
-                <div class="input-field s9">
+                <div class="col input-field s9">
                     <input type="text" id="inputSearch" class="validate" />
                     <label for="inputSearch">Store Name</label>
                 </div>
@@ -71,7 +73,7 @@
 
     <div class="center container">
         <div class="center" style="height: 500px">
-            <div id="goggleResults"      style="width: 40%; height: 100%; float: left; overflow-y: scroll">
+            <div id="goggleResults" style="width: 40%; height: 100%; float: left; overflow-y: scroll">
                 <ul class="collection yellow-text accent-3" id="goggleResultsList"></ul>
             </div>
             <div id="goggleMap" style="width: 60%; height: 100%; float: right;"></div>

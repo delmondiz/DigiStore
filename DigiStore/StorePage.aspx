@@ -1,6 +1,6 @@
 ﻿<html class="" lang="en">
 <head>
-    <title>DigiStore</title>
+    <title>DigiStore - Storepage</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
 
@@ -8,7 +8,7 @@
     <!-- All the sources needed and try and make it look pretty -->
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
-
+    <link href="css/theme.css" rel="stylesheet" />
     <!-- Compiled and minified JavaScript -->
     <!--
       SO jQuery must be loaded before materialize. I will never forget this, and nither should you!  
@@ -82,7 +82,7 @@
             <ul class="right hide-on-med-and-down">
                 <li><a href="Home.aspx" class="yellow-text accent-3">Home</a></li>
                 <li><a href="Map.aspx" class="yellow-text accent-3">Search</a></li>
-                <li><a href="#" class="yellow-text accent-3">Sales</a></li>
+                
                 <li><a class="dropdown-button centered" href="#" data-activates="accountDropdown" style="height:100%">
                     <img class="circle" src="/img/icon.png" height="30" width="30" /></a></li>
                 <li><a href="3"><i class="material-icons left">shopping_cart</i><span class="new badge">4</span></a></li>
@@ -95,7 +95,7 @@
                 </li>
                 <li><a href="Home.aspx">Home</a></li>
                 <li><a href="Map.aspx">Search</a></li>
-                <li><a href="ViewCart.aspx">Cart</a></li>
+                <li><a href="ShoppingCart.aspx">Cart</a></li>
                 <li>
                     <div class="divider"></div>
                 </li>
@@ -108,7 +108,7 @@
 
             <ul id="accountDropdown" class="dropdown-content">
                 <li><a href="Profile.aspx">Profile</a></li>
-                <li><a href="ViewCart.aspx">Cart</a></li>
+                <li><a href="ShoppingCart.aspx">Cart</a></li>
                 <li><a href="#">Order History</a></li>
                 
                 <li><a href="#">Log In/Out</a></li>
@@ -116,35 +116,103 @@
         </div>
     </nav>
 
-
-
     <div class="container">
         <div class="section">
             <div class="row">
-
-
-
                 <div class="container col s12">
-
                     <div class="parallax-container">
                         <div class="parallax">
                             <img src="img/sample_store.jpg">
                         </div>
                     </div>
 
+                    <div class="card-panel blue darken-3">
+                        <h5 class="card-title yellow-text accent-3">Store Information</h5>
+                        <div class="card-content row">
+                            <div class="card col l6 m6 s12">
+                                <div class="card-content">
+                                    <span class="card-title">Contact</span>
+                                    <p>
+                                        100 Main St.
+                                <br />
+                                        Toronto, Ontario
+                                <br />
+                                        ABC123
+                                <br />
+                                        <br />
+                                        (555) 555-5555
+                                <br />
+                                        <br />
+                                        sample@gmail.com
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="card col l6 m6 s12">
+                                <div class="card-content">
+                                    <span class="card-title">Store Hours</span>
+                                    <p>
+                                        Monday: 9am - 5pm<br />
+                                        Tuesday: 9am - 5pm<br />
+                                        Wednesday: 9am - 5pm<br />
+                                        Thursday: 9am - 5pm<br />
+                                        Friday: 9am - 5pm<br />
+                                        Saturday: 9am - 5pm<br />
+                                        Sunday: 9am - 5pm<br />
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="card col l6 m6 s12">
+                                <div class="card-content">
+                                    <span class="card-title">Rate this store</span>
+                                    <p class="range-field">
+                                        Select a rating between 1 - 5.
+                                        <input style="background-color: #1565c0" type="range" id="test5" min="1" max="5" />
+                                    </p>
+                                    <div class="input-field">
+                                        <label for="textarea1">Leave a Review!</label>
+                                        <textarea id="textarea1" class="materialize-textarea"></textarea>
+                                    </div>
+                                    <br />
+                                    <div class="center-align">
+                                        <button class="btn waves-effect waves-light blue darken-3 yellow-text accent-3" type="submit" name="action">
+                                            Submit<i class="material-icons right">send</i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card col l6 m6 s12">
+                                <div class="card-content">
+                                    <span class="card-title">Reviews</span>
+                                    <p>Populated from Database.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--
                     <div class="col l6 m6 s12" style="padding-left: 0px">
                         <ul class="collapsible" data-collapsible="accordion">
                             <li>
                                 <div class="collapsible-header active blue darken-3 yellow-text accent-3">Store Information</div>
                                 <div class="collapsible-body">
                                     <p>
-                                        1000 Main St.
-                                <br />
-                                        Toronto, Ontario
-                                <br />
-                                        (555) 555-5555
-                                <br />
-                                        sample@gmail.com
+                                        Monday: 9am - 5pm<br />
+                                        <br />
+                                        Tuesday: 9am - 5pm<br />
+                                        <br />
+                                        Wednesday: 9am - 5pm<br />
+                                        <br />
+                                        Thursday: 9am - 5pm<br />
+                                        <br />
+                                        Friday: 9am - 5pm<br />
+                                        <br />
+                                        Saturday: 9am - 5pm<br />
+                                        <br />
+                                        Sunday: 9am - 5pm<br />
+                                        <br />
                                     </p>
                                 </div>
                             </li>
@@ -171,10 +239,9 @@
                                 </div>
                             </li>
                         </ul>
+                    </div> -->
 
-                    </div>
-
-                    <div class="col l6 m6 s12" style="padding-right: 0px">
+                    <%--<div class="col l6 m6 s12" style="padding-right: 0px">
                         <ul class="collapsible" data-collapsible="accordion">
                             <li>
                                 <div class="collapsible-header active blue darken-3 yellow-text accent-3">Reviews</div>
@@ -204,9 +271,10 @@
                                 </div>
                             </li>
                         </ul>
-                    </div>
+                    </div>--%>
                 </div>
             </div>
+
             <div class="card-panel blue darken-3">
                 <h5 class="card-title yellow-text accent-3">Products</h5>
                 <div class="card-content row">
@@ -250,14 +318,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <br>
-            <br>
-            <div class="card-panel blue darken-3">
-                <h5 class="card-title yellow-text accent-3">Appointments</h5>
-                <input type="date" class="datepicker">
-            </div>
-            <div class="section">
             </div>
         </div>
     </div>
