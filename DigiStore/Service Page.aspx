@@ -35,7 +35,7 @@
             <ul class="right hide-on-med-and-down">
                 <li><a href="#" class="yellow-text accent-3">Home</a></li>
                 <li><a href="#" class="yellow-text accent-3">Search</a></li>
-                
+
                 <li><a class="dropdown-button centered" href="#" data-activates="accountDropdown">
                     <img class="circle" src="/img/icon.png" height="30" width="30" /></a></li>
                 <li><a href="3"><i class="material-icons left">shopping_cart</i><span class="new badge">4</span></a></li>
@@ -171,17 +171,66 @@
                         <div class="collapsible-header active blue darken-3 yellow-text accent-3">Book Service Appointment</div>
                         <div class="collapsible-body">
                             <p>Book Your Appointment </p>
-                             <div class="input-field col s6">
-                            <input type="date" value="click here to Select Date" class="datepicker" length="10">
-                             </div>
+                            <div class="input-field col s6">
+                                <input type="date" value="click here to Select Date" class="datepicker" length="10">
+                            </div>
                             <button type="button" title="Request Date" class="button waves-effect waves-light btn blue accent-4  btn-proceed-checkout btn-checkout"><span><span>Request Date</span></span></button>
-                           
+
                         </div>
                     </li>
 
                     <li>
-                        
-                     
+                        <div class="collapsible-header active blue darken-3 yellow-text accent-3">Request More Information</div>
+                        <div class="collapsible-body">
+                            <p>Request Information Form </p>
+                            <div class="input-field col s6">
+                                <form class="col s12">
+                                    <div class="row">
+                                        <div class="input-field col s6">
+                                            <i class="material-icons prefix">account_circle</i>
+                                            <input id="first_name" type="text" class="validate">
+                                            <label for="first_name">First Name</label>
+                                        </div>
+                                        <div class="input-field col s6">
+                                            <i class="material-icons prefix">account_circle</i>
+                                            <input id="last_name" type="text" class="validate">
+                                            <label for="last_name">Last Name</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s6">
+                                            <i class="material-icons prefix">email</i>
+                                            <input id="email" type="email" class="validate">
+                                            <label for="email">Email</label>
+                                        </div>
+                                        <div class="input-field col s6">
+                                            <i class="material-icons prefix">phone</i>
+                                            <input id="icon_telephone" type="tel" class="validate">
+                                            <label for="icon_telephone">Telephone</label>
+                                        </div>
+                                    </div>
+                                    
+                                        
+                                            <div class="row">
+                                                <div class="input-field col s6">
+                                                    <i class="material-icons prefix">info_outline</i>
+                                                    <input id="input_text" type="text" length="50">
+                                                    <label for="input_text">Subject</label>
+                                                </div>
+                                          
+                                                <div class="input-field col s12">
+                                                    <i class="material-icons prefix">chat_bubble_outline</i>
+                                                    <textarea id="textarea1" class="materialize-textarea" length="500"></textarea>
+                                                    <label for="textarea1">Textarea</label>
+                                                </div>
+                                            </div>
+                                        
+                                    
+  
+                                    </button>
+                                </form>
+                            </div>
+                            <button type="button" title="Request Date" class="button waves-effect waves-light btn blue accent-4  btn-proceed-checkout btn-checkout"><span><span>Send Request</span></span></button>
                     </li>
                 </ul>
             </div>
