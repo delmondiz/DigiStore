@@ -5,28 +5,20 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="5d6163ca174e477481c502ee09929921" Name="Diagram1" >
-        <EntityTypeShape EntityType="DigiStoreDBModel.User" Width="1.5" PointX="8" PointY="2.75" />
-        <EntityTypeShape EntityType="DigiStoreDBModel.Item" Width="1.5" PointX="10.375" PointY="2.75" />
-        <EntityTypeShape EntityType="DigiStoreDBModel.Review" Width="1.5" PointX="8" PointY="7.75" />
-        <EntityTypeShape EntityType="DigiStoreDBModel.PaymentMethod" Width="1.5" PointX="5.75" PointY="2.75" />
-        <EntityTypeShape EntityType="DigiStoreDBModel.Order" Width="1.5" PointX="10.375" PointY="6.375" />
+        <EntityTypeShape EntityType="DigiStoreDBModel.User" Width="1.5" PointX="7.75" PointY="1.5" />
+        <EntityTypeShape EntityType="DigiStoreDBModel.Item" Width="1.5" PointX="10.125" PointY="1.5" />
+        <EntityTypeShape EntityType="DigiStoreDBModel.Review" Width="1.5" PointX="7.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DigiStoreDBModel.PaymentMethod" Width="1.5" PointX="5.5" PointY="1.5" />
+        <EntityTypeShape EntityType="DigiStoreDBModel.Order" Width="1.5" PointX="10.125" PointY="5.125" />
         <AssociationConnector Association="DigiStoreDBModel.UserPaymentMethod" />
         <AssociationConnector Association="DigiStoreDBModel.UserReview" />
         <AssociationConnector Association="DigiStoreDBModel.UserOrder" />
         <AssociationConnector Association="DigiStoreDBModel.OrderItem" />
         <AssociationConnector Association="DigiStoreDBModel.UserItem" />
-        <EntityTypeShape EntityType="DigiStoreDBModel.Appointment" Width="1.5" PointX="5.75" PointY="5.5" />
+        <EntityTypeShape EntityType="DigiStoreDBModel.Appointment" Width="1.5" PointX="5.5" PointY="4.25" />
         <AssociationConnector Association="DigiStoreDBModel.UserAppointment" />
         <AssociationConnector Association="DigiStoreDBModel.OrderAppointment" ></AssociationConnector>
-        <AssociationConnector Association="DigiStoreDBModel.OrderPaymentMethod" ManuallyRouted="true" >
-          <ConnectorPoint PointX="10.375" PointY="7.3063265530933146" />
-          <ConnectorPoint PointX="10.207112500000001" PointY="7.3044669010416667" />
-          <ConnectorPoint PointX="8.8333333333333339" PointY="7.3044669010416658" />
-          <ConnectorPoint PointX="8.6666666666666661" PointY="7.3044669010416667" />
-          <ConnectorPoint PointX="7.611979166666667" PointY="7.3044669010416667" />
-          <ConnectorPoint PointX="7.611979166666667" PointY="5.25" />
-          <ConnectorPoint PointX="6.5" PointY="5.25" />
-          <ConnectorPoint PointX="6.5" PointY="4.922587890625" />
+        <AssociationConnector Association="DigiStoreDBModel.OrderPaymentMethod" ManuallyRouted="false" >
         </AssociationConnector>
       </Diagram>
     </edmx:Diagrams>
