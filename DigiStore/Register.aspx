@@ -10,14 +10,14 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 </head>
 <body>
- <nav class="blue darken-3" role="navigation">
+    <nav class="blue darken-3" role="navigation">
         <div class="nav-wrapper container">
             <a id="logo-container" href="Home.aspx" class="brand-logo center yellow-text accent-3">DigiStore</a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="Home.aspx" class="yellow-text accent-3">Home</a></li>
                 <li><a href="Map.aspx" class="yellow-text accent-3">Search</a></li>
-                
-                <li><a class="dropdown-button centered" href="#" data-activates="accountDropdown" style="height:100%">
+
+                <li><a class="dropdown-button centered" href="#" data-activates="accountDropdown" style="height: 100%">
                     <img class="circle" src="/img/icon.png" height="30" width="30" /></a></li>
             </ul>
 
@@ -43,7 +43,7 @@
                 <li><a href="Profile.aspx">Profile</a></li>
                 <li><a href="ShoppingCart.aspx">Cart</a></li>
                 <li><a href="#">Order History</a></li>
-                
+
                 <li><a href="#">Log In/Out</a></li>
             </ul>
         </div>
@@ -57,81 +57,81 @@
                         <h1>Sign up</h1>
                     </div>
                     <div class="col s12">
-                        <h5>Already a member? <a href="Login.aspx" class="btn waves-light blue darken-3 yellow-text accent-3 truncate" style="width:100%">Log In!</a></h5>
+                        <h5>Already a member? <a href="Login.aspx" class="btn waves-light blue darken-3 yellow-text accent-3 truncate" style="width: 100%">Log In!</a></h5>
                     </div>
                 </div>
-                    <div class="row">
-                        <div class="col s12 center">
-                            <h2 style="margin-top:0">Account Information</h2>
-                            <div class="divider"></div>
-                        </div>
-                        <div class="input-field col s8">
-                            <label for="username">Username*</label>
-                            <input type="text" placeholder="coolone1234" id="username" required="required" />
-                        </div>
-                        <div class="col s4">
-                            <a href="#" id="checkUsername" class="btn-large waves-effect blue darken-3 yellow-text accent-3" style="padding:0; width:100%">Check Username</a>
-                        </div>
+                <div class="row">
+                    <div class="col s12 center">
+                        <h2 style="margin-top: 0">Account Information</h2>
+                        <div class="divider"></div>
                     </div>
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <label for="password">Password*</label>
-                            <input type="password" placeholder="hunter2" id="password" required="required" />
-                        </div>
-                        <div class="input-field col s6">
-                            <label for="confirmPassword">Confirm Password*</label>
-                            <input type="password" placeholder="hunter2" id="confirmPassword" required="required" />
-                        </div>
+                    <div class="input-field col s8">
+                        <label for="username">Username*</label>
+                        <input type="text" placeholder="coolone1234" id="username" required="required" />
                     </div>
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <label for="firstName">First Name*</label>
-                            <input type="text" placeholder="John" id="firstName" required="required" />
-                        </div>
-                        <div class="input-field col s6">
-                            <label for="lastName">Last Name*</label>
-                            <input type="text" placeholder="Doe" id="lastName" required="required" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <label for="email">E-mail*</label>
-                            <input type="email" placeholder="example@hotmail.com" id="email" required="required" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s12 center">
-                            <h2 style="margin-top:0">Personal Information</h2>
-                            <div class="divider"></div>
-                        </div>
-                        <div class="input-field col s12 l4">
-                            <label for="addressCity">Town/City*</label>
-                            <input type="text" placeholder="Toronto" id="addressCity" required="required" />
-                        </div>
-                        <div class="input-field col s12 l4">
-                            <label for="addressProvince">State/Province*</label>
-                            <input type="text" placeholder="Ontario" id="addressProvince" required="required" />
-                        </div>
-                        <div class="input-field col s12 l4">
-                            <label for="addressPostal">Postal Code*</label>
-                            <input type="text" placeholder="H0H0H0" id="addressPostal" required="required" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <label for="addressStreet">Address</label>
-                            <input type="text" placeholder="9 Sussex Street" id="addressStreet" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s12">
-                            <input type="submit" value="Sign up" id="submitSignup" class="btn waves-light blue darken-3 yellow-text accent-3" style="width:100%" />
-                        </div>
+                    <div class="col s4">
+                        <a href="#" id="checkUsername" class="btn-large waves-effect blue darken-3 yellow-text accent-3" style="padding: 0; width: 100%">Check Username</a>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <label for="password">Password*</label>
+                        <input type="password" placeholder="hunter2" id="password" required="required" />
+                    </div>
+                    <div class="input-field col s6">
+                        <label for="confirmPassword">Confirm Password*</label>
+                        <input type="password" placeholder="hunter2" id="confirmPassword" required="required" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <label for="firstName">First Name*</label>
+                        <input type="text" placeholder="John" id="firstName" required="required" />
+                    </div>
+                    <div class="input-field col s6">
+                        <label for="lastName">Last Name*</label>
+                        <input type="text" placeholder="Doe" id="lastName" required="required" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <label for="email">E-mail*</label>
+                        <input type="email" placeholder="example@hotmail.com" id="email" required="required" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 center">
+                        <h2 style="margin-top: 0">Personal Information</h2>
+                        <div class="divider"></div>
+                    </div>
+                    <div class="input-field col s12 l4">
+                        <label for="addressCity">Town/City*</label>
+                        <input type="text" placeholder="Toronto" id="addressCity" required="required" />
+                    </div>
+                    <div class="input-field col s12 l4">
+                        <label for="addressProvince">State/Province*</label>
+                        <input type="text" placeholder="Ontario" id="addressProvince" required="required" />
+                    </div>
+                    <div class="input-field col s12 l4">
+                        <label for="addressPostal">Postal Code*</label>
+                        <input type="text" placeholder="H0H0H0" id="addressPostal" required="required" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <label for="addressStreet">Address</label>
+                        <input type="text" placeholder="9 Sussex Street" id="addressStreet" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <input type="submit" value="Sign up" id="submitSignup" class="btn waves-light blue darken-3 yellow-text accent-3" style="width: 100%" />
+                    </div>
+                </div>
+            </div>
         </form>
     </div>
-        <footer class="page-footer blue darken-3">
+    <footer class="page-footer blue darken-3">
         <div class="container">
             <div class="row">
                 <div class="col l6 s12">
