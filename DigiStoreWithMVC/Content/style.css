@@ -1,0 +1,38 @@
+﻿/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+	font-size: inherit;
+}
+
+.parallax-container {
+      height: 325px;
+}
+
+.tabs .indicator {
+    background-color: #ffeb3b;
+}
+
+.tabs .tab a {
+    color: blue;
+}
+
+.tabs .tab a:hover {
+    color: #0D47A1;
+}
+
+.tabs .tab a.active {
+    color: #1565C0;
+}
+
+div ul.collection a li:hover {
+    background-color: #eee;
+}

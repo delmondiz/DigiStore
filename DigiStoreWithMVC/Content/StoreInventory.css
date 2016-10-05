@@ -1,0 +1,17 @@
+﻿body {
+}
+
+#storeInventoryList li div:first-child
+{
+    background-color:#eee
+}
+
+#storeInventoryList li div:first-child:hover
+{
+    background-color:#ddd
+}
+
+#storeInventoryList li div div a
+{
+    width: 100%;
+}

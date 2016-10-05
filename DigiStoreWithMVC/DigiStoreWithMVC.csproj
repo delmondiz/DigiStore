@@ -245,10 +245,40 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\icon.css" />
+    <Content Include="Content\map.css" />
+    <Content Include="Content\materialize.min.css" />
+    <Content Include="Content\StoreInventory.css" />
+    <Content Include="Content\style.css" />
+    <Content Include="Content\StyleSheet.css" />
+    <Content Include="Content\theme.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="img\aliexpress.png" />
+    <Content Include="img\amazon.png" />
+    <Content Include="img\ebay.png" />
+    <Content Include="img\facebook.png" />
+    <Content Include="img\help.png" />
+    <Content Include="img\icon.png" />
+    <Content Include="img\images %281%29.jpg" />
+    <Content Include="img\images.jpg" />
+    <Content Include="img\instagram.png" />
+    <Content Include="img\jinx.png" />
+    <Content Include="img\kha.png" />
+    <Content Include="img\kijiji.png" />
+    <Content Include="img\mf.png" />
+    <Content Include="img\powered_by_google_on_non_white.png" />
+    <Content Include="img\powered_by_google_on_non_white_hdpi.png" />
+    <Content Include="img\powered_by_google_on_white.png" />
+    <Content Include="img\powered_by_google_on_white_hdpi.png" />
+    <Content Include="img\sample_store.jpg" />
+    <Content Include="img\shoe_store_2.jpeg" />
+    <Content Include="img\steam.png" />
+    <Content Include="img\tryn.png" />
+    <Content Include="img\twitter.png" />
+    <Content Include="img\vi.png" />
     <Content Include="Models\DigiStoreDBModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DigiStoreDBModel.Context.cs</LastGenOutput>
@@ -275,13 +305,16 @@
       <DependentUpon>DigiStoreDBModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\init.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-2.2.4.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\materialize.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
