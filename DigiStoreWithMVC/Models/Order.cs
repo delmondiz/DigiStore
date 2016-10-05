@@ -22,8 +22,8 @@ namespace DigiStoreWithMVC.Models
         }
     
         public int Id { get; set; }
-        public string Tax { get; set; }
-        public string TotalPrice { get; set; }
+        public decimal Tax { get; set; }
+        public decimal TotalPrice { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<User> Users { get; set; }
