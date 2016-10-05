@@ -15,7 +15,7 @@ namespace DigiStoreWithMVC
                         "~/Scripts/jquery.validate*"));
 
             bundles.Add(new ScriptBundle("~/bundles/digistore").Include(
-                        "~/Scripts/jquery-2.2.4.min.js",
+                        "~/Scripts/jquery-{version}.js",
                         "~/Scripts/materialize.min.js",
                         "~/Scripts/init.js"));
 
@@ -23,15 +23,6 @@ namespace DigiStoreWithMVC
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
-
-            bundles.Add(new ScriptBundle("~/bundles/materialize").Include(
-                      "~/Scripts/materialize.js",
-                      "~/Scripts/init.js"));//,
-                                            //"~/Scripts/respond.js"));
-
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                        "~/Content/bootstrap.css",
-                        "~/Content/site.css"));
 
             bundles.Add(new StyleBundle("~/Content/digistore").Include(
                         "~/Content/materialize.min.css",

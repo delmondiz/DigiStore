@@ -4,8 +4,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
     <title>@ViewBag.Title | Digistore</title>
-    @*@Styles.Render("~/Content/css")*@
-    @*@Scripts.Render("~/bundles/modernizr")*@
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("~/Content/digistore")
 </head>
 <body>
@@ -94,7 +94,7 @@
 <head runat="server">
     <title>@ViewBag.Title</title>
     <!-- Compiled and minified CSS -->
-    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/digistore")
     @*@Scripts.Render("~/bundles/modernizr")*@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
@@ -175,9 +175,8 @@
             </div>
         </div>
     </footer>
-    
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/materialize")
+
+    @Scripts.Render("~/bundles/digistore")
     @RenderSection("scripts", required: false)
 
     <script>
