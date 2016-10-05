@@ -249,7 +249,7 @@
     <Content Include="Content\map.css" />
     <Content Include="Content\materialize.min.css" />
     <Content Include="Content\StoreInventory.css" />
-    <Content Include="Content\style.css" />
+    <Content Include="Content\digistore.css" />
     <Content Include="Content\StyleSheet.css" />
     <Content Include="Content\theme.css" />
     <Content Include="favicon.ico" />
