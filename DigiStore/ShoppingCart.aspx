@@ -33,8 +33,8 @@
             <ul class="right hide-on-med-and-down">
                 <li><a href="Home.aspx" class="yellow-text accent-3">Home</a></li>
                 <li><a href="Map.aspx" class="yellow-text accent-3">Search</a></li>
-                
-                <li><a class="dropdown-button centered" href="#" data-activates="accountDropdown" style="height:100%">
+
+                <li><a class="dropdown-button centered" href="#" data-activates="accountDropdown" style="height: 100%">
                     <img class="circle" src="/img/icon.png" height="30" width="30" /></a></li>
             </ul>
 
@@ -76,18 +76,18 @@
                     <div class="collapsible-body">
                         <div class="row">
                             <div class="col s3">
-                                <img  class="responsive-img" src="img/download.jpg" />
+                                <img class="responsive-img" src="img/download.jpg" />
                             </div>
                             <div class="col s7 m3">
                                 Here We can put the deatail of this cup cake it does look mighty delicious man im hungry
                             </div>
                             <br />
-                            <div class="col s3 m2">  
+                            <div class="col s3 m2">
                                 <a href="#">Remove</a><br />
                                 <br />
                                 <a href="#">Edit</a>
                             </div>
-                             <div class="col s4 m2"> 
+                            <div class="col s4 m2">
                                 <td class="product-cart-actions" data-rwd-label="Qty">
                                     <div><strong>Quantity</strong></div>
                                     <input type="number" pattern="\d*" name="cart[184090][qty]" value="1" size="4" data-cart-item-id="GGR-T7P-M" title="Qty" class="input-text qty" maxlength="12">
@@ -98,9 +98,9 @@
                                         <li></li>
                                     </ul>
                                 </td>
-                                 <a href="#">update</a><br />
+                                <a href="#">update</a><br />
                             </div>
-                            
+
                             <div class="col s4 m2"><strong>price:</strong>$5.99</div>
                         </div>
 
@@ -122,15 +122,15 @@
                             <div class="col s7 m3">
                                 Here We can put the deatail of this cup cake it does look mighty delicious man im hungry
                             </div>
-                            <div class="col s3 m2"> 
+                            <div class="col s3 m2">
                                 <br />
                                 <a href="#">Remove</a><br />
                                 <br />
                                 <a href="#">Edit</a>
                             </div>
-                            <div class="col s4 m2"> 
+                            <div class="col s4 m2">
                                 <td class="product-cart-actions" data-rwd-label="Qty">
-                                   <div><strong>Quantity</strong></div>
+                                    <div><strong>Quantity</strong></div>
                                     <input type="number" pattern="\d*" name="cart[184090][qty]" value="1" size="4" data-cart-item-id="GGR-T7P-M" title="Qty" class="input-text qty" maxlength="12">
                                     <button type="submit" name="update_cart_action" data-cart-item-update="" value="update_qty" title="Update" class="button btn-update hide">
                                         <span><span>Update</span></span>
@@ -139,7 +139,7 @@
                                         <li></li>
                                     </ul>
                                 </td>
-                                 <a href="#">update</a><br />
+                                <a href="#">update</a><br />
                             </div>
                             <br />
                             <div class="col s4 m2"><strong>price:</strong>$5.99</div>
@@ -160,17 +160,17 @@
                                 <img class="responsive-img" src="img/images%20(1).jpg" />
                             </div>
                             <div class="col s3">
-                            Here We can put the deatail of this cup cake it does look mighty delicious man im hungry
+                                Here We can put the deatail of this cup cake it does look mighty delicious man im hungry
                             </div>
-                            <div class="col s3 m2"> 
+                            <div class="col s3 m2">
                                 <br />
                                 <a href="#">Remove</a><br />
                                 <br />
                                 <a href="#">Edit</a>
                             </div>
-                             <div class="col s4 m2"> 
+                            <div class="col s4 m2">
                                 <td class="product-cart-actions" data-rwd-label="Qty">
-                                   <div><strong>Quantity</strong></div>
+                                    <div><strong>Quantity</strong></div>
                                     <input type="number" pattern="\d*" name="cart[184090][qty]" value="1" size="4" data-cart-item-id="GGR-T7P-M" title="Qty" class="input-text qty" maxlength="12">
                                     <button type="submit" name="update_cart_action" data-cart-item-update="" value="update_qty" title="Update" class="button btn-update hide">
                                         <span><span>Update</span></span>
@@ -179,10 +179,10 @@
                                         <li></li>
                                     </ul>
                                 </td>
-                                 <a href="#">update</a><br />
+                                <a href="#">update</a><br />
                             </div>
                             <br />
-                           <div class="col s4 m2"><strong>price:</strong>$5.99</div>
+                            <div class="col s4 m2"><strong>price:</strong>$5.99</div>
                         </div>
 
 
@@ -199,18 +199,18 @@
 
                                 <img class="responsive-img" src="img/images.jpg" />
                             </div>
-                             <div class="col s7 m3">
-                             Here We can put the deatail of this cup cake it does look mighty delicious man im hungry
+                            <div class="col s7 m3">
+                                Here We can put the deatail of this cup cake it does look mighty delicious man im hungry
                             </div>
-                            <div class="col s3 m2"> 
+                            <div class="col s3 m2">
                                 <br />
                                 <a href="#">Remove</a><br />
                                 <br />
                                 <a href="#">Edit</a>
                             </div>
-                             <div class="col s4 m2"> 
+                            <div class="col s4 m2">
                                 <td class="product-cart-actions" data-rwd-label="Qty">
-                                   <div><strong>Quantity</strong></div>
+                                    <div><strong>Quantity</strong></div>
                                     <input type="number" pattern="\d*" name="cart[184090][qty]" value="1" size="4" data-cart-item-id="GGR-T7P-M" title="Qty" class="input-text qty" maxlength="12">
                                     <button type="submit" name="update_cart_action" data-cart-item-update="" value="update_qty" title="Update" class="button btn-update hide">
                                         <span><span>Update</span></span>
@@ -219,7 +219,7 @@
                                         <li></li>
                                     </ul>
                                 </td>
-                                 <a href="#">update</a><br />
+                                <a href="#">update</a><br />
                             </div>
                             <br />
                             <div class="col s4 m2"><strong>price:</strong>$5.99</div>
@@ -232,40 +232,30 @@
             </ul>
 
         </div>
-            <h4>Total:$23.94</h4>
-            <h7>Tax:$3.11</h7>
-            <h4>Grand Total:$27.05</h4>
-            
+        <h4>Total:$23.94</h4>
+        <h7>Tax:$3.11</h7>
+        <h4>Grand Total:$27.05</h4>
+
         <button type="button" title="Continue Shopping" class="button waves-effect waves-light btn green accent-4  btn-proceed-checkout btn-checkout"><span><span>Continue Shopping</span></span></button>
         <a class="modal-trigger waves-effect waves-light btn" href="#modal1">Proceed to Checkout</a>
-         <!-- Modal Structure -->
-  <div id="modal1" class="modal modal-fixed-footer">
-    <div class="modal-content">
-      <h4>AGREEMENT</h4>
-      <p>This is not just a bunch a text but this is you telling me i can take you credit card and do what the hell i want with it. i mean i can go buy a house a car dinner for me and my gf and because you hit agree you cant sue me after once you  find out
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal modal-fixed-footer">
+            <div class="modal-content">
+                <h4>AGREEMENT</h4>
+                <p>
+                    This is not just a bunch a text but this is you telling me i can take you credit card and do what the hell i want with it. i mean i can go buy a house a car dinner for me and my gf and because you hit agree you cant sue me after once you  find out
           that i robbed your ass of all your money which if your usuing this website at the early stage mean you dont have any money so im fucked anyways. DAMN I HATE LOOSING 
-      </p>
-    </div>
-    <div class="modal-footer">
-        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Disagree</a>
-      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
-    
-    </div>
-  </div>
-       
+                </p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Disagree</a>
+                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
 
-    </div>
-
-
-
-
-
-
-
+            </div>
+        </div>
 
 
     </div>
-    
 
     <footer class="page-footer blue darken-3">
         <div class="container">
@@ -305,9 +295,9 @@
 
     <script>
         $(document).ready(function () {
-      // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-      $('.modal-trigger').leanModal();
-  });</script>
+            // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+            $('.modal-trigger').leanModal();
+        });</script>
     <script type="text/javascript" src="js/init.js"></script>
 
 </body>

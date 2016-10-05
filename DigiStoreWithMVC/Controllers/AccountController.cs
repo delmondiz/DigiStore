@@ -54,6 +54,13 @@ namespace DigiStoreWithMVC.Controllers
 
         //
         // GET: /Account/Login
+        public ActionResult UserProfile()
+        {
+            return View();
+        }
+
+        //
+        // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {

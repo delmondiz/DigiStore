@@ -1,0 +1,208 @@
+﻿
+@{
+    ViewBag.Title = "StorePage";
+}
+
+<div class="container">
+    <div class="section">
+        <div class="row">
+            <div class="container col s12">
+                <div class="parallax-container">
+                    <div class="parallax">
+                        <img src="~/img/sample_store.jpg">
+                    </div>
+                </div>
+
+                <div class="card-panel blue darken-3">
+                    <h5 class="card-title yellow-text accent-3">Store Information</h5>
+                    <div class="card-content row">
+                        <div class="card col l6 m6 s12">
+                            <div class="card-content">
+                                <span class="card-title">Contact</span>
+                                <p>
+                                    100 Main St.
+                                    <br />
+                                    Toronto, Ontario
+                                    <br />
+                                    ABC123
+                                    <br />
+                                    <br />
+                                    (555) 555-5555
+                                    <br />
+                                    <br />
+                                    sample@gmail.com
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="card col l6 m6 s12">
+                            <div class="card-content">
+                                <span class="card-title">Store Hours</span>
+                                <p>
+                                    Monday: 9am - 5pm<br />
+                                    Tuesday: 9am - 5pm<br />
+                                    Wednesday: 9am - 5pm<br />
+                                    Thursday: 9am - 5pm<br />
+                                    Friday: 9am - 5pm<br />
+                                    Saturday: 9am - 5pm<br />
+                                    Sunday: 9am - 5pm<br />
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="card col l6 m6 s12">
+                            <div class="card-content">
+                                <span class="card-title">Rate this store</span>
+                                <p class="range-field">
+                                    Select a rating between 1 - 5.
+                                    <input style="background-color: #1565c0" type="range" id="test5" min="1" max="5" />
+                                </p>
+                                <div class="input-field">
+                                    <label for="textarea1">Leave a Review!</label>
+                                    <textarea id="textarea1" class="materialize-textarea"></textarea>
+                                </div>
+                                <br />
+                                <div class="center-align">
+                                    <button class="btn waves-effect waves-light blue darken-3 yellow-text accent-3" type="submit" name="action">
+                                        Submit<i class="material-icons right">send</i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card col l6 m6 s12">
+                            <div class="card-content">
+                                <span class="card-title">Reviews</span>
+                                <p>Populated from Database.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--
+                <div class="col l6 m6 s12" style="padding-left: 0px">
+                    <ul class="collapsible" data-collapsible="accordion">
+                        <li>
+                            <div class="collapsible-header active blue darken-3 yellow-text accent-3">Store Information</div>
+                            <div class="collapsible-body">
+                                <p>
+                                    Monday: 9am - 5pm<br />
+                                    <br />
+                                    Tuesday: 9am - 5pm<br />
+                                    <br />
+                                    Wednesday: 9am - 5pm<br />
+                                    <br />
+                                    Thursday: 9am - 5pm<br />
+                                    <br />
+                                    Friday: 9am - 5pm<br />
+                                    <br />
+                                    Saturday: 9am - 5pm<br />
+                                    <br />
+                                    Sunday: 9am - 5pm<br />
+                                    <br />
+                                </p>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="collapsible-header blue darken-3 yellow-text accent-3">Store Hours</div>
+                            <div class="collapsible-body">
+                                <p>
+                                    Monday: 9am - 5pm<br />
+                                    <br />
+                                    Tuesday: 9am - 5pm<br />
+                                    <br />
+                                    Wednesday: 9am - 5pm<br />
+                                    <br />
+                                    Thursday: 9am - 5pm<br />
+                                    <br />
+                                    Friday: 9am - 5pm<br />
+                                    <br />
+                                    Saturday: 9am - 5pm<br />
+                                    <br />
+                                    Sunday: 9am - 5pm<br />
+                                    <br />
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div> -->
+                <!--<div class="col l6 m6 s12" style="padding-right: 0px">
+                    <ul class="collapsible" data-collapsible="accordion">
+                        <li>
+                            <div class="collapsible-header active blue darken-3 yellow-text accent-3">Reviews</div>
+                            <div class="collapsible-body">
+                                <p>Populated from Database.</p>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="collapsible-header blue darken-3 yellow-text accent-3">Rate this store</div>
+                            <div class="container collapsible-body">
+                                <p class="range-field">
+                                    Select a rating between 1 - 5.
+                                    <input style="background-color: #1565c0" type="range" id="test5" min="1" max="5" />
+                                </p>
+                                <div class="input-field">
+                                    <label for="textarea1">Leave a Review!</label>
+                                    <textarea id="textarea1" class="materialize-textarea"></textarea>
+                                </div>
+                                <br />
+                                <div class="center-align">
+                                    <button class="btn waves-effect waves-light blue darken-3 yellow-text accent-3" type="submit" name="action">
+                                        Submit<i class="material-icons right">send</i>
+                                    </button>
+                                </div>
+                                <br />
+                            </div>
+                        </li>
+                    </ul>
+                </div>-->
+            </div>
+        </div>
+        <div class="card-panel blue darken-3">
+            <h5 class="card-title yellow-text accent-3">Products</h5>
+            <div class="card-content row">
+                <div class="card horizontal col s12 m6 l4">
+                    <div class="card-image">
+                        <img src="~/img/whitedressshirt.png" style="width: 125px">
+                    </div>
+                    <div class="card-stacked">
+                        <div class="card-action">
+                            Test Product
+                        </div>
+                        <div class="card-content">
+                            <p>Description of Product.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card horizontal col s12 m6 l4">
+                    <div class="card-image">
+                        <img src="~/img/whitedressshirt.png" style="width: 125px">
+                    </div>
+                    <div class="card-stacked">
+                        <div class="card-action">
+                            Test Product
+                        </div>
+                        <div class="card-content">
+                            <p>Description of Product.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card horizontal col s12 m6 l4">
+                    <div class="card-image">
+                        <img src="~/img/whitedressshirt.png" style="width: 125px">
+                    </div>
+                    <div class="card-stacked">
+                        <div class="card-action">
+                            Test Product
+                        </div>
+                        <div class="card-content">
+                            <p>Description of Product.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
