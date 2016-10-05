@@ -4,287 +4,288 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="DigiStoreDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="DigiStoreDBModelStoreContainer">
-    <EntitySet Name="Users" EntityType="DigiStoreDBModel.Store.Users" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Items" EntityType="DigiStoreDBModel.Store.Items" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Reviews" EntityType="DigiStoreDBModel.Store.Reviews" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="PaymentMethods" EntityType="DigiStoreDBModel.Store.PaymentMethods" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Orders" EntityType="DigiStoreDBModel.Store.Orders" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Appointments" EntityType="DigiStoreDBModel.Store.Appointments" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="UserReview" EntityType="DigiStoreDBModel.Store.UserReview" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="UserOrder" EntityType="DigiStoreDBModel.Store.UserOrder" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="UserAppointment" EntityType="DigiStoreDBModel.Store.UserAppointment" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="UserPaymentMethod" Association="DigiStoreDBModel.Store.UserPaymentMethod">
-      <End Role="User" EntitySet="Users" />
-      <End Role="PaymentMethod" EntitySet="PaymentMethods" />
-    </AssociationSet>
-    <AssociationSet Name="FK_UserReview_User" Association="DigiStoreDBModel.Store.FK_UserReview_User">
-      <End Role="User" EntitySet="Users" />
-      <End Role="UserReview" EntitySet="UserReview" />
-    </AssociationSet>
-    <AssociationSet Name="FK_UserReview_Review" Association="DigiStoreDBModel.Store.FK_UserReview_Review">
-      <End Role="Review" EntitySet="Reviews" />
-      <End Role="UserReview" EntitySet="UserReview" />
-    </AssociationSet>
-    <AssociationSet Name="FK_UserOrder_User" Association="DigiStoreDBModel.Store.FK_UserOrder_User">
-      <End Role="User" EntitySet="Users" />
-      <End Role="UserOrder" EntitySet="UserOrder" />
-    </AssociationSet>
-    <AssociationSet Name="FK_UserOrder_Order" Association="DigiStoreDBModel.Store.FK_UserOrder_Order">
-      <End Role="Order" EntitySet="Orders" />
-      <End Role="UserOrder" EntitySet="UserOrder" />
-    </AssociationSet>
-    <AssociationSet Name="OrderItem" Association="DigiStoreDBModel.Store.OrderItem">
-      <End Role="Order" EntitySet="Orders" />
-      <End Role="Item" EntitySet="Items" />
-    </AssociationSet>
-    <AssociationSet Name="UserItem" Association="DigiStoreDBModel.Store.UserItem">
-      <End Role="User" EntitySet="Users" />
-      <End Role="Item" EntitySet="Items" />
-    </AssociationSet>
-    <AssociationSet Name="FK_UserAppointment_User" Association="DigiStoreDBModel.Store.FK_UserAppointment_User">
-      <End Role="User" EntitySet="Users" />
-      <End Role="UserAppointment" EntitySet="UserAppointment" />
-    </AssociationSet>
-    <AssociationSet Name="FK_UserAppointment_Appointment" Association="DigiStoreDBModel.Store.FK_UserAppointment_Appointment">
-      <End Role="Appointment" EntitySet="Appointments" />
-      <End Role="UserAppointment" EntitySet="UserAppointment" />
-    </AssociationSet>
-    <AssociationSet Name="OrderAppointment" Association="DigiStoreDBModel.Store.OrderAppointment">
-      <End Role="Order" EntitySet="Orders" />
-      <End Role="Appointment" EntitySet="Appointments" />
-    </AssociationSet>
-    <AssociationSet Name="OrderPaymentMethod" Association="DigiStoreDBModel.Store.OrderPaymentMethod">
-      <End Role="Order" EntitySet="Orders" />
-      <End Role="PaymentMethod" EntitySet="PaymentMethods" />
-    </AssociationSet>
-  </EntityContainer>
-  <EntityType Name="Users">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="UserName" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Salt" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="City" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Country" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="PostalCode" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="PhoneNumber" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Items">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Price" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Weight" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="OrderId" Type="int" Nullable="false" />
-    <Property Name="UserId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Reviews">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="ReviewText" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-  <EntityType Name="PaymentMethods">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="PaymentType" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="AccountNumber" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="UserId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Orders">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Tax" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="TotalPrice" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="PaymentMethod_Id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Appointments">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Date" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Time" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="City" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Country" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="PostalCode" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="PaymentMethodId" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Order_Id" Type="int" Nullable="true" />
-  </EntityType>
-  <EntityType Name="UserReview">
-    <Key>
-      <PropertyRef Name="Users_Id" />
-      <PropertyRef Name="Reviews_Id" />
-    </Key>
-    <Property Name="Users_Id" Type="int" Nullable="false" />
-    <Property Name="Reviews_Id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="UserOrder">
-    <Key>
-      <PropertyRef Name="Users_Id" />
-      <PropertyRef Name="Orders_Id" />
-    </Key>
-    <Property Name="Users_Id" Type="int" Nullable="false" />
-    <Property Name="Orders_Id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="UserAppointment">
-    <Key>
-      <PropertyRef Name="Users_Id" />
-      <PropertyRef Name="Appointments_Id" />
-    </Key>
-    <Property Name="Users_Id" Type="int" Nullable="false" />
-    <Property Name="Appointments_Id" Type="int" Nullable="false" />
-  </EntityType>
-  <Association Name="UserPaymentMethod">
-    <End Role="User" Type="DigiStoreDBModel.Store.Users" Multiplicity="1" />
-    <End Role="PaymentMethod" Type="DigiStoreDBModel.Store.PaymentMethods" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="PaymentMethod">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="OrderItem">
-    <End Role="Order" Type="DigiStoreDBModel.Store.Orders" Multiplicity="1" />
-    <End Role="Item" Type="DigiStoreDBModel.Store.Items" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Order">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Item">
-        <PropertyRef Name="OrderId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="UserItem">
-    <End Role="User" Type="DigiStoreDBModel.Store.Users" Multiplicity="1" />
-    <End Role="Item" Type="DigiStoreDBModel.Store.Items" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Item">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="OrderAppointment">
-    <End Role="Order" Type="DigiStoreDBModel.Store.Orders" Multiplicity="0..1" />
-    <End Role="Appointment" Type="DigiStoreDBModel.Store.Appointments" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Order">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Appointment">
-        <PropertyRef Name="Order_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="OrderPaymentMethod">
-    <End Role="Order" Type="DigiStoreDBModel.Store.Orders" Multiplicity="*" />
-    <End Role="PaymentMethod" Type="DigiStoreDBModel.Store.PaymentMethods" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="PaymentMethod">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Order">
-        <PropertyRef Name="PaymentMethod_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_UserReview_User">
-    <End Role="User" Type="DigiStoreDBModel.Store.Users" Multiplicity="1" />
-    <End Role="UserReview" Type="DigiStoreDBModel.Store.UserReview" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="UserReview">
-        <PropertyRef Name="Users_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_UserReview_Review">
-    <End Role="UserReview" Type="DigiStoreDBModel.Store.UserReview" Multiplicity="*" />
-    <End Role="Review" Type="DigiStoreDBModel.Store.Reviews" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Review">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="UserReview">
-        <PropertyRef Name="Reviews_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_UserOrder_User">
-    <End Role="User" Type="DigiStoreDBModel.Store.Users" Multiplicity="1" />
-    <End Role="UserOrder" Type="DigiStoreDBModel.Store.UserOrder" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="UserOrder">
-        <PropertyRef Name="Users_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_UserOrder_Order">
-    <End Role="UserOrder" Type="DigiStoreDBModel.Store.UserOrder" Multiplicity="*" />
-    <End Role="Order" Type="DigiStoreDBModel.Store.Orders" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Order">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="UserOrder">
-        <PropertyRef Name="Orders_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_UserAppointment_User">
-    <End Role="User" Type="DigiStoreDBModel.Store.Users" Multiplicity="1" />
-    <End Role="UserAppointment" Type="DigiStoreDBModel.Store.UserAppointment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="UserAppointment">
-        <PropertyRef Name="Users_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_UserAppointment_Appointment">
-    <End Role="UserAppointment" Type="DigiStoreDBModel.Store.UserAppointment" Multiplicity="*" />
-    <End Role="Appointment" Type="DigiStoreDBModel.Store.Appointments" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Appointment">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="UserAppointment">
-        <PropertyRef Name="Appointments_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-</Schema></edmx:StorageModels>
+    <Schema Namespace="DigiStoreDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Appointments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="City" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Country" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PostalCode" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PaymentMethodId" Type="int" />
+          <Property Name="Order_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="Items">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Weight" Type="float" />
+          <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tax" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="TotalPrice" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PaymentMethod_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaymentMethods">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaymentType" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="AccountNumber" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reviews">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReviewText" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Rating" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserAppointment">
+          <Key>
+            <PropertyRef Name="Users_Id" />
+            <PropertyRef Name="Appointments_Id" />
+          </Key>
+          <Property Name="Users_Id" Type="int" Nullable="false" />
+          <Property Name="Appointments_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserOrder">
+          <Key>
+            <PropertyRef Name="Users_Id" />
+            <PropertyRef Name="Orders_Id" />
+          </Key>
+          <Property Name="Users_Id" Type="int" Nullable="false" />
+          <Property Name="Orders_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserReview">
+          <Key>
+            <PropertyRef Name="Users_Id" />
+            <PropertyRef Name="Reviews_Id" />
+          </Key>
+          <Property Name="Users_Id" Type="int" Nullable="false" />
+          <Property Name="Reviews_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Salt" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar(max)" />
+          <Property Name="LastName" Type="nvarchar(max)" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="City" Type="nvarchar(max)" />
+          <Property Name="Country" Type="nvarchar(max)" />
+          <Property Name="PostalCode" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="int" />
+        </EntityType>
+        <Association Name="FK_OrderAppointment">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+          <End Role="Appointments" Type="Self.Appointments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Appointments">
+              <PropertyRef Name="Order_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderItem">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="Items" Type="Self.Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Items">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderPaymentMethod">
+          <End Role="PaymentMethods" Type="Self.PaymentMethods" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentMethods">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="PaymentMethod_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserAppointment_Appointment">
+          <End Role="Appointments" Type="Self.Appointments" Multiplicity="1" />
+          <End Role="UserAppointment" Type="Self.UserAppointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Appointments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserAppointment">
+              <PropertyRef Name="Appointments_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserAppointment_User">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UserAppointment" Type="Self.UserAppointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserAppointment">
+              <PropertyRef Name="Users_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserItem">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Items" Type="Self.Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Items">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserOrder_Order">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="UserOrder" Type="Self.UserOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserOrder">
+              <PropertyRef Name="Orders_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserOrder_User">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UserOrder" Type="Self.UserOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserOrder">
+              <PropertyRef Name="Users_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserPaymentMethod">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="PaymentMethods" Type="Self.PaymentMethods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PaymentMethods">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserReview_Review">
+          <End Role="Reviews" Type="Self.Reviews" Multiplicity="1" />
+          <End Role="UserReview" Type="Self.UserReview" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reviews">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserReview">
+              <PropertyRef Name="Reviews_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserReview_User">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UserReview" Type="Self.UserReview" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserReview">
+              <PropertyRef Name="Users_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DigiStoreDBModelStoreContainer">
+          <EntitySet Name="Appointments" EntityType="Self.Appointments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Items" EntityType="Self.Items" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentMethods" EntityType="Self.PaymentMethods" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reviews" EntityType="Self.Reviews" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserAppointment" EntityType="Self.UserAppointment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserOrder" EntityType="Self.UserOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserReview" EntityType="Self.UserReview" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_OrderAppointment" Association="Self.FK_OrderAppointment">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="Appointments" EntitySet="Appointments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderItem" Association="Self.FK_OrderItem">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="Items" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderPaymentMethod" Association="Self.FK_OrderPaymentMethod">
+            <End Role="PaymentMethods" EntitySet="PaymentMethods" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserAppointment_Appointment" Association="Self.FK_UserAppointment_Appointment">
+            <End Role="Appointments" EntitySet="Appointments" />
+            <End Role="UserAppointment" EntitySet="UserAppointment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserAppointment_User" Association="Self.FK_UserAppointment_User">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserAppointment" EntitySet="UserAppointment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserItem" Association="Self.FK_UserItem">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Items" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserOrder_Order" Association="Self.FK_UserOrder_Order">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="UserOrder" EntitySet="UserOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserOrder_User" Association="Self.FK_UserOrder_User">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserOrder" EntitySet="UserOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserPaymentMethod" Association="Self.FK_UserPaymentMethod">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="PaymentMethods" EntitySet="PaymentMethods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserReview_Review" Association="Self.FK_UserReview_Review">
+            <End Role="Reviews" EntitySet="Reviews" />
+            <End Role="UserReview" EntitySet="UserReview" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserReview_User" Association="Self.FK_UserReview_User">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserReview" EntitySet="UserReview" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="DigiStoreDBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
@@ -333,17 +334,17 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserName" Type="String" Nullable="false" />
-          <Property Name="Email" Type="String" Nullable="false" />
-          <Property Name="Password" Type="String" Nullable="false" />
-          <Property Name="Salt" Type="String" Nullable="false" />
-          <Property Name="FirstName" Type="String" Nullable="false" />
-          <Property Name="LastName" Type="String" Nullable="false" />
-          <Property Name="Address" Type="String" Nullable="false" />
-          <Property Name="City" Type="String" Nullable="false" />
-          <Property Name="Country" Type="String" Nullable="false" />
-          <Property Name="PostalCode" Type="String" Nullable="false" />
-          <Property Name="PhoneNumber" Type="String" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Salt" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="FirstName" Type="String" Unicode="true" FixedLength="false" MaxLength="Max" Nullable="true" />
+          <Property Name="LastName" Type="String" Unicode="true" FixedLength="false" MaxLength="Max" Nullable="true" />
+          <Property Name="Address" Type="String" Unicode="true" FixedLength="false" MaxLength="Max" Nullable="true" />
+          <Property Name="City" Type="String" Unicode="true" FixedLength="false" MaxLength="Max" Nullable="true" />
+          <Property Name="Country" Type="String" Unicode="true" FixedLength="false" MaxLength="Max" Nullable="true" />
+          <Property Name="PostalCode" Type="String" Unicode="true" FixedLength="false" MaxLength="Max" Nullable="true" />
+          <Property Name="PhoneNumber" Type="Int32" Nullable="true" />
           <NavigationProperty Name="PaymentMethods" Relationship="DigiStoreDBModel.UserPaymentMethod" FromRole="User" ToRole="PaymentMethod" />
           <NavigationProperty Name="Reviews" Relationship="DigiStoreDBModel.UserReview" FromRole="User" ToRole="Review" />
           <NavigationProperty Name="Orders" Relationship="DigiStoreDBModel.UserOrder" FromRole="User" ToRole="Order" />
@@ -355,10 +356,10 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" />
-          <Property Name="Description" Type="String" Nullable="false" />
-          <Property Name="Price" Type="String" Nullable="false" />
-          <Property Name="Weight" Type="String" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Weight" Type="Double" Nullable="true" />
           <NavigationProperty Name="Order" Relationship="DigiStoreDBModel.OrderItem" FromRole="Item" ToRole="Order" />
           <Property Name="OrderId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="User" Relationship="DigiStoreDBModel.UserItem" FromRole="Item" ToRole="User" />
@@ -369,16 +370,18 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ReviewText" Type="String" Nullable="false" />
+          <Property Name="ReviewText" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Users" Relationship="DigiStoreDBModel.UserReview" FromRole="Review" ToRole="User" />
+          <Property Name="Rating" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="PaymentMethod">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PaymentType" Type="String" Nullable="false" />
-          <Property Name="AccountNumber" Type="String" Nullable="false" />
+          <Property Name="PaymentType" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="AccountNumber" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="User" Relationship="DigiStoreDBModel.UserPaymentMethod" FromRole="PaymentMethod" ToRole="User" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Order" Relationship="DigiStoreDBModel.OrderPaymentMethod" FromRole="PaymentMethod" ToRole="Order" />
@@ -388,10 +391,10 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Tax" Type="String" Nullable="false" />
+          <Property Name="Tax" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <NavigationProperty Name="Users" Relationship="DigiStoreDBModel.UserOrder" FromRole="Order" ToRole="User" />
           <NavigationProperty Name="Items" Relationship="DigiStoreDBModel.OrderItem" FromRole="Order" ToRole="Item" />
-          <Property Name="TotalPrice" Type="String" Nullable="false" />
+          <Property Name="TotalPrice" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <NavigationProperty Name="Appointment" Relationship="DigiStoreDBModel.OrderAppointment" FromRole="Order" ToRole="Appointment" />
           <NavigationProperty Name="PaymentMethod" Relationship="DigiStoreDBModel.OrderPaymentMethod" FromRole="Order" ToRole="PaymentMethod" />
         </EntityType>
@@ -444,14 +447,13 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Date" Type="String" Nullable="false" />
-          <Property Name="Time" Type="String" Nullable="false" />
-          <Property Name="Address" Type="String" Nullable="false" />
-          <Property Name="City" Type="String" Nullable="false" />
-          <Property Name="Country" Type="String" Nullable="false" />
-          <Property Name="PostalCode" Type="String" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Country" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="PostalCode" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Users" Relationship="DigiStoreDBModel.UserAppointment" FromRole="Appointment" ToRole="User" />
-          <Property Name="PaymentMethodId" Type="String" Nullable="false" />
+          <Property Name="PaymentMethodId" Type="Int32" />
           <NavigationProperty Name="Order" Relationship="DigiStoreDBModel.OrderAppointment" FromRole="Appointment" ToRole="Order" />
         </EntityType>
         <Association Name="UserAppointment">
@@ -506,7 +508,9 @@
     <EntitySetMapping Name="Reviews">
       <EntityTypeMapping TypeName="IsTypeOf(DigiStoreDBModel.Review)">
         <MappingFragment StoreEntitySet="Reviews">
-          <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="ReviewText" ColumnName="ReviewText" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -533,14 +537,13 @@
     <EntitySetMapping Name="Appointments">
       <EntityTypeMapping TypeName="IsTypeOf(DigiStoreDBModel.Appointment)">
         <MappingFragment StoreEntitySet="Appointments">
-          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PaymentMethodId" ColumnName="PaymentMethodId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Date" ColumnName="Date" />
-          <ScalarProperty Name="Time" ColumnName="Time" />
           <ScalarProperty Name="Address" ColumnName="Address" />
           <ScalarProperty Name="City" ColumnName="City" />
           <ScalarProperty Name="Country" ColumnName="Country" />
           <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
-          <ScalarProperty Name="PaymentMethodId" ColumnName="PaymentMethodId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -601,6 +604,7 @@
         <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
         <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
       </DesignerInfoPropertySet>
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
