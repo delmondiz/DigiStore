@@ -55,6 +55,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ReviewText" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Rating" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="UserAppointment">
           <Key>
@@ -357,7 +358,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="Price" Type="Decimal" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <Property Name="Weight" Type="Double" Nullable="true" />
           <NavigationProperty Name="Order" Relationship="DigiStoreDBModel.OrderItem" FromRole="Item" ToRole="Order" />
           <Property Name="OrderId" Type="Int32" Nullable="false" />
@@ -372,6 +373,7 @@
           <Property Name="ReviewText" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Users" Relationship="DigiStoreDBModel.UserReview" FromRole="Review" ToRole="User" />
           <Property Name="Rating" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="PaymentMethod">
           <Key>
@@ -389,10 +391,10 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Tax" Type="Decimal" Nullable="false" />
+          <Property Name="Tax" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <NavigationProperty Name="Users" Relationship="DigiStoreDBModel.UserOrder" FromRole="Order" ToRole="User" />
           <NavigationProperty Name="Items" Relationship="DigiStoreDBModel.OrderItem" FromRole="Order" ToRole="Item" />
-          <Property Name="TotalPrice" Type="Decimal" Nullable="false" />
+          <Property Name="TotalPrice" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <NavigationProperty Name="Appointment" Relationship="DigiStoreDBModel.OrderAppointment" FromRole="Order" ToRole="Appointment" />
           <NavigationProperty Name="PaymentMethod" Relationship="DigiStoreDBModel.OrderPaymentMethod" FromRole="Order" ToRole="PaymentMethod" />
         </EntityType>
@@ -506,6 +508,7 @@
     <EntitySetMapping Name="Reviews">
       <EntityTypeMapping TypeName="IsTypeOf(DigiStoreDBModel.Review)">
         <MappingFragment StoreEntitySet="Reviews">
+                <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Rating" ColumnName="Rating" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="ReviewText" ColumnName="ReviewText" />

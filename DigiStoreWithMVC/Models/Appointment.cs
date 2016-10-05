@@ -19,7 +19,7 @@ namespace DigiStoreWithMVC.Models
         {
             this.Users = new HashSet<User>();
         }
-        // ur mum
+    
         public int Id { get; set; }
         public System.DateTime Date { get; set; }
         public string Address { get; set; }
