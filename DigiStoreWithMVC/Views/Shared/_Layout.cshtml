@@ -15,7 +15,7 @@
             <a id="logo-container" href="Home.aspx" class="brand-logo center yellow-text accent-3">DigiStore</a>
             <ul class="right hide-on-med-and-down">
                 <li>@Html.ActionLink("Home", "Index", "Home", htmlAttributes: new { @class = "yellow-text accent-3" })@*<a href="Home.aspx" class="yellow-text accent-3">Home</a>*@</li>
-                <li>@Html.ActionLink("Home", "Map", "Home", htmlAttributes: new { @class = "yellow-text accent-3" })@*<a href="Map.aspx" class="yellow-text accent-3">Search</a>*@</li>
+                <li>@Html.ActionLink("Search", "Map", "Home", htmlAttributes: new { @class = "yellow-text accent-3" })@*<a href="Map.aspx" class="yellow-text accent-3">Search</a>*@</li>
 
                 <li>
                     <a class="dropdown-button centered" href="#" data-activates="accountDropdown" style="height: 100%">
@@ -30,7 +30,7 @@
                     <div class="divider"></div>
                 </li>
                 <li>@Html.ActionLink("Home", "Index", "Home")<!--<a href="Home.aspx">Home</a>--></li>
-                <li>@Html.ActionLink("Map Search", "Map", "Home")@*<a href="Map.aspx">Search</a>*@</li>
+                <li>@Html.ActionLink("Search", "Map", "Home")@*<a href="Map.aspx">Search</a>*@</li>
                 <li>@Html.ActionLink("Cart", "ShoppingCart", "Store")@*<a href="ShoppingCart.aspx">Cart</a>*@</li>
                 <li>
                     <div class="divider"></div>

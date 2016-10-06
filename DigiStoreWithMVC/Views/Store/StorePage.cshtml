@@ -78,130 +78,35 @@
                         </div>
                     </div>
                 </div>
-
-                <!--
-                <div class="col l6 m6 s12" style="padding-left: 0px">
-                    <ul class="collapsible" data-collapsible="accordion">
-                        <li>
-                            <div class="collapsible-header active blue darken-3 yellow-text accent-3">Store Information</div>
-                            <div class="collapsible-body">
-                                <p>
-                                    Monday: 9am - 5pm<br />
-                                    <br />
-                                    Tuesday: 9am - 5pm<br />
-                                    <br />
-                                    Wednesday: 9am - 5pm<br />
-                                    <br />
-                                    Thursday: 9am - 5pm<br />
-                                    <br />
-                                    Friday: 9am - 5pm<br />
-                                    <br />
-                                    Saturday: 9am - 5pm<br />
-                                    <br />
-                                    Sunday: 9am - 5pm<br />
-                                    <br />
-                                </p>
-                            </div>
-                        </li>
-
-                        <li>
-                            <div class="collapsible-header blue darken-3 yellow-text accent-3">Store Hours</div>
-                            <div class="collapsible-body">
-                                <p>
-                                    Monday: 9am - 5pm<br />
-                                    <br />
-                                    Tuesday: 9am - 5pm<br />
-                                    <br />
-                                    Wednesday: 9am - 5pm<br />
-                                    <br />
-                                    Thursday: 9am - 5pm<br />
-                                    <br />
-                                    Friday: 9am - 5pm<br />
-                                    <br />
-                                    Saturday: 9am - 5pm<br />
-                                    <br />
-                                    Sunday: 9am - 5pm<br />
-                                    <br />
-                                </p>
-                            </div>
-                        </li>
-                    </ul>
-                </div> -->
-                <!--<div class="col l6 m6 s12" style="padding-right: 0px">
-                    <ul class="collapsible" data-collapsible="accordion">
-                        <li>
-                            <div class="collapsible-header active blue darken-3 yellow-text accent-3">Reviews</div>
-                            <div class="collapsible-body">
-                                <p>Populated from Database.</p>
-                            </div>
-                        </li>
-
-                        <li>
-                            <div class="collapsible-header blue darken-3 yellow-text accent-3">Rate this store</div>
-                            <div class="container collapsible-body">
-                                <p class="range-field">
-                                    Select a rating between 1 - 5.
-                                    <input style="background-color: #1565c0" type="range" id="test5" min="1" max="5" />
-                                </p>
-                                <div class="input-field">
-                                    <label for="textarea1">Leave a Review!</label>
-                                    <textarea id="textarea1" class="materialize-textarea"></textarea>
-                                </div>
-                                <br />
-                                <div class="center-align">
-                                    <button class="btn waves-effect waves-light blue darken-3 yellow-text accent-3" type="submit" name="action">
-                                        Submit<i class="material-icons right">send</i>
-                                    </button>
-                                </div>
-                                <br />
-                            </div>
-                        </li>
-                    </ul>
-                </div>-->
             </div>
         </div>
         <div class="card-panel blue darken-3">
             <h5 class="card-title yellow-text accent-3">Products</h5>
             <div class="card-content row">
-                <div class="card horizontal col s12 m6 l4">
-                    <div class="card-image">
-                        <img src="~/img/whitedressshirt.png" style="width: 125px">
-                    </div>
-                    <div class="card-stacked">
-                        <div class="card-action">
-                            Test Product
+
+                @*
+                    The below for loop is an example of our html generator. This style will allow
+                    us to generate a list of products from our database while keeping the 
+                    formatting (visual style) of our site.
+                *@
+
+                @for (int i = 0; i < 3; i++)
+                {
+                    <div class="card horizontal col s12 m6 l4">
+                        <div class="card-image">
+                            <img src="~/img/whitedressshirt.png" style="width: 125px">
                         </div>
-                        <div class="card-content">
-                            <p>Description of Product.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="card horizontal col s12 m6 l4">
-                    <div class="card-image">
-                        <img src="~/img/whitedressshirt.png" style="width: 125px">
-                    </div>
-                    <div class="card-stacked">
-                        <div class="card-action">
-                            Test Product
-                        </div>
-                        <div class="card-content">
-                            <p>Description of Product.</p>
+                        <div class="card-stacked">
+                            <div class="card-action">
+                                Test Product
+                            </div>
+                            <div class="card-content">
+                                <p>Description of Product.</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="card horizontal col s12 m6 l4">
-                    <div class="card-image">
-                        <img src="~/img/whitedressshirt.png" style="width: 125px">
-                    </div>
-                    <div class="card-stacked">
-                        <div class="card-action">
-                            Test Product
-                        </div>
-                        <div class="card-content">
-                            <p>Description of Product.</p>
-                        </div>
-                    </div>
-                </div>
+                }
+
             </div>
         </div>
     </div>
