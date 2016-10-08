@@ -1,6 +1,8 @@
 ﻿(function ($) {
     $(function () {
-        $('.button-collapse').sideNav();
+        Materialize.updateTextFields();
+        $(".dropdown-button").dropdown();
+        $(".button-collapse").sideNav();
         $('.carousel.carousel-slider').slider();
         $('.carousel').carousel();
         $('.parallax').parallax();

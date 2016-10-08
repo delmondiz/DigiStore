@@ -12,6 +12,8 @@ using DigiStoreWithMVC.Models;
 
 namespace DigiStoreWithMVC.Controllers
 {
+    // When there's internet, Check Me
+    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
     [Authorize]
     public class AccountController : Controller
     {

@@ -11,31 +11,51 @@ namespace DigiStoreWithMVC.Controllers
         // GET: Store
         public ActionResult Index()
         {
-            return View();
+            return View();       
         }
+
         public ActionResult StorePage()
         {
             return View();
         }
+
         public ActionResult StoreInventory()
         {
             return View();
         }
+
         public ActionResult ShoppingCart()
         {
             return View();
         }
+
         public ActionResult Browse(string userId)
         {
             return Content("Coming soon! User ID: " + userId);
             //return View();
         }
 
-        public ActionResult Store(string storeId)
+        public ActionResult S(string storeName)
         {
-            return Content("Hey: " + storeId);
-            //return new HttpStatusCodeResult(403);
-            //return View();
+            if (storeName != null)
+            {
+                if (storeName.ToLower().Equals("mystore"))
+                { 
+                    // Check if User is logged in
+                    // If loggedIn(), 
+                    return View("Index");
+                    // If !loggedIn(),
+                    // return Login();
+                }
+                else
+                {
+                    return Content("Hey: " + storeName);
+                }
+            }
+            else
+            {
+                return new HttpStatusCodeResult(403);
+            }
         }
 
     }
