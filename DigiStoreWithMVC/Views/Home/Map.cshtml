@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Map Search";
+    ViewBag.Title = "Browse Stores";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="container">
@@ -11,7 +11,7 @@
                 <label for="inputSearch">Store Name</label>
             </div>
             <div class="col s3 valign-wrapper">
-                <button class="btn-large valign waves-effect waves-light blue darken-3 yellow-text accent-3" type="submit" name="submitSearch" style="padding:0; width:100%">
+                <button class="btn btn-large valign waves-effect waves-light blue darken-3 yellow-text accent-3" type="submit" name="submitSearch" style="padding:0; width:100%">
                     <i class="material-icons left">search</i>Search
                 </button>
             </div>
@@ -21,10 +21,10 @@
 
 <div class="center container">
     <div class="center" style="height: 500px">
-        <div id="goggleResults" style="width: 40%; height: 100%; float: left; overflow-y: scroll">
+        <div id="goggleResults" style="width: 40%; height: 100%; float: left; overflow-y: scroll;" hidden="hidden">
             <ul class="collection yellow-text accent-3" id="goggleResultsList"></ul>
         </div>
-        <div id="goggleMap" style="width: 60%; height: 100%; float: right;"></div>
+        <div id="goggleMap" style="width: 100%; height: 100%; float: right;"></div>
     </div>
 </div>
 
@@ -39,17 +39,28 @@
         $(".button-collapse").sideNav();
     });
 
+    startUpFunctions();
+
     /*
     * The application asks for your location.  If the user accepts, it'll move the map close to the user's location.
     * Otherwise, it'll show up over toronto.
     */
+    // Holds the Google map.
     var map;
+    // Used to make queries to Google's Map API.
     var service;
-    var infowindow;
+    // Holds the markers placed onto the Google Map.
     var markers = [];
+    // Contains the contents of the marker's popup.
+    var infowindow;
 
-    startUpFunctions();
+    function startUpFunctions() {
+        //hideBeforeSearch();
+        detectCurrentPosition();
+        detectBrowser();
+    }
 
+    // CURRENTLY UNUSED - The results are hidden by default now, and shown once searched.
     // Hides the google results div before the user has searched at least once.
     // Also makes the google map full size within it's containing div.
     function hideBeforeSearch() {
@@ -63,12 +74,6 @@
     function unHideBeforeSearch() {
         $("#goggleResults").show();
         $("#goggleMap").css("width", "60%");
-    }
-
-    function startUpFunctions() {
-        hideBeforeSearch();
-        detectCurrentPosition();
-        detectBrowser();
     }
 
     // Prompt the user for their physical location.  If they give it, this will set

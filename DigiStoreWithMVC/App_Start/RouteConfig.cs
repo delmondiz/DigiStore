@@ -14,16 +14,18 @@ namespace DigiStoreWithMVC
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "BrowseStores",
+                url: "Store/{userId}",
+                defaults: new { controller = "Store", action = "Browse", userId = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
 
-            routes.MapRoute(
-                name: "Stores",
-                url: "store/{id}",
-                defaults: new { controller = "Store", action = "Store", id = UrlParameter.Optional }
-            );
+            
         }
     }
 }

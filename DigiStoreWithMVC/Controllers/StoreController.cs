@@ -25,6 +25,11 @@ namespace DigiStoreWithMVC.Controllers
         {
             return View();
         }
+        public ActionResult Browse(string userId)
+        {
+            return Content("Coming soon! User ID: " + userId);
+            //return View();
+        }
 
         public ActionResult Store(string storeId)
         {
