@@ -26,5 +26,12 @@ namespace DigiStoreWithMVC.Controllers
             return View();
         }
 
+        public ActionResult Store(string storeId)
+        {
+            return Content("Hey: " + storeId);
+            //return new HttpStatusCodeResult(403);
+            //return View();
+        }
+
     }
 }

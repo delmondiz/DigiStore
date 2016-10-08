@@ -18,6 +18,12 @@ namespace DigiStoreWithMVC
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "Stores",
+                url: "store/{id}",
+                defaults: new { controller = "Store", action = "Store", id = UrlParameter.Optional }
+            );
         }
     }
 }
