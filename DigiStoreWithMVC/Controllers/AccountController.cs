@@ -169,9 +169,16 @@ namespace DigiStoreWithMVC.Controllers
                     //User newUser = db.Users.Create();
                     //newUser.UserName = model.Username;
                     //newUser.Email = model.Email;
+                    //PasswordHasher hash = new PasswordHasher();
+                    
+                    //newUser.Password = model.Password;
+
+                    //newUser.FirstName = model.FirstName;
+                    //newUser.LastName = model.LastName;
                     //newUser.Address = model.Street;
                     //newUser.City = model.City;
-                    //newUser.FirstName = model.FirstName;
+                    //newUser.PostalCode = model.PostalCode;
+                    //db.Users.Add(newUser);
                     if (result.Succeeded)
                     {
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
