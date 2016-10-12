@@ -89,11 +89,11 @@
           <Property Name="UserName" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Salt" Type="nvarchar(max)" Nullable="false" />
           <Property Name="FirstName" Type="nvarchar(max)" />
           <Property Name="LastName" Type="nvarchar(max)" />
           <Property Name="Address" Type="nvarchar(max)" />
           <Property Name="City" Type="nvarchar(max)" />
+          <Property Name="StateProv" Type="nvarchar(max)" />
           <Property Name="Country" Type="nvarchar(max)" />
           <Property Name="PostalCode" Type="nvarchar(max)" />
           <Property Name="PhoneNumber" Type="int" />
@@ -337,7 +337,6 @@
           <Property Name="UserName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="Email" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="Salt" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="FirstName" Type="String" Unicode="true" FixedLength="false" MaxLength="Max" Nullable="true" />
           <Property Name="LastName" Type="String" Unicode="true" FixedLength="false" MaxLength="Max" Nullable="true" />
           <Property Name="Address" Type="String" Unicode="true" FixedLength="false" MaxLength="Max" Nullable="true" />
@@ -350,6 +349,7 @@
           <NavigationProperty Name="Orders" Relationship="DigiStoreDBModel.UserOrder" FromRole="User" ToRole="Order" />
           <NavigationProperty Name="Items" Relationship="DigiStoreDBModel.UserItem" FromRole="User" ToRole="Item" />
           <NavigationProperty Name="Appointments" Relationship="DigiStoreDBModel.UserAppointment" FromRole="User" ToRole="Appointment" />
+          <Property Name="StateProv" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Item">
           <Key>
@@ -477,11 +477,11 @@
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="IsTypeOf(DigiStoreDBModel.User)">
         <MappingFragment StoreEntitySet="Users">
-          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="StateProv" ColumnName="StateProv" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="Password" ColumnName="Password" />
-          <ScalarProperty Name="Salt" ColumnName="Salt" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
           <ScalarProperty Name="LastName" ColumnName="LastName" />
           <ScalarProperty Name="Address" ColumnName="Address" />
