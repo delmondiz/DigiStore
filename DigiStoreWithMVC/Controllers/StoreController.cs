@@ -3,11 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DigiStoreWithMVC.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using System.Threading.Tasks;
 
 namespace DigiStoreWithMVC.Controllers
 {
     public class StoreController : Controller
     {
+        private DigiStoreDBModelContainer db = new DigiStoreDBModelContainer();
+
         // GET: Store
         public ActionResult Index()
         {
@@ -35,21 +42,38 @@ namespace DigiStoreWithMVC.Controllers
             //return View();
         }
 
-        public ActionResult S(string storeName)
+        public async Task<ActionResult> S(string storeName)
         {
             if (storeName != null)
             {
                 if (storeName.ToLower().Equals("mystore"))
-                { 
+                {
                     // Check if User is logged in
                     // If loggedIn(), 
+
                     return View("Index");
+
                     // If !loggedIn(),
-                    // return Login();
+
+                    // return View("Login()");
                 }
                 else
                 {
-                    return Content("Hey: " + storeName);
+                    // Require that the user has already logged in via username/password or external login
+                    //if (!await account.SignInManager.HasBeenVerifiedAsync())
+                    //{
+                    //    return View("Home");
+                    //}
+                    //User user = new User();
+                    //var u = from user in 
+                    var user = from users in db.Users
+                               where users.UserName == storeName
+                               select users;
+                    if (user != null)
+                        return View("Index", user);
+
+                    //return View("Index");
+                    return Content("Hey: " + storeName + ".\n User Status: " + user.GetType());
                 }
             }
             else
@@ -58,5 +82,12 @@ namespace DigiStoreWithMVC.Controllers
             }
         }
 
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+                db.Dispose();
+
+            base.Dispose(disposing);
+        }
     }
 }

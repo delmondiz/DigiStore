@@ -12,11 +12,13 @@
 <body>
     <nav class="blue darken-3" role="navigation">
         <div class="nav-wrapper container">
-            <a id="logo-container" href="Home.aspx" class="brand-logo center yellow-text accent-3">DigiStore</a>
+            @Html.ActionLink("DigiStore", "Index", "Home", htmlAttributes: new { @class = "brand-logo center yellow-text accent-3" })
+            @*<a id="logo-container" href="Home.aspx" class="brand-logo center yellow-text accent-3">DigiStore</a>*@
             <ul class="right hide-on-med-and-down">
-                <li>@Html.ActionLink("Home", "Index", "Home", htmlAttributes: new { @class = "yellow-text accent-3" })@*<a href="Home.aspx" class="yellow-text accent-3">Home</a>*@</li>
+                <li>@Html.ActionLink("Home", "Index", "Home", htmlAttributes: new { @class = "yellow-text accent-3 new badge" })@*<a href="Home.aspx" class="yellow-text accent-3">Home</a>*@</li>
                 <li>@Html.ActionLink("Search", "Map", "Home", htmlAttributes: new { @class = "yellow-text accent-3" })@*<a href="Map.aspx" class="yellow-text accent-3">Search</a>*@</li>
-
+                @*<li>@Html.ActionLink("Fancy", "ShoppingCart", "", htmlAttributes: new { @class = "new badge" })</li>*@
+               @*<li><a href="3"><i class="material-icons left">shopping_cart</i><span class="new badge">4</span></a></li>*@
                 <li>
                     <a class="dropdown-button centered" href="#" data-activates="accountDropdown" style="height: 100%">
                         <img class="circle" src="~/img/icon.png" height="30" width="30" />
@@ -46,7 +48,6 @@
                 <li>@Html.ActionLink("Profile", "UserProfile", "Account")@*<a href="Profile.aspx">Profile</a>*@</li>
                 <li>@Html.ActionLink("Cart", "ShoppingCart", "Store")@*<a href="ShoppingCart.aspx">Cart</a>*@</li>
                 <li><a href="#">Order History</a></li>
-
                 <li><a href="#">Log In/Out</a></li>
             </ul>
         </div>
