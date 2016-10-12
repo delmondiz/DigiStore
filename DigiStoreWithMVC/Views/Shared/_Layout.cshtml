@@ -6,8 +6,8 @@
     <!-- Compiled and minified CSS -->
     @Styles.Render("~/Content/digistore")
     @*@Scripts.Render("~/bundles/modernizr")*@
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css" />*@
+    @*<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />*@
 </head>
 <body>
     <nav class="blue darken-3" role="navigation">
@@ -31,7 +31,7 @@
                 <li>
                     <div class="divider"></div>
                 </li>
-                <li>@Html.ActionLink("Home", "Index", "Home")<!--<a href="Home.aspx">Home</a>--></li>
+                <li>@Html.ActionLink("Home", "Index", "Home")@*<a href="Home.aspx">Home</a>*@</li>
                 <li>@Html.ActionLink("Search", "Map", "Home")@*<a href="Map.aspx">Search</a>*@</li>
                 <li>@Html.ActionLink("Cart", "ShoppingCart", "Store")@*<a href="ShoppingCart.aspx">Cart</a>*@</li>
                 <li>

@@ -165,22 +165,22 @@ namespace DigiStoreWithMVC.Controllers
                 {
                     var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                     var result = await UserManager.CreateAsync(user, model.Password);
-                    // DigiStoreWithMVC.Models.User
-                    //User newUser = db.Users.Create();
-                    //newUser.UserName = model.Username;
-                    //newUser.Email = model.Email;
-                    //PasswordHasher hash = new PasswordHasher();
-                    
-                    //newUser.Password = model.Password;
-
-                    //newUser.FirstName = model.FirstName;
-                    //newUser.LastName = model.LastName;
-                    //newUser.Address = model.Street;
-                    //newUser.City = model.City;
-                    //newUser.PostalCode = model.PostalCode;
-                    //db.Users.Add(newUser);
                     if (result.Succeeded)
                     {
+                        User newUser = db.Users.Create();
+                        PasswordHasher hash = new PasswordHasher();
+                        newUser.Id = db.Users.Count();
+                        newUser.UserName = model.Username;
+                        newUser.Email = model.Email;
+                        newUser.Password = hash.HashPassword(model.Password);
+                        newUser.FirstName = model.FirstName;
+                        newUser.LastName = model.LastName;
+                        newUser.Address = model.Street;
+                        newUser.City = model.City;
+                        newUser.Salt = model.Province;
+                        newUser.PostalCode = model.PostalCode;
+                        db.Users.Add(newUser);
+                        db.SaveChanges();
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                         // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
