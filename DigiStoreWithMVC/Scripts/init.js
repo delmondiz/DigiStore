@@ -1,6 +1,7 @@
 ﻿(function ($) {
     $(function () {
         Materialize.updateTextFields();
+        $('select').material_select();
         $(".dropdown-button").dropdown();
         $(".button-collapse").sideNav();
         $('.carousel.carousel-slider').slider();
