@@ -1,13 +1,9 @@
 ﻿<!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>@ViewBag.Title</title>
     <!-- Compiled and minified CSS -->
     @Styles.Render("~/Content/digistore")
-    @*@Scripts.Render("~/bundles/modernizr")*@
-    @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css" />*@
-    @*<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />*@
 </head>
 <body>
     <nav class="blue darken-3" role="navigation">
@@ -25,7 +21,6 @@
                     </a>
                 </li>
             </ul>
-
             <ul id="nav-mobile" class="side-nav">
                 <h4 class="center blue-text darken-3">Menu</h4>
                 <li>
@@ -48,7 +43,14 @@
                 <li>@Html.ActionLink("Profile", "UserProfile", "Account")@*<a href="Profile.aspx">Profile</a>*@</li>
                 <li>@Html.ActionLink("Cart", "ShoppingCart", "Store")@*<a href="ShoppingCart.aspx">Cart</a>*@</li>
                 <li><a href="#">Order History</a></li>
-                <li><a href="#">Log In/Out</a></li>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li><a href="#">Log Out</a></li>
+                }
+                else
+                {
+                    <li><a href="#">Log In</a></li>
+                }
             </ul>
         </div>
     </nav>
