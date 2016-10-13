@@ -45,7 +45,7 @@
                 <li><a href="#">Order History</a></li>
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <li><a href="#">Log Out</a></li>
+                    @*@Html.ActionLink("Log Out", "LogOff", new {  })*@
                 }
                 else
                 {
