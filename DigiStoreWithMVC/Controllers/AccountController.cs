@@ -177,7 +177,7 @@ namespace DigiStoreWithMVC.Controllers
                         newUser.LastName = model.LastName;
                         newUser.Address = model.Street;
                         newUser.City = model.City;
-                        newUser.Salt = model.Province;
+                        newUser.StateProv = model.Province;
                         newUser.PostalCode = model.PostalCode;
                         db.Users.Add(newUser);
                         db.SaveChanges();
