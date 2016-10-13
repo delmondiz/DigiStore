@@ -12,7 +12,7 @@
 <body>
     <nav class="blue darken-3" role="navigation">
         <div class="nav-wrapper container">
-            @Html.ActionLink("DigiStore", "Index", "Home", htmlAttributes: new { @class = "brand-logo center yellow-text accent-3" })
+            @Html.ActionLink("DigiStore", "Index", "Home", new { controller = "Home", action = "Index", id = UrlParameter.Optional }, htmlAttributes: new { @class = "brand-logo center yellow-text accent-3" })
             @*<a id="logo-container" href="Home.aspx" class="brand-logo center yellow-text accent-3">DigiStore</a>*@
             <ul class="right hide-on-med-and-down">
                 <li>@Html.ActionLink("Home", "Index", "Home", htmlAttributes: new { @class = "yellow-text accent-3 new badge" })@*<a href="Home.aspx" class="yellow-text accent-3">Home</a>*@</li>
@@ -37,15 +37,16 @@
                 <li>
                     <div class="divider"></div>
                 </li>
+                <li>@Html.ActionLink("Profile", "UserProfile", "Account")@*<a href="Profile.aspx">Profile</a>*@</li>
                 <li>@Html.ActionLink("Manage Store", "StoreInventory", "Store")@*<a href="StoreInventory.aspx">Manage Store</a>*@</li>
                 <li><a href="#">Order History</a></li>
-                <li>@Html.ActionLink("Profile", "UserProfile", "Account")@*<a href="Profile.aspx">Profile</a>*@</li>
                 <li><a href="#">Log In/Out</a></li>
             </ul>
             <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
 
             <ul id="accountDropdown" class="dropdown-content">
                 <li>@Html.ActionLink("Profile", "UserProfile", "Account")@*<a href="Profile.aspx">Profile</a>*@</li>
+                <li>@Html.ActionLink("Manage Store", "StoreInventory", "Store")@*<a href="StoreInventory.aspx">Manage Store</a>*@</li>
                 <li>@Html.ActionLink("Cart", "ShoppingCart", "Store")@*<a href="ShoppingCart.aspx">Cart</a>*@</li>
                 <li><a href="#">Order History</a></li>
                 <li><a href="#">Log In/Out</a></li>
