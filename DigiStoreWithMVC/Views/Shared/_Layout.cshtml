@@ -8,7 +8,7 @@
 <body>
     <nav class="blue darken-3" role="navigation">
         <div class="nav-wrapper container">
-            @Html.ActionLink("DigiStore", "Index", "Home", new { controller = "Home", action = "Index", id = UrlParameter.Optional }, htmlAttributes: new { @class = "brand-logo center yellow-text accent-3" })
+            @Html.ActionLink("DigiStore", "Index", new { controller = "Home", action = "Index", id = UrlParameter.Optional }, htmlAttributes: new { @class = "brand-logo center yellow-text accent-3" })
             @*<a id="logo-container" href="Home.aspx" class="brand-logo center yellow-text accent-3">DigiStore</a>*@
             <ul class="right hide-on-med-and-down">
                 <li>@Html.ActionLink("Home", "Index", "Home", htmlAttributes: new { @class = "yellow-text accent-3 new badge" })@*<a href="Home.aspx" class="yellow-text accent-3">Home</a>*@</li>
@@ -21,38 +21,58 @@
                     </a>
                 </li>
             </ul>
+            <ul id="accountDropdown" class="dropdown-content">
+                @{
+                    if (User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Cart", "ShoppingCart", "Store")@*<a href="ShoppingCart.aspx">Cart</a>*@</li>
+                        <li>@Html.ActionLink("Profile", "UserProfile", "Account")@*<a href="Profile.aspx">Profile</a>*@</li>
+                        <li>@Html.ActionLink("Manage Store", "StoreInventory", "Store")@*<a href="StoreInventory.aspx">Manage Store</a>*@</li>
+                        <li><a href="#">Order History</a></li>
+                        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { @name = "loggingOut" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <li><a href="#" onclick="document.forms['loggingOut'].submit(); ;return false;">Log Off</a></li>
+                        }
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Log In", "Login", new { controller = "Account", action = "Login" })</li>
+                    }
+                }
+            </ul>
             <ul id="nav-mobile" class="side-nav">
-                <h4 class="center blue-text darken-3">Menu</h4>
+                <h4 class="center blue-text darken-3">Digistore</h4>
                 <li>
                     <div class="divider"></div>
                 </li>
                 <li>@Html.ActionLink("Home", "Index", "Home")@*<a href="Home.aspx">Home</a>*@</li>
                 <li>@Html.ActionLink("Search", "Map", "Home")@*<a href="Map.aspx">Search</a>*@</li>
-                <li>@Html.ActionLink("Cart", "ShoppingCart", "Store")@*<a href="ShoppingCart.aspx">Cart</a>*@</li>
-                <li>
-                    <div class="divider"></div>
-                </li>
-                <li>@Html.ActionLink("Profile", "UserProfile", "Account")@*<a href="Profile.aspx">Profile</a>*@</li>
-                <li>@Html.ActionLink("Manage Store", "StoreInventory", "Store")@*<a href="StoreInventory.aspx">Manage Store</a>*@</li>
-                <li><a href="#">Order History</a></li>
-                <li><a href="#">Log In/Out</a></li>
-            </ul>
-            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+                @{
+                    if (User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Cart", "ShoppingCart", "Store")@*<a href="ShoppingCart.aspx">Cart</a>*@</li>
+                        <li>
+                            <div class="divider"></div>
+                        </li>
+                        <li>@Html.ActionLink("Profile", "UserProfile", "Account")@*<a href="Profile.aspx">Profile</a>*@</li>
+                        <li>@Html.ActionLink("Manage Store", "StoreInventory", "Store")@*<a href="StoreInventory.aspx">Manage Store</a>*@</li>
+                        <li><a href="#">Order History</a></li>
+                        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { @name = "loggingOutMobile" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <li><a href="#" onclick="document.forms['loggingOutMobile'].submit(); ;return false;">Log Off</a></li>
 
-            <ul id="accountDropdown" class="dropdown-content">
-                <li>@Html.ActionLink("Profile", "UserProfile", "Account")@*<a href="Profile.aspx">Profile</a>*@</li>
-                <li>@Html.ActionLink("Manage Store", "StoreInventory", "Store")@*<a href="StoreInventory.aspx">Manage Store</a>*@</li>
-                <li>@Html.ActionLink("Cart", "ShoppingCart", "Store")@*<a href="ShoppingCart.aspx">Cart</a>*@</li>
-                <li><a href="#">Order History</a></li>
-                @if (User.Identity.IsAuthenticated)
-                {
-                    @*@Html.ActionLink("Log Out", "LogOff", new {  })*@
-                }
-                else
-                {
-                    <li><a href="#">Log In</a></li>
+                        }
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Log In", "Login", new { controller = "Account", action = "Login" })</li>
+                    }
                 }
             </ul>
+
+            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
         </div>
     </nav>
     @RenderBody()
