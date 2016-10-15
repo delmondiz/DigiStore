@@ -32,12 +32,6 @@ namespace DigiStoreWithMVC
             );
 
             routes.MapRoute(
-                name: "Store",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Store", action = "Index", id = UrlParameter.Optional }
-            );
-
-            routes.MapRoute(
                 name: "Account",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Account", action = "Index", id = UrlParameter.Optional }

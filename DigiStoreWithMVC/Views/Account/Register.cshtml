@@ -15,10 +15,6 @@
             <div class="row center">
                 <div class="col s12">
                     <h1>Sign up</h1>
-                    @{
-//var users = ViewData["count"];
-
-                    }
                 </div>
                 <div class="col s12">
                     <h5>Already a member? <a href="~/Account/Login" class="btn waves-light blue darken-3 yellow-text accent-3 truncate" style="width: 100%">Log In!</a></h5>
@@ -63,6 +59,7 @@
                 <div class="input-field col s12">
                     @Html.LabelFor(m => m.Email)
                     @Html.TextBoxFor(m => m.Email, new { @placeholder = "example@email.com", @id = "email" })
+                    @Html.ViewBag.EmailInUse
                 </div>
             </div>
             <div class="row">
@@ -71,13 +68,15 @@
                     <div class="divider"></div>
                 </div>
                 <div class="input-field col s12 l6">
-                    @Html.DropDownListFor(m => m.Country, new SelectList(countries.AsEnumerable()))
+                    @Html.DropDownListFor(m => m.Country, new SelectList(countries.AsEnumerable()), new { @id="country" })
                     @Html.LabelFor(m => m.Country)
                 </div>
                 <div class="input-field col s12 l6">
                     @Html.LabelFor(m => m.City)
                     @Html.TextBoxFor(m => m.City, new { @placeholder = "Toronto", @id = "addressCity" })
                 </div>
+            </div>
+            <div class="row">
                 <div class="input-field col s12 l6">
                     @Html.LabelFor(m => m.Province)
                     @Html.TextBoxFor(m => m.Province, new { @placeholder = "Ontario", @id = "addressProvince" })
@@ -88,10 +87,14 @@
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col s12">
+                <div class="input-field col s12 l6">
                     @Html.LabelFor(m => m.Street)
-                    @Html.TextBoxFor(m => m.Street, new { @placeholder = "9 Suxxex Street", @id = "addressStreet" })
+                    @Html.TextBoxFor(m => m.Street, new { @placeholder = "24 Sussex Drive", @id = "addressStreet" })
                     @Html.ValidationMessageFor(m => m.Street, "", new { @class = "red-text" })
+                </div>
+                <div class="input-field col s12 l6">
+                    @Html.LabelFor(m => m.PhoneNumber)
+                    @Html.TextBoxFor(m => m.PhoneNumber, new { @placeholder = "444-555-6125", @id="phoneNumber" })
                 </div>
             </div>
             <div class="row">
@@ -103,5 +106,5 @@
                 </div>
             </div>
         </div>
-                        }
+    }
 </div>

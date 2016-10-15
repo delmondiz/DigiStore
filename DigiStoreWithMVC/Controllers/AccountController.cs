@@ -167,10 +167,15 @@ namespace DigiStoreWithMVC.Controllers
         public ActionResult Register()
         {
             //var allUsers = from u in UserManager.Users
+            //               where (u.Email != "crasykid37@hotmail.com" && u.Email != "awesomeaccn4@gmail.com")
             //               select u;
-            //UserManager.RemoveLogin()
 
-            //ViewData["count"] = allUsers;
+            //foreach (var user in allUsers.AsEnumerable())
+            //{
+            //    UserManager.RemoveLogin(user.Id, null);
+            //}
+
+            ViewData["count"] = UserManager.Users.Count();
             return View();
         }
 
@@ -185,35 +190,57 @@ namespace DigiStoreWithMVC.Controllers
             {
                 using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
                 {
-                    var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                    var result = await UserManager.CreateAsync(user, model.Password);
-                    if (result.Succeeded)
+                    // Check if user already exists with that email
+                    var existingUser = from u in db.Users
+                                       where u.Email == model.Email
+                                       select u;
+
+                    // If a user is not found
+                    if (existingUser == null)
                     {
-                        User newUser = db.Users.Create();
-                        PasswordHasher hash = new PasswordHasher();
-                        newUser.Id = db.Users.Count();
-                        newUser.UserName = model.Username;
-                        newUser.Email = model.Email;
-                        newUser.Password = hash.HashPassword(model.Password);
-                        newUser.FirstName = model.FirstName;
-                        newUser.LastName = model.LastName;
-                        newUser.Address = model.Street;
-                        newUser.City = model.City;
-                        newUser.StateProv = model.Province;
-                        newUser.PostalCode = model.PostalCode;
-                        db.Users.Add(newUser);
-                        db.SaveChanges();
-                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        // ASP.NET Will create a User seperate from the database. 
+                        var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                        var result = await UserManager.CreateAsync(user, model.Password);
+                        if (result.Succeeded)
+                        {
+                            User newUser = db.Users.Create();
+                            PasswordHasher hash = new PasswordHasher();
+                            
+                            newUser.UserName = model.Username;
+                            newUser.Email = model.Email;
+                            newUser.Password = hash.HashPassword(model.Password);
+                            if (model.FirstName != null)
+                                newUser.FirstName = model.FirstName;
+                            if (model.LastName != null)
+                                newUser.LastName = model.LastName;
+                            if (model.Street != null)
+                                newUser.Address = model.Street;
+                            if (model.City != null)
+                                newUser.City = model.City;
+                            if (model.Province != null)
+                                newUser.StateProv = model.Province;
+                            if (model.PostalCode != null)
+                                newUser.PostalCode = model.PostalCode;
+                            //newUser.PhoneNumber = model.PhoneNumber;
+                            db.Users.Add(newUser);
+                            db.SaveChanges();
+                            await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
-                        // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                        // Send an email with this link
-                        // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                        // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                        // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                            // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+                            // Send an email with this link
+                            // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                            // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                            // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                        return RedirectToAction("Index", "Home");
-                    }
+                            return RedirectToAction("Index", "Home");
+                        }
                     AddErrors(result);
+                    }
+                    else
+                    {
+                        ViewBag.EmailInUse = "That e-mail is already in use!";
+                        return View(model);
+                    }
                 }
             }
             // If we got this far, something failed, redisplay form
