@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using DigiStoreWithMVC.Models;
 using System.Data.Entity;
+using System.Net;
 
 namespace DigiStoreWithMVC.Controllers
 {
@@ -25,7 +26,7 @@ namespace DigiStoreWithMVC.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -37,9 +38,9 @@ namespace DigiStoreWithMVC.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -57,9 +58,39 @@ namespace DigiStoreWithMVC.Controllers
 
         //
         // GET: /Account/UserProfile
-        public ActionResult UserProfile()
+        public ActionResult Index(int? id)
         {
-            return View();
+            using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
+            {
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+
+                User user = db.Users.Find(id);
+                if (user == null)
+                {
+                    return HttpNotFound();
+                }
+
+                return View(user);
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Index(User user)
+        {
+            using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Entry(user).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return View(user);
+            }
         }
 
         //
@@ -86,8 +117,8 @@ namespace DigiStoreWithMVC.Controllers
             using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
             {
                 var existingUser = from users in db.Users
-                                    where users.Email.Equals(model.Email)
-                                    select users;
+                                   where users.Email.Equals(model.Email)
+                                   select users;
                 if (existingUser != null)
                 {
                     PasswordHasher hash = new PasswordHasher();
@@ -147,7 +178,7 @@ namespace DigiStoreWithMVC.Controllers
             // You can configure the account lockout settings in IdentityConfig
 
 
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:

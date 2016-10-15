@@ -9,9 +9,8 @@
     <nav class="blue darken-3" role="navigation">
         <div class="nav-wrapper container">
             @Html.ActionLink("DigiStore", "Index", new { controller = "Home", action = "Index", id = UrlParameter.Optional }, htmlAttributes: new { @class = "brand-logo center yellow-text accent-3" })
-            @*<a id="logo-container" href="Home.aspx" class="brand-logo center yellow-text accent-3">DigiStore</a>*@
             <ul class="right hide-on-med-and-down">
-                <li>@Html.ActionLink("Home", "Index", "Home", htmlAttributes: new { @class = "yellow-text accent-3 new badge" })@*<a href="Home.aspx" class="yellow-text accent-3">Home</a>*@</li>
+                <li>@Html.ActionLink("Home", "Index", "Home", htmlAttributes: new { @class = "yellow-text accent-3 new badge" })</li>
                 <li>@Html.ActionLink("Search", "Map", "Home", htmlAttributes: new { @class = "yellow-text accent-3" })@*<a href="Map.aspx" class="yellow-text accent-3">Search</a>*@</li>
                 @*<li>@Html.ActionLink("Fancy", "ShoppingCart", "", htmlAttributes: new { @class = "new badge" })</li>*@
                @*<li><a href="3"><i class="material-icons left">shopping_cart</i><span class="new badge">4</span></a></li>*@
@@ -25,9 +24,9 @@
                 @{
                     if (User.Identity.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Cart", "ShoppingCart", "Store")@*<a href="ShoppingCart.aspx">Cart</a>*@</li>
-                        <li>@Html.ActionLink("Profile", "UserProfile", "Account")@*<a href="Profile.aspx">Profile</a>*@</li>
-                        <li>@Html.ActionLink("Manage Store", "StoreInventory", "Store")@*<a href="StoreInventory.aspx">Manage Store</a>*@</li>
+                        <li>@Html.ActionLink("Cart", "ShoppingCart", "Store")</li>
+                        <li>@Html.ActionLink("Profile", "Index", "Account", new { id = UrlParameter.Optional })</li>
+                        <li>@Html.ActionLink("Manage Store", "StoreInventory", "Store")</li>
                         <li><a href="#">Order History</a></li>
                         using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { @name = "loggingOut" }))
                         {
@@ -46,17 +45,17 @@
                 <li>
                     <div class="divider"></div>
                 </li>
-                <li>@Html.ActionLink("Home", "Index", "Home")@*<a href="Home.aspx">Home</a>*@</li>
-                <li>@Html.ActionLink("Search", "Map", "Home")@*<a href="Map.aspx">Search</a>*@</li>
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("Search", "Map", "Home")</li>
                 @{
                     if (User.Identity.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Cart", "ShoppingCart", "Store")@*<a href="ShoppingCart.aspx">Cart</a>*@</li>
+                        <li>@Html.ActionLink("Cart", "ShoppingCart", "Store")</li>
                         <li>
                             <div class="divider"></div>
                         </li>
-                        <li>@Html.ActionLink("Profile", "UserProfile", "Account")@*<a href="Profile.aspx">Profile</a>*@</li>
-                        <li>@Html.ActionLink("Manage Store", "StoreInventory", "Store")@*<a href="StoreInventory.aspx">Manage Store</a>*@</li>
+                        <li>@Html.ActionLink("Profile", "Index", "Account", new { id = UrlParameter.Optional })</li>
+                        <li>@Html.ActionLink("Manage Store", "StoreInventory", "Store")</li>
                         <li><a href="#">Order History</a></li>
                         using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { @name = "loggingOutMobile" }))
                         {
