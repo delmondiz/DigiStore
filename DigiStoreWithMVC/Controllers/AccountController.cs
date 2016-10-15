@@ -166,6 +166,11 @@ namespace DigiStoreWithMVC.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            //var allUsers = from u in UserManager.Users
+            //               select u;
+            //UserManager.RemoveLogin()
+
+            //ViewData["count"] = allUsers;
             return View();
         }
 

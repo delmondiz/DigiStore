@@ -15,6 +15,10 @@
             <div class="row center">
                 <div class="col s12">
                     <h1>Sign up</h1>
+                    @{
+//var users = ViewData["count"];
+
+                    }
                 </div>
                 <div class="col s12">
                     <h5>Already a member? <a href="~/Account/Login" class="btn waves-light blue darken-3 yellow-text accent-3 truncate" style="width: 100%">Log In!</a></h5>
@@ -27,38 +31,38 @@
                 </div>
                 <div class="input-field col s8">
                     @Html.LabelFor(m => m.Username)
-                    @Html.TextBoxFor(m => m.Username, new { @placeholder="coolone1234", @id="username" })
+                    @Html.TextBoxFor(m => m.Username, new { @placeholder = "coolone1234", @id = "username" })
                 </div>
                 <div class="col s4">
-                    @Html.ActionLink("Check Username", null, null, new { @class= "btn btn-large waves-effect blue darken-3 yellow-text accent-3", @style= "padding: 0; width: 100%", @id="checkUsername" })
+                    @Html.ActionLink("Check Username", null, null, new { @class = "btn btn-large waves-effect blue darken-3 yellow-text accent-3", @style = "padding: 0; width: 100%", @id = "checkUsername" })
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s6">
                     @Html.LabelFor(m => m.Password)
-                    @Html.PasswordFor(m => m.Password, new { @placeholder="hunter2", @id="password" })
+                    @Html.PasswordFor(m => m.Password, new { @placeholder = "hunter2", @id = "password" })
                     @Html.ValidationMessageFor(m => m.Password, "", new { @class = "red-text" })
                 </div>
                 <div class="input-field col s6">
                     @Html.LabelFor(m => m.ConfirmPassword)
-                    @Html.PasswordFor(m => m.ConfirmPassword, new { @placeholder="hunter2", @id="confirmPassword" })
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @placeholder = "hunter2", @id = "confirmPassword" })
                     @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "red-text" })
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s6">
                     @Html.LabelFor(m => m.FirstName)
-                    @Html.TextBoxFor(m => m.FirstName, new { @placeholder="Jane", @id="firstName" })
+                    @Html.TextBoxFor(m => m.FirstName, new { @placeholder = "Jane", @id = "firstName" })
                 </div>
                 <div class="input-field col s6">
                     @Html.LabelFor(m => m.LastName)
-                    @Html.TextBoxFor(m => m.LastName, new { @placeholder="Doe", @id="lastName" })
+                    @Html.TextBoxFor(m => m.LastName, new { @placeholder = "Doe", @id = "lastName" })
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
                     @Html.LabelFor(m => m.Email)
-                    @Html.TextBoxFor(m => m.Email, new { @placeholder="example@email.com", @id="email" })
+                    @Html.TextBoxFor(m => m.Email, new { @placeholder = "example@email.com", @id = "email" })
                 </div>
             </div>
             <div class="row">
@@ -72,21 +76,21 @@
                 </div>
                 <div class="input-field col s12 l6">
                     @Html.LabelFor(m => m.City)
-                    @Html.TextBoxFor(m => m.City, new { @placeholder="Toronto", @id="addressCity" })
+                    @Html.TextBoxFor(m => m.City, new { @placeholder = "Toronto", @id = "addressCity" })
                 </div>
                 <div class="input-field col s12 l6">
                     @Html.LabelFor(m => m.Province)
-                    @Html.TextBoxFor(m => m.Province, new { @placeholder="Ontario", @id="addressProvince" })
+                    @Html.TextBoxFor(m => m.Province, new { @placeholder = "Ontario", @id = "addressProvince" })
                 </div>
                 <div class="input-field col s12 l6">
                     @Html.LabelFor(m => m.PostalCode)
-                    @Html.TextBoxFor(m => m.PostalCode, new { @placeholder="H0H0H0", @id="addressPostal" })
+                    @Html.TextBoxFor(m => m.PostalCode, new { @placeholder = "H0H0H0", @id = "addressPostal" })
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
                     @Html.LabelFor(m => m.Street)
-                    @Html.TextBoxFor(m => m.Street, new { @placeholder="9 Suxxex Street", @id="addressStreet" })
+                    @Html.TextBoxFor(m => m.Street, new { @placeholder = "9 Suxxex Street", @id = "addressStreet" })
                     @Html.ValidationMessageFor(m => m.Street, "", new { @class = "red-text" })
                 </div>
             </div>
@@ -99,5 +103,5 @@
                 </div>
             </div>
         </div>
-    }
+                        }
 </div>
