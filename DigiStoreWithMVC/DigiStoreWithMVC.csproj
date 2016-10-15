@@ -374,6 +374,8 @@
     <Content Include="Views\Store\Index.cshtml" />
     <Content Include="Views\Store\StoreInventory.cshtml" />
     <Content Include="Views\Store\ShoppingCart.cshtml" />
+    <Content Include="Views\Account\_UserDetails.cshtml" />
+    <Content Include="Views\Account\_UserName.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

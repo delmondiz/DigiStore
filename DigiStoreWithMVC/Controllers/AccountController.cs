@@ -119,6 +119,7 @@ namespace DigiStoreWithMVC.Controllers
                 var existingUser = from users in db.Users
                                    where users.Email.Equals(model.Email)
                                    select users;
+
                 if (existingUser != null)
                 {
                     PasswordHasher hash = new PasswordHasher();

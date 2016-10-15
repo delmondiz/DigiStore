@@ -10,34 +10,35 @@ namespace DigiStoreWithMVC.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index(int? id)
+        public ActionResult Index()
         {
             using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
             {
-                if (id == null)
-                {
-                    return View();
-                }
+                var verifiedUser = (from u in db.Users
+                                       where u.Email == User.Identity.Name
+                                       select u).First();
 
-                User user = db.Users.Find(id);
+                User user = new User();
+                user = verifiedUser;
+
                 if (user == null)
                 {
-                    return HttpNotFound();
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
 
                 return View(user);
             }
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Index(User user)
-        {
-            using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
-            {
-                return View(user);
-            }
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Index(User user)
+        //{
+        //    using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
+        //    {
+        //        return View(user);
+        //    }
+        //}
 
         public ActionResult About()
         {
