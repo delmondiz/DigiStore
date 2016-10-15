@@ -85,12 +85,15 @@ namespace DigiStoreWithMVC.Controllers
 
             using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
             {
+                // Check if the user exists in the database.
                 var existingUser = from users in db.Users
                                     where users.Email.Equals(model.Email)
                                     select users;
+                // If the user does exist, we check that the password is correct.
                 if (existingUser != null)
                 {
                     PasswordHasher hash = new PasswordHasher();
+                    // If the password is correct, we return them to the login page.
                     if (hash.VerifyHashedPassword(existingUser.First().Password, model.Password) == PasswordVerificationResult.Failed)
                     {
                         ModelState.AddModelError("", "Invalid Username/Password.");
@@ -98,6 +101,8 @@ namespace DigiStoreWithMVC.Controllers
                     }
                 }
             }
+            
+            // If we reach here, the user is able to log in.
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
@@ -166,6 +171,11 @@ namespace DigiStoreWithMVC.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+
+            // Clearing the ASP.NET Users
+            // DO NOT UNCOMMENT BELOW UNLESS YOU WISH TO BRING ABOUT RUIN IN THE WORLD
+
+
             //var allUsers = from u in UserManager.Users
             //               where (u.Email != "crasykid37@hotmail.com" && u.Email != "awesomeaccn4@gmail.com")
             //               select u;
@@ -175,7 +185,7 @@ namespace DigiStoreWithMVC.Controllers
             //    UserManager.RemoveLogin(user.Id, null);
             //}
 
-            ViewData["count"] = UserManager.Users.Count();
+            //ViewData["count"] = UserManager.Users.Count();
             return View();
         }
 
@@ -221,7 +231,8 @@ namespace DigiStoreWithMVC.Controllers
                                 newUser.StateProv = model.Province;
                             if (model.PostalCode != null)
                                 newUser.PostalCode = model.PostalCode;
-                            //newUser.PhoneNumber = model.PhoneNumber;
+                            //if (model.PhoneNumber != null)
+                                //newUser.PhoneNumber = model.PhoneNumber;
                             db.Users.Add(newUser);
                             db.SaveChanges();
                             await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
