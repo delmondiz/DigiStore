@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DigiStoreWithMVC.Models;
 
 namespace DigiStoreWithMVC.Controllers
 {
@@ -10,6 +11,15 @@ namespace DigiStoreWithMVC.Controllers
     {
         public ActionResult Index()
         {
+            using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
+            {
+                var user = from u in db.Users
+                           where u.Email == User.Identity.Name
+                           select u;
+
+                if (user != null)
+                    return View(user.FirstOrDefault());
+            }
             return View();
         }
 
