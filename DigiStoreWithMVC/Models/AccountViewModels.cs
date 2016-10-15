@@ -53,12 +53,8 @@ namespace DigiStoreWithMVC.Models
         [EmailAddress]
         public string Email { get; set; }
 
-        //[Required]
-        //[DataType(DataType.Text)]
-        //[Display(Name = "Username")]
-        //public string Username { get; set; }
-
         [Required]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 8)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
@@ -102,9 +98,14 @@ namespace DigiStoreWithMVC.Models
 
         [Required]
         [DataType(DataType.Text)]
+        [Display(Name = "Country")]
+        public string Country { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
         [Display(Name = "Town/City")]
         public string City { get; set; }
-
+ 
         [Required]
         [DataType(DataType.Text)]
         [Display(Name = "Province/State")]

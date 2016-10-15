@@ -5,17 +5,17 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="5d6163ca174e477481c502ee09929921" Name="Diagram1" >
-        <EntityTypeShape EntityType="DigiStoreDBModel.User" Width="1.5" PointX="7.75" PointY="1.5" />
-        <EntityTypeShape EntityType="DigiStoreDBModel.Item" Width="1.5" PointX="10.125" PointY="1.5" />
-        <EntityTypeShape EntityType="DigiStoreDBModel.Review" Width="1.5" PointX="7.75" PointY="6.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DigiStoreDBModel.PaymentMethod" Width="1.5" PointX="5.5" PointY="1.5" />
-        <EntityTypeShape EntityType="DigiStoreDBModel.Order" Width="1.5" PointX="10.125" PointY="5.125" />
+        <EntityTypeShape EntityType="DigiStoreDBModel.User" Width="1.5" PointX="2.875" PointY="1.125" />
+        <EntityTypeShape EntityType="DigiStoreDBModel.Item" Width="1.5" PointX="5.25" PointY="1.125" />
+        <EntityTypeShape EntityType="DigiStoreDBModel.Review" Width="1.5" PointX="2.875" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DigiStoreDBModel.PaymentMethod" Width="1.5" PointX="0.625" PointY="1.125" />
+        <EntityTypeShape EntityType="DigiStoreDBModel.Order" Width="1.5" PointX="5.25" PointY="4.75" />
         <AssociationConnector Association="DigiStoreDBModel.UserPaymentMethod" />
         <AssociationConnector Association="DigiStoreDBModel.UserReview" />
         <AssociationConnector Association="DigiStoreDBModel.UserOrder" />
         <AssociationConnector Association="DigiStoreDBModel.OrderItem" />
         <AssociationConnector Association="DigiStoreDBModel.UserItem" />
-        <EntityTypeShape EntityType="DigiStoreDBModel.Appointment" Width="1.5" PointX="5.5" PointY="4.25" />
+        <EntityTypeShape EntityType="DigiStoreDBModel.Appointment" Width="1.5" PointX="0.625" PointY="3.875" />
         <AssociationConnector Association="DigiStoreDBModel.UserAppointment" />
         <AssociationConnector Association="DigiStoreDBModel.OrderAppointment" ></AssociationConnector>
         <AssociationConnector Association="DigiStoreDBModel.OrderPaymentMethod" ManuallyRouted="false" >

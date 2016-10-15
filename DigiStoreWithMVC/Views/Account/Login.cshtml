@@ -69,7 +69,6 @@
 }
 
 <div class="container">
-    @*<form class="row">*@
     @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "row" }))
     {
         @Html.AntiForgeryToken()
@@ -87,20 +86,16 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    @*<label for="username">Username</label>*@
                     @Html.LabelFor(m => m.Email)
-                    @*<input type="text" placeholder="coolone1234" id="username" required="required" />*@
                     @Html.TextBoxFor(m => m.Email, new { @placeholder = "example@email.com", @id = "email" })
-                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "red-text" })
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    @*<label for="password">Password</label>*@
                     @Html.LabelFor(m => m.Password)
-                    @*<input type="password" placeholder="hunter2" id="password" required="required" />*@
                     @Html.PasswordFor(m => m.Password, new { @placeholder = "hunter2", @id = "password" })
-                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "red-text" })
                 </div>
             </div>
             <div class="row">
@@ -114,6 +109,5 @@
                 </div>
             </div>
         </div>
-        }
-    @*</form>*@
+    }
 </div>
