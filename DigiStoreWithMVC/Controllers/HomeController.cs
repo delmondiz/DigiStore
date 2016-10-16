@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DigiStoreWithMVC.Models;
+using System.Data.Entity;
 
 namespace DigiStoreWithMVC.Controllers
 {
@@ -22,9 +24,32 @@ namespace DigiStoreWithMVC.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Contact(HomeViewModels model)
+        {
+            if (ModelState.IsValid)
+            {
+                using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
+                {
+                    Review newReview = db.Reviews.Create();
+                    newReview.Id = db.Reviews.Count();
+                    if(model.ReviewText != null)
+                        newReview.ReviewText = model.ReviewText;
+                    newReview.Rating = 1;
+                    newReview.Date = DateTime.Now;
+                    db.Reviews.Add(newReview);
+                    db.SaveChanges();
+                    ViewBag.Message = "Thanks!";
+                    return View();
+                }
+            }
+            else
+            {
+                return View(model);
+            }
         }
         public ActionResult Map()
         {
