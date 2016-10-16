@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DigiStoreWithMVC.Models;
+using System.Data.Entity;
+using DigiStoreWithMVC.Models;
+using System.Net;
 
 namespace DigiStoreWithMVC.Controllers
 {
@@ -13,15 +16,35 @@ namespace DigiStoreWithMVC.Controllers
         {
             using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
             {
-                var user = from u in db.Users
-                           where u.Email == User.Identity.Name
-                           select u;
+                var verifiedUser = (from u in db.Users
+                                       where u.Email == User.Identity.Name
+                                       select u).FirstOrDefault();
+                if (verifiedUser != null)
+                {
+                    User user = new User();
+                    user = verifiedUser;
 
-                if (user != null)
-                    return View(user.FirstOrDefault());
+                    if (user == null)
+                    {
+                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    }
+
+                    return View(user);
+                }
+                else
+                    return View();
             }
-            return View();
         }
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Index(User user)
+        //{
+        //    using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
+        //    {
+        //        return View(user);
+        //    }
+        //}
 
         public ActionResult About()
         {
@@ -32,9 +55,32 @@ namespace DigiStoreWithMVC.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Contact(HomeViewModels model)
+        {
+            if (ModelState.IsValid)
+            {
+                using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
+                {
+                    Review newReview = db.Reviews.Create();
+                    newReview.Id = db.Reviews.Count();
+                    if(model.ReviewText != null)
+                        newReview.ReviewText = model.ReviewText;
+                    newReview.Rating = 1;
+                    newReview.Date = DateTime.Now;
+                    db.Reviews.Add(newReview);
+                    db.SaveChanges();
+                    ViewBag.Message = "Thanks!";
+                    return View();
+                }
+            }
+            else
+            {
+                return View(model);
+            }
         }
         public ActionResult Map()
         {

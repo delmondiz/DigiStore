@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model DigiStoreWithMVC.Models.User
+
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>@ViewBag.Title</title>
@@ -23,7 +25,7 @@
                     if (User.Identity.IsAuthenticated)
                     {
                         <li>@Html.ActionLink("Cart", "ShoppingCart", "Store")</li>
-                        <li>@Html.ActionLink("Profile", "UserProfile", "Account")</li>
+                        <li>@Html.ActionLink("Profile", "Index", new { controller = "Account", action = "Index"})</li>
                         <li>@Html.ActionLink("Manage Store", "StoreInventory", "Store")</li>
                         <li><a href="#">Order History</a></li>
                         using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { @name = "loggingOut" }))
@@ -52,14 +54,13 @@
                         <li>
                             <div class="divider"></div>
                         </li>
-                        <li>@Html.ActionLink("Profile", "UserProfile", "Account")</li>
+                        <li>@Html.ActionLink("Profile", "Index", new { controller = "Account", action = "Index"})</li>
                         <li>@Html.ActionLink("Manage Store", "StoreInventory", "Store")</li>
                         <li><a href="#">Order History</a></li>
                         using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { @name = "loggingOutMobile" }))
                         {
                             @Html.AntiForgeryToken()
                             <li><a href="#" onclick="document.forms['loggingOutMobile'].submit(); ;return false;">Log Off</a></li>
-
                         }
                     }
                     else

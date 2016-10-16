@@ -230,18 +230,38 @@ namespace DigiStoreWithMVC.Controllers
             {
                 return View(model);
             }
-            var result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
-            if (result.Succeeded)
+
+            using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
             {
-                var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-                if (user != null)
+                var dbUser = (from u in db.Users
+                              where u.Email == User.Identity.Name
+                              select u).First();
+
+                if (dbUser != null)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                }
-                return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
+                    PasswordHasher hash = new PasswordHasher();
+                    if (hash.VerifyHashedPassword(dbUser.Password, model.OldPassword) == PasswordVerificationResult.Success)
+                    {
+                        dbUser.Password = hash.HashPassword(model.NewPassword);
+                        db.SaveChanges();
+                        var result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
+                        if (result.Succeeded)
+                        {
+                            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                            if (user != null)
+                            {
+                                await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                            }
+                            return View("Index", "Account");
+                        }
+                        AddErrors(result);
+                        return View(model);
+                    }
+                    else
+                        return View();
+                } else
+                    return View();
             }
-            AddErrors(result);
-            return View(model);
         }
 
         //

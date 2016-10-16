@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using DigiStoreWithMVC.Models;
 using System.Data.Entity;
+using System.Net;
 
 namespace DigiStoreWithMVC.Controllers
 {
@@ -25,7 +26,7 @@ namespace DigiStoreWithMVC.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -37,9 +38,9 @@ namespace DigiStoreWithMVC.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -56,11 +57,75 @@ namespace DigiStoreWithMVC.Controllers
         }
 
         //
-        // GET: /Account/UserProfile
-        public ActionResult UserProfile()
+        // GET: /Account/Index
+        public ActionResult Index()
         {
-            return View();
+            using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
+            {
+                
+                User user = (from u in db.Users
+                            where u.Email == User.Identity.Name
+                            select u).FirstOrDefault();
+
+                if (user == null)
+                {
+                    return View();
+                }
+
+                return View(user);
+            }
         }
+
+        //
+        // POST: /Account/Index
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Index(User model)
+        {
+            using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
+            {
+                User existingUser = (from u in db.Users
+                                     where u.Email == User.Identity.Name
+                                     select u).FirstOrDefault();
+                if (existingUser != null)
+                {
+                    if (model.FirstName != null)
+                        existingUser.FirstName = model.FirstName;
+                    if (model.LastName != null)
+                        existingUser.LastName = model.LastName;
+                    if (model.Address != null)
+                        existingUser.Address = model.Address;
+                    if (model.City != null)
+                        existingUser.City = model.City;
+                    if (model.StateProv != null)
+                        existingUser.StateProv = model.StateProv;
+                    if (model.PostalCode != null)
+                        existingUser.PostalCode = model.PostalCode;
+                    db.SaveChanges();
+                    ViewBag.Message = "General Information successfully updated!";
+                    return View(existingUser);
+                }
+
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Index(User user)
+        //{
+        //    using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
+        //    {
+        //        if (ModelState.IsValid)
+        //        {
+        //            db.Entry(user).State = EntityState.Modified;
+        //            db.SaveChanges();
+        //            ViewBag.Message = "General Information successfully updated!";
+        //            return View(user);
+        //        }
+        //        return View(user);
+        //    }
+        //}
 
         //
         // GET: /Account/Login
@@ -152,7 +217,7 @@ namespace DigiStoreWithMVC.Controllers
             // You can configure the account lockout settings in IdentityConfig
 
 
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -487,6 +552,63 @@ namespace DigiStoreWithMVC.Controllers
         public ActionResult ExternalLoginFailure()
         {
             return View();
+        }
+
+        //
+        // GET: /Manage/ChangePassword
+        public ActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Account/ChangePassword
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
+            {
+                // Retrieve the logged in user from the database.
+                var dbUser = (from u in db.Users
+                              where u.Email == User.Identity.Name
+                              select u).FirstOrDefault();
+
+                // Check if the user is not null.
+                if (dbUser != null)
+                {
+                    PasswordHasher hash = new PasswordHasher();
+                    if (hash.VerifyHashedPassword(dbUser.Password, model.OldPassword) == PasswordVerificationResult.Success)
+                    {
+                        dbUser.Password = hash.HashPassword(model.NewPassword);
+                        db.SaveChanges();
+                        var result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
+                        if (result.Succeeded)
+                        {
+                            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                            if (user != null)
+                            {
+                                await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                            }
+                            ViewBag.Message = "Password successfully updated!";
+                            return View("Index", dbUser);
+                        }
+                        AddErrors(result);
+                        return View(model);
+                    }
+                    else
+                        return View();
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
         }
 
         protected override void Dispose(bool disposing)
