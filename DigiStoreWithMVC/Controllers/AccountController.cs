@@ -57,41 +57,75 @@ namespace DigiStoreWithMVC.Controllers
         }
 
         //
-        // GET: /Account/UserProfile
-        public ActionResult Index(int? id)
+        // GET: /Account/Index
+        public ActionResult Index()
         {
             using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
             {
-                if (id == null)
-                {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                }
+                
+                User user = (from u in db.Users
+                            where u.Email == User.Identity.Name
+                            select u).FirstOrDefault();
 
-                User user = db.Users.Find(id);
                 if (user == null)
                 {
-                    return HttpNotFound();
+                    return View();
                 }
 
                 return View(user);
             }
         }
 
+        //
+        // POST: /Account/Index
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index(User user)
+        public ActionResult Index(User model)
         {
             using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
             {
-                if (ModelState.IsValid)
+                User existingUser = (from u in db.Users
+                                     where u.Email == User.Identity.Name
+                                     select u).FirstOrDefault();
+                if (existingUser != null)
                 {
-                    db.Entry(user).State = EntityState.Modified;
+                    if (model.FirstName != null)
+                        existingUser.FirstName = model.FirstName;
+                    if (model.LastName != null)
+                        existingUser.LastName = model.LastName;
+                    if (model.Address != null)
+                        existingUser.Address = model.Address;
+                    if (model.City != null)
+                        existingUser.City = model.City;
+                    if (model.StateProv != null)
+                        existingUser.StateProv = model.StateProv;
+                    if (model.PostalCode != null)
+                        existingUser.PostalCode = model.PostalCode;
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    ViewBag.Message = "General Information successfully updated!";
+                    return View(existingUser);
                 }
-                return View(user);
+
+                return RedirectToAction("Index", "Home");
             }
         }
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Index(User user)
+        //{
+        //    using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
+        //    {
+        //        if (ModelState.IsValid)
+        //        {
+        //            db.Entry(user).State = EntityState.Modified;
+        //            db.SaveChanges();
+        //            ViewBag.Message = "General Information successfully updated!";
+        //            return View(user);
+        //        }
+        //        return View(user);
+        //    }
+        //}
 
         //
         // GET: /Account/Login
@@ -518,6 +552,63 @@ namespace DigiStoreWithMVC.Controllers
         public ActionResult ExternalLoginFailure()
         {
             return View();
+        }
+
+        //
+        // GET: /Manage/ChangePassword
+        public ActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Account/ChangePassword
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
+            {
+                // Retrieve the logged in user from the database.
+                var dbUser = (from u in db.Users
+                              where u.Email == User.Identity.Name
+                              select u).FirstOrDefault();
+
+                // Check if the user is not null.
+                if (dbUser != null)
+                {
+                    PasswordHasher hash = new PasswordHasher();
+                    if (hash.VerifyHashedPassword(dbUser.Password, model.OldPassword) == PasswordVerificationResult.Success)
+                    {
+                        dbUser.Password = hash.HashPassword(model.NewPassword);
+                        db.SaveChanges();
+                        var result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
+                        if (result.Succeeded)
+                        {
+                            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                            if (user != null)
+                            {
+                                await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                            }
+                            ViewBag.Message = "Password successfully updated!";
+                            return View("Index", dbUser);
+                        }
+                        AddErrors(result);
+                        return View(model);
+                    }
+                    else
+                        return View();
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
         }
 
         protected override void Dispose(bool disposing)
