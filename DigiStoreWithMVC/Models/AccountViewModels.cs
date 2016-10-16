@@ -119,6 +119,10 @@ namespace DigiStoreWithMVC.Models
         [DataType(DataType.Text)]
         [Display(Name = "Address")]
         public string Street { get; set; }
+
+        [Phone]
+        [Display(Name = "Phone Number")]
+        public string PhoneNumber { get; set; }
     }
 
     public class ResetPasswordViewModel
