@@ -1,0 +1,44 @@
+﻿@model DigiStoreWithMVC.Models.User
+
+<div class="col s12">
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title"><i class="material-icons">settings</i>General</span>
+            <br />
+            <p class="row">
+                <span class="col s6">
+                    @Html.DisplayNameFor(model => model.FirstName)
+                    @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", @type = "text", @placeholder = Model.FirstName, @id = "firstname" } })
+                </span>
+                <span class="col s6">
+                    @Html.DisplayNameFor(model => model.LastName)
+                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", @type = "text", @placeholder = Model.LastName, @id = "lastname" } })
+                </span>
+                <span class="col s6">
+                    @Html.DisplayNameFor(model => model.Email)
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @type = "text", @placeholder = Model.Email, @id = "email" } })
+                </span>
+                <span class="col s6">
+                    @Html.DisplayNameFor(model => model.Address)
+                    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", @type = "text", @placeholder = Model.Address, @id = "address" } })
+                </span>
+                <span class="col s6">
+                    @Html.DisplayNameFor(model => model.City)
+                    @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control", @type = "text", @placeholder = Model.City, @id = "city" } })
+                </span>
+                <span class="col s6">
+                    @Html.DisplayNameFor(model => model.StateProv)
+                    @Html.EditorFor(model => model.StateProv, new { htmlAttributes = new { @class = "form-control", @type = "text", @placeholder = Model.StateProv, @id = "stateprov" } })
+                </span>
+                <span class="col s6">
+                    @Html.DisplayNameFor(model => model.PostalCode)
+                    @Html.EditorFor(model => model.PostalCode, new { htmlAttributes = new { @class = "form-control", @type = "text", @placeholder = Model.PostalCode, @id = "postalcode" } })
+
+
+                    <input type="submit" value="Save Changes" class="waves-effect waves-light btn blue darken-3 yellow-text accent-3">
+                </span>
+            </p>
+        </div>
+    </div>
+
+</div>

@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using DigiStoreWithMVC.Models;
 using System.Data.Entity;
+using DigiStoreWithMVC.Models;
+using System.Net;
 
 namespace DigiStoreWithMVC.Controllers
 {
@@ -12,8 +14,33 @@ namespace DigiStoreWithMVC.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
+            {
+                var verifiedUser = (from u in db.Users
+                                       where u.Email == User.Identity.Name
+                                       select u).First();
+
+                User user = new User();
+                user = verifiedUser;
+
+                if (user == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+
+                return View(user);
+            }
         }
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Index(User user)
+        //{
+        //    using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
+        //    {
+        //        return View(user);
+        //    }
+        //}
 
         public ActionResult About()
         {

@@ -1,8 +1,16 @@
-﻿@{
+﻿@model DigiStoreWithMVC.Models.User
+
+@{
     ViewBag.Title = "Home";
 }
 
 <div class="container">
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <h2 class="center">Welcome @Html.DisplayFor(model => model.UserName)</h2>
+    }
+
     <div class="center col l12 m12 s12">
         <div class="carousel">
             <a class="carousel-item" href="#one!">

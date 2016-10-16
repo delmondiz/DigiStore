@@ -1,0 +1,79 @@
+﻿@model DigiStoreWithMVC.Models.ChangePasswordViewModel
+
+@{
+    ViewBag.Title = "Profile";
+}
+
+<div class="container">
+    <div class="section">
+
+        <div class="row">
+
+            @{ }
+
+            <div class="section no-pad-bot" id="index-banner">
+                <h1 class="header center blue-text darken-3">@Html.Partial("_UserName")'s Profile</h1>
+            </div>
+
+            <div class="row">
+                <div class="card-panel blue darken-3">
+                    <div class="card-content row">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.Partial("_UserDetails")
+                        }
+
+                        @using (Html.BeginForm("ChangePassword", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="col s12">
+
+                                <div class="card">
+                                    <div class="card-content">
+                                        <span class="card-title"><i class="material-icons">lock</i>Change Password</span>
+                                        <br />
+                                        @Html.ValidationSummary("", new { @class = "text-danger" })
+                                        @Html.LabelFor(m => m.OldPassword)
+                                        @Html.PasswordFor(m => m.OldPassword, new { @class = "form-control", @type = "text", @placeholder = m.OldPassword })
+                                        <input placeholder="Old Password" id="old_pass" type="text" class="validate">
+
+                                        @Html.LabelFor(m => m.NewPassword)
+                                        @Html.PasswordFor(m => m.NewPassword, new { @class = "form-control" })
+                                        <input placeholder="New Password" id="new_pass" type="text" class="validate">
+
+                                        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+                                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                                        <input placeholder="Confirm Password" id="confirm_pass" type="text" class="validate">
+
+                                        <br />
+                                        <a class="waves-effect waves-light btn blue darken-3 yellow-text accent-3">Save Changes</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <div class="col s12">
+                            <div class="card">
+                                <div class="card-content">
+                                    <span class="card-title"><i class="material-icons">credit_card</i>Payment</span>
+                                    <br />
+                                    <label for="cardholder">Cardholder</label>
+                                    <input placeholder="Bob Barker" id="cardholder" type="text" class="validate">
+                                    <label for="card_number">Card Number</label>
+                                    <input placeholder="5555 5555 5555 5555" id="card_number" type="text" class="validate">
+                                    <label for="expiry">Expiry Date</label>
+                                    <input placeholder="TODAY!!?!??!" id="expiry" type="text" class="validate">
+                                    <br />
+                                    <a class="waves-effect waves-light btn blue darken-3 yellow-text accent-3">Save Changes</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -371,10 +371,12 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Map.cshtml" />
-    <Content Include="Views\Account\UserProfile.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Store\Index.cshtml" />
     <Content Include="Views\Store\StoreInventory.cshtml" />
     <Content Include="Views\Store\ShoppingCart.cshtml" />
+    <Content Include="Views\Account\_UserDetails.cshtml" />
+    <Content Include="Views\Account\_UserName.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
