@@ -113,5 +113,10 @@ namespace DigiStoreWithMVC.Controllers
 
         //    base.Dispose(disposing);
         //}
+
+        public ActionResult SendFeedback()
+        {
+            return View();
+        }
     }
 }
