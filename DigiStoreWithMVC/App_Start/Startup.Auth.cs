@@ -16,6 +16,8 @@ namespace DigiStoreWithMVC
         {
             // Configure the db context, user manager and signin manager to use a single instance per request
             app.CreatePerOwinContext(ApplicationDbContext.Create);
+            //app.CreatePerOwinContext(DigistoreApplicationDbContext.Create);
+            //app.CreatePerOwinContext(<ApplicationUserManager>)
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
 
