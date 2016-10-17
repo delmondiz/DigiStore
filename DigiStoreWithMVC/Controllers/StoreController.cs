@@ -27,18 +27,23 @@ namespace DigiStoreWithMVC.Controllers
         //    return View();
         //}
 
-        public ActionResult StoreInventory(int? id)
+        public ActionResult StoreInventory()
         {
-            if (id == null)
+            if (User.Identity.IsAuthenticated)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                User currentUser = (from u in db.Users
+                                    where u.Email == User.Identity.Name
+                                    select u).FirstOrDefault();
+
+                if (currentUser != null)
+                {
+                    return View(currentUser);
+                }
+                else
+                    return RedirectToAction("Index", "Home");
             }
-            User user = db.Users.Find(id);
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
-            return View();
+            else
+                return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]
@@ -57,7 +62,12 @@ namespace DigiStoreWithMVC.Controllers
 
         public ActionResult ShoppingCart()
         {
-            return View();
+            if (User.Identity.IsAuthenticated)
+            {
+                return View();
+            }
+            else
+                return RedirectToAction("Index", "Home");
         }
 
         //public ActionResult Browse(string userId)

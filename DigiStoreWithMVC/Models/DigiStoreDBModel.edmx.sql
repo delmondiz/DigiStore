@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/03/2016 17:38:13
--- Generated from EDMX file: F:\ewchr_000\Sheridan\Capstone\DigiStore\DigiStoreWithMVC\Models\DigiStoreDBModel.edmx
+-- Date Created: 10/17/2016 02:05:57
+-- Generated from EDMX file: C:\Users\Crasy\Source\Repos\DigiStore\DigiStoreWithMVC\Models\DigiStoreDBModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -17,11 +17,71 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_OrderAppointment]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Appointments] DROP CONSTRAINT [FK_OrderAppointment];
+GO
+IF OBJECT_ID(N'[dbo].[FK_OrderItem]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Items] DROP CONSTRAINT [FK_OrderItem];
+GO
+IF OBJECT_ID(N'[dbo].[FK_OrderPaymentMethod]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Orders] DROP CONSTRAINT [FK_OrderPaymentMethod];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserAppointment_Appointment]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserAppointment] DROP CONSTRAINT [FK_UserAppointment_Appointment];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserAppointment_User]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserAppointment] DROP CONSTRAINT [FK_UserAppointment_User];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserItem]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Items] DROP CONSTRAINT [FK_UserItem];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserOrder_Order]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserOrder] DROP CONSTRAINT [FK_UserOrder_Order];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserOrder_User]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserOrder] DROP CONSTRAINT [FK_UserOrder_User];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserPaymentMethod]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PaymentMethods] DROP CONSTRAINT [FK_UserPaymentMethod];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserReview_Review]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserReview] DROP CONSTRAINT [FK_UserReview_Review];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserReview_User]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserReview] DROP CONSTRAINT [FK_UserReview_User];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[Appointments]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Appointments];
+GO
+IF OBJECT_ID(N'[dbo].[Items]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Items];
+GO
+IF OBJECT_ID(N'[dbo].[Orders]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Orders];
+GO
+IF OBJECT_ID(N'[dbo].[PaymentMethods]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[PaymentMethods];
+GO
+IF OBJECT_ID(N'[dbo].[Reviews]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Reviews];
+GO
+IF OBJECT_ID(N'[dbo].[UserAppointment]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[UserAppointment];
+GO
+IF OBJECT_ID(N'[dbo].[UserOrder]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[UserOrder];
+GO
+IF OBJECT_ID(N'[dbo].[UserReview]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[UserReview];
+GO
+IF OBJECT_ID(N'[dbo].[Users]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Users];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -33,14 +93,14 @@ CREATE TABLE [dbo].[Users] (
     [UserName] nvarchar(max)  NOT NULL,
     [Email] nvarchar(max)  NOT NULL,
     [Password] nvarchar(max)  NOT NULL,
-    [Salt] nvarchar(max)  NOT NULL,
-    [FirstName] nvarchar(max)  NOT NULL,
-    [LastName] nvarchar(max)  NOT NULL,
-    [Address] nvarchar(max)  NOT NULL,
-    [City] nvarchar(max)  NOT NULL,
-    [Country] nvarchar(max)  NOT NULL,
-    [PostalCode] nvarchar(max)  NOT NULL,
-    [PhoneNumber] nvarchar(max)  NOT NULL
+    [FirstName] nvarchar(max)  NULL,
+    [LastName] nvarchar(max)  NULL,
+    [Address] nvarchar(max)  NULL,
+    [City] nvarchar(max)  NULL,
+    [Country] nvarchar(max)  NULL,
+    [PostalCode] nvarchar(max)  NULL,
+    [PhoneNumber] int  NULL,
+    [StateProv] nvarchar(max)  NULL
 );
 GO
 
@@ -49,17 +109,20 @@ CREATE TABLE [dbo].[Items] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
     [Description] nvarchar(max)  NOT NULL,
-    [Price] nvarchar(max)  NOT NULL,
-    [Weight] nvarchar(max)  NOT NULL,
+    [Price] decimal(18,0)  NOT NULL,
+    [Weight] float  NULL,
     [OrderId] int  NOT NULL,
-    [UserId] int  NOT NULL
+    [UserId] int  NOT NULL,
+    [Quantity] int  NOT NULL
 );
 GO
 
 -- Creating table 'Reviews'
 CREATE TABLE [dbo].[Reviews] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [ReviewText] nvarchar(max)  NOT NULL
+    [ReviewText] nvarchar(max)  NOT NULL,
+    [Rating] int  NOT NULL,
+    [Date] datetime  NOT NULL
 );
 GO
 
@@ -75,8 +138,8 @@ GO
 -- Creating table 'Orders'
 CREATE TABLE [dbo].[Orders] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Tax] nvarchar(max)  NOT NULL,
-    [TotalPrice] nvarchar(max)  NOT NULL,
+    [Tax] decimal(18,0)  NOT NULL,
+    [TotalPrice] decimal(18,0)  NOT NULL,
     [PaymentMethod_Id] int  NOT NULL
 );
 GO
@@ -84,13 +147,12 @@ GO
 -- Creating table 'Appointments'
 CREATE TABLE [dbo].[Appointments] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Date] nvarchar(max)  NOT NULL,
-    [Time] nvarchar(max)  NOT NULL,
+    [Date] datetime  NOT NULL,
     [Address] nvarchar(max)  NOT NULL,
     [City] nvarchar(max)  NOT NULL,
     [Country] nvarchar(max)  NOT NULL,
     [PostalCode] nvarchar(max)  NOT NULL,
-    [PaymentMethodId] nvarchar(max)  NOT NULL,
+    [PaymentMethodId] int  NULL,
     [Order_Id] int  NULL
 );
 GO

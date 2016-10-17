@@ -178,9 +178,10 @@
     <h7>Tax:$3.11</h7>
     <h4>Grand Total:$27.05</h4>
 
-    <button type="button" title="Continue Shopping" class="button waves-effect waves-light btn green accent-4  btn-proceed-checkout btn-checkout"><span><span>Continue Shopping</span></span></button>
-    <a class="modal-trigger waves-effect waves-light btn" href="#modal1">Proceed to Checkout</a>
-    <!-- Modal Structure -->
+    @Html.ActionLink("Continue Shopping", "Map", new { controller = "Home", action = "Map" }, htmlAttributes: new { @class = "btn waves-effect blue darken-3 yellow-text accent-3" })
+    @Html.ActionLink("Proceed to Checkout", null, null, htmlAttributes: new { @class = "btn waves-effect blue darken-4 yellow-text accent-5" })
+    @*<a class="modal-trigger waves-effect waves-light btn" href="#modal1">Proceed to Checkout</a>*@
+    <!-- Modal Structure -->    
     <div id="modal1" class="modal modal-fixed-footer">
         <div class="modal-content">
             <h4>AGREEMENT</h4>

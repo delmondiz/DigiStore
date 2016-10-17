@@ -1,10 +1,7 @@
 ﻿@model DigiStoreWithMVC.Models.User
 @{
-    ViewBag.Title = "StoreInventory";
+    ViewBag.Title = "Store Inventory";
 }
-
-@using (Html.BeginForm())
-{
     @Html.AntiForgeryToken()
     <br />
     <div class="row">
@@ -54,9 +51,7 @@
             </div>
         </div>
         <ul id="storeInventoryList" class="collapsible" data-collapsible="accordion">
-            @if (Model.Items != null)
-            {
-                foreach (DigiStoreWithMVC.Models.Item item in Model.Items)
+                @foreach (DigiStoreWithMVC.Models.Item item in Model.Items)
                 {
                     <li>
                         <div class="collapsible-header">
@@ -111,8 +106,7 @@
                             </div>
                         </div>
                     </li>
-                }
-            }
+                }            
             @*<li>
                     <div class="collapsible-header">
                         <img src="~/img/jinx.png" height="50" width="50" />
@@ -249,4 +243,3 @@
                 </li>*@
         </ul>
     </div>
-}
