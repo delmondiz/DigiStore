@@ -15,23 +15,16 @@ namespace DigiStoreWithMVC.Controllers
         {
             using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
             {
-                var verifiedUser = (from u in db.Users
+                User user = (from u in db.Users
                                        where u.Email == User.Identity.Name
                                        select u).FirstOrDefault();
-                if (verifiedUser != null)
+
+                if (user == null)
                 {
-                    User user = new User();
-                    user = verifiedUser;
-
-                    if (user == null)
-                    {
-                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                    }
-
-                    return View(user);
-                }
-                else
                     return View();
+                }
+
+                return View(user);
             }
         }
 
