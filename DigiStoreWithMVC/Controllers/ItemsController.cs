@@ -152,13 +152,14 @@ namespace DigiStoreWithMVC.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                //User user = (from u in db.Users where u.Email == User.Identity.Name select u).FirstOrDefault();
+                User user = (from u in db.Users where u.Email == User.Identity.Name select u).FirstOrDefault();
                 Item item = (from i in db.Items where i.Id == id select i).FirstOrDefault();
                 db.Items.Attach(item);
-                db.Items.Remove(item);
-                //user.Items.Remove(item);
+                //db.Items.Remove(item);
+                user.Items.Remove(item);
                 //db.Users.Where(u => u.Email == user.Email).FirstOrDefault().Items.Remove(item);
                 //db.Items.Remove(item);
+                db.ChangeTracker.DetectChanges();
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
