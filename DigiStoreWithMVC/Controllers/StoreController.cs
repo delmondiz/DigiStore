@@ -27,18 +27,22 @@ namespace DigiStoreWithMVC.Controllers
         //    return View();
         //}
 
-        public ActionResult StoreInventory(int? id)
+        public ActionResult StoreInventory()
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            User user = db.Users.Find(id);
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+            //User user = db.Users.Find(id);
+            User user = (from u in db.Users
+                         where u.Email == User.Identity.Name
+                         select u).FirstOrDefault();
+
             if (user == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            return View();
+            return View(user);
         }
 
         [HttpPost]
