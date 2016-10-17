@@ -22,10 +22,19 @@ namespace DigiStoreWithMVC.Controllers
             return View();       
         }
 
-        //public ActionResult StorePage()
-        //{
-        //    return View();
-        //}
+        public ActionResult Index(User user)
+        {
+            User checkUser = (from u in db.Users
+                              where u.UserName == user.UserName
+                              select u).FirstOrDefault();
+            if (checkUser != null)
+                return View(user);
+            else
+            {
+                ViewBag.Message = "That user does not exist";
+                return View();
+            }
+        }
 
         public ActionResult StoreInventory()
         {

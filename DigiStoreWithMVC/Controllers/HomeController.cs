@@ -82,11 +82,28 @@ namespace DigiStoreWithMVC.Controllers
                 return View(model);
             }
         }
+
         public ActionResult Map()
         {
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Map(string inputSearch)
+        {
+            using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
+            {
+                List<User> users = (from u in db.Users
+                                    where u.UserName.ToLower().Contains(inputSearch.ToLower())
+                                    select u).ToList();
+                if (users != null)
+                {
+                    ViewData["users"] = users;
+                }
+                return PartialView("_MapResults");
+            }
         }
     }
 }
