@@ -1,4 +1,4 @@
-﻿
+﻿@model DigiStoreWithMVC.Models.User
 @{
     ViewBag.Title = "StorePage";
 }
@@ -19,19 +19,22 @@
                         <div class="card col l6 m6 s12">
                             <div class="card-content">
                                 <span class="card-title">Contact</span>
-                                <p>
-                                    100 Main St.
-                                    <br />
-                                    Toronto, Ontario
-                                    <br />
-                                    ABC123
-                                    <br />
-                                    <br />
-                                    (555) 555-5555
-                                    <br />
-                                    <br />
-                                    sample@gmail.com
-                                </p>
+                                @using (Html.BeginForm())
+                                {
+                                    <p>
+                                        @Html.DisplayFor(storeName => storeName.Address)
+                                        <br />
+                                        @Html.DisplayNameFor(model => model.City)
+                                        <br />
+                                        @Html.DisplayNameFor(model => model.StateProv)
+                                        <br />
+                                        @Html.DisplayNameFor(model => model.Country)
+                                        <br />
+                                        @Html.DisplayNameFor(model => model.PostalCode)
+                                        <br />
+                                        @Html.DisplayNameFor(model => model.PhoneNumber)
+                                    </p>
+                                }
                             </div>
                         </div>
 
