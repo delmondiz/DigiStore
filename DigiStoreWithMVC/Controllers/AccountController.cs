@@ -62,6 +62,7 @@ namespace DigiStoreWithMVC.Controllers
         {
             using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
             {
+                
                 User user = (from u in db.Users
                             where u.Email == User.Identity.Name
                             select u).FirstOrDefault();
@@ -108,6 +109,23 @@ namespace DigiStoreWithMVC.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Index(User user)
+        //{
+        //    using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
+        //    {
+        //        if (ModelState.IsValid)
+        //        {
+        //            db.Entry(user).State = EntityState.Modified;
+        //            db.SaveChanges();
+        //            ViewBag.Message = "General Information successfully updated!";
+        //            return View(user);
+        //        }
+        //        return View(user);
+        //    }
+        //}
 
         //
         // GET: /Account/Login
