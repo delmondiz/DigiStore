@@ -15,6 +15,8 @@
     <EntitySet Name="UserReview" EntityType="DigiStoreDBModel.Store.UserReview" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="UserOrder" EntityType="DigiStoreDBModel.Store.UserOrder" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="UserAppointment" EntityType="DigiStoreDBModel.Store.UserAppointment" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="OrderItem" EntityType="DigiStoreDBModel.Store.OrderItem" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserItem" EntityType="DigiStoreDBModel.Store.UserItem" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="UserPaymentMethod" Association="DigiStoreDBModel.Store.UserPaymentMethod">
       <End Role="User" EntitySet="Users" />
       <End Role="PaymentMethod" EntitySet="PaymentMethods" />
@@ -35,14 +37,6 @@
       <End Role="Order" EntitySet="Orders" />
       <End Role="UserOrder" EntitySet="UserOrder" />
     </AssociationSet>
-    <AssociationSet Name="OrderItem" Association="DigiStoreDBModel.Store.OrderItem">
-      <End Role="Order" EntitySet="Orders" />
-      <End Role="Item" EntitySet="Items" />
-    </AssociationSet>
-    <AssociationSet Name="UserItem" Association="DigiStoreDBModel.Store.UserItem">
-      <End Role="User" EntitySet="Users" />
-      <End Role="Item" EntitySet="Items" />
-    </AssociationSet>
     <AssociationSet Name="FK_UserAppointment_User" Association="DigiStoreDBModel.Store.FK_UserAppointment_User">
       <End Role="User" EntitySet="Users" />
       <End Role="UserAppointment" EntitySet="UserAppointment" />
@@ -58,6 +52,22 @@
     <AssociationSet Name="OrderPaymentMethod" Association="DigiStoreDBModel.Store.OrderPaymentMethod">
       <End Role="Order" EntitySet="Orders" />
       <End Role="PaymentMethod" EntitySet="PaymentMethods" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderItem_Order" Association="DigiStoreDBModel.Store.FK_OrderItem_Order">
+      <End Role="Order" EntitySet="Orders" />
+      <End Role="OrderItem" EntitySet="OrderItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderItem_Item" Association="DigiStoreDBModel.Store.FK_OrderItem_Item">
+      <End Role="Item" EntitySet="Items" />
+      <End Role="OrderItem" EntitySet="OrderItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserItem_User" Association="DigiStoreDBModel.Store.FK_UserItem_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserItem" EntitySet="UserItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserItem_Item" Association="DigiStoreDBModel.Store.FK_UserItem_Item">
+      <End Role="Item" EntitySet="Items" />
+      <End Role="UserItem" EntitySet="UserItem" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Users">
@@ -86,8 +96,6 @@
     <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Price" Type="decimal" Nullable="false" Precision="18" Scale="0" />
     <Property Name="Weight" Type="float" Nullable="true" />
-    <Property Name="OrderId" Type="int" Nullable="false" />
-    <Property Name="UserId" Type="int" Nullable="false" />
     <Property Name="Quantity" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Reviews">
@@ -154,6 +162,22 @@
     <Property Name="Users_Id" Type="int" Nullable="false" />
     <Property Name="Appointments_Id" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="OrderItem">
+    <Key>
+      <PropertyRef Name="Orders_Id" />
+      <PropertyRef Name="Items_Id" />
+    </Key>
+    <Property Name="Orders_Id" Type="int" Nullable="false" />
+    <Property Name="Items_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserItem">
+    <Key>
+      <PropertyRef Name="Users_Id" />
+      <PropertyRef Name="Items_Id" />
+    </Key>
+    <Property Name="Users_Id" Type="int" Nullable="false" />
+    <Property Name="Items_Id" Type="int" Nullable="false" />
+  </EntityType>
   <Association Name="UserPaymentMethod">
     <End Role="User" Type="DigiStoreDBModel.Store.Users" Multiplicity="1" />
     <End Role="PaymentMethod" Type="DigiStoreDBModel.Store.PaymentMethods" Multiplicity="*" />
@@ -162,30 +186,6 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="PaymentMethod">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="OrderItem">
-    <End Role="Order" Type="DigiStoreDBModel.Store.Orders" Multiplicity="1" />
-    <End Role="Item" Type="DigiStoreDBModel.Store.Items" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Order">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Item">
-        <PropertyRef Name="OrderId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="UserItem">
-    <End Role="User" Type="DigiStoreDBModel.Store.Users" Multiplicity="1" />
-    <End Role="Item" Type="DigiStoreDBModel.Store.Items" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Item">
         <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
@@ -286,6 +286,54 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_OrderItem_Order">
+    <End Role="Order" Type="DigiStoreDBModel.Store.Orders" Multiplicity="1" />
+    <End Role="OrderItem" Type="DigiStoreDBModel.Store.OrderItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrderItem">
+        <PropertyRef Name="Orders_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderItem_Item">
+    <End Role="OrderItem" Type="DigiStoreDBModel.Store.OrderItem" Multiplicity="*" />
+    <End Role="Item" Type="DigiStoreDBModel.Store.Items" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrderItem">
+        <PropertyRef Name="Items_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserItem_User">
+    <End Role="User" Type="DigiStoreDBModel.Store.Users" Multiplicity="1" />
+    <End Role="UserItem" Type="DigiStoreDBModel.Store.UserItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserItem">
+        <PropertyRef Name="Users_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserItem_Item">
+    <End Role="UserItem" Type="DigiStoreDBModel.Store.UserItem" Multiplicity="*" />
+    <End Role="Item" Type="DigiStoreDBModel.Store.Items" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserItem">
+        <PropertyRef Name="Items_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -308,14 +356,6 @@
             <End Role="User" EntitySet="Users" />
             <End Role="Order" EntitySet="Orders" />
           </AssociationSet>
-          <AssociationSet Name="OrderItem" Association="DigiStoreDBModel.OrderItem">
-            <End Role="Order" EntitySet="Orders" />
-            <End Role="Item" EntitySet="Items" />
-          </AssociationSet>
-          <AssociationSet Name="UserItem" Association="DigiStoreDBModel.UserItem">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Item" EntitySet="Items" />
-          </AssociationSet>
           <EntitySet Name="Appointments" EntityType="DigiStoreDBModel.Appointment" />
           <AssociationSet Name="UserAppointment" Association="DigiStoreDBModel.UserAppointment">
             <End Role="User" EntitySet="Users" />
@@ -328,6 +368,14 @@
           <AssociationSet Name="OrderPaymentMethod" Association="DigiStoreDBModel.OrderPaymentMethod">
             <End Role="Order" EntitySet="Orders" />
             <End Role="PaymentMethod" EntitySet="PaymentMethods" />
+          </AssociationSet>
+          <AssociationSet Name="OrderItem" Association="DigiStoreDBModel.OrderItem">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="Item" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="UserItem" Association="DigiStoreDBModel.UserItem">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Item" EntitySet="Items" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="User">
@@ -348,9 +396,9 @@
           <NavigationProperty Name="PaymentMethods" Relationship="DigiStoreDBModel.UserPaymentMethod" FromRole="User" ToRole="PaymentMethod" />
           <NavigationProperty Name="Reviews" Relationship="DigiStoreDBModel.UserReview" FromRole="User" ToRole="Review" />
           <NavigationProperty Name="Orders" Relationship="DigiStoreDBModel.UserOrder" FromRole="User" ToRole="Order" />
-          <NavigationProperty Name="Items" Relationship="DigiStoreDBModel.UserItem" FromRole="User" ToRole="Item" />
           <NavigationProperty Name="Appointments" Relationship="DigiStoreDBModel.UserAppointment" FromRole="User" ToRole="Appointment" />
           <Property Name="StateProv" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Items" Relationship="DigiStoreDBModel.UserItem" FromRole="User" ToRole="Item" />
         </EntityType>
         <EntityType Name="Item">
           <Key>
@@ -361,11 +409,9 @@
           <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <Property Name="Weight" Type="Double" Nullable="true" />
-          <NavigationProperty Name="Order" Relationship="DigiStoreDBModel.OrderItem" FromRole="Item" ToRole="Order" />
-          <Property Name="OrderId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="DigiStoreDBModel.UserItem" FromRole="Item" ToRole="User" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Orders" Relationship="DigiStoreDBModel.OrderItem" FromRole="Item" ToRole="Order" />
+          <NavigationProperty Name="Users" Relationship="DigiStoreDBModel.UserItem" FromRole="Item" ToRole="User" />
         </EntityType>
         <EntityType Name="Review">
           <Key>
@@ -395,10 +441,10 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Tax" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <NavigationProperty Name="Users" Relationship="DigiStoreDBModel.UserOrder" FromRole="Order" ToRole="User" />
-          <NavigationProperty Name="Items" Relationship="DigiStoreDBModel.OrderItem" FromRole="Order" ToRole="Item" />
           <Property Name="TotalPrice" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <NavigationProperty Name="Appointment" Relationship="DigiStoreDBModel.OrderAppointment" FromRole="Order" ToRole="Appointment" />
           <NavigationProperty Name="PaymentMethod" Relationship="DigiStoreDBModel.OrderPaymentMethod" FromRole="Order" ToRole="PaymentMethod" />
+          <NavigationProperty Name="Items" Relationship="DigiStoreDBModel.OrderItem" FromRole="Order" ToRole="Item" />
         </EntityType>
         <Association Name="UserPaymentMethod">
           <End Type="DigiStoreDBModel.User" Role="User" Multiplicity="1" />
@@ -419,30 +465,6 @@
         <Association Name="UserOrder">
           <End Type="DigiStoreDBModel.User" Role="User" Multiplicity="*" />
           <End Type="DigiStoreDBModel.Order" Role="Order" Multiplicity="*" />
-        </Association>
-        <Association Name="OrderItem">
-          <End Type="DigiStoreDBModel.Order" Role="Order" Multiplicity="1" />
-          <End Type="DigiStoreDBModel.Item" Role="Item" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Order">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Item">
-              <PropertyRef Name="OrderId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="UserItem">
-          <End Type="DigiStoreDBModel.User" Role="User" Multiplicity="1" />
-          <End Type="DigiStoreDBModel.Item" Role="Item" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Item">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <EntityType Name="Appointment">
           <Key>
@@ -469,6 +491,14 @@
         <Association Name="OrderPaymentMethod">
           <End Type="DigiStoreDBModel.Order" Role="Order" Multiplicity="0..1" />
           <End Type="DigiStoreDBModel.PaymentMethod" Role="PaymentMethod" Multiplicity="1" />
+        </Association>
+        <Association Name="OrderItem">
+          <End Type="DigiStoreDBModel.Order" Role="Order" Multiplicity="*" />
+          <End Type="DigiStoreDBModel.Item" Role="Item" Multiplicity="*" />
+        </Association>
+        <Association Name="UserItem">
+          <End Type="DigiStoreDBModel.User" Role="User" Multiplicity="*" />
+          <End Type="DigiStoreDBModel.Item" Role="Item" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -502,8 +532,6 @@
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Price" ColumnName="Price" />
           <ScalarProperty Name="Weight" ColumnName="Weight" />
-          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="Quantity" ColumnName="Quantity" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -589,6 +617,22 @@
       </EndProperty>
       <EndProperty Name="Order">
         <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="OrderItem" TypeName="DigiStoreDBModel.OrderItem" StoreEntitySet="OrderItem">
+      <EndProperty Name="Order">
+        <ScalarProperty Name="Id" ColumnName="Orders_Id" />
+      </EndProperty>
+      <EndProperty Name="Item">
+        <ScalarProperty Name="Id" ColumnName="Items_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserItem" TypeName="DigiStoreDBModel.UserItem" StoreEntitySet="UserItem">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="Users_Id" />
+      </EndProperty>
+      <EndProperty Name="Item">
+        <ScalarProperty Name="Id" ColumnName="Items_Id" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>

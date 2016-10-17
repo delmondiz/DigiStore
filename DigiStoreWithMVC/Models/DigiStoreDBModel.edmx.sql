@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/17/2016 02:05:57
--- Generated from EDMX file: C:\Users\Crasy\Source\Repos\DigiStore\DigiStoreWithMVC\Models\DigiStoreDBModel.edmx
+-- Date Created: 10/17/2016 15:18:02
+-- Generated from EDMX file: F:\ewchr_000\Sheridan\Capstone\DigiStore\DigiStoreWithMVC\Models\DigiStoreDBModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -111,8 +111,6 @@ CREATE TABLE [dbo].[Items] (
     [Description] nvarchar(max)  NOT NULL,
     [Price] decimal(18,0)  NOT NULL,
     [Weight] float  NULL,
-    [OrderId] int  NOT NULL,
-    [UserId] int  NOT NULL,
     [Quantity] int  NOT NULL
 );
 GO
@@ -178,6 +176,20 @@ CREATE TABLE [dbo].[UserAppointment] (
 );
 GO
 
+-- Creating table 'OrderItem'
+CREATE TABLE [dbo].[OrderItem] (
+    [Orders_Id] int  NOT NULL,
+    [Items_Id] int  NOT NULL
+);
+GO
+
+-- Creating table 'UserItem'
+CREATE TABLE [dbo].[UserItem] (
+    [Users_Id] int  NOT NULL,
+    [Items_Id] int  NOT NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -234,6 +246,18 @@ GO
 ALTER TABLE [dbo].[UserAppointment]
 ADD CONSTRAINT [PK_UserAppointment]
     PRIMARY KEY CLUSTERED ([Users_Id], [Appointments_Id] ASC);
+GO
+
+-- Creating primary key on [Orders_Id], [Items_Id] in table 'OrderItem'
+ALTER TABLE [dbo].[OrderItem]
+ADD CONSTRAINT [PK_OrderItem]
+    PRIMARY KEY CLUSTERED ([Orders_Id], [Items_Id] ASC);
+GO
+
+-- Creating primary key on [Users_Id], [Items_Id] in table 'UserItem'
+ALTER TABLE [dbo].[UserItem]
+ADD CONSTRAINT [PK_UserItem]
+    PRIMARY KEY CLUSTERED ([Users_Id], [Items_Id] ASC);
 GO
 
 -- --------------------------------------------------
@@ -303,36 +327,6 @@ ON [dbo].[UserOrder]
     ([Orders_Id]);
 GO
 
--- Creating foreign key on [OrderId] in table 'Items'
-ALTER TABLE [dbo].[Items]
-ADD CONSTRAINT [FK_OrderItem]
-    FOREIGN KEY ([OrderId])
-    REFERENCES [dbo].[Orders]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_OrderItem'
-CREATE INDEX [IX_FK_OrderItem]
-ON [dbo].[Items]
-    ([OrderId]);
-GO
-
--- Creating foreign key on [UserId] in table 'Items'
-ALTER TABLE [dbo].[Items]
-ADD CONSTRAINT [FK_UserItem]
-    FOREIGN KEY ([UserId])
-    REFERENCES [dbo].[Users]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_UserItem'
-CREATE INDEX [IX_FK_UserItem]
-ON [dbo].[Items]
-    ([UserId]);
-GO
-
 -- Creating foreign key on [Users_Id] in table 'UserAppointment'
 ALTER TABLE [dbo].[UserAppointment]
 ADD CONSTRAINT [FK_UserAppointment_User]
@@ -385,6 +379,54 @@ GO
 CREATE INDEX [IX_FK_OrderPaymentMethod]
 ON [dbo].[Orders]
     ([PaymentMethod_Id]);
+GO
+
+-- Creating foreign key on [Orders_Id] in table 'OrderItem'
+ALTER TABLE [dbo].[OrderItem]
+ADD CONSTRAINT [FK_OrderItem_Order]
+    FOREIGN KEY ([Orders_Id])
+    REFERENCES [dbo].[Orders]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [Items_Id] in table 'OrderItem'
+ALTER TABLE [dbo].[OrderItem]
+ADD CONSTRAINT [FK_OrderItem_Item]
+    FOREIGN KEY ([Items_Id])
+    REFERENCES [dbo].[Items]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_OrderItem_Item'
+CREATE INDEX [IX_FK_OrderItem_Item]
+ON [dbo].[OrderItem]
+    ([Items_Id]);
+GO
+
+-- Creating foreign key on [Users_Id] in table 'UserItem'
+ALTER TABLE [dbo].[UserItem]
+ADD CONSTRAINT [FK_UserItem_User]
+    FOREIGN KEY ([Users_Id])
+    REFERENCES [dbo].[Users]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [Items_Id] in table 'UserItem'
+ALTER TABLE [dbo].[UserItem]
+ADD CONSTRAINT [FK_UserItem_Item]
+    FOREIGN KEY ([Items_Id])
+    REFERENCES [dbo].[Items]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_UserItem_Item'
+CREATE INDEX [IX_FK_UserItem_Item]
+ON [dbo].[UserItem]
+    ([Items_Id]);
 GO
 
 -- --------------------------------------------------
