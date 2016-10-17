@@ -308,10 +308,6 @@
             <End Role="User" EntitySet="Users" />
             <End Role="Order" EntitySet="Orders" />
           </AssociationSet>
-          <AssociationSet Name="OrderItem" Association="DigiStoreDBModel.OrderItem">
-            <End Role="Order" EntitySet="Orders" />
-            <End Role="Item" EntitySet="Items" />
-          </AssociationSet>
           <AssociationSet Name="UserItem" Association="DigiStoreDBModel.UserItem">
             <End Role="User" EntitySet="Users" />
             <End Role="Item" EntitySet="Items" />
@@ -328,6 +324,10 @@
           <AssociationSet Name="OrderPaymentMethod" Association="DigiStoreDBModel.OrderPaymentMethod">
             <End Role="Order" EntitySet="Orders" />
             <End Role="PaymentMethod" EntitySet="PaymentMethods" />
+          </AssociationSet>
+          <AssociationSet Name="OrderItem" Association="DigiStoreDBModel.OrderItem">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="Item" EntitySet="Items" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="User">
@@ -361,8 +361,6 @@
           <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <Property Name="Weight" Type="Double" Nullable="true" />
-          <NavigationProperty Name="Order" Relationship="DigiStoreDBModel.OrderItem" FromRole="Item" ToRole="Order" />
-          <Property Name="OrderId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="User" Relationship="DigiStoreDBModel.UserItem" FromRole="Item" ToRole="User" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
@@ -395,10 +393,10 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Tax" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <NavigationProperty Name="Users" Relationship="DigiStoreDBModel.UserOrder" FromRole="Order" ToRole="User" />
-          <NavigationProperty Name="Items" Relationship="DigiStoreDBModel.OrderItem" FromRole="Order" ToRole="Item" />
           <Property Name="TotalPrice" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <NavigationProperty Name="Appointment" Relationship="DigiStoreDBModel.OrderAppointment" FromRole="Order" ToRole="Appointment" />
           <NavigationProperty Name="PaymentMethod" Relationship="DigiStoreDBModel.OrderPaymentMethod" FromRole="Order" ToRole="PaymentMethod" />
+          <NavigationProperty Name="Items" Relationship="DigiStoreDBModel.OrderItem" FromRole="Order" ToRole="Item" />
         </EntityType>
         <Association Name="UserPaymentMethod">
           <End Type="DigiStoreDBModel.User" Role="User" Multiplicity="1" />
@@ -419,18 +417,6 @@
         <Association Name="UserOrder">
           <End Type="DigiStoreDBModel.User" Role="User" Multiplicity="*" />
           <End Type="DigiStoreDBModel.Order" Role="Order" Multiplicity="*" />
-        </Association>
-        <Association Name="OrderItem">
-          <End Type="DigiStoreDBModel.Order" Role="Order" Multiplicity="1" />
-          <End Type="DigiStoreDBModel.Item" Role="Item" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Order">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Item">
-              <PropertyRef Name="OrderId" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="UserItem">
           <End Type="DigiStoreDBModel.User" Role="User" Multiplicity="1" />
@@ -470,6 +456,10 @@
           <End Type="DigiStoreDBModel.Order" Role="Order" Multiplicity="0..1" />
           <End Type="DigiStoreDBModel.PaymentMethod" Role="PaymentMethod" Multiplicity="1" />
         </Association>
+        <Association Name="OrderItem">
+          <End Type="DigiStoreDBModel.Order" Role="Order" Multiplicity="1" />
+          <End Type="DigiStoreDBModel.Item" Role="Item" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -503,7 +493,6 @@
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Price" ColumnName="Price" />
           <ScalarProperty Name="Weight" ColumnName="Weight" />
-          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
         </MappingFragment>
       </EntityTypeMapping>
