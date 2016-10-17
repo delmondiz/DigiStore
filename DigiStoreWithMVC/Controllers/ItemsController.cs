@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using DigiStoreWithMVC.Models;
 
 namespace DigiStoreWithMVC.Controllers
@@ -19,7 +20,9 @@ namespace DigiStoreWithMVC.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                var items = db.Items.Include(i => i.Order).Include(i => i.User);
+                var items = (from u in db.Users
+                             where u.Email == User.Identity.Name
+                             select u).FirstOrDefault().Items;
                 return View(items.ToList());
             }
             else
@@ -57,35 +60,46 @@ namespace DigiStoreWithMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,Price,Weight,OrderId,UserId,Quantity")] Item item)
+        public ActionResult Create([Bind(Include = "Id,Name,Description,Price,Weight,Quantity")] Item item)
         {
-            if (ModelState.IsValid)
+            if (User.Identity.IsAuthenticated)
             {
-                db.Items.Add(item);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+                if (ModelState.IsValid)
+                {
+                    (from u in db.Users where u.Email == User.Identity.Name select u).FirstOrDefault().Items.Add(item);
+                    //db.Items.Add(item);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
 
-            ViewBag.OrderId = new SelectList(db.Orders, "Id", "Id", item.OrderId);
-            ViewBag.UserId = new SelectList(db.Users, "Id", "UserName", item.UserId);
-            return View(item);
+                //ViewBag.OrderId = new SelectList(db.Orders, "Id", "Id", item.OrderId);
+                //ViewBag.UserId = new SelectList(db.Users, "Id", "UserName", item.UserId);
+                return View(item);
+            }
+            else
+                return RedirectToAction("Index", "Home");
         }
 
         // GET: Items/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if (User.Identity.IsAuthenticated)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Item item = db.Items.Find(id);
+                if (item == null)
+                {
+                    return HttpNotFound();
+                }
+                //ViewBag.OrderId = new SelectList(db.Orders, "Id", "Id", item.OrderId);
+                //ViewBag.UserId = new SelectList(db.Users, "Id", "UserName", item.UserId);
+                return View(item);
             }
-            Item item = db.Items.Find(id);
-            if (item == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.OrderId = new SelectList(db.Orders, "Id", "Id", item.OrderId);
-            ViewBag.UserId = new SelectList(db.Users, "Id", "UserName", item.UserId);
-            return View(item);
+            else
+                return RedirectToAction("Index", "Home");
         }
 
         // POST: Items/Edit/5
@@ -93,32 +107,42 @@ namespace DigiStoreWithMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,Price,Weight,OrderId,UserId,Quantity")] Item item)
+        public ActionResult Edit([Bind(Include = "Id,Name,Description,Price,Weight,Quantity")] Item item)
         {
-            if (ModelState.IsValid)
+            if (User.Identity.IsAuthenticated)
             {
-                db.Entry(item).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Entry(item).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                //ViewBag.OrderId = new SelectList(db.Orders, "Id", "Id", item.OrderId);
+                //ViewBag.UserId = new SelectList(db.Users, "Id", "UserName", item.UserId);
+                return View(item);
             }
-            ViewBag.OrderId = new SelectList(db.Orders, "Id", "Id", item.OrderId);
-            ViewBag.UserId = new SelectList(db.Users, "Id", "UserName", item.UserId);
-            return View(item);
+            else
+                return RedirectToAction("Index", "Home");
         }
 
         // GET: Items/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if (User.Identity.IsAuthenticated)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Item item = db.Items.Find(id);
+                if (item == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(item);
             }
-            Item item = db.Items.Find(id);
-            if (item == null)
-            {
-                return HttpNotFound();
-            }
-            return View(item);
+            else
+                return RedirectToAction("Index", "Home");
         }
 
         // POST: Items/Delete/5
@@ -126,10 +150,20 @@ namespace DigiStoreWithMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Item item = db.Items.Find(id);
-            db.Items.Remove(item);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (User.Identity.IsAuthenticated)
+            {
+                //User user = (from u in db.Users where u.Email == User.Identity.Name select u).FirstOrDefault();
+                Item item = (from i in db.Items where i.Id == id select i).FirstOrDefault();
+                db.Items.Attach(item);
+                db.Items.Remove(item);
+                //user.Items.Remove(item);
+                //db.Users.Where(u => u.Email == user.Email).FirstOrDefault().Items.Remove(item);
+                //db.Items.Remove(item);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            else
+                return RedirectToAction("Index", "Home");
         }
 
         protected override void Dispose(bool disposing)
