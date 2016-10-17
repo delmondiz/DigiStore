@@ -20,8 +20,8 @@ namespace DigiStoreWithMVC.Models
             this.PaymentMethods = new HashSet<PaymentMethod>();
             this.Reviews = new HashSet<Review>();
             this.Orders = new HashSet<Order>();
-            this.Items = new HashSet<Item>();
             this.Appointments = new HashSet<Appointment>();
+            this.Items = new HashSet<Item>();
         }
     
         public int Id { get; set; }
@@ -44,8 +44,8 @@ namespace DigiStoreWithMVC.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Item> Items { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Appointment> Appointments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Item> Items { get; set; }
     }
 }
