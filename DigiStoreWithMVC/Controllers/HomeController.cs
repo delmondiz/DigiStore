@@ -17,17 +17,21 @@ namespace DigiStoreWithMVC.Controllers
             {
                 var verifiedUser = (from u in db.Users
                                        where u.Email == User.Identity.Name
-                                       select u).First();
-
-                User user = new User();
-                user = verifiedUser;
-
-                if (user == null)
+                                       select u).FirstOrDefault();
+                if (verifiedUser != null)
                 {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                }
+                    User user = new User();
+                    user = verifiedUser;
 
-                return View(user);
+                    if (user == null)
+                    {
+                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    }
+
+                    return View(user);
+                }
+                else
+                    return View();
             }
         }
 
