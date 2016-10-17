@@ -165,6 +165,11 @@ namespace DigiStoreWithMVC.Controllers
                         return View(model);
                     }
                 }
+                else
+                {
+                    ModelState.AddModelError("", "Invalid Username/Password.");
+                    return View(model);
+                }
             }
             
             // If we reach here, the user is able to log in.
