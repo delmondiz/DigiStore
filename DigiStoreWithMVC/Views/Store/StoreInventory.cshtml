@@ -6,117 +6,152 @@
     DigiStoreWithMVC.Models.Item i = new DigiStoreWithMVC.Models.Item();
 }
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    <br />
-    <div class="row">
-        <div class="input-field col s4">
-            <select>
-                <option value="" disabled="disabled" selected="selected">How many items to show?</option>
-                <option value="1">
-                    5
-                </option>
-                <option value="2">
-                    25
-                </option>
-                <option value="3">
-                    50
-                </option>
-                <option value="4">
-                    100
-                </option>
-                <option value="5">
-                    200
-                </option>
-            </select>
-            <label>Number of Items Shown</label>
-        </div>
-        <div class="input-field col s6">
-            <input type="text" id="itemSearch" class="validate" />
-            <label for="itemSearch">Item Name or Serial #:</label>
-        </div>
-        <div class="col s2">
-            <button class="btn btn-large valign waves-effect waves-light blue darken-3 yellow-text accent-3 col s2 m3" type="submit" name="submitSearch" style="width: 100%">
-                <span class="hide-on-med-and-down"><i class="material-icons right">search</i>Search Item</span>
-                <span class="hide-on-large-only"><i class="material-icons center">search</i></span>
-            </button>
-        </div>
+
+<br />
+<div class="row">
+    <div class="input-field col s4">
+        <select>
+            <option value="" disabled="disabled" selected="selected">How many items to show?</option>
+            <option value="1">
+                5
+            </option>
+            <option value="2">
+                25
+            </option>
+            <option value="3">
+                50
+            </option>
+            <option value="4">
+                100
+            </option>
+            <option value="5">
+                200
+            </option>
+        </select>
+        <label>Number of Items Shown</label>
     </div>
+    <div class="input-field col s6">
+        <input type="text" id="itemSearch" class="validate" />
+        <label for="itemSearch">Item Name or Serial #:</label>
+    </div>
+    <div class="col s2">
+        <button class="btn btn-large valign waves-effect waves-light blue darken-3 yellow-text accent-3 col s2 m3" type="submit" name="submitSearch" style="width: 100%">
+            <span class="hide-on-med-and-down"><i class="material-icons right">search</i>Search Item</span>
+            <span class="hide-on-large-only"><i class="material-icons center">search</i></span>
+        </button>
+    </div>
+</div>
 
 <div class="divider"></div>
-    <h2 class="center-align">Your Items</h2>
-    <br />
-    <div class="row">
+<h2 class="center-align">Your Items</h2>
+<br />
+<div class="row">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="col s12 m8">
+            @Html.LabelFor(model => i.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col s12 m6">
+                @Html.EditorFor(model => i.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => i.Name, "", new { @class = "text-danger" })
+            </div>
+
+            @Html.LabelFor(model => i.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col s12 m6">
+                @Html.EditorFor(model => i.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => i.Description, "", new { @class = "text-danger" })
+            </div>
+
+            @Html.LabelFor(model => i.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col s12 m6">
+                @Html.EditorFor(model => i.Price, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => i.Price, "", new { @class = "text-danger" })
+            </div>
+
+            @Html.LabelFor(model => i.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col s12 m6">
+                @Html.EditorFor(model => i.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => i.Quantity, "", new { @class = "text-danger" })
+            </div>
+
+            @Html.LabelFor(model => i.Weight, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col s12 m6">
+                @Html.EditorFor(model => i.Weight, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => i.Weight, "", new { @class = "text-danger" })
+            </div>
+        </div>
         <div class="col s2">
             <button class="btn btn-large valign waves-effect waves-light blue darken-3 yellow-text accent-3 col s2 m3" type="submit" name="submitSearch" style="padding:0; width:100%">
                 <span class="hide-on-med-and-down"><i class="material-icons right">library_add</i>Add Item</span>
                 <span class="hide-on-large-only"><i class="material-icons center">library_add</i></span>
             </button>
         </div>
-        <div class="col s12 m8">
-            @Html.Partial("_InventoryItem")
-        </div>
-        <ul id="storeInventoryList" class="collapsible" data-collapsible="accordion">
-            @if (Model.Items != null)
-            {
-                foreach (DigiStoreWithMVC.Models.Item item in Model.Items)
-                {
-                    <li>
-                        <div class="collapsible-header">
-                            <img src="~/img/jinx.png" height="50" width="50" />
-                            @Html.LabelFor(model => item.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+
+    }
+</div>
+<ul id="storeInventoryList" class="collapsible" data-collapsible="accordion">
+    @Html.BeginForm(){
+
+    @if (Model.Items != null)
+    {
+        foreach (DigiStoreWithMVC.Models.Item item in Model.Items)
+        {
+            <li>
+                <div class="collapsible-header">
+                    <img src="~/img/jinx.png" height="50" width="50" />
+                    @Html.LabelFor(model => item.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+                <div class="collapsible-body">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => item.Id, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                        @Html.LabelFor(model => item.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => item.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => item.Name, "", new { @class = "text-danger" })
                         </div>
-                        <div class="collapsible-body">
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            
-                            <div class="form-group">
-                                @Html.LabelFor(model => item.Id, htmlAttributes: new { @class = "control-label col-md-2" })
 
-                                @Html.LabelFor(model => item.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => item.Name, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => item.Name, "", new { @class = "text-danger" })
-                                </div>
-
-                                @Html.LabelFor(model => item.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => item.Description, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => item.Description, "", new { @class = "text-danger" })
-                                </div>
-
-                                @Html.LabelFor(model => item.Price, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => item.Price, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => item.Price, "", new { @class = "text-danger" })
-                                </div>
-
-                                @Html.LabelFor(model => item.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => item.Quantity, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => item.Quantity, "", new { @class = "text-danger" })
-                                </div>
-
-                                @Html.LabelFor(model => item.Weight, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => item.Weight, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => item.Weight, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col s6">
-                                    <a class="waves-effect waves-light btn">Update Details</a>
-
-                                </div>
-                                <div class="col s6">
-                                    <a class="waves-effect waves-light btn red">Delete Item</a>
-
-                                </div>
-                            </div>
+                        @Html.LabelFor(model => item.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => item.Description, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => item.Description, "", new { @class = "text-danger" })
                         </div>
-                    </li>
-                }
-            }
-        </ul>
-    </div>
-}
+
+                        @Html.LabelFor(model => item.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => item.Price, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => item.Price, "", new { @class = "text-danger" })
+                        </div>
+
+                        @Html.LabelFor(model => item.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => item.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => item.Quantity, "", new { @class = "text-danger" })
+                        </div>
+
+                        @Html.LabelFor(model => item.Weight, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => item.Weight, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => item.Weight, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s6">
+                            <a class="waves-effect waves-light btn">Update Details</a>
+
+                        </div>
+                        <div class="col s6">
+                            <a class="waves-effect waves-light btn red">Delete Item</a>
+
+                        </div>
+                    </div>
+                </div>
+            </li>
+        }
+    }
+    }
+</ul>
+
