@@ -42,6 +42,6 @@ input:not([type]), input[type=text], input[type=password], input[type=email], in
     border-bottom: 1px solid #0D47A1 !important;
 }
 
-.alan_button {
+a.alan_button {
     padding: 0 1rem !important;
 }
