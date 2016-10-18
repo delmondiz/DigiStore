@@ -90,14 +90,14 @@ namespace DigiStoreWithMVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult StoreInventory(Item item)
+        public ActionResult StoreInventory([Bind(Include = "Id")]Item item)
         {
             if (User.Identity.IsAuthenticated)
             {
+                // Get our current user.
+                User user = (from u in db.Users where u.Email == User.Identity.Name select u).FirstOrDefault();
                 if (ModelState.IsValid)
                 {
-                    // Get our current user.
-                    User user = (from u in db.Users where u.Email == User.Identity.Name select u).FirstOrDefault();
                     // Add the item to our current user.
                     user.Items.Add(item);
                     // Save the changes to the DB.
@@ -105,7 +105,7 @@ namespace DigiStoreWithMVC.Controllers
                     // Return the user to the Store Inventory
                     return View(user);
                 }
-                return View(item);
+                return View(user);
             }
             else
                 return RedirectToAction("Index", "Home");
