@@ -16,12 +16,6 @@ namespace DigiStoreWithMVC.Controllers
     {
         private DigiStoreDBModelContainer db = new DigiStoreDBModelContainer();
 
-        //public ActionResult Index()
-        //{
-
-        //    return View();
-        //}
-
         public ActionResult Index(string storeName)
         {
             using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
@@ -33,22 +27,7 @@ namespace DigiStoreWithMVC.Controllers
                     return View(checkUser);
                 }
             }
-
             return View();
-        }
-
-        public ActionResult Index(User user)
-        {
-            User checkUser = (from u in db.Users
-                              where u.UserName == user.UserName
-                              select u).FirstOrDefault();
-            if (checkUser != null)
-                return View(user);
-            else
-            {
-                ViewBag.Message = "That user does not exist";
-                return View();
-            }
         }
 
         public ActionResult StoreInventory()
