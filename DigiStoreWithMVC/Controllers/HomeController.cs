@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.Mvc;
 using DigiStoreWithMVC.Models;
 using System.Data.Entity;
-using DigiStoreWithMVC.Models;
 using System.Net;
 
 namespace DigiStoreWithMVC.Controllers
