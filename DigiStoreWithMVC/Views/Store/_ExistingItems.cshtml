@@ -2,13 +2,15 @@
 
 <li>
     <div class="collapsible-header">
-        if (Model.ImagePath != null)
-        {
-            <img src=@Html.DisplayFor(model => model.ImagePath) height="50" width="50" />
-        }
-        else
-        {
-            <img src="~/img/icon.png" height="50" width="50" />
+        @{
+            if (Model.ImagePath != null)
+            {
+                <img src=@Html.DisplayFor(model => model.ImagePath) height="50" width="50" />
+            }
+            else
+            {
+                <img src="~/img/icon.png" height="50" width="50" />
+            }
         }
         @Html.LabelFor(model => model.Name)
         @Html.DisplayTextFor(model => model.Name)
