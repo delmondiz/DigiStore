@@ -57,7 +57,7 @@ namespace DigiStoreWithMVC.Controllers
             return View();
         }
 
-
+ 
         [HttpPost]
         public ActionResult Contact(HomeViewModels model)
         {
