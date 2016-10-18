@@ -191,10 +191,15 @@
         </div>
         <div class="modal-footer">
             <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Disagree</a>
-            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
 
         </div>
     </div>
-
+    <script>
+        $(document).ready(function () {
+            // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+            $('.modal-trigger').leanModal();
+        });</script>
+    <script type="text/javascript" src="js/init.js"></script>
 
 </div>
