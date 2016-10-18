@@ -95,23 +95,19 @@ namespace DigiStoreWithMVC.Models
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
-
-        [Required]
+  
         [DataType(DataType.Text)]
         [Display(Name = "Country")]
         public string Country { get; set; }
 
-        [Required]
         [DataType(DataType.Text)]
         [Display(Name = "Town/City")]
         public string City { get; set; }
  
-        [Required]
         [DataType(DataType.Text)]
         [Display(Name = "Province/State")]
         public string Province { get; set; }
-
-        [Required]
+        
         [DataType(DataType.PostalCode)]
         [Display(Name = "Postal/Zip Code")]
         public string PostalCode { get; set; }

@@ -1,0 +1,13 @@
+﻿@model IEnumerable<DigiStoreWithMVC.Models.User>
+
+@{
+    @foreach (DigiStoreWithMVC.Models.User user in Model)
+    {
+        <div class="@user.UserName">
+            @Html.ActionLink(user.UserName, "Index", new { controller = "Store", action = "Index", User = user }, htmlAttributes: new { @class = "brand-logo center yellow-text accent-3" })
+            <div>
+
+            </div>
+        </div>
+    }
+}

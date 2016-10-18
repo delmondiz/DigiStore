@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/03/2016 17:38:13
+-- Date Created: 10/17/2016 15:18:02
 -- Generated from EDMX file: F:\ewchr_000\Sheridan\Capstone\DigiStore\DigiStoreWithMVC\Models\DigiStoreDBModel.edmx
 -- --------------------------------------------------
 
@@ -17,11 +17,71 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_OrderAppointment]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Appointments] DROP CONSTRAINT [FK_OrderAppointment];
+GO
+IF OBJECT_ID(N'[dbo].[FK_OrderItem]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Items] DROP CONSTRAINT [FK_OrderItem];
+GO
+IF OBJECT_ID(N'[dbo].[FK_OrderPaymentMethod]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Orders] DROP CONSTRAINT [FK_OrderPaymentMethod];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserAppointment_Appointment]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserAppointment] DROP CONSTRAINT [FK_UserAppointment_Appointment];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserAppointment_User]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserAppointment] DROP CONSTRAINT [FK_UserAppointment_User];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserItem]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Items] DROP CONSTRAINT [FK_UserItem];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserOrder_Order]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserOrder] DROP CONSTRAINT [FK_UserOrder_Order];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserOrder_User]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserOrder] DROP CONSTRAINT [FK_UserOrder_User];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserPaymentMethod]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PaymentMethods] DROP CONSTRAINT [FK_UserPaymentMethod];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserReview_Review]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserReview] DROP CONSTRAINT [FK_UserReview_Review];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserReview_User]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserReview] DROP CONSTRAINT [FK_UserReview_User];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[Appointments]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Appointments];
+GO
+IF OBJECT_ID(N'[dbo].[Items]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Items];
+GO
+IF OBJECT_ID(N'[dbo].[Orders]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Orders];
+GO
+IF OBJECT_ID(N'[dbo].[PaymentMethods]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[PaymentMethods];
+GO
+IF OBJECT_ID(N'[dbo].[Reviews]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Reviews];
+GO
+IF OBJECT_ID(N'[dbo].[UserAppointment]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[UserAppointment];
+GO
+IF OBJECT_ID(N'[dbo].[UserOrder]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[UserOrder];
+GO
+IF OBJECT_ID(N'[dbo].[UserReview]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[UserReview];
+GO
+IF OBJECT_ID(N'[dbo].[Users]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Users];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -33,14 +93,14 @@ CREATE TABLE [dbo].[Users] (
     [UserName] nvarchar(max)  NOT NULL,
     [Email] nvarchar(max)  NOT NULL,
     [Password] nvarchar(max)  NOT NULL,
-    [Salt] nvarchar(max)  NOT NULL,
-    [FirstName] nvarchar(max)  NOT NULL,
-    [LastName] nvarchar(max)  NOT NULL,
-    [Address] nvarchar(max)  NOT NULL,
-    [City] nvarchar(max)  NOT NULL,
-    [Country] nvarchar(max)  NOT NULL,
-    [PostalCode] nvarchar(max)  NOT NULL,
-    [PhoneNumber] nvarchar(max)  NOT NULL
+    [FirstName] nvarchar(max)  NULL,
+    [LastName] nvarchar(max)  NULL,
+    [Address] nvarchar(max)  NULL,
+    [City] nvarchar(max)  NULL,
+    [Country] nvarchar(max)  NULL,
+    [PostalCode] nvarchar(max)  NULL,
+    [PhoneNumber] int  NULL,
+    [StateProv] nvarchar(max)  NULL
 );
 GO
 
@@ -49,17 +109,18 @@ CREATE TABLE [dbo].[Items] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
     [Description] nvarchar(max)  NOT NULL,
-    [Price] nvarchar(max)  NOT NULL,
-    [Weight] nvarchar(max)  NOT NULL,
-    [OrderId] int  NOT NULL,
-    [UserId] int  NOT NULL
+    [Price] decimal(18,0)  NOT NULL,
+    [Weight] float  NULL,
+    [Quantity] int  NOT NULL
 );
 GO
 
 -- Creating table 'Reviews'
 CREATE TABLE [dbo].[Reviews] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [ReviewText] nvarchar(max)  NOT NULL
+    [ReviewText] nvarchar(max)  NOT NULL,
+    [Rating] int  NOT NULL,
+    [Date] datetime  NOT NULL
 );
 GO
 
@@ -75,8 +136,8 @@ GO
 -- Creating table 'Orders'
 CREATE TABLE [dbo].[Orders] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Tax] nvarchar(max)  NOT NULL,
-    [TotalPrice] nvarchar(max)  NOT NULL,
+    [Tax] decimal(18,0)  NOT NULL,
+    [TotalPrice] decimal(18,0)  NOT NULL,
     [PaymentMethod_Id] int  NOT NULL
 );
 GO
@@ -84,13 +145,12 @@ GO
 -- Creating table 'Appointments'
 CREATE TABLE [dbo].[Appointments] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Date] nvarchar(max)  NOT NULL,
-    [Time] nvarchar(max)  NOT NULL,
+    [Date] datetime  NOT NULL,
     [Address] nvarchar(max)  NOT NULL,
     [City] nvarchar(max)  NOT NULL,
     [Country] nvarchar(max)  NOT NULL,
     [PostalCode] nvarchar(max)  NOT NULL,
-    [PaymentMethodId] nvarchar(max)  NOT NULL,
+    [PaymentMethodId] int  NULL,
     [Order_Id] int  NULL
 );
 GO
@@ -113,6 +173,20 @@ GO
 CREATE TABLE [dbo].[UserAppointment] (
     [Users_Id] int  NOT NULL,
     [Appointments_Id] int  NOT NULL
+);
+GO
+
+-- Creating table 'OrderItem'
+CREATE TABLE [dbo].[OrderItem] (
+    [Orders_Id] int  NOT NULL,
+    [Items_Id] int  NOT NULL
+);
+GO
+
+-- Creating table 'UserItem'
+CREATE TABLE [dbo].[UserItem] (
+    [Users_Id] int  NOT NULL,
+    [Items_Id] int  NOT NULL
 );
 GO
 
@@ -172,6 +246,18 @@ GO
 ALTER TABLE [dbo].[UserAppointment]
 ADD CONSTRAINT [PK_UserAppointment]
     PRIMARY KEY CLUSTERED ([Users_Id], [Appointments_Id] ASC);
+GO
+
+-- Creating primary key on [Orders_Id], [Items_Id] in table 'OrderItem'
+ALTER TABLE [dbo].[OrderItem]
+ADD CONSTRAINT [PK_OrderItem]
+    PRIMARY KEY CLUSTERED ([Orders_Id], [Items_Id] ASC);
+GO
+
+-- Creating primary key on [Users_Id], [Items_Id] in table 'UserItem'
+ALTER TABLE [dbo].[UserItem]
+ADD CONSTRAINT [PK_UserItem]
+    PRIMARY KEY CLUSTERED ([Users_Id], [Items_Id] ASC);
 GO
 
 -- --------------------------------------------------
@@ -241,36 +327,6 @@ ON [dbo].[UserOrder]
     ([Orders_Id]);
 GO
 
--- Creating foreign key on [OrderId] in table 'Items'
-ALTER TABLE [dbo].[Items]
-ADD CONSTRAINT [FK_OrderItem]
-    FOREIGN KEY ([OrderId])
-    REFERENCES [dbo].[Orders]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_OrderItem'
-CREATE INDEX [IX_FK_OrderItem]
-ON [dbo].[Items]
-    ([OrderId]);
-GO
-
--- Creating foreign key on [UserId] in table 'Items'
-ALTER TABLE [dbo].[Items]
-ADD CONSTRAINT [FK_UserItem]
-    FOREIGN KEY ([UserId])
-    REFERENCES [dbo].[Users]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_UserItem'
-CREATE INDEX [IX_FK_UserItem]
-ON [dbo].[Items]
-    ([UserId]);
-GO
-
 -- Creating foreign key on [Users_Id] in table 'UserAppointment'
 ALTER TABLE [dbo].[UserAppointment]
 ADD CONSTRAINT [FK_UserAppointment_User]
@@ -323,6 +379,54 @@ GO
 CREATE INDEX [IX_FK_OrderPaymentMethod]
 ON [dbo].[Orders]
     ([PaymentMethod_Id]);
+GO
+
+-- Creating foreign key on [Orders_Id] in table 'OrderItem'
+ALTER TABLE [dbo].[OrderItem]
+ADD CONSTRAINT [FK_OrderItem_Order]
+    FOREIGN KEY ([Orders_Id])
+    REFERENCES [dbo].[Orders]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [Items_Id] in table 'OrderItem'
+ALTER TABLE [dbo].[OrderItem]
+ADD CONSTRAINT [FK_OrderItem_Item]
+    FOREIGN KEY ([Items_Id])
+    REFERENCES [dbo].[Items]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_OrderItem_Item'
+CREATE INDEX [IX_FK_OrderItem_Item]
+ON [dbo].[OrderItem]
+    ([Items_Id]);
+GO
+
+-- Creating foreign key on [Users_Id] in table 'UserItem'
+ALTER TABLE [dbo].[UserItem]
+ADD CONSTRAINT [FK_UserItem_User]
+    FOREIGN KEY ([Users_Id])
+    REFERENCES [dbo].[Users]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [Items_Id] in table 'UserItem'
+ALTER TABLE [dbo].[UserItem]
+ADD CONSTRAINT [FK_UserItem_Item]
+    FOREIGN KEY ([Items_Id])
+    REFERENCES [dbo].[Items]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_UserItem_Item'
+CREATE INDEX [IX_FK_UserItem_Item]
+ON [dbo].[UserItem]
+    ([Items_Id]);
 GO
 
 -- --------------------------------------------------

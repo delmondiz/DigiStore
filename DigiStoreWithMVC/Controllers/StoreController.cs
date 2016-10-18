@@ -16,38 +16,37 @@ namespace DigiStoreWithMVC.Controllers
     {
         private DigiStoreDBModelContainer db = new DigiStoreDBModelContainer();
 
-        // GET: Store
         public ActionResult Index(string storeName)
         {
             using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
             {
                 User checkUser = (from u in db.Users where u.UserName == storeName select u).FirstOrDefault();
+                
                 if (checkUser != null)
                 {
                     return View(checkUser);
                 }
             }
-
             return View();
         }
 
-        public ActionResult StorePage()
+        public ActionResult StoreInventory()
         {
-            return View();
-        }
+            if (User.Identity.IsAuthenticated)
+            {
+                User currentUser = (from u in db.Users
+                                    where u.Email == User.Identity.Name
+                                    select u).FirstOrDefault();
 
-        public ActionResult StoreInventory(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (currentUser != null)
+                {
+                    return View(currentUser);
+                }
+                else
+                    return RedirectToAction("Index", "Home");
             }
-            User user = db.Users.Find(id);
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
-            return View();
+            else
+                return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]
@@ -66,7 +65,12 @@ namespace DigiStoreWithMVC.Controllers
 
         public ActionResult ShoppingCart()
         {
-            return View();
+            if (User.Identity.IsAuthenticated)
+            {
+                return View();
+            }
+            else
+                return RedirectToAction("Index", "Home");
         }
 
         //public ActionResult Browse(string userId)
