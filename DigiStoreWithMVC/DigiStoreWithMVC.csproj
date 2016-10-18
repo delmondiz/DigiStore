@@ -239,7 +239,9 @@
     <Compile Include="Models\Item.cs">
       <DependentUpon>DigiStoreDBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ItemMetaData.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MetaDataPartials.cs" />
     <Compile Include="Models\Order.cs">
       <DependentUpon>DigiStoreDBModel.tt</DependentUpon>
     </Compile>
