@@ -202,12 +202,12 @@
                 return;
             }
             
-            //console.log(document.getElementById("goggleResultsList").childElementCount);
-            //console.log(marker.get("position"));
-            //document.getElementById("goggleResultsList").innerHTML +=
-                //"<li class='collection-item blue darken-3' id='" + document.getElementById("goggleResultsList").childElementCount + "'>" +
-                //getResultsDiv(result)
-            //"</li>";
+            console.log(document.getElementById("goggleResultsList").childElementCount);
+            console.log(marker.get("position"));
+            document.getElementById("goggleResultsList").innerHTML +=
+                "<li class='collection-item blue darken-3' id='" + document.getElementById("goggleResultsList").childElementCount + "'>" +
+                getResultsDiv(result)
+            "</li>";
         });
 
         google.maps.event.addListener(marker, 'click', function () {
