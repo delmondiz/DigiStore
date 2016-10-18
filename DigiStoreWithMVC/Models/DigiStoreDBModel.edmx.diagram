@@ -5,21 +5,26 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="5d6163ca174e477481c502ee09929921" Name="Diagram1" >
-        <EntityTypeShape EntityType="DigiStoreDBModel.User" Width="1.5" PointX="2.875" PointY="1.125" />
-        <EntityTypeShape EntityType="DigiStoreDBModel.Item" Width="1.5" PointX="5.25" PointY="1.125" />
-        <EntityTypeShape EntityType="DigiStoreDBModel.Review" Width="1.5" PointX="2.875" PointY="6.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DigiStoreDBModel.PaymentMethod" Width="1.5" PointX="0.625" PointY="1.125" />
-        <EntityTypeShape EntityType="DigiStoreDBModel.Order" Width="1.5" PointX="5.25" PointY="4.75" />
+        <EntityTypeShape EntityType="DigiStoreDBModel.User" Width="1.5" PointX="2.375" PointY="0.5" />
+        <EntityTypeShape EntityType="DigiStoreDBModel.Item" Width="1.5" PointX="4.125" PointY="0.5" />
+        <EntityTypeShape EntityType="DigiStoreDBModel.Review" Width="1.5" PointX="7.375" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DigiStoreDBModel.PaymentMethod" Width="1.5" PointX="0.625" PointY="0.5" />
+        <EntityTypeShape EntityType="DigiStoreDBModel.Order" Width="1.5" PointX="4.125" PointY="3.375" />
         <AssociationConnector Association="DigiStoreDBModel.UserPaymentMethod" />
         <AssociationConnector Association="DigiStoreDBModel.UserReview" />
         <AssociationConnector Association="DigiStoreDBModel.UserOrder" />
-        <EntityTypeShape EntityType="DigiStoreDBModel.Appointment" Width="1.5" PointX="0.625" PointY="3.875" />
+        <EntityTypeShape EntityType="DigiStoreDBModel.Appointment" Width="1.5" PointX="0.625" PointY="2.875" />
         <AssociationConnector Association="DigiStoreDBModel.UserAppointment" />
         <AssociationConnector Association="DigiStoreDBModel.OrderAppointment" ></AssociationConnector>
         <AssociationConnector Association="DigiStoreDBModel.OrderPaymentMethod" ManuallyRouted="false" >
         </AssociationConnector>
         <AssociationConnector Association="DigiStoreDBModel.OrderItem" />
         <AssociationConnector Association="DigiStoreDBModel.UserItem" />
+        <EntityTypeShape EntityType="DigiStoreDBModel.Store" Width="1.5" PointX="5.75" PointY="0.5" />
+        <AssociationConnector Association="DigiStoreDBModel.StoreUser" />
+        <EntityTypeShape EntityType="DigiStoreDBModel.StoreHours" Width="1.5" PointX="7.375" PointY="0.5" />
+        <AssociationConnector Association="DigiStoreDBModel.StoreStoreHours" />
+        <EntityTypeShape EntityType="DigiStoreDBModel.Cart" Width="1.5" PointX="5.75" PointY="3.375" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
