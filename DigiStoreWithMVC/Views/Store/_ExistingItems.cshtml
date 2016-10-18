@@ -1,0 +1,85 @@
+﻿@model DigiStoreWithMVC.Models.Item
+
+<li>
+    <div class="collapsible-header">
+        @{
+            if (Model.ImagePath != null)
+            {
+                <img src=@Html.DisplayFor(model => model.ImagePath) height="50" width="50" />
+            }
+            else
+            {
+                <img src="~/img/icon.png" height="50" width="50" />
+            }
+        }
+        @Html.LabelFor(model => model.Name)
+        @Html.DisplayTextFor(model => model.Name)
+    </div>
+    <div class="collapsible-body">
+        @Html.ValidationSummary(true, "", new { @class = "red-text" })
+        @using (Html.BeginForm("UpdateItem", "Store", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.Id)
+            <div class="row">
+                <div class="col s12 m6">
+                    @Html.LabelFor(model => model.Name)
+                    @Html.EditorFor(model => model.Name)
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "red-text" })
+                </div>
+
+                <div class="col s12 m6">
+                    @Html.LabelFor(model => model.Description)
+                    @Html.EditorFor(model => model.Description)
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "red-text" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m6">
+                    @Html.LabelFor(model => model.Price)
+                    @Html.EditorFor(model => model.Price)
+                    @Html.ValidationMessageFor(model => model.Price, "", new { @class = "red-text" })
+                </div>
+
+                <div class="col s12 m6">
+                    @Html.LabelFor(model => model.Quantity)
+                    @Html.EditorFor(model => model.Quantity)
+                    @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "red-text" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m6">
+                    @Html.LabelFor(model => model.Weight)
+                    @Html.EditorFor(model => model.Weight)
+                    @Html.ValidationMessageFor(model => model.Weight, "", new { @class = "red-text" })
+                </div>
+
+                <div class="col s12 m6">
+                    @Html.LabelFor(model => model.ImagePath)
+                    @Html.EditorFor(model => model.ImagePath)
+                    @Html.ValidationMessageFor(model => model.ImagePath, "", new { @class = "red-text" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s6">
+                    <input type="submit" class="waves-effect waves-light btn" value="Update Details" />
+
+                    @*@Html.ActionLink("Update Details", "UpdateItem", new { controller = "Store", action = "UpdateItem" }, new { @class = "waves-effect waves-light btn" })*@
+                </div>
+            </div>
+        }
+        @using (Html.BeginForm("DeleteItem", "Store", FormMethod.Post, new { id = "DeleteItemForm" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.Id)
+            <div class="col s6">
+                @*@Html.ActionLink("Delete Item", "DeleteItem", "Store", routeValues: null, htmlAttributes: new { id = Model.Id, @class = "waves-effect waves-light btn red" })*@
+                @*<a href="javascript:document.getElementyById('DeleteItemForm').submit()" class="waves-effect waves-light btn red">Delete Item</a>*@
+                <input type="submit" value="Delete Item" class="waves-effect waves-light btn red" />
+                @*@Html.Action("DeleteItem", "Store", new { @id=Model.Id })*@
+                @*@Html.ActionLink("Delete Item", "DeleteItem", null, new { id = Model.Id })*@
+                @*@Html.ActionLink("Delete Item", "DeleteItem", new { controller = "Store", action = "DeleteItem", id = Model.Id }, new { @class = "waves-effect waves-light btn red" })*@
+            </div>
+        }
+    </div>
+</li>
