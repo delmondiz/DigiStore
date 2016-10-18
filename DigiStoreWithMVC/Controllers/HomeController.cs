@@ -28,22 +28,12 @@ namespace DigiStoreWithMVC.Controllers
             }
         }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Index(User user)
+        //public ActionResult About()
         //{
-        //    using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
-        //    {
-        //        return View(user);
-        //    }
+        //    ViewBag.Message = "Your application description page.";
+
+        //    return View();
         //}
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
 
         public ActionResult Contact()
         {
@@ -62,7 +52,8 @@ namespace DigiStoreWithMVC.Controllers
                     newReview.Id = db.Reviews.Count();
                     if(model.ReviewText != null)
                         newReview.ReviewText = model.ReviewText;
-                    newReview.Rating = 1;
+                    if(model.ReviewRating != 0)
+                        newReview.Rating = model.ReviewRating;
                     newReview.Date = DateTime.Now;
                     db.Reviews.Add(newReview);
                     db.SaveChanges();

@@ -62,17 +62,20 @@ namespace DigiStoreWithMVC.Controllers
         {
             using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
             {
-
-                User user = (from u in db.Users
-                             where u.Email == User.Identity.Name
-                             select u).FirstOrDefault();
-
-                if (user == null)
+                if (User.Identity.IsAuthenticated)
                 {
-                    return View();
-                }
+                    User user = (from u in db.Users
+                                 where u.Email == User.Identity.Name
+                                 select u).FirstOrDefault();
 
-                return View(user);
+                    // Failsafes are always good.
+                    if (user != null)
+                        return View(user);                        
+                    else
+                        return RedirectToAction("Login", "Account");
+                }
+                else
+                    return RedirectToAction("Login", "Account");
             }
         }
 
@@ -82,50 +85,41 @@ namespace DigiStoreWithMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Index(User model)
         {
-            using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
+            if (User.Identity.IsAuthenticated)
             {
-                User existingUser = (from u in db.Users
-                                     where u.Email == User.Identity.Name
-                                     select u).FirstOrDefault();
-                if (existingUser != null)
+                using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
                 {
-                    if (model.FirstName != null)
-                        existingUser.FirstName = model.FirstName;
-                    if (model.LastName != null)
-                        existingUser.LastName = model.LastName;
-                    if (model.Address != null)
-                        existingUser.Address = model.Address;
-                    if (model.City != null)
-                        existingUser.City = model.City;
-                    if (model.StateProv != null)
-                        existingUser.StateProv = model.StateProv;
-                    if (model.PostalCode != null)
-                        existingUser.PostalCode = model.PostalCode;
-                    db.SaveChanges();
-                    ViewBag.Message = "General Information successfully updated!";
-                    return View(existingUser);
+                    User existingUser = (from u in db.Users
+                                         where u.Email == User.Identity.Name
+                                         select u).FirstOrDefault();
+                    if (existingUser != null)
+                    {
+                        if (model.FirstName != null)
+                            existingUser.FirstName = model.FirstName;
+                        if (model.LastName != null)
+                            existingUser.LastName = model.LastName;
+                        if (model.Address != null)
+                            existingUser.Address = model.Address;
+                        if (model.City != null)
+                            existingUser.City = model.City;
+                        if (model.StateProv != null)
+                            existingUser.StateProv = model.StateProv;
+                        if (model.PostalCode != null)
+                            existingUser.PostalCode = model.PostalCode;
+                        if (model.Country != null)
+                            existingUser.Country = model.Country;
+                        if (model.PhoneNumber != null)
+                            existingUser.PhoneNumber = model.PhoneNumber;
+                        db.SaveChanges();
+                        TempData["resultMessage"] = "General Information successfully updated!";
+                        return View(existingUser);
+                    }
+                    return RedirectToAction("Login", "Account");
                 }
-
-                return RedirectToAction("Login", "Account");
             }
+            else
+                return RedirectToAction("Login", "Account");
         }
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Index(User user)
-        //{
-        //    using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
-        //    {
-        //        if (ModelState.IsValid)
-        //        {
-        //            db.Entry(user).State = EntityState.Modified;
-        //            db.SaveChanges();
-        //            ViewBag.Message = "General Information successfully updated!";
-        //            return View(user);
-        //        }
-        //        return View(user);
-        //    }
-        //}
 
         //
         // GET: /Account/Login
@@ -295,24 +289,25 @@ namespace DigiStoreWithMVC.Controllers
                             newUser.StateProv = model.Province;
                         if (model.PostalCode != null)
                             newUser.PostalCode = model.PostalCode;
-                        //if (model.PhoneNumber != null)
-                        //    newUser.PhoneNumber = model.PhoneNumber;
+                        int phoneNumber = 0;
+                        Int32.TryParse(model.PhoneNumber, out phoneNumber);
+                        if (model.PhoneNumber != null)
+                            newUser.PhoneNumber = phoneNumber;
                         db.Users.Add(newUser);
                         db.SaveChanges();
-
                         // ASP.NET Will create a User seperate from the database. 
-                        var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                        var user = new ApplicationUser { UserName = model.Email, Email = model.Email, DigistoreUserId = newUser.Id };
                         var result = await UserManager.CreateAsync(user, newUser.Password);
                         if (result.Succeeded)
                         {
                             await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                            user.DigistoreUserId = newUser.Id;
+                            //user.DigistoreUserId = newUser.Id;
                             // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                             // Send an email with this link
                             // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                             // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                             // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                            return RedirectToAction("Login", "Account");
+                            return RedirectToAction("Index", "Home");
                         }
                         AddErrors(result);
                     }
@@ -547,7 +542,7 @@ namespace DigiStoreWithMVC.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Login", "Account");
+            return RedirectToAction("Index", "Home");
         }
 
         //
@@ -600,8 +595,8 @@ namespace DigiStoreWithMVC.Controllers
                             {
                                 await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                             }
-                            ViewBag.Message = "Password successfully updated!";
-                            return View("Index", dbUser);
+                            TempData["resultMessage"] = "Password successfully updated!";
+                            return RedirectToAction("Index", "Account");
                         }
                         AddErrors(result);
                         return View(model);
@@ -632,8 +627,6 @@ namespace DigiStoreWithMVC.Controllers
                         PaymentMethod model = user.PaymentMethods.FirstOrDefault();
                         if (model != null)
                         {
-                            ViewData["paymentType"] = model.PaymentType;
-                            ViewData["accountNumber"] = model.AccountNumber;
                             return View(model);
                         }
                         return View();
@@ -647,15 +640,15 @@ namespace DigiStoreWithMVC.Controllers
         }
 
         //
-        // GET: /Manage/ChangePayment
+        // POST: /Manage/ChangePayment
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult ChangePayment(PaymentMethod model)
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    return View(model);
-            //}
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
 
             using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
             {
@@ -669,13 +662,19 @@ namespace DigiStoreWithMVC.Controllers
                     if (payment == null)
                         payment = db.PaymentMethods.Create();
 
-                    payment.PaymentType = model.PaymentType;
-                    payment.AccountNumber = model.AccountNumber;
+                    if (model.PaymentType != null)
+                        payment.PaymentType = model.PaymentType;
+                    else
+                        payment.PaymentType = "";
+                    if (model.AccountNumber != null)
+                        payment.AccountNumber = model.AccountNumber;
+                    else
+                        payment.AccountNumber = "";
                     payment.UserId = user.Id;
                     user.PaymentMethods.Add(payment);
                     db.SaveChanges();
-                    ViewBag.Message = "Successfully updated payment info!";
-                    return View("Index", user);
+                    TempData["resultMessage"] = "Payment successfully updated!";
+                    return RedirectToAction("Index", "Account");
                 }
             }
             return View();

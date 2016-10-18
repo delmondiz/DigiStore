@@ -16,12 +16,12 @@
         <div class="row">
             <div class="col s12 m6 input-field">
                 @Html.LabelFor(model => model.PaymentType)
-                @Html.EditorFor(model => model.PaymentType, new { htmlAttributes = new { @class = "form-control", @text = ViewData["paymentType"], @placeholder = ViewData["paymentType"] } })
+                @Html.EditorFor(model => model.PaymentType, new { htmlAttributes = new { @class = "form-control", @text = ViewData["paymentType"], @placeholder = Model.PaymentType } })
                 @Html.ValidationMessageFor(model => model.PaymentType, "", new { @class = "red-text" })
             </div>
             <div class="col s12 m6 input-field">
                 @Html.LabelFor(model => model.AccountNumber)
-                @Html.EditorFor(model => model.AccountNumber, new { htmlAttributes = new { @text = ViewData["accountNumber"], @placeholder = ViewData["accountNumber"] } })
+                @Html.EditorFor(model => model.AccountNumber, new { htmlAttributes = new { @text = ViewData["accountNumber"], @placeholder = Model.AccountNumber } })
                 @Html.ValidationMessageFor(model => model.AccountNumber, "", new { @class = "red-text" })
             </div>
         </div>

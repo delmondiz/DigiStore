@@ -21,27 +21,21 @@ namespace DigiStoreWithMVC.Controllers
         {
             if (storeName != null)
             {
-                using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
-                {
-                    User checkUser = (from u in db.Users where u.UserName == storeName select u).FirstOrDefault();
+                User checkUser = (from u in db.Users where u.UserName == storeName select u).FirstOrDefault();
 
-                    if (checkUser != null)
-                        return View(checkUser);
-                    else
-                        return View();
-                }
+                if (checkUser != null)
+                    return View(checkUser);
+                else
+                    return View();
             }
             else if (User.Identity.IsAuthenticated)
             {
-                using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
-                {
-                    User currentUser = (from u in db.Users where u.Email == User.Identity.Name select u).FirstOrDefault();
+                User currentUser = (from u in db.Users where u.Email == User.Identity.Name select u).FirstOrDefault();
 
-                    if (currentUser != null)
-                        return View(currentUser);
-                    else
-                        return View();    
-                }
+                if (currentUser != null)
+                    return View(currentUser);
+                else
+                    return View();
             }
             else
                 return View();
@@ -68,7 +62,7 @@ namespace DigiStoreWithMVC.Controllers
             if (count > 1000)
                 return RedirectToActionPermanent("Index", "Home", new { controller = "Home", action = "Index" });
 
-            return RedirectToAction("Index", "Store", new { storeName = randomUser.UserName }); 
+            return RedirectToAction("Index", "Store", new { storeName = randomUser.UserName });
         }
 
         public ActionResult StoreInventory()
@@ -127,9 +121,9 @@ namespace DigiStoreWithMVC.Controllers
                 {
                     db.Entry(item).State = EntityState.Modified;
                     db.SaveChanges();
-                    return View("StoreInventory", user);
+                    return RedirectToAction("StoreInventory", "Store");
                 }
-                return View("StoreInventory", user);
+                return RedirectToAction("StoreInventory", "Store");
             }
             else
                 return RedirectToAction("Login", "Account");
@@ -146,7 +140,7 @@ namespace DigiStoreWithMVC.Controllers
                 Item dbItem = (from i in db.Items where i.Id == item.Id select i).FirstOrDefault();
                 user.Items.Remove(dbItem);
                 db.SaveChanges();
-                return View("StoreInventory", user);
+                return RedirectToAction("StoreInventory", "Store");
             }
             else
                 return RedirectToAction("Login", "Account");
