@@ -16,12 +16,18 @@ namespace DigiStoreWithMVC.Controllers
     {
         private DigiStoreDBModelContainer db = new DigiStoreDBModelContainer();
 
-        // GET: Store
+        //public ActionResult Index()
+        //{
+
+        //    return View();
+        //}
+
         public ActionResult Index(string storeName)
         {
             using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
             {
                 User checkUser = (from u in db.Users where u.UserName == storeName select u).FirstOrDefault();
+                
                 if (checkUser != null)
                 {
                     return View(checkUser);
