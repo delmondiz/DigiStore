@@ -1,4 +1,4 @@
-﻿
+﻿@model DigiStoreWithMVC.Models.User
 @{
     ViewBag.Title = "Browse Stores";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,6 +6,8 @@
 <br/>
 <div class="container">
     <form id="form2" onsubmit="return performUserSearch()">
+    @*@using (Ajax.BeginForm(new AjaxOptions { HttpMethod = "post", InsertionMode = InsertionMode.Replace, UpdateTargetId = "goggleResultsList" }))
+    {*@
         <div class="row">
             <div class="col input-field s9">
                 <input type="text" id="inputSearch" class="validate" />
@@ -19,6 +21,7 @@
             </div>
         </div>
     </form>
+    @* } *@
 </div>
 
 <div class="center container">
@@ -29,8 +32,10 @@
         </div>
     </div>
 </div>
-
+@section scripts {
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3d4spAr0FMskq0UBEVofzNutc9Q9lrig&callback=initMap&libraries=places,visualization" async defer></script>
+}
 <script>
     startUpFunctions();
 
@@ -197,12 +202,12 @@
                 return;
             }
             
-            //console.log(document.getElementById("goggleResultsList").childElementCount);
-            //console.log(marker.get("position"));
-            //document.getElementById("goggleResultsList").innerHTML +=
-                //"<li class='collection-item blue darken-3' id='" + document.getElementById("goggleResultsList").childElementCount + "'>" +
-                //getResultsDiv(result)
-            //"</li>";
+            console.log(document.getElementById("goggleResultsList").childElementCount);
+            console.log(marker.get("position"));
+            document.getElementById("goggleResultsList").innerHTML +=
+                "<li class='collection-item blue darken-3' id='" + document.getElementById("goggleResultsList").childElementCount + "'>" +
+                getResultsDiv(result)
+            "</li>";
         });
 
         google.maps.event.addListener(marker, 'click', function () {

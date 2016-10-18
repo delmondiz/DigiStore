@@ -1,20 +1,16 @@
 ﻿@model DigiStoreWithMVC.Models.User
 
 @{
-    ViewBag.Title = "Profile";
+    ViewBag.Title = Model.UserName + "'s Profile";
 }
 
 <div class="container">
     <div class="section">
-
         <div class="row">
-
-            @{ }
-
             <div class="section no-pad-bot" id="index-banner">
-                <h1 class="header center blue-text darken-3">@Html.Partial("_UserName")'s Profile</h1>
+                <h1 class="header center blue-text darken-3">@Model.UserName's Profile</h1>
             </div>
-                <h4>@ViewBag.Message</h4>
+            <h4 class="center green-text">@ViewBag.Message</h4>
             <div class="row">
                 <div class="card-panel blue darken-3">
                     <div class="card-content row">
@@ -23,27 +19,15 @@
                             @Html.AntiForgeryToken()
                             @Html.Partial("_UserDetails")
                         }
-                        @Html.ActionLink("Change Password", "ChangePassword", "Account", new { @class = "btn waves-effect blue darken-3 yellow-text accent-3" })
                         <div class="col s12">
-                            <div class="card">
-                                <div class="card-content">
-                                    <span class="card-title"><i class="material-icons">credit_card</i>Payment</span>
-                                    <br />
-                                    <label for="cardholder">Cardholder</label>
-                                    <input placeholder="Bob Barker" id="cardholder" type="text" class="validate">
-                                    <label for="card_number">Card Number</label>
-                                    <input placeholder="5555 5555 5555 5555" id="card_number" type="text" class="validate">
-                                    <label for="expiry">Expiry Date</label>
-                                    <input placeholder="TODAY!!?!??!" id="expiry" type="text" class="validate">
-                                    <br />
-                                    <a class="waves-effect waves-light btn blue darken-3 yellow-text accent-3">Save Changes</a>
-                                </div>
+                            <div class="row">
+                                @Html.ActionLink("Change Password", "ChangePassword", "Account", new { @class = "col s12 m6 btn waves-effect blue darken-3 yellow-text accent-3" })
+                                @Html.ActionLink("Change Payment Info", "ChangePayment", "Account", new { @class = "col s12 m6 btn waves-effect blue darken-3 yellow-text accent-3" })
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>

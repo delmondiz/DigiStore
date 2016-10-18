@@ -1,12 +1,13 @@
 ﻿@model DigiStoreWithMVC.Models.User
+
 @{
-    ViewBag.Title = "StoreInventory";
+    ViewBag.Title = "Store Inventory";
+
+    DigiStoreWithMVC.Models.Item addableItem = new DigiStoreWithMVC.Models.Item();
 }
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    <br />
+<br />
+<div class="container">
     <div class="row">
         <div class="input-field col s4">
             <select>
@@ -42,211 +43,29 @@
     </div>
 
     <div class="divider"></div>
+    <h2 class="center-align">Your Items</h2>
+    <br />
     <div>
-        <h2 class="center-align">Your Items</h2>
-        <br />
-        <div class="row">
-            <div class="col s2">
-                <button class="btn btn-large valign waves-effect waves-light blue darken-3 yellow-text accent-3 col s2 m3" type="submit" name="submitSearch" style="padding:0; width:100%">
-                    <span class="hide-on-med-and-down"><i class="material-icons right">library_add</i>Add Item</span>
-                    <span class="hide-on-large-only"><i class="material-icons center">library_add</i></span>
-                </button>
-            </div>
-        </div>
-        <ul id="storeInventoryList" class="collapsible" data-collapsible="accordion">
-            @if (Model.Items != null)
-            {
-                foreach (DigiStoreWithMVC.Models.Item item in Model.Items)
-                {
-                    <li>
-                        <div class="collapsible-header">
-                            <img src="~/img/jinx.png" height="50" width="50" />
-                            @Html.LabelFor(model => item.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-                        </div>
-                        <div class="collapsible-body">
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            
-                            <div class="form-group">
-                                @Html.LabelFor(model => item.Id, htmlAttributes: new { @class = "control-label col-md-2" })
-
-                                @Html.LabelFor(model => item.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => item.Name, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => item.Name, "", new { @class = "text-danger" })
-                                </div>
-
-                                @Html.LabelFor(model => item.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => item.Description, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => item.Description, "", new { @class = "text-danger" })
-                                </div>
-
-                                @Html.LabelFor(model => item.Price, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => item.Price, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => item.Price, "", new { @class = "text-danger" })
-                                </div>
-
-                                @Html.LabelFor(model => item.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => item.Quantity, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => item.Quantity, "", new { @class = "text-danger" })
-                                </div>
-
-                                @Html.LabelFor(model => item.Weight, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => item.Weight, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => item.Weight, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col s6">
-                                    <a class="waves-effect waves-light btn">Update Details</a>
-
-                                </div>
-                                <div class="col s6">
-                                    <a class="waves-effect waves-light btn red">Delete Item</a>
-
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                }
-            }
-            @*<li>
-                    <div class="collapsible-header">
-                        <img src="~/img/jinx.png" height="50" width="50" />
-                        Jinx's Mini Chibi Figure ~-~ Remaining: 15
-                    </div>
-                    <div class="collapsible-body">
-                        <p>
-                            Serial No#: RIOTLOL0000000101<br />
-                            Item Name: ____________<br />
-                            Quantity:____________<br />
-                            Price per Item: $0.00<br />
-                            Price by Weight: $0.00<br />
-                            Weight: 0.00kg<br />
-                            Supplier: ________
-                        </p>
-                        <div class="row">
-                            <div class="col s6">
-                                <a class="waves-effect waves-light btn">Update Details</a>
-
-                            </div>
-                            <div class="col s6">
-                                <a class="waves-effect waves-light btn red">Delete Item</a>
-
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="collapsible-header">
-                        <img src="~/img/kha.png" height="50" width="50" />
-                        Kha'zix's Mini Chibi Figure ~-~ Remaining: 11
-                    </div>
-                    <div class="collapsible-body">
-                        <p>
-                            Serial No#: RIOTLOL0000000102<br />
-                            Item Name: ____________<br />
-                            Quantity:____________<br />
-                            Price per Item: $0.00<br />
-                            Price by Weight: $0.00<br />
-                            Weight: 0.00kg<br />
-                            Supplier: ________
-                        </p>
-                        <div class="row">
-                            <div class="col s6">
-                                <a class="waves-effect waves-light btn">Update Details</a>
-
-                            </div>
-                            <div class="col s6">
-                                <a class="waves-effect waves-light btn red">Delete Item</a>
-
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="collapsible-header">
-                        <img src="~/img/mf.png" height="50" width="50" />
-                        Miss Fortune's Mini Chibi Figure ~-~ Remaining: 16
-                    </div>
-                    <div class="collapsible-body">
-                        <p>
-                            Serial No#: RIOTLOL0000000103<br />
-                            Item Name: ____________<br />
-                            Quantity:____________<br />
-                            Price per Item: $0.00<br />
-                            Price by Weight: $0.00<br />
-                            Weight: 0.00kg<br />
-                            Supplier: ________
-                        </p>
-                        <div class="row">
-                            <div class="col s6">
-                                <a class="waves-effect waves-light btn">Update Details</a>
-
-                            </div>
-                            <div class="col s6">
-                                <a class="waves-effect waves-light btn red">Delete Item</a>
-
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="collapsible-header">
-                        <img src="~/img/tryn.png" height="50" width="50" />
-                        Tryndamere's Mini Chibi Figure ~-~ Remaining: 17
-                    </div>
-                    <div class="collapsible-body">
-                        <p>
-                            Serial No#: RIOTLOL0000000104<br />
-                            Item Name: ____________<br />
-                            Quantity:____________<br />
-                            Price per Item: $0.00<br />
-                            Price by Weight: $0.00<br />
-                            Weight: 0.00kg<br />
-
-                            Supplier: ________
-                        </p>
-                        <div class="row">
-                            <div class="col s6">
-                                <a class="waves-effect waves-light btn">Update Details</a>
-
-                            </div>
-                            <div class="col s6">
-                                <a class="waves-effect waves-light btn red">Delete Item</a>
-
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="collapsible-header">
-                        <img src="~/img/vi.png" height="50" width="50" />
-                        Vi's Mini Chibi Figure ~-~ Remaining: 14
-                    </div>
-                    <div class="collapsible-body">
-                        <p>
-                            Serial No#: RIOTLOL0000000105<br />
-                            Item Name: ____________<br />
-                            Quantity:____________<br />
-                            Price per Item: $0.00<br />
-                            Price by Weight: $0.00<br />
-                            Weight: 0.00kg<br />
-                            Supplier: ________
-                        </p>
-                        <div class="row">
-                            <div class="col s6">
-                                <a class="waves-effect waves-light btn">Update Details</a>
-                            </div>
-                            <div class="col s6">
-                                <a class="waves-effect waves-light btn red">Delete Item</a>
-                            </div>
-                        </div>
-                    </div>
-                </li>*@
-        </ul>
+        @Html.Partial("_AddItem", new DigiStoreWithMVC.Models.Item())
     </div>
-}
+    @if (Model != null)
+    {
+        if (Model.Items.Count > 0)
+        {
+            <ul id="storeInventoryList" class="collapsible" data-collapsible="accordion">
+                @foreach (DigiStoreWithMVC.Models.Item inventoriedItem in Model.Items)
+                {
+                    @Html.Partial("_ExistingItems", inventoriedItem)
+                }
+            </ul>
+        }
+        else
+        {
+            <p>There are no items in the store inventory.</p>
+        }
+    }
+    else
+    {
+        <p>There are no items in the store inventory.</p>
+    }
+</div>
