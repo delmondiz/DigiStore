@@ -16,8 +16,8 @@ namespace DigiStoreWithMVC.Controllers
             using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
             {
                 User user = (from u in db.Users
-                                       where u.Email == User.Identity.Name
-                                       select u).FirstOrDefault();
+                                where u.Email == User.Identity.Name
+                                select u).FirstOrDefault();
 
                 if (user == null)
                 {

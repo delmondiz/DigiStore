@@ -87,6 +87,7 @@ namespace DigiStoreWithMVC.Controllers
             {
                 if (id == null)
                 {
+                    // Replace with a 'Invalid Item page, instead of this'
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 Item item = db.Items.Find(id);
@@ -94,8 +95,6 @@ namespace DigiStoreWithMVC.Controllers
                 {
                     return HttpNotFound();
                 }
-                //ViewBag.OrderId = new SelectList(db.Orders, "Id", "Id", item.OrderId);
-                //ViewBag.UserId = new SelectList(db.Users, "Id", "UserName", item.UserId);
                 return View(item);
             }
             else
@@ -134,12 +133,18 @@ namespace DigiStoreWithMVC.Controllers
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-                Item item = db.Items.Find(id);
-                if (item == null)
+                User user = (from u in db.Users where u.Email == User.Identity.Name select u).FirstOrDefault();
+                if (user.Items.Count > 0)
                 {
-                    return HttpNotFound();
+                    Item item = user.Items.Where(i => i.Id == id).FirstOrDefault();
+                    if (item == null)
+                    {
+                        return HttpNotFound();
+                    }
+                    return View(item);
                 }
-                return View(item);
+                else
+                    return View("Index");
             }
             else
                 return RedirectToAction("Index", "Home");
@@ -154,12 +159,7 @@ namespace DigiStoreWithMVC.Controllers
             {
                 User user = (from u in db.Users where u.Email == User.Identity.Name select u).FirstOrDefault();
                 Item item = (from i in db.Items where i.Id == id select i).FirstOrDefault();
-                db.Items.Attach(item);
-                //db.Items.Remove(item);
                 user.Items.Remove(item);
-                //db.Users.Where(u => u.Email == user.Email).FirstOrDefault().Items.Remove(item);
-                //db.Items.Remove(item);
-                db.ChangeTracker.DetectChanges();
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

@@ -62,10 +62,10 @@ namespace DigiStoreWithMVC.Controllers
         {
             using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
             {
-                
+
                 User user = (from u in db.Users
-                            where u.Email == User.Identity.Name
-                            select u).FirstOrDefault();
+                             where u.Email == User.Identity.Name
+                             select u).FirstOrDefault();
 
                 if (user == null)
                 {
@@ -105,7 +105,6 @@ namespace DigiStoreWithMVC.Controllers
                     ViewBag.Message = "General Information successfully updated!";
                     return View(existingUser);
                 }
-
                 return RedirectToAction("Index", "Home");
             }
         }
@@ -152,8 +151,8 @@ namespace DigiStoreWithMVC.Controllers
             {
                 // Check if the user exists in the database.
                 User existingUser = (from users in db.Users
-                                    where users.Email == model.Email
-                                    select users).FirstOrDefault();
+                                     where users.Email == model.Email
+                                     select users).FirstOrDefault();
                 PasswordHasher hash = new PasswordHasher();
                 // If the user does exist, we check that the password is correct.
                 if (existingUser != null)
@@ -164,40 +163,30 @@ namespace DigiStoreWithMVC.Controllers
                         ModelState.AddModelError("", "Invalid Username/Password.");
                         return View("Login", model);
                     }
+
+                    // If we reach here, the user is able to log in.
+
+                    // This doesn't count login failures towards account lockout
+                    // To enable password failures to trigger account lockout, change to shouldLockout: true
+                    var result = await SignInManager.PasswordSignInAsync(model.Email, existingUser.Password, model.RememberMe, shouldLockout: false);
+                    switch (result)
+                    {
+                        case SignInStatus.Success:
+                            return RedirectToLocal(returnUrl);
+                        case SignInStatus.LockedOut:
+                            return View("Lockout");
+                        case SignInStatus.RequiresVerification:
+                            return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                        case SignInStatus.Failure:
+                        default:
+                            ModelState.AddModelError("", "Invalid Username/Password.");
+                            return View(model);
+                    }
                 }
-
-                // If we reach here, the user is able to log in.
-
-                // This doesn't count login failures towards account lockout
-                // To enable password failures to trigger account lockout, change to shouldLockout: true
-                //string hashedPassword = hash.HashPassword("Digistore1!");
-
-                //var result = await UserManager.ChangePasswordAsync("71ac3590-4f20-4dc3-9e46-4adee52cc9b6", "AELEzJTeNheJQIfsVYDT9A9x5XpO3SWY2k4BuA0rz8ZzJNEU1iAGc1AsPGbn1VF60w==", hashedPassword);
-                //if (result.Succeeded)
-                //{
-                //    existingUser.Password = hashedPassword;
-                //    var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-                //    if (user != null)
-                //    {
-                //        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                //        return RedirectToLocal(returnUrl);
-                //    }
-                //}
-                //ModelState.AddModelError("", "Invalid Username/Password STILL.");
-                //return View(model);
-                var result = await SignInManager.PasswordSignInAsync(model.Email, existingUser.Password, model.RememberMe, shouldLockout: false);
-                switch (result)
+                else
                 {
-                    case SignInStatus.Success:
-                        return RedirectToLocal(returnUrl);
-                    case SignInStatus.LockedOut:
-                        return View("Lockout");
-                    case SignInStatus.RequiresVerification:
-                        return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                    case SignInStatus.Failure:
-                    default:
-                        ModelState.AddModelError("", "Invalid Username/Password.");
-                        return View(model);
+                    ModelState.AddModelError("", "Invalid Username/Password.");
+                    return View(model);
                 }
             }
         }
@@ -279,24 +268,22 @@ namespace DigiStoreWithMVC.Controllers
                 using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
                 {
                     // Check if user already exists with that email
-                    var existingUser = from u in db.Users
+                    User existingUser = (from u in db.Users
                                        where u.Email == model.Email
-                                       select u;
+                                       select u).FirstOrDefault();
 
                     // If a user is not found
-                    if (existingUser.FirstOrDefault() == null)
+                    if (existingUser == null)
                     {
                         PasswordHasher hash = new PasswordHasher();
-                        
+
                         User newUser = db.Users.Create();
-                            
+
                         newUser.UserName = model.Username;
                         newUser.Email = model.Email;
                         newUser.Password = hash.HashPassword(model.Password);
-                        if (model.FirstName != null)
-                            newUser.FirstName = model.FirstName;
-                        if (model.LastName != null)
-                            newUser.LastName = model.LastName;
+                        newUser.FirstName = model.FirstName;
+                        newUser.LastName = model.LastName;
                         if (model.Street != null)
                             newUser.Address = model.Street;
                         if (model.City != null)
@@ -306,9 +293,10 @@ namespace DigiStoreWithMVC.Controllers
                         if (model.PostalCode != null)
                             newUser.PostalCode = model.PostalCode;
                         //if (model.PhoneNumber != null)
-                            //newUser.PhoneNumber = model.PhoneNumber;
+                        //    newUser.PhoneNumber = model.PhoneNumber;
                         db.Users.Add(newUser);
                         db.SaveChanges();
+
                         // ASP.NET Will create a User seperate from the database. 
                         var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                         var result = await UserManager.CreateAsync(user, newUser.Password);
@@ -321,10 +309,9 @@ namespace DigiStoreWithMVC.Controllers
                             // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                             // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                             // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
                             return RedirectToAction("Index", "Home");
                         }
-                    AddErrors(result);
+                        AddErrors(result);
                     }
                     else
                     {
@@ -669,10 +656,10 @@ namespace DigiStoreWithMVC.Controllers
 
             using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
             {
-                
+
                 User user = (from u in db.Users
-                                            where u.Email == User.Identity.Name
-                                            select u).FirstOrDefault();
+                             where u.Email == User.Identity.Name
+                             select u).FirstOrDefault();
                 if (user != null)
                 {
                     PaymentMethod payment = user.PaymentMethods.FirstOrDefault();
