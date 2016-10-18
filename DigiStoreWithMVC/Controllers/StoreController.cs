@@ -68,22 +68,22 @@ namespace DigiStoreWithMVC.Controllers
                     return View(currentUser);
                 }
                 else
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Login", "Account");
             }
             else
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Account");
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult StoreInventory(Item item)
+        public ActionResult StoreInventory([Bind(Include = "Id,Name,Description,Price,Weight,Quantity,ImagePath")]Item item)
         {
             if (User.Identity.IsAuthenticated)
             {
+                // Get our current user.
+                User user = (from u in db.Users where u.Email == User.Identity.Name select u).FirstOrDefault();
                 if (ModelState.IsValid)
                 {
-                    // Get our current user.
-                    User user = (from u in db.Users where u.Email == User.Identity.Name select u).FirstOrDefault();
                     // Add the item to our current user.
                     user.Items.Add(item);
                     // Save the changes to the DB.
@@ -91,10 +91,10 @@ namespace DigiStoreWithMVC.Controllers
                     // Return the user to the Store Inventory
                     return View(user);
                 }
-                return View(item);
+                return View(user);
             }
             else
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Account");
         }
 
 
@@ -120,7 +120,7 @@ namespace DigiStoreWithMVC.Controllers
                 return View("StoreInventory", user);
             }
             else
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Account");
         }
 
         // POST: Items/Delete/5
@@ -137,7 +137,7 @@ namespace DigiStoreWithMVC.Controllers
                 return View("StoreInventory", user);
             }
             else
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Account");
         }
 
         public ActionResult ShoppingCart()
@@ -147,7 +147,7 @@ namespace DigiStoreWithMVC.Controllers
                 return View();
             }
             else
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Account");
         }
 
         //public ActionResult Browse(string userId)

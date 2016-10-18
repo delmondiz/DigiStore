@@ -106,7 +106,7 @@ namespace DigiStoreWithMVC.Controllers
                     return View(existingUser);
                 }
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Account");
             }
         }
 
@@ -310,7 +310,7 @@ namespace DigiStoreWithMVC.Controllers
                             // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                             // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                             // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                            return RedirectToAction("Index", "Home");
+                            return RedirectToAction("Login", "Account");
                         }
                         AddErrors(result);
                     }
@@ -545,7 +545,7 @@ namespace DigiStoreWithMVC.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Account");
         }
 
         //
@@ -609,7 +609,7 @@ namespace DigiStoreWithMVC.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Login", "Account");
                 }
             }
         }
@@ -641,7 +641,7 @@ namespace DigiStoreWithMVC.Controllers
                 }
             }
             else
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Account");
         }
 
         //
@@ -725,7 +725,7 @@ namespace DigiStoreWithMVC.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Account");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult
