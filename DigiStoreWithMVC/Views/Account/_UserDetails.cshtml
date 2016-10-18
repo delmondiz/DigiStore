@@ -18,11 +18,11 @@
                 </span>
             
                 <span class="row">
-                    <span class="col s6">
+                    <span class="col s12 m6">
                         @Html.DisplayNameFor(model => Model.Email)
                         @Html.EditorFor(model => Model.Email, new { htmlAttributes = new { @class = "form-control", @type = "text", @placeholder = Model.Email, @id = "email", @disabled = "disabled" } })
                     </span>
-                    <span class="col s6">
+                    <span class="col s12 m6">
                         @Html.DisplayNameFor(model => Model.Address)
                         @Html.EditorFor(model => Model.Address, new { htmlAttributes = new { @class = "form-control", @type = "text", @placeholder = Model.Address, @id = "address" } })
                     </span>
@@ -41,8 +41,8 @@
                     <span class="col s6">
                         @Html.DisplayNameFor(model => Model.PostalCode)
                         @Html.EditorFor(model => Model.PostalCode, new { htmlAttributes = new { @class = "form-control", @type = "text", @placeholder = Model.PostalCode, @id = "postalcode" } })
-                        <input type="submit" value="Save Changes" class="waves-effect waves-light btn blue darken-3 yellow-text accent-3">
                     </span>
+                    <input type="submit" value="Save Changes" class="col s12 waves-effect waves-light btn blue darken-3 yellow-text accent-3">
                 </span>
 </p>
         </div>

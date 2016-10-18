@@ -15,23 +15,16 @@ namespace DigiStoreWithMVC.Controllers
         {
             using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
             {
-                var verifiedUser = (from u in db.Users
-                                       where u.Email == User.Identity.Name
-                                       select u).FirstOrDefault();
-                if (verifiedUser != null)
+                User user = (from u in db.Users
+                                where u.Email == User.Identity.Name
+                                select u).FirstOrDefault();
+
+                if (user == null)
                 {
-                    User user = new User();
-                    user = verifiedUser;
-
-                    if (user == null)
-                    {
-                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                    }
-
-                    return View(user);
-                }
-                else
                     return View();
+                }
+
+                return View(user);
             }
         }
 
@@ -82,11 +75,28 @@ namespace DigiStoreWithMVC.Controllers
                 return View(model);
             }
         }
+
         public ActionResult Map()
         {
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Map(string inputSearch)
+        {
+            using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
+            {
+                List<User> users = (from u in db.Users
+                                    where u.UserName.ToLower().Contains(inputSearch.ToLower())
+                                    select u).ToList();
+                if (users != null)
+                {
+                    ViewData["users"] = users;
+                }
+                return PartialView("_MapResults");
+            }
         }
     }
 }

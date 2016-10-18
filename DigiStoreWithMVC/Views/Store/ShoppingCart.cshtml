@@ -18,7 +18,7 @@
                             <img class="responsive-img" src="~/img/download.jpg" />
                         </div>
                         <div class="col s7 m3">
-                            Here We can put the deatail of this cup cake it does look mighty delicious man im hungry
+                            Here We can put the detail of this cup cake it does look mighty delicious man im hungry
                         </div>
                         <br />
                         <div class="col s3 m2">
@@ -178,23 +178,26 @@
     <h7>Tax:$3.11</h7>
     <h4>Grand Total:$27.05</h4>
 
-    <button type="button" title="Continue Shopping" class="button waves-effect waves-light btn green accent-4  btn-proceed-checkout btn-checkout"><span><span>Continue Shopping</span></span></button>
-    <a class="modal-trigger waves-effect waves-light btn" href="#modal1">Proceed to Checkout</a>
-    <!-- Modal Structure -->
-    <div id="modal1" class="modal modal-fixed-footer">
-        <div class="modal-content">
-            <h4>AGREEMENT</h4>
-            <p>
-                This is not just a bunch a text but this is you telling me i can take you credit card and do what the hell i want with it. i mean i can go buy a house a car dinner for me and my gf and because you hit agree you cant sue me after once you  find out
-                that i robbed your ass of all your money which if your usuing this website at the early stage mean you dont have any money so im fucked anyways. DAMN I HATE LOOSING
-            </p>
+    @Html.ActionLink("Continue Shopping", "Map", new { controller = "Home", action = "Map" }, htmlAttributes: new { @class = "btn waves-effect blue darken-3 yellow-text accent-3" })
+    @*@Html.ActionLink("Proceed to Checkout", null, null, htmlAttributes: new { @class = "btn waves-effect blue darken-4 yellow-text accent-5", @href="#modal1" })*@
+        <a class="modal-trigger waves-effect waves-light btn" href="#modal1">Proceed to Checkout</a>
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal modal-fixed-footer">
+            <div class="modal-content">
+                <h4>AGREEMENT</h4>
+                <p>
+                    This is not just a bunch a text but this is you telling me i can take you credit card and do what the hell i want with it. i mean i can go buy a house a car dinner for me and my gf and because you hit agree you cant sue me after once you  find out
+                    that i robbed your ass of all your money which if your usuing this website at the early stage mean you dont have any money so im fucked anyways. DAMN I HATE LOOSING
+                </p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="btn waves-effect waves-green btn-flat">Disagree</a>
+                <a href="#!" class="btn waves-effect waves-green btn-flat">Agree</a>
+            </div>
         </div>
-        <div class="modal-footer">
-            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Disagree</a>
-            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
-
-        </div>
-    </div>
-
-
 </div>
+<script>
+    $(document).ready(function(){
+        $('.modal-trigger').leanModal();
+    });
+</script>
