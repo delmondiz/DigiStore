@@ -105,6 +105,7 @@ namespace DigiStoreWithMVC.Controllers
                     ViewBag.Message = "General Information successfully updated!";
                     return View(existingUser);
                 }
+
                 return RedirectToAction("Index", "Home");
             }
         }
@@ -269,8 +270,8 @@ namespace DigiStoreWithMVC.Controllers
                 {
                     // Check if user already exists with that email
                     User existingUser = (from u in db.Users
-                                       where u.Email == model.Email
-                                       select u).FirstOrDefault();
+                                         where u.Email == model.Email
+                                         select u).FirstOrDefault();
 
                     // If a user is not found
                     if (existingUser == null)
