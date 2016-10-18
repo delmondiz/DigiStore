@@ -45,129 +45,27 @@
     <div class="divider"></div>
     <h2 class="center-align">Your Items</h2>
     <br />
-    @using (Html.BeginForm())
+    <div>
+        @Html.Partial("_AddItem", new DigiStoreWithMVC.Models.Item())
+    </div>
+    @if (Model != null)
     {
-        @Html.AntiForgeryToken()
-        <div class="row">
-
-            <div class="col s12 m6">
-                @Html.LabelFor(model => addableItem.Name)
-                @Html.EditorFor(model => addableItem.Name)
-                @Html.ValidationMessageFor(model => addableItem.Name, "", new { @class = "text-danger" })
-            </div>
-
-            <div class="col s12 m6">
-                @Html.LabelFor(model => addableItem.Description)
-                @Html.EditorFor(model => addableItem.Description)
-                @Html.ValidationMessageFor(model => addableItem.Description, "", new { @class = "text-danger" })
-            </div>
-
-            <div class="col s12 m6">
-                @Html.LabelFor(model => addableItem.Price)
-                @Html.EditorFor(model => addableItem.Price)
-                @Html.ValidationMessageFor(model => addableItem.Price, "", new { @class = "text-danger" })
-            </div>
-
-            <div class="col s12 m6">
-                @Html.LabelFor(model => addableItem.Quantity)
-                @Html.EditorFor(model => addableItem.Quantity)
-                @Html.ValidationMessageFor(model => addableItem.Quantity, "", new { @class = "text-danger" })
-            </div>
-
-            <div class="col s12 m6">
-                @Html.LabelFor(model => addableItem.Weight)
-                @Html.EditorFor(model => addableItem.Weight)
-                @Html.ValidationMessageFor(model => addableItem.Weight, "", new { @class = "text-danger" })
-            </div>
-
-            <div class="col s12 m6">
-                @Html.LabelFor(model => addableItem.ImagePath)
-                @Html.EditorFor(model => addableItem.ImagePath)
-                @Html.ValidationMessageFor(model => addableItem.ImagePath, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="row">
-            <div class="col s2">
-                <button class="btn btn-large valign waves-effect waves-light blue darken-3 yellow-text accent-3 col s2 m3" type="submit" name="submitSearch" style="padding:0; width:100%">
-                    <span class="hide-on-med-and-down"><i class="material-icons right">library_add</i>Add Item</span>
-                    <span class="hide-on-large-only"><i class="material-icons center">library_add</i></span>
-                </button>
-            </div>
-        </div>
-    }
-
-    @if (Model.Items.Count > 0)
-            {
-        <ul id="storeInventoryList" class="collapsible" data-collapsible="accordion">
-
-            @Html.BeginForm(){
-            @foreach (DigiStoreWithMVC.Models.Item inventoriedItem in Model.Items)
-            {
-                <li>
-                    <div class="collapsible-header">
-                        <img src=@Html.DisplayFor(model => inventoriedItem.ImagePath) height="50" width="50" />
-                        @Html.LabelFor(model => inventoriedItem.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-                    </div>
-                    <div class="collapsible-body">
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-                        <div class="row">
-
-                            <div class="col s12 m6">
-                                @Html.LabelFor(model => addableItem.Name)
-                                @Html.EditorFor(model => addableItem.Name)
-                                @Html.ValidationMessageFor(model => addableItem.Name, "", new { @class = "text-danger" })
-                            </div>
-
-                            <div class="col s12 m6">
-                                @Html.LabelFor(model => addableItem.Description)
-                                @Html.EditorFor(model => addableItem.Description)
-                                @Html.ValidationMessageFor(model => addableItem.Description, "", new { @class = "text-danger" })
-                            </div>
-
-                            <div class="col s12 m6">
-                                @Html.LabelFor(model => addableItem.Price)
-                                @Html.EditorFor(model => addableItem.Price)
-                                @Html.ValidationMessageFor(model => addableItem.Price, "", new { @class = "text-danger" })
-                            </div>
-
-                            <div class="col s12 m6">
-                                @Html.LabelFor(model => addableItem.Quantity)
-                                @Html.EditorFor(model => addableItem.Quantity)
-                                @Html.ValidationMessageFor(model => addableItem.Quantity, "", new { @class = "text-danger" })
-                            </div>
-
-                            <div class="col s12 m6">
-                                @Html.LabelFor(model => addableItem.Weight)
-                                @Html.EditorFor(model => addableItem.Weight)
-                                @Html.ValidationMessageFor(model => addableItem.Weight, "", new { @class = "text-danger" })
-                            </div>
-
-                            <div class="col s12 m6">
-                                @Html.LabelFor(model => addableItem.ImagePath)
-                                @Html.EditorFor(model => addableItem.ImagePath)
-                                @Html.ValidationMessageFor(model => addableItem.ImagePath, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s6">
-                            <a class="waves-effect waves-light btn">Update Details</a>
-
-                        </div>
-                        <div class="col s6">
-                            <a class="waves-effect waves-light btn red">Delete Item</a>
-
-                        </div>
-                    </div>
-                </li>
-            }
-            }
-        </ul>
+        if (Model.Items.Count > 0)
+        {
+            <ul id="storeInventoryList" class="collapsible" data-collapsible="accordion">
+                @foreach (DigiStoreWithMVC.Models.Item inventoriedItem in Model.Items)
+                {
+                    @Html.Partial("_ExistingItems", inventoriedItem)
+                }
+            </ul>
+        }
+        else
+        {
+            <p>There are no items in the store inventory.</p>
+        }
     }
     else
     {
         <p>There are no items in the store inventory.</p>
-
     }
 </div>
