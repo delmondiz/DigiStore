@@ -62,7 +62,7 @@ namespace DigiStoreWithMVC.Controllers
         {
             using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
             {
-                
+
                 User user = (from u in db.Users
                              where u.Email == User.Identity.Name
                              select u).FirstOrDefault();
@@ -170,31 +170,24 @@ namespace DigiStoreWithMVC.Controllers
                     ModelState.AddModelError("", "Invalid Username/Password.");
                     return View(model);
                 }
-            }
-            
-            // If we reach here, the user is able to log in.
 
-                    // This doesn't count login failures towards account lockout
-                    // To enable password failures to trigger account lockout, change to shouldLockout: true
-                    var result = await SignInManager.PasswordSignInAsync(model.Email, existingUser.Password, model.RememberMe, shouldLockout: false);
-                    switch (result)
-                    {
-                        case SignInStatus.Success:
-                            return RedirectToLocal(returnUrl);
-                        case SignInStatus.LockedOut:
-                            return View("Lockout");
-                        case SignInStatus.RequiresVerification:
-                            return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                        case SignInStatus.Failure:
-                        default:
-                            ModelState.AddModelError("", "Invalid Username/Password.");
-                            return View(model);
-                    }
-                }
-                else
+                // If we reach here, the user is able to log in.
+
+                // This doesn't count login failures towards account lockout
+                // To enable password failures to trigger account lockout, change to shouldLockout: true
+                var result = await SignInManager.PasswordSignInAsync(model.Email, existingUser.Password, model.RememberMe, shouldLockout: false);
+                switch (result)
                 {
-                    ModelState.AddModelError("", "Invalid Username/Password.");
-                    return View(model);
+                    case SignInStatus.Success:
+                        return RedirectToLocal(returnUrl);
+                    case SignInStatus.LockedOut:
+                        return View("Lockout");
+                    case SignInStatus.RequiresVerification:
+                        return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                    case SignInStatus.Failure:
+                    default:
+                        ModelState.AddModelError("", "Invalid Username/Password.");
+                        return View(model);
                 }
             }
         }
@@ -277,8 +270,8 @@ namespace DigiStoreWithMVC.Controllers
                 {
                     // Check if user already exists with that email
                     User existingUser = (from u in db.Users
-                                       where u.Email == model.Email
-                                       select u).FirstOrDefault();
+                                         where u.Email == model.Email
+                                         select u).FirstOrDefault();
 
                     // If a user is not found
                     if (existingUser == null)
