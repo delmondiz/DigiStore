@@ -19,16 +19,32 @@ namespace DigiStoreWithMVC.Controllers
 
         public ActionResult Index(string storeName)
         {
-            using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
+            if (storeName != null)
             {
-                User checkUser = (from u in db.Users where u.UserName == storeName select u).FirstOrDefault();
-
-                if (checkUser != null)
+                using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
                 {
-                    return View(checkUser);
+                    User checkUser = (from u in db.Users where u.UserName == storeName select u).FirstOrDefault();
+
+                    if (checkUser != null)
+                        return View(checkUser);
+                    else
+                        return View();
                 }
             }
-            return View();
+            else if (User.Identity.IsAuthenticated)
+            {
+                using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
+                {
+                    User currentUser = (from u in db.Users where u.Email == User.Identity.Name select u).FirstOrDefault();
+
+                    if (currentUser != null)
+                        return View(currentUser);
+                    else
+                        return View();    
+                }
+            }
+            else
+                return View();
         }
 
         public ActionResult RandomStore()
@@ -48,11 +64,11 @@ namespace DigiStoreWithMVC.Controllers
                 count++;
             } while (randomUser == null);
 
+            // This won't be reached any time soon.
             if (count > 1000)
                 return RedirectToActionPermanent("Index", "Home", new { controller = "Home", action = "Index" });
 
-            return RedirectToAction("Index", "Store", new { storeName = randomUser.UserName });
-            //return View(randomUser.UserName);   
+            return RedirectToAction("Index", "Store", new { storeName = randomUser.UserName }); 
         }
 
         public ActionResult StoreInventory()
@@ -64,9 +80,7 @@ namespace DigiStoreWithMVC.Controllers
                                     select u).FirstOrDefault();
 
                 if (currentUser != null)
-                {
                     return View(currentUser);
-                }
                 else
                     return RedirectToAction("Login", "Account");
             }
@@ -115,8 +129,6 @@ namespace DigiStoreWithMVC.Controllers
                     db.SaveChanges();
                     return View("StoreInventory", user);
                 }
-                //ViewBag.OrderId = new SelectList(db.Orders, "Id", "Id", item.OrderId);
-                //ViewBag.UserId = new SelectList(db.Users, "Id", "UserName", item.UserId);
                 return View("StoreInventory", user);
             }
             else
@@ -143,58 +155,10 @@ namespace DigiStoreWithMVC.Controllers
         public ActionResult ShoppingCart()
         {
             if (User.Identity.IsAuthenticated)
-            {
                 return View();
-            }
             else
                 return RedirectToAction("Login", "Account");
         }
-
-        //public ActionResult Browse(string userId)
-        //{
-        //    return Content("Coming soon! User ID: " + userId);
-        //    //return View();
-        //}
-
-        //public async Task<ActionResult> S(string storeName)
-        //{
-        //    if (storeName != null)
-        //    {
-        //        if (storeName.ToLower().Equals("mystore"))
-        //        {
-        //            // Check if User is logged in
-        //            // If loggedIn(), 
-
-        //            return View("Index");
-
-        //            // If !loggedIn(),
-
-        //            // return View("Login()");
-        //        }
-        //        else
-        //        {
-        //            // Require that the user has already logged in via username/password or external login
-        //            //if (!await account.SignInManager.HasBeenVerifiedAsync())
-        //            //{
-        //            //    return View("Home");
-        //            //}
-        //            //User user = new User();
-        //            //var u = from user in 
-        //            var user = from users in db.Users
-        //                       where users.UserName == storeName
-        //                       select users;
-        //            if (user != null)
-        //                return View("Index", user);
-
-        //            //return View("Index");
-        //            return Content("Hey: " + storeName + ".\n User Status: " + user.GetType());
-        //        }
-        //    }
-        //    else
-        //    {
-        //        return new HttpStatusCodeResult(403);
-        //    }
-        //}
 
         //protected override void Dispose(bool disposing)
         //{

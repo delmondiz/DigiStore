@@ -287,6 +287,8 @@ namespace DigiStoreWithMVC.Controllers
                         newUser.LastName = model.LastName;
                         if (model.Street != null)
                             newUser.Address = model.Street;
+                        if (model.Country != null)
+                            newUser.Country = model.Country;
                         if (model.City != null)
                             newUser.City = model.City;
                         if (model.Province != null)
