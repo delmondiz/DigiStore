@@ -114,34 +114,20 @@
                     us to generate a list of products from our database while keeping the
                     formatting (visual style) of our site.
                 *@
-
-                @for (int i = 0; i < 3; i++)
-                {
-
-                    <div class="card col s12 m6 l6">
-                        <div class="card-image waves-effect waves-block waves-light" align="center">
-                            <img class="activator" src="~/img/whitedressshirt.png" style="width: 125px">
+                @{
+                    if (Model.Items.Count() > 0)
+                    {
+                        foreach (DigiStoreWithMVC.Models.Item item in Model.Items)
+                        {
+                            @Html.Partial("_StoreItem", item)
+                        }
+                    }
+                    else
+                    {
+                        <div class="card">
+                            <h2 class="center">This store is empty.</h2>
                         </div>
-                        <div class="card-content">
-                            <span class="card-title activator grey-text text-darken-4">Product Name<i class="material-icons right">more_vert</i></span>
-                            <div class="card-action">                          
-                                    <select class="col s4">
-                                        <option value="" disabled selected>Qty</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                    </select>
-                                <div align="right">
-                                    <a class="waves-effect waves-light btn blue darken-3 yellow-text accent-3"><i class="material-icons left">add_shopping_cart</i>Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-reveal">
-                            <span class="card-title grey-text text-darken-4">Product Name<i class="material-icons right">close</i></span>
-                            <p>Product Description.</p>
-                        </div>
-                    </div>
-
+                    }
                 }
             </div>
         </div>
