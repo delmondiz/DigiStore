@@ -38,7 +38,7 @@ namespace DigiStoreWithMVC.Controllers
                     return View();
             }
             else
-                return View();
+                return RedirectToAction("Login", "Account");
         }
 
         public ActionResult RandomStore()
