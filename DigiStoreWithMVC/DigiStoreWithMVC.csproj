@@ -218,6 +218,9 @@
     <Compile Include="Models\Appointment.cs">
       <DependentUpon>DigiStoreDBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Cart.cs">
+      <DependentUpon>DigiStoreDBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DigiStoreDBModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -249,6 +252,12 @@
       <DependentUpon>DigiStoreDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Review.cs">
+      <DependentUpon>DigiStoreDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Store.cs">
+      <DependentUpon>DigiStoreDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StoreHours.cs">
       <DependentUpon>DigiStoreDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
@@ -300,12 +309,12 @@
       <LastGenOutput>DigiStoreDBModel.Context.cs</LastGenOutput>
       <DependentUpon>DigiStoreDBModel.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\DigiStoreDBModel.edmx.sql" />
     <Content Include="Models\DigiStoreDBModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DigiStoreDBModel.cs</LastGenOutput>
       <DependentUpon>DigiStoreDBModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Models\DigiStoreDBModelLatest.edmx.sql" />
     <Content Include="Scripts\ai.0.22.19-build00125.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -339,6 +348,7 @@
     <Content Include="fonts\Roboto-Thin.woff" />
     <Content Include="fonts\Roboto-Thin.woff2" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\DatabaseDataBackup.sql" />
     <Content Include="Scripts\init.js" />
     <Content Include="Scripts\jquery-2.2.4.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
@@ -351,6 +361,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="vs9151.txt" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

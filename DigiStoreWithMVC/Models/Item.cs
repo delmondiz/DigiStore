@@ -28,6 +28,7 @@ namespace DigiStoreWithMVC.Models
         public Nullable<double> Weight { get; set; }
         public int Quantity { get; set; }
         public string ImagePath { get; set; }
+        public string ItemType { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }
