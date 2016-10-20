@@ -20,56 +20,14 @@
                         <div class="card col l6 m6 s12">
                             <div class="card-content">
                                 <span class="card-title">Contact</span>
-
-                                @using (Html.BeginForm())
-                                {
-                                    <p>
-                                        @Html.LabelFor(model => model.Address)
-                                        @Html.DisplayTextFor(model => model.Address)
-                                        <br />
-                                        @Html.LabelFor(model => model.City)
-                                        @Html.DisplayTextFor(model => model.City)
-                                        <br />
-                                        @Html.LabelFor(model => model.StateProv)
-                                        @Html.DisplayTextFor(model => model.StateProv)
-                                        <br />
-                                        @Html.LabelFor(model => model.Country)
-                                        @Html.DisplayTextFor(model => model.Country)
-                                        <br />
-                                        @Html.LabelFor(model => model.PostalCode)
-                                        @Html.DisplayTextFor(model => model.PostalCode)
-                                        <br />
-                                        @Html.LabelFor(model => model.PhoneNumber)
-                                        @Html.DisplayTextFor(model => model.PhoneNumber)
-                                        <br />
-                                        @Html.LabelFor(model => model.Email)
-                                        @Html.DisplayTextFor(model => model.Email)
-                                    </p>
-                                }
+                                @Html.Partial("_EditStoreInfo", Model)
                             </div>
                         </div>
 
                         <div class="card col l6 m6 s12">
                             <div class="card-content">
                                 <span class="card-title">Store Hours</span>
-
-                                @*@using (Html.BeginForm())
-                                    {
-                                    <p>
-                                    @Html.LabelFor(model => model.Monday)
-                                    @Html.DisplayTextFor(model => model.Address)
-                                    <br />
-                                    </p>
-                                    }*@
-                                <p>
-                                    Monday: 9am - 5pm<br />
-                                    Tuesday: 9am - 5pm<br />
-                                    Wednesday: 9am - 5pm<br />
-                                    Thursday: 9am - 5pm<br />
-                                    Friday: 9am - 5pm<br />
-                                    Saturday: 9am - 5pm<br />
-                                    Sunday: 9am - 5pm<br />
-                                </p>
+                                @Html.Partial("_EditStoreHours", Model)
                             </div>
                         </div>
 

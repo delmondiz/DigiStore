@@ -309,6 +309,7 @@
       <LastGenOutput>DigiStoreDBModel.Context.cs</LastGenOutput>
       <DependentUpon>DigiStoreDBModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Models\DigiStoreDBModel.edmx.sql" />
     <Content Include="Models\DigiStoreDBModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DigiStoreDBModel.cs</LastGenOutput>
@@ -415,6 +416,8 @@
     <Content Include="Views\Store\_ExistingItems.cshtml" />
     <Content Include="Views\Store\UpdateItem.cshtml" />
     <Content Include="Views\Store\_StoreItem.cshtml" />
+    <Content Include="Views\Store\_EditStoreInfo.cshtml" />
+    <Content Include="Views\Store\_EditStoreHours.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -185,8 +185,8 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="StoreId" Type="int" Nullable="false" />
     <Property Name="DayOfTheWeek" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="StartTime" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="EndTime" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="StartTime" Type="datetime" Nullable="false" />
+    <Property Name="EndTime" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="Carts">
     <Key>
@@ -619,7 +619,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StartTime" Type="DateTime" Nullable="false" />
           <Property Name="EndTime" Type="DateTime" Nullable="false" />
           <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="City" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
@@ -669,8 +669,8 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="StoreId" Type="Int32" Nullable="false" />
           <Property Name="DayOfTheWeek" Type="String" Nullable="false" />
-          <Property Name="StartTime" Type="String" Nullable="false" />
-          <Property Name="EndTime" Type="String" Nullable="false" />
+          <Property Name="StartTime" Type="DateTime" Nullable="false" />
+          <Property Name="EndTime" Type="DateTime" Nullable="false" />
         </EntityType>
         <Association Name="StoreStoreHours">
           <End Type="DigiStoreDBModel.Store" Role="Store" Multiplicity="1" />

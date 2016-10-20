@@ -24,13 +24,41 @@ namespace DigiStoreWithMVC.Controllers
                 User checkUser = (from u in db.Users where u.UserName == storeName select u).FirstOrDefault();
 
                 if (checkUser != null)
-                    return View(checkUser);
+                {
+                    if (checkUser.Store.Name != null)
+                    {
+
+                        return View(checkUser);
+                    }
+
+                    else
+                        return View(checkUser);
+                }
                 else
                     return View();
             }
             else if (User.Identity.IsAuthenticated)
             {
                 User currentUser = (from u in db.Users where u.Email == User.Identity.Name select u).FirstOrDefault();
+
+                if (currentUser != null)
+                {
+                    return View(currentUser);
+                }
+                else
+                    return View();
+            }
+            else
+                return RedirectToAction("Login", "Account");
+        }
+
+        [HttpPost]
+        public ActionResult Index(Store store)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                User currentUser = (from u in db.Users where u.Email == User.Identity.Name select u).FirstOrDefault();
+                
 
                 if (currentUser != null)
                     return View(currentUser);
@@ -152,6 +180,89 @@ namespace DigiStoreWithMVC.Controllers
                 return View();
             else
                 return RedirectToAction("Login", "Account");
+        }
+
+        //
+        // POST: /Manage/ChangePayment
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditStoreInfo(User model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
+            {
+
+                User existingUser = (from u in db.Users
+                                     where u.Email == User.Identity.Name
+                                     select u).FirstOrDefault();
+                if (existingUser != null)
+                {
+                    if (model.Store.Name != null)
+                        existingUser.Store.Name = model.Store.Name;
+
+                    if (model.Store.Address != null)
+                        existingUser.Store.Address = model.Store.Address;
+
+                    if (model.Store.City != null)
+                        existingUser.Store.City = model.Store.City;
+
+                    if (model.Store.StateProv != null)
+                        existingUser.Store.StateProv = model.Store.StateProv;
+
+                    if (model.Store.PostalCode != null)
+                        existingUser.Store.PostalCode = model.Store.PostalCode;
+
+                    if (model.Store.Country != null)
+                        existingUser.Store.Country = model.Store.Country;
+
+                    if (model.Store.PhoneNumber != null)
+                        existingUser.Store.PhoneNumber = model.Store.PhoneNumber;
+
+                    db.SaveChanges();
+                    TempData["resultMessage"] = "Payment successfully updated!";
+                    return RedirectToAction("Index", "Store");
+                }
+            }
+            return View();
+        }
+
+
+        //
+        // POST: /Store/Index
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditStoreHours(User user)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(user);
+            }
+
+            using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
+            {
+
+                User existingUser = (from u in db.Users
+                             where u.Email == User.Identity.Name
+                             select u).FirstOrDefault();
+                if (existingUser != null)
+                {
+                    for (int i = 0; i < 7; i++)
+                    {
+                        StoreHours hours = existingUser.Store.StoreHours.ElementAt(i);
+
+                        hours.StartTime = user.Store.StoreHours.ElementAt(i).StartTime;
+                        hours.EndTime = user.Store.StoreHours.ElementAt(i).EndTime;
+                    }
+                    db.SaveChanges();
+                    TempData["resultMessage"] = "Payment successfully updated!";
+                    return RedirectToAction("Index", "Store");
+                }
+            }
+            return View();
         }
 
         //protected override void Dispose(bool disposing)
