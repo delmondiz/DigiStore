@@ -625,14 +625,15 @@ namespace DigiStoreWithMVC.Controllers
                     if (user != null)
                     {
                         PaymentMethod model = user.PaymentMethods.FirstOrDefault();
+
                         if (model != null)
                         {
                             return View(model);
                         }
-                        return View();
+                        return View(new PaymentMethod());
                     }
                     else
-                        return View();
+                        return RedirectToAction("Login", "Account");
                 }
             }
             else
