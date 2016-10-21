@@ -2,6 +2,8 @@
 @{
     string[] DAYS_OF_THE_WEEK = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
 }
+@if (Model != null)
+{
 <p>
     @*
         - Does not currently work.
@@ -47,9 +49,14 @@
 
         <div class="row">
             <span class="col s12">
-                <b>@hours.DayOfTheWeek</b>@hours.StartTime.TimeOfDay.ToString() - @hours.EndTime.TimeOfDay.ToString()
+                <b>@hours.DayOfTheWeek</b> @hours.StartTime.TimeOfDay.ToString() - @hours.EndTime.TimeOfDay.ToString()
             </span>
         </div>
     }
     @*}*@
 </p>
+}
+else
+{
+
+}

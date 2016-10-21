@@ -50,6 +50,7 @@ namespace DigiStoreWithMVC.Controllers
                             storeHours.StartTime = new DateTime(2015, 1, 1, 1, 0, 0);
                             storeHours.EndTime = new DateTime(2015, 1, 1, 1, 0, 0);
                             checkUser.Store.StoreHours.Add(storeHours);
+                            db.SaveChanges();
                         }
                     }
 

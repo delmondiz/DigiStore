@@ -1,9 +1,11 @@
 ﻿@model DigiStoreWithMVC.Models.User
 
-@if (User.Identity.Name == Model.Email)
+@if (Model != null)
 {
-    using (Html.BeginForm("EditStoreInfo", "Store", FormMethod.Post))
+    if (User.Identity.Name == Model.Email)
     {
+        using (Html.BeginForm("EditStoreInfo", "Store", FormMethod.Post))
+        {
         <p>
             @Html.LabelFor(model => model.Store.Name)
             @Html.EditorFor(model => model.Store.Name)
@@ -29,10 +31,10 @@
 
             <input type="submit" value="Save Store Information" class="btn waves-effect blue darken-3 yellow-text accent-3" />
         </p>
+        }
     }
-}
-else
-{
+    else
+    {
     <p>
         @Html.LabelFor(model => model.Store.Name)
         @Html.DisplayTextFor(model => model.Store.Name)
@@ -56,4 +58,9 @@ else
         @Html.DisplayTextFor(model => model.Store.PhoneNumber)
         <br />
     </p>
+    }
+}
+else
+{
+    <p>User does not exist.</p>
 }
