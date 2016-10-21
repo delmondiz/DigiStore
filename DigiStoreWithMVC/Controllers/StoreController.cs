@@ -14,17 +14,45 @@ using System.Data.Entity;
 namespace DigiStoreWithMVC.Controllers
 {
     public class StoreController : Controller
-    {
+    { 
         private DigiStoreDBModelContainer db = new DigiStoreDBModelContainer();
-
+        string[] DAYS_OF_THE_WEEK = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
         public ActionResult Index(string storeName)
         {
             if (storeName != null)
             {
                 User checkUser = (from u in db.Users where u.UserName == storeName select u).FirstOrDefault();
-
+                
                 if (checkUser != null)
                 {
+                    // A StoreService class will be created to handle the creation of a store 
+                    // upon the user making an account.
+                    if (checkUser.Store == null)
+                    {
+                        checkUser.Store = new Store();
+                        checkUser.Store.Address = "";
+                        checkUser.Store.City = "";
+                        checkUser.Store.Country = "";
+                        checkUser.Store.Name = checkUser.UserName;
+                        checkUser.Store.PostalCode = "";
+                        checkUser.Store.PhoneNumber = "";
+                        checkUser.Store.StateProv = "";
+                        db.SaveChanges();
+                    }
+
+                    if (checkUser.Store.StoreHours.Count == 0)
+                    {
+                        for (int i = checkUser.Store.StoreHours.Count; i < 7; i++)
+                        {
+                            StoreHours storeHours = new StoreHours();
+                            storeHours.StoreId = checkUser.Store.Id;
+                            storeHours.DayOfTheWeek = DAYS_OF_THE_WEEK[i];
+                            storeHours.StartTime = new DateTime(2015, 1, 1, 1, 0, 0);
+                            storeHours.EndTime = new DateTime(2015, 1, 1, 1, 0, 0);
+                            checkUser.Store.StoreHours.Add(storeHours);
+                        }
+                    }
+
                     if (checkUser.Store.Name != null)
                     {
 

@@ -1,9 +1,7 @@
 ﻿@model DigiStoreWithMVC.Models.User
-
 @{
     ViewBag.Title = "StorePage";
 }
-
 <div class="container">
     <div class="section">
         <div class="row">
@@ -66,12 +64,6 @@
         <div class="card-panel blue darken-3">
             <h5 class="card-title yellow-text accent-3">Products</h5>
             <div class="card-content row">
-
-                @*
-                    The below for loop is an example of our html generator. This style will allow
-                    us to generate a list of products from our database while keeping the
-                    formatting (visual style) of our site.
-                *@
                 @{
                     if (Model != null)
                     {
