@@ -1,0 +1,59 @@
+﻿@model DigiStoreWithMVC.Models.User
+
+@if (User.Identity.Name == Model.Email)
+{
+    using (Html.BeginForm("EditStoreInfo", "Store", FormMethod.Post))
+    {
+        <p>
+            @Html.LabelFor(model => model.Store.Name)
+            @Html.EditorFor(model => model.Store.Name)
+            <br />
+            @Html.LabelFor(model => model.Store.Address)
+            @Html.EditorFor(model => model.Store.Address)
+            <br />
+            @Html.LabelFor(model => model.Store.City)
+            @Html.EditorFor(model => model.Store.City)
+            <br />
+            @Html.LabelFor(model => model.Store.StateProv)
+            @Html.EditorFor(model => model.Store.StateProv)
+            <br />
+            @Html.LabelFor(model => model.Store.Country)
+            @Html.EditorFor(model => model.Store.Country)
+            <br />
+            @Html.LabelFor(model => model.Store.PostalCode)
+            @Html.EditorFor(model => model.Store.PostalCode)
+            <br />
+            @Html.LabelFor(model => model.Store.PhoneNumber)
+            @Html.EditorFor(model => model.Store.PhoneNumber)
+            <br />
+
+            <input type="submit" value="Save Store Information" class="btn waves-effect blue darken-3 yellow-text accent-3" />
+        </p>
+    }
+}
+else
+{
+    <p>
+        @Html.LabelFor(model => model.Store.Name)
+        @Html.DisplayTextFor(model => model.Store.Name)
+        <br />
+        @Html.LabelFor(model => model.Store.Address)
+        @Html.DisplayTextFor(model => model.Store.Address)
+        <br />
+        @Html.LabelFor(model => model.Store.City)
+        @Html.DisplayTextFor(model => model.Store.City)
+        <br />
+        @Html.LabelFor(model => model.Store.StateProv)
+        @Html.DisplayTextFor(model => model.Store.StateProv)
+        <br />
+        @Html.LabelFor(model => model.Store.Country)
+        @Html.DisplayTextFor(model => model.Store.Country)
+        <br />
+        @Html.LabelFor(model => model.Store.PostalCode)
+        @Html.DisplayTextFor(model => model.Store.PostalCode)
+        <br />
+        @Html.LabelFor(model => model.Store.PhoneNumber)
+        @Html.DisplayTextFor(model => model.Store.PhoneNumber)
+        <br />
+    </p>
+}

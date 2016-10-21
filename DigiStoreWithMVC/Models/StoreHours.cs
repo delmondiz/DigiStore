@@ -17,7 +17,7 @@ namespace DigiStoreWithMVC.Models
         public int Id { get; set; }
         public int StoreId { get; set; }
         public string DayOfTheWeek { get; set; }
-        public string StartTime { get; set; }
-        public string EndTime { get; set; }
+        public System.DateTime StartTime { get; set; }
+        public System.DateTime EndTime { get; set; }
     }
 }
