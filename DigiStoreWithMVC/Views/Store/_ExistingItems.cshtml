@@ -49,7 +49,7 @@
             </div>
             <div class="row">
                 <div class="col s12 m6">
-                    @Html.LabelFor(model => model.Weight)
+                    @Html.LabelFor(model => model.Weight, "Item Weight (kg)")
                     @Html.EditorFor(model => model.Weight)
                     @Html.ValidationMessageFor(model => model.Weight, "", new { @class = "red-text" })
                 </div>
@@ -63,22 +63,16 @@
             <div class="row">
                 <div class="col s6">
                     <input type="submit" class="waves-effect waves-light btn" value="Update Details" />
-
-                    @*@Html.ActionLink("Update Details", "UpdateItem", new { controller = "Store", action = "UpdateItem" }, new { @class = "waves-effect waves-light btn" })*@
                 </div>
             </div>
         }
+
         @using (Html.BeginForm("DeleteItem", "Store", FormMethod.Post, new { id = "DeleteItemForm" }))
         {
             @Html.AntiForgeryToken()
             @Html.HiddenFor(model => model.Id)
             <div class="col s6">
-                @*@Html.ActionLink("Delete Item", "DeleteItem", "Store", routeValues: null, htmlAttributes: new { id = Model.Id, @class = "waves-effect waves-light btn red" })*@
-                @*<a href="javascript:document.getElementyById('DeleteItemForm').submit()" class="waves-effect waves-light btn red">Delete Item</a>*@
-                <input type="submit" value="Delete Item" class="waves-effect waves-light btn red" />
-                @*@Html.Action("DeleteItem", "Store", new { @id=Model.Id })*@
-                @*@Html.ActionLink("Delete Item", "DeleteItem", null, new { id = Model.Id })*@
-                @*@Html.ActionLink("Delete Item", "DeleteItem", new { controller = "Store", action = "DeleteItem", id = Model.Id }, new { @class = "waves-effect waves-light btn red" })*@
+                <input type="submit" class="waves-effect waves-light btn red" value="Delete Item" />
             </div>
         }
     </div>

@@ -1,0 +1,62 @@
+﻿@model DigiStoreWithMVC.Models.User
+@{
+    string[] DAYS_OF_THE_WEEK = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+}
+@if (Model != null)
+{
+<p>
+    @*
+        - Does not currently work.
+        - Will be fixed soon.
+        @if (User.Identity.Name == Model.Email)
+        {
+            using (Html.BeginForm("EditStoreHours", "Store", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                for (int i = 0; i < DAYS_OF_THE_WEEK.Count(); i++)
+                {
+                    DigiStoreWithMVC.Models.StoreHours hours = Model.Store.StoreHours.ElementAt(i);
+
+                    @Html.ValidationSummary(true, "", new { @class = "red-text" })
+
+                    <div class="row">
+                        <span class="col s6 m8 l10">
+                            @Html.DisplayTextFor(h => hours.DayOfTheWeek)
+                        </span>
+                        <span class="col s3 m2 l1">
+                            @Html.EditorFor(h => hours.StartTime)
+                            @Html.ValidationMessageFor(h => hours.StartTime)
+                        </span>
+                        <span class="col s3 m2 l1">
+                            @Html.EditorFor(h => hours.EndTime)
+                            @Html.ValidationMessageFor(h => hours.EndTime)
+                        </span>
+                    </div>
+
+                    <div class="row">
+                        <input type="submit" value="Save Store Hours" class="btn waves-effect blue darken-3 yellow-text accent-3" />
+                    </div>
+                }
+            }
+        }
+        else
+        {*@
+    @for (int i = 0; i < DAYS_OF_THE_WEEK.Count(); i++)
+    {
+        DigiStoreWithMVC.Models.StoreHours hours = Model.Store.StoreHours.ElementAt(i);
+
+        @Html.ValidationSummary(true, "", new { @class = "red-text" })
+
+        <div class="row">
+            <span class="col s12">
+                <b>@hours.DayOfTheWeek</b> @hours.StartTime.TimeOfDay.ToString() - @hours.EndTime.TimeOfDay.ToString()
+            </span>
+        </div>
+    }
+    @*}*@
+</p>
+}
+else
+{
+
+}

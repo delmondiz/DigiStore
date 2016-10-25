@@ -26,7 +26,7 @@ namespace DigiStoreWithMVC.Controllers
                 return View(items.ToList());
             }
             else
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Account");
         }
 
         // GET: Items/Details/5
@@ -52,7 +52,7 @@ namespace DigiStoreWithMVC.Controllers
                 return View();
             }
             else
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Account");
         }
 
         // POST: Items/Create
@@ -77,7 +77,7 @@ namespace DigiStoreWithMVC.Controllers
                 return View(item);
             }
             else
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Account");
         }
 
         // GET: Items/Edit/5
@@ -98,7 +98,7 @@ namespace DigiStoreWithMVC.Controllers
                 return View(item);
             }
             else
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Account");
         }
 
         // POST: Items/Edit/5
@@ -121,7 +121,7 @@ namespace DigiStoreWithMVC.Controllers
                 return View(item);
             }
             else
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Account");
         }
 
         // GET: Items/Delete/5
@@ -147,7 +147,7 @@ namespace DigiStoreWithMVC.Controllers
                     return View("Index");
             }
             else
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Account");
         }
 
         // POST: Items/Delete/5
@@ -164,7 +164,7 @@ namespace DigiStoreWithMVC.Controllers
                 return RedirectToAction("Index");
             }
             else
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Account");
         }
 
         protected override void Dispose(bool disposing)

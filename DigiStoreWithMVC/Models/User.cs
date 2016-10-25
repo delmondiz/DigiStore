@@ -47,5 +47,7 @@ namespace DigiStoreWithMVC.Models
         public virtual ICollection<Appointment> Appointments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Item> Items { get; set; }
+        public virtual Cart Cart { get; set; }
+        public virtual Store Store { get; set; }
     }
 }

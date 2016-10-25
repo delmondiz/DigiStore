@@ -18,6 +18,7 @@ namespace DigiStoreWithMVC.Models
         public string ReviewDate { get; set; }
 
         [Display(Name = "Rating")]
+        [Range(1, 5)]
         public int ReviewRating { get; set; }
 
     }

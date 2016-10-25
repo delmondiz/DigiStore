@@ -176,12 +176,13 @@
                 <ul class="collection">
                     @using (Html.BeginForm("RandomStore", "Store", FormMethod.Post, new { id = "randomStoreForm" }))
                             {
-                        @Html.ActionLink("Feeling lucky?", "RandomStore", new { controller = "Store", action = "RandomStore" })
+                        @*@Html.ActionLink("Feeling lucky?", "RandomStore", new { controller = "Store", action = "RandomStore" })*@
                             <li class="collection-item avatar">
-                               
                                 <img src="~/img/help.png" alt="Random" class="circle" />
-                                <span class="title">Click here for a random store!</span>
-                                <p>Feeling lucky?</p>
+                                <span class="title">Click below for a random store!</span>
+                                <br/>
+                                @*<p>Feeling lucky?</p>*@
+                                <input type="submit" value="Feeling Lucky?" />
                             </li>
                     }
                 </ul>

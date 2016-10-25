@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/20/2016 04:41:13
--- Generated from EDMX file: C:\Users\Crasy\Source\Repos\DigiStore\DigiStoreWithMVC\Models\DigiStoreDBModel.edmx
+-- Date Created: 10/19/2016 22:06:47
+-- Generated from EDMX file: C:\Users\Kevin\Source\Repos\DigiStore\DigiStoreWithMVC\Models\DigiStoreDBModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -65,12 +65,6 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_UserStore]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Stores] DROP CONSTRAINT [FK_UserStore];
 GO
-IF OBJECT_ID(N'[dbo].[FK_CartItem_Cart]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[CartItem] DROP CONSTRAINT [FK_CartItem_Cart];
-GO
-IF OBJECT_ID(N'[dbo].[FK_CartItem_Item]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[CartItem] DROP CONSTRAINT [FK_CartItem_Item];
-GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -117,9 +111,6 @@ IF OBJECT_ID(N'[dbo].[OrderItem]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[UserItem]', 'U') IS NOT NULL
     DROP TABLE [dbo].[UserItem];
-GO
-IF OBJECT_ID(N'[dbo].[CartItem]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[CartItem];
 GO
 
 -- --------------------------------------------------
@@ -215,8 +206,8 @@ CREATE TABLE [dbo].[StoreHours] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [StoreId] int  NOT NULL,
     [DayOfTheWeek] nvarchar(max)  NOT NULL,
-    [StartTime] datetime  NOT NULL,
-    [EndTime] datetime  NOT NULL
+    [StartTime] nvarchar(max)  NOT NULL,
+    [EndTime] nvarchar(max)  NOT NULL
 );
 GO
 

@@ -1,9 +1,7 @@
 ﻿@model DigiStoreWithMVC.Models.User
-
 @{
     ViewBag.Title = "StorePage";
 }
-
 <div class="container">
     <div class="section">
         <div class="row">
@@ -20,56 +18,14 @@
                         <div class="card col l6 m6 s12">
                             <div class="card-content">
                                 <span class="card-title">Contact</span>
-
-                                @using (Html.BeginForm())
-                                {
-                                    <p>
-                                        @Html.LabelFor(model => model.Address)
-                                        @Html.DisplayTextFor(model => model.Address)
-                                        <br />
-                                        @Html.LabelFor(model => model.City)
-                                        @Html.DisplayTextFor(model => model.City)
-                                        <br />
-                                        @Html.LabelFor(model => model.StateProv)
-                                        @Html.DisplayTextFor(model => model.StateProv)
-                                        <br />
-                                        @Html.LabelFor(model => model.Country)
-                                        @Html.DisplayTextFor(model => model.Country)
-                                        <br />
-                                        @Html.LabelFor(model => model.PostalCode)
-                                        @Html.DisplayTextFor(model => model.PostalCode)
-                                        <br />
-                                        @Html.LabelFor(model => model.PhoneNumber)
-                                        @Html.DisplayTextFor(model => model.PhoneNumber)
-                                        <br />
-                                        @Html.LabelFor(model => model.Email)
-                                        @Html.DisplayTextFor(model => model.Email)
-                                    </p>
-                                }
+                                @Html.Partial("_EditStoreInfo", Model)
                             </div>
                         </div>
 
                         <div class="card col l6 m6 s12">
                             <div class="card-content">
                                 <span class="card-title">Store Hours</span>
-
-                                @*@using (Html.BeginForm())
-                                    {
-                                    <p>
-                                    @Html.LabelFor(model => model.Monday)
-                                    @Html.DisplayTextFor(model => model.Address)
-                                    <br />
-                                    </p>
-                                    }*@
-                                <p>
-                                    Monday: 9am - 5pm<br />
-                                    Tuesday: 9am - 5pm<br />
-                                    Wednesday: 9am - 5pm<br />
-                                    Thursday: 9am - 5pm<br />
-                                    Friday: 9am - 5pm<br />
-                                    Saturday: 9am - 5pm<br />
-                                    Sunday: 9am - 5pm<br />
-                                </p>
+                                @Html.Partial("_EditStoreHours", Model)
                             </div>
                         </div>
 
@@ -108,40 +64,29 @@
         <div class="card-panel blue darken-3">
             <h5 class="card-title yellow-text accent-3">Products</h5>
             <div class="card-content row">
-
-                @*
-                    The below for loop is an example of our html generator. This style will allow
-                    us to generate a list of products from our database while keeping the
-                    formatting (visual style) of our site.
-                *@
-
-                @for (int i = 0; i < 3; i++)
-                {
-
-                    <div class="card col s12 m6 l6">
-                        <div class="card-image waves-effect waves-block waves-light" align="center">
-                            <img class="activator" src="~/img/whitedressshirt.png" style="width: 125px">
-                        </div>
-                        <div class="card-content">
-                            <span class="card-title activator grey-text text-darken-4">Product Name<i class="material-icons right">more_vert</i></span>
-                            <div class="card-action">                          
-                                    <select class="col s4">
-                                        <option value="" disabled selected>Qty</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                    </select>
-                                <div align="right">
-                                    <a class="waves-effect waves-light btn blue darken-3 yellow-text accent-3"><i class="material-icons left">add_shopping_cart</i>Add to Cart</a>
-                                </div>
+                @{
+                    if (Model != null)
+                    {
+                        if (Model.Items.Count() > 0)
+                        {
+                            foreach (DigiStoreWithMVC.Models.Item item in Model.Items)
+                            {
+                                if (item.Quantity > 0)
+                                {
+                                    @Html.Partial("_StoreItem", item)
+                                }
+                            }
+                        }
+                        else
+                        {
+                            <div class="card">
+                                <h2 class="center">This store is empty.</h2>
                             </div>
-                        </div>
-                        <div class="card-reveal">
-                            <span class="card-title grey-text text-darken-4">Product Name<i class="material-icons right">close</i></span>
-                            <p>Product Description.</p>
-                        </div>
-                    </div>
-
+                        }
+                    }
+                    else
+                    {
+                    }
                 }
             </div>
         </div>
