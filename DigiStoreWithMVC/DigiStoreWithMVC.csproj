@@ -403,6 +403,7 @@
     <Content Include="Views\Store\_AddItem.cshtml" />
     <Content Include="Views\Store\_ExistingItems.cshtml" />
     <Content Include="Views\Store\UpdateItem.cshtml" />
+    <Content Include="Views\Store\_StoreHours.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

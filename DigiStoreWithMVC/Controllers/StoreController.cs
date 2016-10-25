@@ -90,7 +90,7 @@ namespace DigiStoreWithMVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult StoreInventory([Bind(Include = "Id")]Item item)
+        public ActionResult StoreInventory([Bind(Include = "Id,Name,Description,Price,Weight,Quantity,ImagePath")]Item item)
         {
             if (User.Identity.IsAuthenticated)
             {
