@@ -33,8 +33,8 @@ namespace DigiStoreWithMVC.Controllers
         /// <returns>A DigistoreWithMVC.Models.User or null </returns>
         public static User GetUserByStorename(DigiStoreDBModelContainer db, string storeName)
         {
-            int userId = (from s in db.Stores where s.Name.ToLower() == storeName.ToLower() select s.Id).FirstOrDefault();
-            User checkUser = (from u in db.Users where u.Id == userId select u).FirstOrDefault();
+            int storeId = (from s in db.Stores where s.Name.ToLower() == storeName.ToLower() select s.Id).FirstOrDefault();
+            User checkUser = (from u in db.Users where u.Store.Id == storeId select u).FirstOrDefault();
 
             return checkUser;
         }

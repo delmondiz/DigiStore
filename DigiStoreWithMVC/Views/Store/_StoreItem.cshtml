@@ -9,12 +9,12 @@
             }
             else
             {
-                <img class="activator" src="~/img/whitedressshirt.png" style="width: 125px">
+                <img class="activator" src="~/img/help.png" style="width: 125px">
             }
         }
         else
         {
-            <img class="activator" src="~/img/whitedressshirt.png" style="width: 125px">
+            <img class="activator" src="~/img/help.png" style="width: 125px">
         }
     </div>
     <div class="card-content">
@@ -29,15 +29,20 @@
                             <option value="@i">@i</option>
                         }
                     </select>
-                    <div align="right">
-                        <a class="waves-effect waves-light btn blue darken-3 yellow-text accent-3"><i class="material-icons left">add_shopping_cart</i>Add to Cart</a>
-                    </div>
+                    if (User.Identity.IsAuthenticated)
+                    {
+                        <div align="right">
+                            @*<a class="waves-effect waves-light btn blue darken-3 yellow-text accent-3"><i class="material-icons left">add_shopping_cart</i>Add to Cart</a>*@
+                            @{string addToCart = "<i class='material-icons left'>add_shopping_cart</i>Add to Cart";
+                            }
+                            @Html.ActionLink(addToCart, "AddToCart", new { controller="Store", action="AddToCart" }, new { @class="waves-effect waves-light btn blue darken-3 yellow-text accent-3"} )
+                        </div>
+                    }
                 }
                 else
                 {
                     <p>SOLD OUT!</p>
                 }
-
             }
         </div>
     </div>

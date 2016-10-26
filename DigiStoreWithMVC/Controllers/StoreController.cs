@@ -294,5 +294,20 @@ namespace DigiStoreWithMVC.Controllers
         {
             return View();
         }
+
+        // On the view, the user will not see the add to cart button unless authenticated
+        [ChildActionOnly]
+        public ActionResult AddToCart(Item item)
+        {
+            // We double check anyways, because no sneaking around.
+            if (User.Identity.IsAuthenticated)
+            {
+                User currentUser = ModelHelpers.GetCurrentUser(db);
+                currentUser.Cart.Items.Add(item);
+                db.SaveChanges();
+                return PartialView();
+            }
+            else return PartialView();
+        }
     }
 }

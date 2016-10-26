@@ -72,10 +72,7 @@
                         {
                             foreach (DigiStoreWithMVC.Models.Item item in Model.Items)
                             {
-                                if (item.Quantity > 0)
-                                {
-                                    @Html.Partial("_StoreItem", item)
-                                }
+                                @Html.Partial("_StoreItem", item)
                             }
                         }
                         else
