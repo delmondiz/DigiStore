@@ -56,27 +56,24 @@ namespace DigiStoreWithMVC.Controllers
             }
         }
 
+        private DigiStoreDBModelContainer db = new DigiStoreDBModelContainer();
+
         //
         // GET: /Account/Index
         public ActionResult Index()
         {
-            using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
+            if (User.Identity.IsAuthenticated)
             {
-                if (User.Identity.IsAuthenticated)
-                {
-                    User user = (from u in db.Users
-                                 where u.Email == User.Identity.Name
-                                 select u).FirstOrDefault();
+                User currentUser = ModelHelpers.GetCurrentUser(db);
 
-                    // Failsafes are always good.
-                    if (user != null)
-                        return View(user);                        
-                    else
-                        return RedirectToAction("Login", "Account");
-                }
+                // Failsafes are always good.
+                if (currentUser != null)
+                    return View(currentUser);
                 else
                     return RedirectToAction("Login", "Account");
             }
+            else
+                return RedirectToAction("Login", "Account");
         }
 
         //
@@ -87,35 +84,30 @@ namespace DigiStoreWithMVC.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
+                User currentUser = ModelHelpers.GetCurrentUser(db);
+                if (currentUser != null)
                 {
-                    User existingUser = (from u in db.Users
-                                         where u.Email == User.Identity.Name
-                                         select u).FirstOrDefault();
-                    if (existingUser != null)
-                    {
-                        if (model.FirstName != null)
-                            existingUser.FirstName = model.FirstName;
-                        if (model.LastName != null)
-                            existingUser.LastName = model.LastName;
-                        if (model.Address != null)
-                            existingUser.Address = model.Address;
-                        if (model.City != null)
-                            existingUser.City = model.City;
-                        if (model.StateProv != null)
-                            existingUser.StateProv = model.StateProv;
-                        if (model.PostalCode != null)
-                            existingUser.PostalCode = model.PostalCode;
-                        if (model.Country != null)
-                            existingUser.Country = model.Country;
-                        if (model.PhoneNumber != null)
-                            existingUser.PhoneNumber = model.PhoneNumber;
-                        db.SaveChanges();
-                        TempData["resultMessage"] = "General Information successfully updated!";
-                        return View(existingUser);
-                    }
-                    return RedirectToAction("Login", "Account");
+                    if (model.FirstName != null)
+                        currentUser.FirstName = model.FirstName;
+                    if (model.LastName != null)
+                        currentUser.LastName = model.LastName;
+                    if (model.Address != null)
+                        currentUser.Address = model.Address;
+                    if (model.City != null)
+                        currentUser.City = model.City;
+                    if (model.StateProv != null)
+                        currentUser.StateProv = model.StateProv;
+                    if (model.PostalCode != null)
+                        currentUser.PostalCode = model.PostalCode;
+                    if (model.Country != null)
+                        currentUser.Country = model.Country;
+                    if (model.PhoneNumber != null)
+                        currentUser.PhoneNumber = model.PhoneNumber;
+                    db.SaveChanges();
+                    TempData["resultMessage"] = "General Information successfully updated!";
+                    return View(currentUser);
                 }
+                return RedirectToAction("Login", "Account");
             }
             else
                 return RedirectToAction("Login", "Account");
@@ -142,47 +134,43 @@ namespace DigiStoreWithMVC.Controllers
                 return View(model);
             }
 
-            using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
+            // Check if the user exists in the database.
+            User currentUser = ModelHelpers.GetUserByEmail(db, model.Email);
+
+            PasswordHasher hash = new PasswordHasher();
+            // If the user does exist, we check that the password is correct.
+            if (currentUser != null)
             {
-                // Check if the user exists in the database.
-                User existingUser = (from users in db.Users
-                                     where users.Email == model.Email
-                                     select users).FirstOrDefault();
-                PasswordHasher hash = new PasswordHasher();
-                // If the user does exist, we check that the password is correct.
-                if (existingUser != null)
-                {
-                    // If the password is not correct, we return them to the login page.
-                    if (hash.VerifyHashedPassword(existingUser.Password, model.Password) == PasswordVerificationResult.Failed)
-                    {
-                        ModelState.AddModelError("", "Invalid Username/Password.");
-                        return View("Login", model);
-                    }
-                }
-                else
+                // If the password is not correct, we return them to the login page.
+                if (hash.VerifyHashedPassword(currentUser.Password, model.Password) == PasswordVerificationResult.Failed)
                 {
                     ModelState.AddModelError("", "Invalid Username/Password.");
+                    return View("Login", model);
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", "Invalid Username/Password.");
+                return View(model);
+            }
+
+            // If we reach here, the user is able to log in.
+
+            // This doesn't count login failures towards account lockout
+            // To enable password failures to trigger account lockout, change to shouldLockout: true
+            var result = await SignInManager.PasswordSignInAsync(model.Email, currentUser.Password, model.RememberMe, shouldLockout: false);
+            switch (result)
+            {
+                case SignInStatus.Success:
+                    return RedirectToAction("Index", "Home");
+                case SignInStatus.LockedOut:
+                    return View("Lockout");
+                case SignInStatus.RequiresVerification:
+                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                case SignInStatus.Failure:
+                default:
+                    ModelState.AddModelError("", "Invalid Username/Password.");
                     return View(model);
-                }
-
-                // If we reach here, the user is able to log in.
-
-                // This doesn't count login failures towards account lockout
-                // To enable password failures to trigger account lockout, change to shouldLockout: true
-                var result = await SignInManager.PasswordSignInAsync(model.Email, existingUser.Password, model.RememberMe, shouldLockout: false);
-                switch (result)
-                {
-                    case SignInStatus.Success:
-                        return RedirectToAction("Index", "Home");
-                    case SignInStatus.LockedOut:
-                        return View("Lockout");
-                    case SignInStatus.RequiresVerification:
-                        return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                    case SignInStatus.Failure:
-                    default:
-                        ModelState.AddModelError("", "Invalid Username/Password.");
-                        return View(model);
-                }
             }
         }
 
@@ -260,62 +248,57 @@ namespace DigiStoreWithMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
+                // Check if user already exists with that email
+                User currentUser = ModelHelpers.GetCurrentUser(db);
+
+                // If a user is not found
+                if (currentUser == null)
                 {
-                    // Check if user already exists with that email
-                    User existingUser = (from u in db.Users
-                                         where u.Email == model.Email
-                                         select u).FirstOrDefault();
+                    PasswordHasher hash = new PasswordHasher();
 
-                    // If a user is not found
-                    if (existingUser == null)
+                    User newUser = db.Users.Create();
+
+                    newUser.UserName = model.Username;
+                    newUser.Email = model.Email;
+                    newUser.Password = hash.HashPassword(model.Password);
+                    newUser.FirstName = model.FirstName;
+                    newUser.LastName = model.LastName;
+                    if (model.Street != null)
+                        newUser.Address = model.Street;
+                    if (model.Country != null)
+                        newUser.Country = model.Country;
+                    if (model.City != null)
+                        newUser.City = model.City;
+                    if (model.Province != null)
+                        newUser.StateProv = model.Province;
+                    if (model.PostalCode != null)
+                        newUser.PostalCode = model.PostalCode;
+                    int phoneNumber = 0;
+                    Int32.TryParse(model.PhoneNumber, out phoneNumber);
+                    if (model.PhoneNumber != null)
+                        newUser.PhoneNumber = phoneNumber;
+                    db.Users.Add(newUser);
+                    db.SaveChanges();
+                    // ASP.NET Will create a User seperate from the database. 
+                    var user = new ApplicationUser { UserName = model.Email, Email = model.Email, DigistoreUserId = newUser.Id };
+                    var result = await UserManager.CreateAsync(user, newUser.Password);
+                    if (result.Succeeded)
                     {
-                        PasswordHasher hash = new PasswordHasher();
-
-                        User newUser = db.Users.Create();
-
-                        newUser.UserName = model.Username;
-                        newUser.Email = model.Email;
-                        newUser.Password = hash.HashPassword(model.Password);
-                        newUser.FirstName = model.FirstName;
-                        newUser.LastName = model.LastName;
-                        if (model.Street != null)
-                            newUser.Address = model.Street;
-                        if (model.Country != null)
-                            newUser.Country = model.Country;
-                        if (model.City != null)
-                            newUser.City = model.City;
-                        if (model.Province != null)
-                            newUser.StateProv = model.Province;
-                        if (model.PostalCode != null)
-                            newUser.PostalCode = model.PostalCode;
-                        int phoneNumber = 0;
-                        Int32.TryParse(model.PhoneNumber, out phoneNumber);
-                        if (model.PhoneNumber != null)
-                            newUser.PhoneNumber = phoneNumber;
-                        db.Users.Add(newUser);
-                        db.SaveChanges();
-                        // ASP.NET Will create a User seperate from the database. 
-                        var user = new ApplicationUser { UserName = model.Email, Email = model.Email, DigistoreUserId = newUser.Id };
-                        var result = await UserManager.CreateAsync(user, newUser.Password);
-                        if (result.Succeeded)
-                        {
-                            await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                            //user.DigistoreUserId = newUser.Id;
-                            // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                            // Send an email with this link
-                            // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                            // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                            // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                            return RedirectToAction("Index", "Home");
-                        }
-                        AddErrors(result);
+                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        //user.DigistoreUserId = newUser.Id;
+                        // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+                        // Send an email with this link
+                        // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                        // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                        // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                        return RedirectToAction("Index", "Home");
                     }
-                    else
-                    {
-                        ViewBag.EmailInUse = "That e-mail is already in use!";
-                        return View(model);
-                    }
+                    AddErrors(result);
+                }
+                else
+                {
+                    ViewBag.EmailInUse = "That e-mail is already in use!";
+                    return View(model);
                 }
             }
             // If we got this far, something failed, redisplay form
@@ -571,43 +554,38 @@ namespace DigiStoreWithMVC.Controllers
                 return View(model);
             }
 
-            using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
-            {
-                // Retrieve the logged in user from the database.
-                var dbUser = (from u in db.Users
-                              where u.Email == User.Identity.Name
-                              select u).FirstOrDefault();
+            // Retrieve the logged in user from the database.
+            User currentUser = ModelHelpers.GetCurrentUser(db);
 
-                // Check if the user is not null.
-                if (dbUser != null)
+            // Check if the user is not null.
+            if (currentUser != null)
+            {
+                PasswordHasher hash = new PasswordHasher();
+                if (hash.VerifyHashedPassword(currentUser.Password, model.OldPassword) == PasswordVerificationResult.Success)
                 {
-                    PasswordHasher hash = new PasswordHasher();
-                    if (hash.VerifyHashedPassword(dbUser.Password, model.OldPassword) == PasswordVerificationResult.Success)
+                    string hashedPassword = hash.HashPassword(model.NewPassword);
+                    var result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), currentUser.Password, hashedPassword);
+                    if (result.Succeeded)
                     {
-                        string hashedPassword = hash.HashPassword(model.NewPassword);
-                        var result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), dbUser.Password, hashedPassword);
-                        if (result.Succeeded)
+                        currentUser.Password = hashedPassword;
+                        db.SaveChanges();
+                        var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                        if (user != null)
                         {
-                            dbUser.Password = hashedPassword;
-                            db.SaveChanges();
-                            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-                            if (user != null)
-                            {
-                                await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                            }
-                            TempData["resultMessage"] = "Password successfully updated!";
-                            return RedirectToAction("Index", "Account");
+                            await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                         }
-                        AddErrors(result);
-                        return View(model);
+                        TempData["resultMessage"] = "Password successfully updated!";
+                        return RedirectToAction("Index", "Account");
                     }
-                    else
-                        return View();
+                    AddErrors(result);
+                    return View(model);
                 }
                 else
-                {
-                    return RedirectToAction("Login", "Account");
-                }
+                    return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
             }
         }
 
@@ -617,24 +595,19 @@ namespace DigiStoreWithMVC.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
+                User currentUser = ModelHelpers.GetCurrentUser(db);
+                if (currentUser != null)
                 {
-                    User user = (from u in db.Users
-                                 where u.Email == User.Identity.Name
-                                 select u).FirstOrDefault();
-                    if (user != null)
-                    {
-                        PaymentMethod model = user.PaymentMethods.FirstOrDefault();
+                    PaymentMethod model = currentUser.PaymentMethods.FirstOrDefault();
 
-                        if (model != null)
-                        {
-                            return View(model);
-                        }
-                        return View(new PaymentMethod());
+                    if (model != null)
+                    {
+                        return View(model);
                     }
-                    else
-                        return RedirectToAction("Login", "Account");
+                    return View(new PaymentMethod());
                 }
+                else
+                    return RedirectToAction("Login", "Account");
             }
             else
                 return RedirectToAction("Login", "Account");
@@ -651,32 +624,26 @@ namespace DigiStoreWithMVC.Controllers
                 return View(model);
             }
 
-            using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
+            User currentUser = ModelHelpers.GetCurrentUser(db);
+            if (currentUser != null)
             {
+                PaymentMethod payment = currentUser.PaymentMethods.FirstOrDefault();
+                if (payment == null)
+                    payment = db.PaymentMethods.Create();
 
-                User user = (from u in db.Users
-                             where u.Email == User.Identity.Name
-                             select u).FirstOrDefault();
-                if (user != null)
-                {
-                    PaymentMethod payment = user.PaymentMethods.FirstOrDefault();
-                    if (payment == null)
-                        payment = db.PaymentMethods.Create();
-
-                    if (model.PaymentType != null)
-                        payment.PaymentType = model.PaymentType;
-                    else
-                        payment.PaymentType = "";
-                    if (model.AccountNumber != null)
-                        payment.AccountNumber = model.AccountNumber;
-                    else
-                        payment.AccountNumber = "";
-                    payment.UserId = user.Id;
-                    user.PaymentMethods.Add(payment);
-                    db.SaveChanges();
-                    TempData["resultMessage"] = "Payment successfully updated!";
-                    return RedirectToAction("Index", "Account");
-                }
+                if (model.PaymentType != null)
+                    payment.PaymentType = model.PaymentType;
+                else
+                    payment.PaymentType = "";
+                if (model.AccountNumber != null)
+                    payment.AccountNumber = model.AccountNumber;
+                else
+                    payment.AccountNumber = "";
+                payment.UserId = currentUser.Id;
+                currentUser.PaymentMethods.Add(payment);
+                db.SaveChanges();
+                TempData["resultMessage"] = "Payment successfully updated!";
+                return RedirectToAction("Index", "Account");
             }
             return View();
         }
@@ -696,6 +663,7 @@ namespace DigiStoreWithMVC.Controllers
                     _signInManager.Dispose();
                     _signInManager = null;
                 }
+                db.Dispose();
             }
 
             base.Dispose(disposing);

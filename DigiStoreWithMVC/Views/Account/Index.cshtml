@@ -9,6 +9,7 @@
                 <h1 class="header center blue-text darken-3">@Model.UserName's Profile</h1>
             </div>
             <h4 class="center green-text">@TempData["resultMessage"]</h4>
+            @{TempData["resultMessage"] = null; }
             <div class="row">
                 <div class="card-panel blue darken-3">
                     <div class="card-content row">

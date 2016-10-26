@@ -1,62 +1,75 @@
 ﻿@model DigiStoreWithMVC.Models.User
-@{
-    string[] DAYS_OF_THE_WEEK = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+@{ 
+
 }
+
 @if (Model != null)
 {
-<p>
-    @*
-        - Does not currently work.
-        - Will be fixed soon.
+    <p>
         @if (User.Identity.Name == Model.Email)
         {
+            string[] timeList = { "6:00 AM", "6:30 AM", "7:00 AM", "7:30 AM", "8:00 AM", "8:30 AM", "9:00 AM", "9:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM", "12:00 PM", "12:30 PM", "1:00 PM", "1:30 PM", "2:00 PM", "2:30 PM", "3:00 PM", "3:30 PM", "4:00 PM", "4:30 PM", "5:00 PM", "5:30 PM", "6:00 PM", "6:30 PM", "7:00 PM", "7:30 PM", "8:00 PM", "8:30 PM", "9:00 PM", "9:30 PM", "10:00 PM", "10:30 PM", "11:00 PM", "11:30 PM", "12:00 AM", "12:30 AM", "1:00 AM", "1:30 AM", "2:00 AM", "2:30 AM", "3:00 AM", "3:30 AM", "4:00 AM", "4:30 AM", "5:00 AM", "5:30 AM" };
+            List<string> times = new List<string>(timeList);
             using (Html.BeginForm("EditStoreHours", "Store", FormMethod.Post))
             {
                 @Html.AntiForgeryToken()
-                for (int i = 0; i < DAYS_OF_THE_WEEK.Count(); i++)
+                for (int i = 0; i < Model.Store.StoreHours.Count(); i++)
                 {
-                    DigiStoreWithMVC.Models.StoreHours hours = Model.Store.StoreHours.ElementAt(i);
-
+                    bool test = times.ElementAt(times.IndexOf(Model.Store.StoreHours.ElementAt(i).StartTime.ToString("t").Trim())).Equals(Model.Store.StoreHours.ElementAt(i).StartTime.ToString("t"));
                     @Html.ValidationSummary(true, "", new { @class = "red-text" })
-
+                    string one = times.Find(str => str == Model.Store.StoreHours.ElementAt(i).StartTime.ToString("t"));
+                    string two = times.Find(str => str == times.ElementAt(times.IndexOf(Model.Store.StoreHours.ElementAt(i).StartTime.ToString("t").Trim())));
                     <div class="row">
-                        <span class="col s6 m8 l10">
-                            @Html.DisplayTextFor(h => hours.DayOfTheWeek)
+                        <span class="col s12 l4 center">
+                            @Html.DisplayTextFor(model => Model.Store.StoreHours.ElementAt(i).DayOfTheWeek)
                         </span>
-                        <span class="col s3 m2 l1">
-                            @Html.EditorFor(h => hours.StartTime)
-                            @Html.ValidationMessageFor(h => hours.StartTime)
+                        <span class="col s6 l4">
+                            Open:
+                            @Html.DropDownListFor(model => Model.Store.StoreHours.ElementAt(i).StartTime, new SelectList(times), new { @id = "startTime" })
+                            @Html.ValidationMessageFor(model => Model.Store.StoreHours.ElementAt(i).StartTime)
                         </span>
-                        <span class="col s3 m2 l1">
-                            @Html.EditorFor(h => hours.EndTime)
-                            @Html.ValidationMessageFor(h => hours.EndTime)
+                        <span class="col s6 l4">
+                            Close:
+                            @Html.DropDownListFor(model => Model.Store.StoreHours.ElementAt(i).EndTime, new SelectList(times), new { @id = "endTime", @value = Model.Store.StoreHours.ElementAt(i).EndTime.ToString("t") })
+                            @Html.ValidationMessageFor(model => Model.Store.StoreHours.ElementAt(i).EndTime)
                         </span>
-                    </div>
-
-                    <div class="row">
-                        <input type="submit" value="Save Store Hours" class="btn waves-effect blue darken-3 yellow-text accent-3" />
                     </div>
                 }
+                <h4 class="center green-text">@TempData["storeHoursResultMessage"]</h4>
+                TempData["storeHoursResultMessage"] = null;
+                <div class="row">
+                    <input type="submit" value="Save Store Hours" class="col s12 btn waves-effect blue darken-3 yellow-text accent-3" />
+                </div>
             }
         }
         else
-        {*@
-    @for (int i = 0; i < DAYS_OF_THE_WEEK.Count(); i++)
-    {
-        DigiStoreWithMVC.Models.StoreHours hours = Model.Store.StoreHours.ElementAt(i);
+        {
+            foreach (DigiStoreWithMVC.Models.StoreHours hours in Model.Store.StoreHours)
+            {
+                Html.ValidationSummary(true, "", new { @class = "red-text" });
 
-        @Html.ValidationSummary(true, "", new { @class = "red-text" })
-
-        <div class="row">
-            <span class="col s12">
-                <b>@hours.DayOfTheWeek</b> @hours.StartTime.TimeOfDay.ToString() - @hours.EndTime.TimeOfDay.ToString()
-            </span>
-        </div>
-    }
-    @*}*@
-</p>
+                <div class="row">
+                    <span class="col s12">
+                        <b>@hours.DayOfTheWeek</b>
+                        @if (hours.StartTime.TimeOfDay.ToString("t").Equals(hours.EndTime.TimeOfDay.ToString("t")))
+                        {
+                            <span>CLOSED!</span>
+                        }
+                        else
+                        {
+                            <span>@hours.StartTime.ToString("t") - @hours.EndTime.ToString("t")</span>
+                        }
+                    </span>
+                </div>
+            }
+        }
+    </p>
 }
-else
+@section scripts
 {
+    <script type="text/javascript">
+        $(document).ready(function () {
 
+        });
+    </script>
 }

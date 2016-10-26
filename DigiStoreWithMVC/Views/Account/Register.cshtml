@@ -68,8 +68,8 @@
                     <div class="divider"></div>
                 </div>
                 <div class="input-field col s12 l6">
-                    @Html.DropDownListFor(m => m.Country, new SelectList(countries.AsEnumerable()), new { @id="country" })
                     @Html.LabelFor(m => m.Country)
+                    @Html.DropDownListFor(m => m.Country, new SelectList(countries.AsEnumerable()), new { @id="country" })
                 </div>
                 <div class="input-field col s12 l6">
                     @Html.LabelFor(m => m.City)

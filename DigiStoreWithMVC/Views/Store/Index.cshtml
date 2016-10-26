@@ -25,7 +25,8 @@
                         <div class="card col l6 m6 s12">
                             <div class="card-content">
                                 <span class="card-title">Store Hours</span>
-                                @Html.Partial("_EditStoreHours", Model)
+                                @*@Html.Partial("_EditStoreHours", Model)*@
+                                @{ Html.RenderPartial("_EditStoreHours", Model); }
                             </div>
                         </div>
 

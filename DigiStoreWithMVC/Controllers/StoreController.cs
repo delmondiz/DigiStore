@@ -14,15 +14,16 @@ using System.Data.Entity;
 namespace DigiStoreWithMVC.Controllers
 {
     public class StoreController : Controller
-    { 
+    {
         private DigiStoreDBModelContainer db = new DigiStoreDBModelContainer();
         string[] DAYS_OF_THE_WEEK = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+
         public ActionResult Index(string storeName)
         {
             if (storeName != null)
             {
-                User checkUser = (from u in db.Users where u.UserName == storeName select u).FirstOrDefault();
-                
+                User checkUser = ModelHelpers.GetUserByStorename(db, storeName);
+
                 if (checkUser != null)
                 {
                     // A StoreService class will be created to handle the creation of a store 
@@ -56,10 +57,8 @@ namespace DigiStoreWithMVC.Controllers
 
                     if (checkUser.Store.Name != null)
                     {
-
                         return View(checkUser);
                     }
-
                     else
                         return View(checkUser);
                 }
@@ -68,7 +67,7 @@ namespace DigiStoreWithMVC.Controllers
             }
             else if (User.Identity.IsAuthenticated)
             {
-                User currentUser = (from u in db.Users where u.Email == User.Identity.Name select u).FirstOrDefault();
+                User currentUser = ModelHelpers.GetCurrentUser(db);
 
                 if (currentUser != null)
                 {
@@ -86,8 +85,7 @@ namespace DigiStoreWithMVC.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                User currentUser = (from u in db.Users where u.Email == User.Identity.Name select u).FirstOrDefault();
-                
+                User currentUser = ModelHelpers.GetCurrentUser(db);
 
                 if (currentUser != null)
                     return View(currentUser);
@@ -126,9 +124,7 @@ namespace DigiStoreWithMVC.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                User currentUser = (from u in db.Users
-                                    where u.Email == User.Identity.Name
-                                    select u).FirstOrDefault();
+                User currentUser = ModelHelpers.GetCurrentUser(db);
 
                 if (currentUser != null)
                     return View(currentUser);
@@ -146,17 +142,17 @@ namespace DigiStoreWithMVC.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 // Get our current user.
-                User user = (from u in db.Users where u.Email == User.Identity.Name select u).FirstOrDefault();
+                User currentUser = ModelHelpers.GetCurrentUser(db);
                 if (ModelState.IsValid)
                 {
                     // Add the item to our current user.
-                    user.Items.Add(item);
+                    currentUser.Items.Add(item);
                     // Save the changes to the DB.
                     db.SaveChanges();
                     // Return the user to the Store Inventory
-                    return View(user);
+                    return View(currentUser);
                 }
-                return View(user);
+                return View(currentUser);
             }
             else
                 return RedirectToAction("Login", "Account");
@@ -173,7 +169,7 @@ namespace DigiStoreWithMVC.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                User user = (from u in db.Users where u.Email == User.Identity.Name select u).FirstOrDefault();
+                User currentUser = ModelHelpers.GetCurrentUser(db);
                 if (ModelState.IsValid)
                 {
                     db.Entry(item).State = EntityState.Modified;
@@ -193,9 +189,9 @@ namespace DigiStoreWithMVC.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                User user = (from u in db.Users where u.Email == User.Identity.Name select u).FirstOrDefault();
-                Item dbItem = (from i in db.Items where i.Id == item.Id select i).FirstOrDefault();
-                user.Items.Remove(dbItem);
+                User currentUser = ModelHelpers.GetCurrentUser(db);
+                Item dbItem = ModelHelpers.GetItemById(db, item.Id);
+                currentUser.Items.Remove(dbItem);
                 db.SaveChanges();
                 return RedirectToAction("StoreInventory", "Store");
             }
@@ -221,40 +217,34 @@ namespace DigiStoreWithMVC.Controllers
             {
                 return View(model);
             }
-
-            using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
+            
+            User currentUser = ModelHelpers.GetCurrentUser(db);
+            if (currentUser != null)
             {
+                if (model.Store.Name != null)
+                    currentUser.Store.Name = model.Store.Name;
 
-                User existingUser = (from u in db.Users
-                                     where u.Email == User.Identity.Name
-                                     select u).FirstOrDefault();
-                if (existingUser != null)
-                {
-                    if (model.Store.Name != null)
-                        existingUser.Store.Name = model.Store.Name;
+                if (model.Store.Address != null)
+                    currentUser.Store.Address = model.Store.Address;
 
-                    if (model.Store.Address != null)
-                        existingUser.Store.Address = model.Store.Address;
+                if (model.Store.City != null)
+                    currentUser.Store.City = model.Store.City;
 
-                    if (model.Store.City != null)
-                        existingUser.Store.City = model.Store.City;
+                if (model.Store.StateProv != null)
+                    currentUser.Store.StateProv = model.Store.StateProv;
 
-                    if (model.Store.StateProv != null)
-                        existingUser.Store.StateProv = model.Store.StateProv;
+                if (model.Store.PostalCode != null)
+                    currentUser.Store.PostalCode = model.Store.PostalCode;
 
-                    if (model.Store.PostalCode != null)
-                        existingUser.Store.PostalCode = model.Store.PostalCode;
+                if (model.Store.Country != null)
+                    currentUser.Store.Country = model.Store.Country;
 
-                    if (model.Store.Country != null)
-                        existingUser.Store.Country = model.Store.Country;
+                if (model.Store.PhoneNumber != null)
+                    currentUser.Store.PhoneNumber = model.Store.PhoneNumber;
+                db.SaveChanges();
+                TempData["storeInfoResultMessage"] = "Contact Info Successfully Updated!";
+                return RedirectToAction("Index", "Store");
 
-                    if (model.Store.PhoneNumber != null)
-                        existingUser.Store.PhoneNumber = model.Store.PhoneNumber;
-
-                    db.SaveChanges();
-                    TempData["resultMessage"] = "Payment successfully updated!";
-                    return RedirectToAction("Index", "Store");
-                }
             }
             return View();
         }
@@ -264,43 +254,41 @@ namespace DigiStoreWithMVC.Controllers
         // POST: /Store/Index
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditStoreHours(User user)
+        public ActionResult EditStoreHours(FormCollection formResults)
         {
-            if (!ModelState.IsValid)
+            User currentUser = ModelHelpers.GetCurrentUser(db);
+            if (currentUser != null)
             {
-                return View(user);
-            }
-
-            using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
-            {
-
-                User existingUser = (from u in db.Users
-                             where u.Email == User.Identity.Name
-                             select u).FirstOrDefault();
-                if (existingUser != null)
+                //StoreHours[] hours = new StoreHours[7];
+                for (int i = 0; i < 7; i++)
                 {
-                    for (int i = 0; i < 7; i++)
-                    {
-                        StoreHours hours = existingUser.Store.StoreHours.ElementAt(i);
+                    StoreHours hours = currentUser.Store.StoreHours.ElementAt(i);
+                    string startTime = formResults.GetValues("StartTime").ElementAt(i).ToString();
+                    string endTime = formResults.GetValues("EndTime").ElementAt(i).ToString();
 
-                        hours.StartTime = user.Store.StoreHours.ElementAt(i).StartTime;
-                        hours.EndTime = user.Store.StoreHours.ElementAt(i).EndTime;
-                    }
-                    db.SaveChanges();
-                    TempData["resultMessage"] = "Payment successfully updated!";
-                    return RedirectToAction("Index", "Store");
+                    int startHour = int.Parse(startTime.Split(':')[0]);
+                    int startMinute = int.Parse(startTime.Split(':')[1].Split(' ')[0]);
+                    hours.StartTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, startHour, startMinute, 0);
+
+                    int endHour = int.Parse(endTime.Split(':')[0]);
+                    int endMinute = int.Parse(endTime.Split(':')[1].Split(' ')[0]);
+                    hours.EndTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, endHour, endMinute, 0);
                 }
+                db.SaveChanges();
+                TempData["storeHoursResultMessage"] = "Hours successfully updated!";
+                return RedirectToAction("Index", "Store");
             }
+
             return View();
         }
 
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (disposing)
-        //        db.Dispose();
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+                db.Dispose();
 
-        //    base.Dispose(disposing);
-        //}
+            base.Dispose(disposing);
+        }
 
         public ActionResult SendFeedback()
         {
