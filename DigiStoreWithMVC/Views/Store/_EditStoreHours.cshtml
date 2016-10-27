@@ -23,12 +23,12 @@
                         <span class="col s12 l4 center">
                             @Html.DisplayTextFor(model => Model.Store.StoreHours.ElementAt(i).DayOfTheWeek)
                         </span>
-                        <span class="col s6 l4">
+                        <span class="input-field col s6 l4">
                             Open:
                             @Html.DropDownListFor(model => Model.Store.StoreHours.ElementAt(i).StartTime, new SelectList(times), new { @id = "startTime" })
                             @Html.ValidationMessageFor(model => Model.Store.StoreHours.ElementAt(i).StartTime)
                         </span>
-                        <span class="col s6 l4">
+                        <span class="input-field col s6 l4">
                             Close:
                             @Html.DropDownListFor(model => Model.Store.StoreHours.ElementAt(i).EndTime, new SelectList(times), new { @id = "endTime", @value = Model.Store.StoreHours.ElementAt(i).EndTime.ToString("t") })
                             @Html.ValidationMessageFor(model => Model.Store.StoreHours.ElementAt(i).EndTime)

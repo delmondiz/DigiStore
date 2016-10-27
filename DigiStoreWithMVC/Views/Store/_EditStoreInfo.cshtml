@@ -1,6 +1,6 @@
 ﻿@model DigiStoreWithMVC.Models.User
 @{
-    
+
 }
 
 @if (Model != null)
@@ -13,26 +13,40 @@
         {
             @Html.AntiForgeryToken()
             <p style="width:100%;">
-                @Html.LabelFor(model => Model.Store.Name)
-                @Html.EditorFor(model => Model.Store.Name)
+                <span class="input-field">
+                    @Html.LabelFor(model => Model.Store.Name)
+                    @Html.EditorFor(model => Model.Store.Name)
+                </span>
                 <br />
-                @Html.LabelFor(model => Model.Store.Address)
-                @Html.EditorFor(model => Model.Store.Address)
+                <span class="input-field">
+                    @Html.LabelFor(model => Model.Store.Address)
+                    @Html.EditorFor(model => Model.Store.Address)
+                </span>
                 <br />
-                @Html.LabelFor(model => Model.Store.City)
-                @Html.EditorFor(model => Model.Store.City)
+                <span class="input-field">
+                    @Html.LabelFor(model => Model.Store.City)
+                    @Html.EditorFor(model => Model.Store.City)
+                </span>
                 <br />
-                @Html.LabelFor(model => Model.Store.StateProv)
-                @Html.EditorFor(model => Model.Store.StateProv)
+                <span class="input-field">
+                    @Html.LabelFor(model => Model.Store.StateProv)
+                    @Html.EditorFor(model => Model.Store.StateProv)
+                </span>
                 <br />
-                @Html.DropDownListFor(model => Model.Store.Country, new SelectList(countries), new { @id = "country"})
-                @Html.LabelFor(model => Model.Store.Country)
+                <span class="input-field">
+                    @Html.DropDownListFor(model => Model.Store.Country, new SelectList(countries), new { @id = "country" })
+                    @Html.LabelFor(model => Model.Store.Country)
+                </span>
                 <br />
-                @Html.LabelFor(model => Model.Store.PostalCode)
-                @Html.EditorFor(model => Model.Store.PostalCode)
+                <span class="input-field">
+                    @Html.LabelFor(model => Model.Store.PostalCode)
+                    @Html.EditorFor(model => Model.Store.PostalCode)
+                </span>
                 <br />
-                @Html.LabelFor(model => Model.Store.PhoneNumber)
-                @Html.EditorFor(model => Model.Store.PhoneNumber)
+                <span class="input-field">
+                    @Html.LabelFor(model => Model.Store.PhoneNumber)
+                    @Html.EditorFor(model => Model.Store.PhoneNumber)
+                </span>
                 <br />
                 <h4 class="center green-text">@TempData["storeInfoResultMessage"]</h4>
                 @{TempData["storeInfoResultMessage"] = null; }

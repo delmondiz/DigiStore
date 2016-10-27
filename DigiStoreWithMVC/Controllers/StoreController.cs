@@ -70,7 +70,34 @@ namespace DigiStoreWithMVC.Controllers
                 User currentUser = ModelHelpers.GetCurrentUser(db);
 
                 if (currentUser != null)
-                {
+                {// A StoreService class will be created to handle the creation of a store 
+                    // upon the user making an account.
+                    if (currentUser.Store == null)
+                    {
+                        currentUser.Store = new Store();
+                        currentUser.Store.Address = "";
+                        currentUser.Store.City = "";
+                        currentUser.Store.Country = "";
+                        currentUser.Store.Name = currentUser.UserName;
+                        currentUser.Store.PostalCode = "";
+                        currentUser.Store.PhoneNumber = "";
+                        currentUser.Store.StateProv = "";
+                    }
+
+                    if (currentUser.Store.StoreHours.Count == 0)
+                    {
+                        for (int i = currentUser.Store.StoreHours.Count; i < 7; i++)
+                        {
+                            StoreHours storeHours = new StoreHours();
+                            storeHours.StoreId = currentUser.Store.Id;
+                            storeHours.DayOfTheWeek = DAYS_OF_THE_WEEK[i];
+                            storeHours.StartTime = new DateTime(2015, 1, 1, 1, 0, 0);
+                            storeHours.EndTime = new DateTime(2015, 1, 1, 1, 0, 0);
+                            currentUser.Store.StoreHours.Add(storeHours);
+                        }
+                    }
+                    db.SaveChanges();
+
                     return View(currentUser);
                 }
                 else
@@ -106,18 +133,19 @@ namespace DigiStoreWithMVC.Controllers
             do
             {
                 randomUser = (from u in db.Users
-                              where (u.Id == randUserNum)
+                              where (u.Id == randUserNum && u.Items.Count > 0)
                               select u).FirstOrDefault();
                 if (count > 1000)
                     randomUser = new User();
                 count++;
+                randUserNum = rand.Next(0, (max - 1));
             } while (randomUser == null);
 
             // This won't be reached any time soon.
             if (count > 1000)
                 return RedirectToActionPermanent("Index", "Home", new { controller = "Home", action = "Index" });
 
-            return RedirectToAction("Index", "Store", new { storeName = randomUser.UserName });
+            return RedirectToAction("Index", "Store", new { storeName = randomUser.Store.Name });
         }
 
         public ActionResult StoreInventory()
@@ -296,18 +324,18 @@ namespace DigiStoreWithMVC.Controllers
         }
 
         // On the view, the user will not see the add to cart button unless authenticated
-        [ChildActionOnly]
-        public ActionResult AddToCart(Item item)
+
+        public ContentResult AddToCart(Item item)
         {
             // We double check anyways, because no sneaking around.
-            if (User.Identity.IsAuthenticated)
+            if (!User.Identity.IsAuthenticated)
             {
                 User currentUser = ModelHelpers.GetCurrentUser(db);
                 currentUser.Cart.Items.Add(item);
                 db.SaveChanges();
-                return PartialView();
             }
-            else return PartialView();
+
+            return Content("Good");
         }
     }
 }
