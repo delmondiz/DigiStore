@@ -424,6 +424,7 @@
     <Content Include="Views\Store\_StoreItem.cshtml" />
     <Content Include="Views\Store\_EditStoreInfo.cshtml" />
     <Content Include="Views\Store\_EditStoreHours.cshtml" />
+    <Content Include="Views\Home\_GoogleResults.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -71,7 +71,18 @@ namespace DigiStoreWithMVC.Controllers
             {
                 ViewData["users"] = users;
             }
+
             return PartialView("_MapResults");
+        }
+
+        [HttpPost]
+        public ActionResult GoogleSearch(string searchQuery)
+        {
+            List<Store> stores = (from s in db.Stores
+                                  where s.Name.ToLower().Contains(searchQuery.ToLower())
+                                  select s).ToList();
+
+            return PartialView("_GoogleResults", stores);
         }
 
         protected override void Dispose(bool disposing)
