@@ -5,11 +5,11 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="5d6163ca174e477481c502ee09929921" Name="Diagram1" >
-        <EntityTypeShape EntityType="DigiStoreDBModel.User" Width="1.5" PointX="2.25" PointY="0.5" />
-        <EntityTypeShape EntityType="DigiStoreDBModel.Item" Width="1.5" PointX="4" PointY="0.5" />
-        <EntityTypeShape EntityType="DigiStoreDBModel.Review" Width="1.5" PointX="5.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DigiStoreDBModel.User" Width="1.5" PointX="2.5" PointY="0.5" />
+        <EntityTypeShape EntityType="DigiStoreDBModel.Item" Width="1.5" PointX="4.375" PointY="0.5" />
+        <EntityTypeShape EntityType="DigiStoreDBModel.Review" Width="1.5" PointX="6.375" PointY="3.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DigiStoreDBModel.PaymentMethod" Width="1.5" PointX="0.5" PointY="0.5" />
-        <EntityTypeShape EntityType="DigiStoreDBModel.Order" Width="1.5" PointX="4" PointY="3.5" />
+        <EntityTypeShape EntityType="DigiStoreDBModel.Order" Width="1.5" PointX="4.375" PointY="4" />
         <AssociationConnector Association="DigiStoreDBModel.UserPaymentMethod" />
         <AssociationConnector Association="DigiStoreDBModel.UserReview" />
         <AssociationConnector Association="DigiStoreDBModel.UserOrder" />
@@ -20,13 +20,21 @@
         </AssociationConnector>
         <AssociationConnector Association="DigiStoreDBModel.OrderItem" />
         <AssociationConnector Association="DigiStoreDBModel.UserItem" />
-        <EntityTypeShape EntityType="DigiStoreDBModel.Store" Width="1.5" PointX="5.75" PointY="0.5" />
-        <EntityTypeShape EntityType="DigiStoreDBModel.StoreHours" Width="1.5" PointX="7.5" PointY="0.5" />
+        <EntityTypeShape EntityType="DigiStoreDBModel.Store" Width="1.5" PointX="6.125" PointY="0.5" />
+        <EntityTypeShape EntityType="DigiStoreDBModel.StoreHours" Width="1.5" PointX="7.875" PointY="0.5" />
         <AssociationConnector Association="DigiStoreDBModel.StoreStoreHours" />
-        <EntityTypeShape EntityType="DigiStoreDBModel.Cart" Width="1.5" PointX="7.5" PointY="2.625" />
+        <EntityTypeShape EntityType="DigiStoreDBModel.Cart" Width="1.5" PointX="7.75" PointY="3.375" IsExpanded="true" />
         <AssociationConnector Association="DigiStoreDBModel.UserCart" />
         <AssociationConnector Association="DigiStoreDBModel.UserStore" />
-        <AssociationConnector Association="DigiStoreDBModel.CartItem" />
+        <EntityTypeShape EntityType="DigiStoreDBModel.C__MigrationHistory" Width="1.5" PointX="7.75" PointY="6.75" />
+        <EntityTypeShape EntityType="DigiStoreDBModel.AspNetRole" Width="1.5" PointX="0.75" PointY="8.5" />
+        <EntityTypeShape EntityType="DigiStoreDBModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="7" />
+        <EntityTypeShape EntityType="DigiStoreDBModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="9.75" />
+        <EntityTypeShape EntityType="DigiStoreDBModel.AspNetUser" Width="1.5" PointX="3" PointY="7.25" />
+        <AssociationConnector Association="DigiStoreDBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="DigiStoreDBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="DigiStoreDBModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="DigiStoreDBModel.database_firewall_rules" Width="1.5" PointX="7.375" PointY="9.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
