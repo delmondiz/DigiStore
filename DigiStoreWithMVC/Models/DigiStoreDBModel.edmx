@@ -536,7 +536,7 @@
           <Property Name="City" Type="String" Unicode="true" FixedLength="false" MaxLength="Max" Nullable="true" />
           <Property Name="Country" Type="String" Unicode="true" FixedLength="false" MaxLength="Max" Nullable="true" />
           <Property Name="PostalCode" Type="String" Unicode="true" FixedLength="false" MaxLength="Max" Nullable="true" />
-          <Property Name="PhoneNumber" Type="Int32" Nullable="true" />
+          <Property Name="PhoneNumber" Type="String" Nullable="true" />
           <NavigationProperty Name="PaymentMethods" Relationship="DigiStoreDBModel.UserPaymentMethod" FromRole="User" ToRole="PaymentMethod" />
           <NavigationProperty Name="Reviews" Relationship="DigiStoreDBModel.UserReview" FromRole="User" ToRole="Review" />
           <NavigationProperty Name="Orders" Relationship="DigiStoreDBModel.UserOrder" FromRole="User" ToRole="Order" />
