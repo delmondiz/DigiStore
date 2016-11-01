@@ -76,10 +76,10 @@ namespace DigiStoreWithMVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult GoogleSearch(string searchQuery)
+        public ActionResult GoogleSearch(string inputSearch)
         {
             List<Store> stores = (from s in db.Stores
-                                  where s.Name.ToLower().Contains(searchQuery.ToLower())
+                                  where s.Name.ToLower().Contains(inputSearch.ToLower())
                                   select s).ToList();
 
             return PartialView("_GoogleResults", stores);

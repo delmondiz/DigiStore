@@ -23,44 +23,11 @@ namespace DigiStoreWithMVC.Controllers
             if (storeName != null)
             {
                 User checkUser = ModelHelpers.GetUserByStorename(db, storeName);
+                ModelHelpers.CreateUserStore(db, checkUser);
 
                 if (checkUser != null)
                 {
-                    // A StoreService class will be created to handle the creation of a store 
-                    // upon the user making an account.
-                    if (checkUser.Store == null)
-                    {
-                        checkUser.Store = new Store();
-                        checkUser.Store.Address = "";
-                        checkUser.Store.City = "";
-                        checkUser.Store.Country = "";
-                        checkUser.Store.Name = checkUser.UserName;
-                        checkUser.Store.PostalCode = "";
-                        checkUser.Store.PhoneNumber = "";
-                        checkUser.Store.StateProv = "";
-                        db.SaveChanges();
-                    }
-
-                    if (checkUser.Store.StoreHours.Count == 0)
-                    {
-                        for (int i = checkUser.Store.StoreHours.Count; i < 7; i++)
-                        {
-                            StoreHours storeHours = new StoreHours();
-                            storeHours.StoreId = checkUser.Store.Id;
-                            storeHours.DayOfTheWeek = DAYS_OF_THE_WEEK[i];
-                            storeHours.StartTime = new DateTime(2015, 1, 1, 1, 0, 0);
-                            storeHours.EndTime = new DateTime(2015, 1, 1, 1, 0, 0);
-                            checkUser.Store.StoreHours.Add(storeHours);
-                            db.SaveChanges();
-                        }
-                    }
-
-                    if (checkUser.Store.Name != null)
-                    {
-                        return View(checkUser);
-                    }
-                    else
-                        return View(checkUser);
+                    return View(checkUser);
                 }
                 else
                     return View();
@@ -70,33 +37,8 @@ namespace DigiStoreWithMVC.Controllers
                 User currentUser = ModelHelpers.GetCurrentUser(db);
 
                 if (currentUser != null)
-                {// A StoreService class will be created to handle the creation of a store 
-                    // upon the user making an account.
-                    if (currentUser.Store == null)
-                    {
-                        currentUser.Store = new Store();
-                        currentUser.Store.Address = "";
-                        currentUser.Store.City = "";
-                        currentUser.Store.Country = "";
-                        currentUser.Store.Name = currentUser.UserName;
-                        currentUser.Store.PostalCode = "";
-                        currentUser.Store.PhoneNumber = "";
-                        currentUser.Store.StateProv = "";
-                    }
-
-                    if (currentUser.Store.StoreHours.Count == 0)
-                    {
-                        for (int i = currentUser.Store.StoreHours.Count; i < 7; i++)
-                        {
-                            StoreHours storeHours = new StoreHours();
-                            storeHours.StoreId = currentUser.Store.Id;
-                            storeHours.DayOfTheWeek = DAYS_OF_THE_WEEK[i];
-                            storeHours.StartTime = new DateTime(2015, 1, 1, 1, 0, 0);
-                            storeHours.EndTime = new DateTime(2015, 1, 1, 1, 0, 0);
-                            currentUser.Store.StoreHours.Add(storeHours);
-                        }
-                    }
-                    db.SaveChanges();
+                {
+                    ModelHelpers.CreateUserStore(db, currentUser);
 
                     return View(currentUser);
                 }
@@ -133,8 +75,9 @@ namespace DigiStoreWithMVC.Controllers
             do
             {
                 randomUser = (from u in db.Users
-                              where (u.Id == randUserNum && u.Items.Count > 0)
+                              where (u.Id == randUserNum && u.Email != User.Identity.Name)
                               select u).FirstOrDefault();
+                ModelHelpers.CreateUserStore(db, randomUser);
                 if (count > 1000)
                     randomUser = new User();
                 count++;

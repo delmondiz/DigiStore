@@ -2,10 +2,14 @@
 
 @if (Model.Count() > 0)
 {
+    <script>
+        $("#goggleResults").show();
+        $("#goggleMap").css("height", "60%");
+    </script>
     foreach (DigiStoreWithMVC.Models.Store s in Model)
     {
-        <li>
-            @s.Name | Hours: @s.StoreHours.ElementAt(0).StartTime - @s.StoreHours.ElementAt(0).EndTime | Rating: @s.Id
+        <li class='collection-item blue darken-3' id="@s.Name">
+            @s.Name | | ID: @s.Id
         </li>
     }
 }

@@ -155,6 +155,10 @@ namespace DigiStoreWithMVC.Controllers
             }
 
             // If we reach here, the user is able to log in.
+            // TODO: Users that login and do not have a store will have a store created for them. Remove this later.
+            // All users that register from this point on will have a Store created for them upon registeration.
+            // This is for legacy accounts.
+            ModelHelpers.CreateUserStore(db, currentUser);
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
@@ -279,6 +283,7 @@ namespace DigiStoreWithMVC.Controllers
                         newUser.PhoneNumber = phoneNumber;
                     db.Users.Add(newUser);
                     db.SaveChanges();
+                    ModelHelpers.CreateUserStore(db, newUser);
                     // ASP.NET Will create a User seperate from the database. 
                     var user = new ApplicationUser { UserName = model.Email, Email = model.Email, DigistoreUserId = newUser.Id };
                     var result = await UserManager.CreateAsync(user, newUser.Password);
