@@ -75,9 +75,10 @@ namespace DigiStoreWithMVC.Controllers
             do
             {
                 randomUser = (from u in db.Users
-                              where (u.Id == randUserNum && u.Email != User.Identity.Name)
+                              where (u.Id == randUserNum && u.Items.Count > 0 && u.Email != User.Identity.Name)
                               select u).FirstOrDefault();
-                ModelHelpers.CreateUserStore(db, randomUser);
+                if (randomUser != null)
+                    ModelHelpers.CreateUserStore(db, randomUser);
                 if (count > 1000)
                     randomUser = new User();
                 count++;

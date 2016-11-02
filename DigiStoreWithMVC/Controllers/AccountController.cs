@@ -277,10 +277,8 @@ namespace DigiStoreWithMVC.Controllers
                         newUser.StateProv = model.Province;
                     if (model.PostalCode != null)
                         newUser.PostalCode = model.PostalCode;
-                    int phoneNumber = 0;
-                    Int32.TryParse(model.PhoneNumber, out phoneNumber);
                     if (model.PhoneNumber != null)
-                        newUser.PhoneNumber = phoneNumber;
+                        newUser.PhoneNumber = model.PhoneNumber;
                     db.Users.Add(newUser);
                     db.SaveChanges();
                     ModelHelpers.CreateUserStore(db, newUser);
