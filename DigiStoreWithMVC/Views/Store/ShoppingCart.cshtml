@@ -179,6 +179,7 @@
     <h4>Grand Total:$27.05</h4>
 
     @Html.ActionLink("Continue Shopping", "Map", new { controller = "Home", action = "Map" }, htmlAttributes: new { @class = "btn waves-effect blue darken-3 yellow-text accent-3" })
+    @Html.ActionLink("Pay with Paypal Account", "PaymentWithPaypal", "Paypal")
     @*@Html.ActionLink("Proceed to Checkout", null, null, htmlAttributes: new { @class = "btn waves-effect blue darken-4 yellow-text accent-5", @href="#modal1" })*@
         <a class="modal-trigger waves-effect waves-light btn" href="#modal1">Proceed to Checkout</a>
         <!-- Modal Structure -->
