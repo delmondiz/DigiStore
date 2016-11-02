@@ -23,7 +23,7 @@ namespace DigiStoreWithMVC.Controllers
             if (storeName != null)
             {
                 User checkUser = ModelHelpers.GetUserByStorename(db, storeName);
-                ModelHelpers.CreateUserStore(db, checkUser);
+                ModelHelpers.CreateUserStoreIfNotExisting(db, checkUser);
 
                 if (checkUser != null)
                 {
@@ -38,7 +38,7 @@ namespace DigiStoreWithMVC.Controllers
 
                 if (currentUser != null)
                 {
-                    ModelHelpers.CreateUserStore(db, currentUser);
+                    ModelHelpers.CreateUserStoreIfNotExisting(db, currentUser);
 
                     return View(currentUser);
                 }
@@ -78,7 +78,7 @@ namespace DigiStoreWithMVC.Controllers
                               where (u.Id == randUserNum && u.Items.Count > 0 && u.Email != User.Identity.Name)
                               select u).FirstOrDefault();
                 if (randomUser != null)
-                    ModelHelpers.CreateUserStore(db, randomUser);
+                    ModelHelpers.CreateUserStoreIfNotExisting(db, randomUser);
                 if (count > 1000)
                     randomUser = new User();
                 count++;

@@ -158,7 +158,7 @@ namespace DigiStoreWithMVC.Controllers
             // TODO: Users that login and do not have a store will have a store created for them. Remove this later.
             // All users that register from this point on will have a Store created for them upon registeration.
             // This is for legacy accounts.
-            ModelHelpers.CreateUserStore(db, currentUser);
+            ModelHelpers.CreateUserStoreIfNotExisting(db, currentUser);
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
@@ -281,7 +281,7 @@ namespace DigiStoreWithMVC.Controllers
                         newUser.PhoneNumber = model.PhoneNumber;
                     db.Users.Add(newUser);
                     db.SaveChanges();
-                    ModelHelpers.CreateUserStore(db, newUser);
+                    ModelHelpers.CreateUserStoreIfNotExisting(db, newUser);
                     // ASP.NET Will create a User seperate from the database. 
                     var user = new ApplicationUser { UserName = model.Email, Email = model.Email, DigistoreUserId = newUser.Id };
                     var result = await UserManager.CreateAsync(user, newUser.Password);
@@ -601,6 +601,7 @@ namespace DigiStoreWithMVC.Controllers
                 User currentUser = ModelHelpers.GetCurrentUser(db);
                 if (currentUser != null)
                 {
+                    ModelHelpers.CreateUserPaymentMethodIfNotExisting(db, currentUser);
                     PaymentMethod model = currentUser.PaymentMethods.FirstOrDefault();
 
                     if (model != null)
@@ -631,13 +632,12 @@ namespace DigiStoreWithMVC.Controllers
             if (currentUser != null)
             {
                 PaymentMethod payment = currentUser.PaymentMethods.FirstOrDefault();
-                if (payment == null)
-                    payment = db.PaymentMethods.Create();
 
                 if (model.PaymentType != null)
                     payment.PaymentType = model.PaymentType;
                 else
                     payment.PaymentType = "";
+
                 if (model.AccountNumber != null)
                     payment.AccountNumber = model.AccountNumber;
                 else

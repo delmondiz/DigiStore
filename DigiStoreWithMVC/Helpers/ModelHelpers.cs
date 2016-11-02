@@ -54,7 +54,19 @@ namespace DigiStoreWithMVC.Controllers
             return currentUser;
         }
 
-        internal static void CreateUserStore(DigiStoreDBModelContainer db, User user)
+        internal static void CreateUserPaymentMethodIfNotExisting(DigiStoreDBModelContainer db, User user)
+        {
+            User currentUser = ModelHelpers.GetCurrentUser(db);
+            if (currentUser != null)
+            {
+                PaymentMethod payment = currentUser.PaymentMethods.FirstOrDefault();
+                if (payment == null)
+                    payment = db.PaymentMethods.Create();
+                db.SaveChanges();
+            }
+        }
+
+        internal static void CreateUserStoreIfNotExisting(DigiStoreDBModelContainer db, User user)
         {
             string[] DAYS_OF_THE_WEEK = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
             // If the user is not null, we continue
