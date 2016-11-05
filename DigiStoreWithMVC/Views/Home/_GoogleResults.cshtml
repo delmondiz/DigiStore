@@ -5,12 +5,19 @@
     <script>
         $("#goggleResults").show();
         $("#goggleMap").css("height", "60%");
+        deleteMarkers();
     </script>
     foreach (DigiStoreWithMVC.Models.Store s in Model)
     {
         <li class='collection-item blue darken-3' id="@s.Name">
             @s.Name | | ID: @s.Id
         </li>
+        if (s.Address != null)
+        {
+            <script>
+                var decodedName = $('<textarea/>').html("@s.Name").text();
+                searchForAddress("@s.Address", decodedName);</script>
+        }
     }
 }
 else
