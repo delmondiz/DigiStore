@@ -7,16 +7,21 @@
         $("#goggleMap").css("height", "60%");
         deleteMarkers();
     </script>
+
     foreach (DigiStoreWithMVC.Models.Store s in Model)
     {
-        <li class='collection-item blue darken-3' id="@s.Name">
-            @s.Name | | ID: @s.Id
-        </li>
+        <a href=@Url.Action("Index", "Store", new { storeName = @s.Name }) id="@s.Name">
+            <li class='collection-item blue darken-3 yellow-text accent-3'>
+                @s.Name | | ID: @s.Id <br />
+                @s.Address
+            </li>
+        </a>
         if (s.Address != null)
         {
             <script>
                 var decodedName = $('<textarea/>').html("@s.Name").text();
-                searchForAddress("@s.Address", decodedName);</script>
+                searchForAddress("@s.Address", decodedName);
+            </script>
         }
     }
 }

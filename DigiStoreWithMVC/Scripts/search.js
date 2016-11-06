@@ -128,18 +128,20 @@ function initMap() {
 function searchForAddress(address, storeName) {
     if (address.length > 0) {
         geocoder = new google.maps.Geocoder();
-        geocoder.geocode({ 'address': address }, function (results, status) {
+        geocoder.geocode({ 'address': address, 'region': "ca", 'bounds': map.getBounds() }, function (results, status) {
             if (status === 'OK') {
                 var marker = new google.maps.Marker({
                     map: map,
                     position: results[0].geometry.location,
                     storeName: storeName
                 });
-                console.log("success!");
-                console.log(marker);
+                //console.log("success!");
+                //console.log(marker);
+                //console.log(results);
                 google.maps.event.addListener(marker, 'click', function () {
                     infoWindow.setContent(
-                        document.getElementById("goggleResultsList").children[marker.get("storeName")].innerHTML
+                        document.getElementById("goggleResultsList").children[marker.get("storeName")].children[0].innerHTML
+                        //storeName + "<br />" + results[0].formatted_address
                     );
                     infoWindow.open(map, marker);
                 });
@@ -149,9 +151,6 @@ function searchForAddress(address, storeName) {
                 console.log("f-failure! Reason: " + status);
             }
         });
-    }
-    else {
-        Materialize.toast("Please enter something to search for!", 3250, "rounded");
     }
     return false;
 }
