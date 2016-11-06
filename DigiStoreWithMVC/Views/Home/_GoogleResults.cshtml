@@ -12,8 +12,16 @@
     {
         <a href=@Url.Action("Index", "Store", new { storeName = @s.Name }) id="@s.Name">
             <li class='collection-item blue darken-3 yellow-text accent-3'>
-                @s.Name | | ID: @s.Id <br />
-                @s.Address
+                @s.Name | @s.Address <br />
+                @if (DateTime.Now.TimeOfDay <= @s.StoreHours.ToList().Find(h => h.DayOfTheWeek.Equals(DateTime.Now.DayOfWeek.ToString())).EndTime.TimeOfDay &&
+                    DateTime.Now.TimeOfDay >= @s.StoreHours.ToList().Find(h => h.DayOfTheWeek.Equals(DateTime.Now.DayOfWeek.ToString())).StartTime.TimeOfDay)
+                {
+                    <p>Open! Today's Hours: @s.StoreHours.ToList().Find(h => h.DayOfTheWeek.Equals(DateTime.Now.DayOfWeek.ToString())).StartTime.TimeOfDay - @s.StoreHours.ToList().Find(h => h.DayOfTheWeek.Equals(DateTime.Now.DayOfWeek.ToString())).EndTime.TimeOfDay</p>
+                }
+                else
+                {
+                    <p>Closed! Today's Hours: @s.StoreHours.ToList().Find(h => h.DayOfTheWeek.Equals(DateTime.Now.DayOfWeek.ToString())).StartTime.TimeOfDay - @s.StoreHours.ToList().Find(h => h.DayOfTheWeek.Equals(DateTime.Now.DayOfWeek.ToString())).EndTime.TimeOfDay</p>
+                }
             </li>
         </a>
         if (s.Address != null)

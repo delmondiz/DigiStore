@@ -425,6 +425,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="img\sub\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
