@@ -1,6 +1,6 @@
 ﻿@model DigiStoreWithMVC.Models.Item
 
-@using (Html.BeginForm())
+@using (Html.BeginForm(new {enctype = "multipart/form-data"}))
 {
     @Html.AntiForgeryToken()
         <div class="row">
@@ -34,9 +34,11 @@
                 @Html.ValidationMessageFor(model => model.Weight, "", new { @class = "red-text" })
             </div>
             <div class="col s12 m6">
-                @Html.LabelFor(model => model.ImagePath)
+                @*@Html.LabelFor(model => model.ImagePath)
                 @Html.EditorFor(model => model.ImagePath)
-                @Html.ValidationMessageFor(model => model.ImagePath, "", new { @class = "red-text" })
+                @Html.ValidationMessageFor(model => model.ImagePath, "", new { @class = "red-text" })*@
+                <label for="picture">Upload Image Here</label>
+                <input type="file" name="picture" id="picture" />
             </div>
         </div>
         <div class="row">
