@@ -11,6 +11,9 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Data.Entity;
 
+
+
+
 namespace DigiStoreWithMVC.Controllers
 {
     public class StoreController : Controller
@@ -186,6 +189,7 @@ namespace DigiStoreWithMVC.Controllers
             else
                 return RedirectToAction("Login", "Account");
         }
+
 
         //
         // POST: /Manage/ChangePayment
