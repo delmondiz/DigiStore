@@ -48,16 +48,18 @@ namespace DigiStoreWithMVC.Controllers
             {
                 using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
                 {
+                    //messing with this for the time being
                     Review newReview = db.Reviews.Create();
                     newReview.Id = db.Reviews.Count();
                     if(model.ReviewText != null)
                         newReview.ReviewText = model.ReviewText;
-                    if(model.ReviewRating != 0)
-                        newReview.Rating = model.ReviewRating;
+                    //if(model.ReviewRating != 0)
+                    //    newReview.Rating = model.ReviewRating;
+                    newReview.Rating = 1; //temp line
                     newReview.Date = DateTime.Now;
                     db.Reviews.Add(newReview);
                     db.SaveChanges();
-                    ViewBag.Message = "Thanks!";
+                    ViewBag.Message = "Review Submitted! Thanks!";
                     return View();
                 }
             }

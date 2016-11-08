@@ -14,7 +14,7 @@ using System.Data.Entity;
 namespace DigiStoreWithMVC.Controllers
 {
     public class StoreController : Controller
-    { 
+    {
         private DigiStoreDBModelContainer db = new DigiStoreDBModelContainer();
         string[] DAYS_OF_THE_WEEK = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
         public ActionResult Index(string storeName)
@@ -22,7 +22,7 @@ namespace DigiStoreWithMVC.Controllers
             if (storeName != null)
             {
                 User checkUser = (from u in db.Users where u.UserName == storeName select u).FirstOrDefault();
-                
+
                 if (checkUser != null)
                 {
                     // A StoreService class will be created to handle the creation of a store 
@@ -87,7 +87,7 @@ namespace DigiStoreWithMVC.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 User currentUser = (from u in db.Users where u.Email == User.Identity.Name select u).FirstOrDefault();
-                
+
 
                 if (currentUser != null)
                     return View(currentUser);
@@ -96,6 +96,39 @@ namespace DigiStoreWithMVC.Controllers
             }
             else
                 return RedirectToAction("Login", "Account");
+        }
+
+        public ActionResult SubmitReview()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult SubmitReview(Review model)
+        {
+            if (ModelState.IsValid)
+            {
+                using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
+                {
+                    Review newReview = db.Reviews.Create();
+                    newReview.Id = db.Reviews.Count();
+                    if (model.ReviewText != null)
+                        newReview.ReviewText = model.ReviewText;
+                    //if (model.ReviewRating != 0)
+                    //newReview.Rating = model.ReviewRating;
+                    newReview.Rating = 5;
+                    newReview.Date = DateTime.Now;
+                    db.Reviews.Add(newReview);
+                    db.SaveChanges();
+                    return RedirectToAction("Index", "Store");
+                }
+
+
+            }
+            else
+            {
+                return RedirectToAction("Index", "Store");
+            }
         }
 
         public ActionResult RandomStore()
@@ -275,8 +308,8 @@ namespace DigiStoreWithMVC.Controllers
             {
 
                 User existingUser = (from u in db.Users
-                             where u.Email == User.Identity.Name
-                             select u).FirstOrDefault();
+                                     where u.Email == User.Identity.Name
+                                     select u).FirstOrDefault();
                 if (existingUser != null)
                 {
                     for (int i = 0; i < 7; i++)
