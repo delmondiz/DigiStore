@@ -461,11 +461,12 @@
     <Content Include="Views\Store\_StoreItem.cshtml" />
     <Content Include="Views\Store\_EditStoreInfo.cshtml" />
     <Content Include="Views\Store\_EditStoreHours.cshtml" />
-    <Content Include="Views\Home\_GoogleResults.cshtml" />
+    <Content Include="Views\Home\_GoogleResultsStores.cshtml" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\Paypal\FailureView.cshtml" />
     <Content Include="Views\Paypal\SuccessView.cshtml" />
+    <Content Include="Views\Home\_GoogleResultsItems.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

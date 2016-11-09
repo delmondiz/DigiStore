@@ -9,10 +9,16 @@
     @using (Ajax.BeginForm("GoogleSearch", "Home", new AjaxOptions { HttpMethod = "post", InsertionMode = InsertionMode.Replace, UpdateTargetId = "goggleResultsList" }))
     {
         <div class="row">
-            <div class="col input-field s9">
+            <div class="col input-field s6">
+                <label id="searchLabel" for="inputSearch">Store Name</label>
                 <input type="text" id="inputSearch" name="inputSearch" class="validate" />
-                <label for="inputSearch">Store Name</label>
-                @*@Html.Editor("searchQuery")*@
+            </div>
+            <div class="col input-field s3">
+                <select id="searchOptions" name="searchOptions">
+                    <option>Store</option>
+                    <option>Item</option>
+                </select>
+                <label for="searchOptions">Search For</label>
             </div>
             <div class="col s3 valign-wrapper">
                 <button class="btn btn-large valign waves-effect waves-light blue darken-3 yellow-text accent-3" type="submit" name="submitSearch" style="padding:0; width:100%">
@@ -37,4 +43,12 @@
 <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3d4spAr0FMskq0UBEVofzNutc9Q9lrig&callback=initMap&libraries=places,visualization" async defer></script>
 <script src="~/Scripts/search.js"></script>
+    <script>
+        $("#searchOptions").change(function () {
+            if ($("#searchOptions").val() == "Store")
+                $("#searchLabel").text("Store Name");
+            else
+                $("#searchLabel").text("Item Name");
+        });
+    </script>
 }
