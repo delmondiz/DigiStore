@@ -13,6 +13,7 @@ using System.Data.Entity;
 
 
 
+
 namespace DigiStoreWithMVC.Controllers
 {
     public class StoreController : Controller
@@ -111,12 +112,20 @@ namespace DigiStoreWithMVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult StoreInventory([Bind(Include = "Id,Name,Description,Price,Weight,Quantity,ImagePath")]Item item)
+        public ActionResult StoreInventory([Bind(Include = "Id,Name,Description,Price,Weight,Quantity")]Item item, HttpPostedFileBase picture)
         {
             if (User.Identity.IsAuthenticated)
             {
                 // Get our current user.
                 User currentUser = ModelHelpers.GetCurrentUser(db);
+                if (picture != null && picture.ContentLength > 0)
+                {
+                    //var photo = new 
+                }
+                else
+                {
+                    item.ImagePath = "";
+                }
                 if (ModelState.IsValid)
                 {
                     // Add the item to our current user.

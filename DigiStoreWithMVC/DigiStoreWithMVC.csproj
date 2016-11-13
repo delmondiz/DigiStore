@@ -218,6 +218,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PaypalController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -232,6 +233,7 @@
       <DependentUpon>201610162118203_Digistoreuserid.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Appointment.cs">
       <DependentUpon>DigiStoreDBModel.tt</DependentUpon>
@@ -239,6 +241,7 @@
     <Compile Include="Models\Cart.cs">
       <DependentUpon>DigiStoreDBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Configuration.cs" />
     <Compile Include="Models\DigiStoreDBModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -261,6 +264,7 @@
       <DependentUpon>DigiStoreDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ItemMetaData.cs" />
+    <Compile Include="Models\Logger.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MetaDataPartials.cs" />
     <Compile Include="Models\Order.cs">
@@ -393,6 +397,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\search.js" />
     <Content Include="Scripts\materialize.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\respond.js" />
@@ -456,12 +461,16 @@
     <Content Include="Views\Store\_StoreItem.cshtml" />
     <Content Include="Views\Store\_EditStoreInfo.cshtml" />
     <Content Include="Views\Store\_EditStoreHours.cshtml" />
-    <Content Include="Views\Home\_GoogleResults.cshtml" />
+    <Content Include="Views\Home\_GoogleResultsStores.cshtml" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
+    <Content Include="Views\Paypal\FailureView.cshtml" />
+    <Content Include="Views\Paypal\SuccessView.cshtml" />
+    <Content Include="Views\Home\_GoogleResultsItems.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="img\sub\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
