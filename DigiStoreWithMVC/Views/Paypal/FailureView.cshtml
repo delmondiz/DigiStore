@@ -1,8 +1,9 @@
 ﻿
 @{
-    ViewBag.Title = "ShoppingCart";
+    ViewBag.Title = "FailureView";
 }
 
+ @ViewData["high"]
 <div class="container">
     <div class="section">
         <ul class="collapsible collapsible-accordion" data-collapsible="accordion">
@@ -56,8 +57,8 @@
 
     @Html.ActionLink("Continue Shopping", "Map", new { controller = "Home", action = "Map" }, htmlAttributes: new { @class = "btn waves-effect blue darken-3 yellow-text accent-3" })
     @Html.ActionLink("Pay with Paypal Account", "PaymentWithPaypal", "Paypal")
-        <!-- Modal Structure -->
-       
+    <!-- Modal Structure -->
+
 </div>
 <script>
     $(document).ready(function(){
