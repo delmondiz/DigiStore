@@ -1,42 +1,42 @@
 ﻿@model DigiStoreWithMVC.Models.Item
 
-@using (Html.BeginForm(new {enctype = "multipart/form-data"}))
+@using (Html.BeginForm("StoreInventory", "Store", FormMethod.Post, new {enctype = "multipart/form-data"}))
 {
     @Html.AntiForgeryToken()
         <div class="row">
             <div class="col s12 m6">
-                @Html.LabelFor(model => model.Name)
-                @Html.EditorFor(model => model.Name)
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "red-text" })
+                @Html.LabelFor(item => item.Name)
+                @Html.EditorFor(item => item.Name)
+                @Html.ValidationMessageFor(item => item.Name, "", new { @class = "red-text" })
             </div>
             <div class="col s12 m6">
-                @Html.LabelFor(model => model.Description)
-                @Html.EditorFor(model => model.Description)
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "red-text" })
-            </div>
-        </div>
-        <div class="row">
-            <div class="col s12 m6">
-                @Html.LabelFor(model => model.Price)
-                @Html.EditorFor(model => model.Price)
-                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "red-text" })
-            </div>
-            <div class="col s12 m6">
-                @Html.LabelFor(model => model.Quantity)
-                @Html.EditorFor(model => model.Quantity)
-                @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "red-text" })
+                @Html.LabelFor(item => item.Description)
+                @Html.EditorFor(item => item.Description)
+                @Html.ValidationMessageFor(item => item.Description, "", new { @class = "red-text" })
             </div>
         </div>
         <div class="row">
             <div class="col s12 m6">
-                @Html.LabelFor(model => model.Weight, "Item Weight (kg)")
-                @Html.EditorFor(model => model.Weight)
-                @Html.ValidationMessageFor(model => model.Weight, "", new { @class = "red-text" })
+                @Html.LabelFor(item => item.Price)
+                @Html.EditorFor(item => item.Price)
+                @Html.ValidationMessageFor(item => item.Price, "", new { @class = "red-text" })
             </div>
             <div class="col s12 m6">
-                @*@Html.LabelFor(model => model.ImagePath)
-                @Html.EditorFor(model => model.ImagePath)
-                @Html.ValidationMessageFor(model => model.ImagePath, "", new { @class = "red-text" })*@
+                @Html.LabelFor(item => item.Quantity)
+                @Html.EditorFor(item => item.Quantity)
+                @Html.ValidationMessageFor(item => item.Quantity, "", new { @class = "red-text" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m6">
+                @Html.LabelFor(item => item.Weight, "Item Weight (kg)")
+                @Html.EditorFor(item => item.Weight)
+                @Html.ValidationMessageFor(item => item.Weight, "", new { @class = "red-text" })
+            </div>
+            <div class="col s12 m6">
+                @*@Html.LabelFor(item => item.ImagePath)
+                @Html.EditorFor(item => item.ImagePath)
+                @Html.ValidationMessageFor(item => item.ImagePath, "", new { @class = "red-text" })*@
                 <label for="picture">Upload Image Here</label>
                 <input type="file" name="picture" id="picture" />
             </div>
