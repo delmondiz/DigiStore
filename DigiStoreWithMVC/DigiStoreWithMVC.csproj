@@ -425,6 +425,8 @@
     <Content Include="Views\Store\_StoreItem.cshtml" />
     <Content Include="Views\Store\_EditStoreInfo.cshtml" />
     <Content Include="Views\Store\_EditStoreHours.cshtml" />
+    <Content Include="Views\Store\FailureView.cshtml" />
+    <Content Include="Views\Store\SuccessView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

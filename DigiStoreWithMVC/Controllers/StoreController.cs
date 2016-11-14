@@ -404,6 +404,7 @@ namespace DigiStoreWithMVC.Controllers
             catch (Exception ex)
             {
                 Logger.Log("Error" + ex.Message);
+                ModelState.AddModelError("", "adfdghdghgdhgdhdgda");
                 return View("FailureView");
             }
 
