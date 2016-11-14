@@ -108,8 +108,8 @@
     <Property Name="City" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Country" Type="nvarchar(max)" Nullable="true" />
     <Property Name="PostalCode" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="PhoneNumber" Type="int" Nullable="true" />
     <Property Name="StateProv" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Items">
     <Key>
@@ -536,7 +536,6 @@
           <Property Name="City" Type="String" Unicode="true" FixedLength="false" MaxLength="Max" Nullable="true" />
           <Property Name="Country" Type="String" Unicode="true" FixedLength="false" MaxLength="Max" Nullable="true" />
           <Property Name="PostalCode" Type="String" Unicode="true" FixedLength="false" MaxLength="Max" Nullable="true" />
-          <Property Name="PhoneNumber" Type="Int32" Nullable="true" />
           <NavigationProperty Name="PaymentMethods" Relationship="DigiStoreDBModel.UserPaymentMethod" FromRole="User" ToRole="PaymentMethod" />
           <NavigationProperty Name="Reviews" Relationship="DigiStoreDBModel.UserReview" FromRole="User" ToRole="Review" />
           <NavigationProperty Name="Orders" Relationship="DigiStoreDBModel.UserOrder" FromRole="User" ToRole="Order" />
@@ -545,6 +544,7 @@
           <NavigationProperty Name="Items" Relationship="DigiStoreDBModel.UserItem" FromRole="User" ToRole="Item" />
           <NavigationProperty Name="Cart" Relationship="DigiStoreDBModel.UserCart" FromRole="User" ToRole="Cart" />
           <NavigationProperty Name="Store" Relationship="DigiStoreDBModel.UserStore" FromRole="User" ToRole="Store" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="Item">
           <Key>
@@ -722,8 +722,8 @@
           <ScalarProperty Name="City" ColumnName="City" />
           <ScalarProperty Name="Country" ColumnName="Country" />
           <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
-          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
           <ScalarProperty Name="StateProv" ColumnName="StateProv" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

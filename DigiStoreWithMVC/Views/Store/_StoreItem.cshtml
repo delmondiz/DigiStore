@@ -9,43 +9,69 @@
             }
             else
             {
-                <img class="activator" src="~/img/whitedressshirt.png" style="width: 125px">
+                <img class="activator" src="~/img/help.png" style="width: 125px">
             }
         }
         else
         {
-            <img class="activator" src="~/img/whitedressshirt.png" style="width: 125px">
+            <img class="activator" src="~/img/help.png" style="width: 125px">
         }
     </div>
     <div class="card-content">
         <span class="card-title activator grey-text text-darken-4">@Model.Name - $@Model.Price<i class="material-icons right">more_vert</i></span>
-        <div class="card-action">
-            @{
-                if (Model.Quantity > 0)
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div class="card-action">
+                @if (Model.Quantity > 0)
                 {
-                    <select class="col s4">
-                        @for (int i = 1; i <= Model.Quantity; i++)
-                        {
-                            <option value="@i">@i</option>
-                        }
-                    </select>
-                    <div align="right">
-                        <a class="waves-effect waves-light btn blue darken-3 yellow-text accent-3"><i class="material-icons left">add_shopping_cart</i>Add to Cart</a>
-                    </div>
+                    using (Html.BeginForm())
+                    {
+                        <select class="col s4">
+                            @for (int i = 1; i <= Model.Quantity; i++)
+                            {
+                                <option value="@i">@i</option>
+                            }
+                        </select>
+                        <div id="@Model.Id AddToCartItem" align="right">
+                            @*<a href="@Url.Action("AddToCart", "Store")" class="waves-effect waves-light btn blue darken-3 yellow-text accent-3">
+                                <span class="hide-on-med-and-down"><i class="material-icons left">add_shopping_cart</i>Add to Cart</span>
+                                <span class="hide-on-large-only"><i class="material-icons center">add_shopping_cart</i></span>
+                            </a>*@
+                            <input type="submit" class="waves-effect waves-light btn blue darken-3 yellow-text accent-3" value="Add to Cart"/>
+                        </div>
+                    }
                 }
                 else
                 {
                     <p>SOLD OUT!</p>
                 }
-
-            }
+            </div>
+        }
+        <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4">@Model.Name<i class="material-icons right">close</i></span>
+            <p><b>Description:</b> @Model.Description</p>
+            <p><b>Price:</b> $@Model.Price</p>
+            <p><b>Weight (kg):</b> @Model.Weight</p>
+            <p><b>Quantity Remaining:</b> @Model.Quantity</p>
         </div>
     </div>
-    <div class="card-reveal">
-        <span class="card-title grey-text text-darken-4">@Model.Name<i class="material-icons right">close</i></span>
-        <p><b>Description:</b> @Model.Description</p>
-        <p><b>Price:</b> $@Model.Price</p>
-        <p><b>Weight (kg):</b> @Model.Weight</p>
-        <p><b>Quantity Remaining:</b> @Model.Quantity</p>
-    </div>
 </div>
+@section scripts {
+    <script type="text/javascript">
+        $(function () {
+            $('.AddToCartItem').submit(function () {
+                if ($(this).valid()) {
+                    $.ajax({
+                        url: this.action,
+                        type: this.method,
+                        data: $(this).serialize(),
+                        success: function (result) {
+                            $().html(result);
+                        }
+                    });
+                }
+                return false;
+            });
+        });
+    </script>
+}

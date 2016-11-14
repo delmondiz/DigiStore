@@ -11,36 +11,26 @@ namespace DigiStoreWithMVC.Controllers
 {
     public class HomeController : Controller
     {
+        private DigiStoreDBModelContainer db = new DigiStoreDBModelContainer();
+
         public ActionResult Index()
         {
-            using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
+            User currentUser = ModelHelpers.GetCurrentUser(db);
+
+            if (currentUser == null)
             {
-                User user = (from u in db.Users
-                                where u.Email == User.Identity.Name
-                                select u).FirstOrDefault();
-
-                if (user == null)
-                {
-                    return View();
-                }
-
-                return View(user);
+                return View();
             }
+
+            return View(currentUser);
         }
-
-        //public ActionResult About()
-        //{
-        //    ViewBag.Message = "Your application description page.";
-
-        //    return View();
-        //}
 
         public ActionResult Contact()
         {
             return View();
         }
 
- 
+
         [HttpPost]
         public ActionResult Contact(HomeViewModels model)
         {
@@ -79,17 +69,33 @@ namespace DigiStoreWithMVC.Controllers
         [HttpPost]
         public ActionResult Map(string inputSearch)
         {
-            using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
+            List<User> users = (from u in db.Users
+                                where u.UserName.ToLower().Contains(inputSearch.ToLower())
+                                select u).ToList();
+            if (users != null)
             {
-                List<User> users = (from u in db.Users
-                                    where u.UserName.ToLower().Contains(inputSearch.ToLower())
-                                    select u).ToList();
-                if (users != null)
-                {
-                    ViewData["users"] = users;
-                }
-                return PartialView("_MapResults");
+                ViewData["users"] = users;
             }
+
+            return PartialView("_MapResults");
+        }
+
+        [HttpPost]
+        public ActionResult GoogleSearch(string inputSearch)
+        {
+            List<Store> stores = (from s in db.Stores
+                                  where s.Name.ToLower().Contains(inputSearch.ToLower())
+                                  select s).ToList();
+
+            return PartialView("_GoogleResults", stores);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+                db.Dispose();
+
+            base.Dispose(disposing);
         }
     }
 }
