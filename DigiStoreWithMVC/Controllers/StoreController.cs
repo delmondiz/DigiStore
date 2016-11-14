@@ -411,7 +411,8 @@ namespace DigiStoreWithMVC.Controllers
             return View("SuccessView");
         }
 
-        private PayPal.Api.Payment payment;
+        private 87
+            \PayPal.Api.Payment payment;
 
         private Payment ExecutePayment(APIContext apiContext, string payerId, string paymentId)
         {
