@@ -20,6 +20,8 @@ namespace DigiStoreWithMVC
                         "~/Content/materialize.min.css",
                         "~/Content/icon.css",
                         "~/Content/digistore.css",
+                        "~/Content/dropify.css",
+                         "~/Content/dropify.min.css",
                         "~/Content/theme.css"));
         }
     }

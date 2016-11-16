@@ -1,5 +1,6 @@
 ﻿@model DigiStoreWithMVC.Models.Item
-
+@Styles.Render("~/Content/dropify")
+@Styles.Render("~/Content/dropify.min")
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -34,9 +35,11 @@
                 @Html.ValidationMessageFor(model => model.Weight, "", new { @class = "red-text" })
             </div>
             <div class="col s12 m6">
-                @Html.LabelFor(model => model.ImagePath)
+                @*@Html.LabelFor(model => model.ImagePath)
                 @Html.EditorFor(model => model.ImagePath)
-                @Html.ValidationMessageFor(model => model.ImagePath, "", new { @class = "red-text" })
+                @Html.ValidationMessageFor(model => model.ImagePath, "", new { @class = "red-text" })*@
+                <input type="file" class="dropify" data-default-file="url_of_your_file" />
+
             </div>
         </div>
         <div class="row">
@@ -47,4 +50,18 @@
                 </button>
             </div>
         </div>
+        @Scripts.Render("~/bundles/dropify")
 }
+<script>
+        $('.dropify').dropify();
+</script>
+<script>
+    $('.dropify').dropify({
+        messages: {
+            'default': 'Drag and drop a file here or click',
+            'replace': 'Drag and drop or click to replace',
+            'remove':  'Remove',
+            'error':   'Ooops, something wrong appended.'
+        }
+    })
+</script>

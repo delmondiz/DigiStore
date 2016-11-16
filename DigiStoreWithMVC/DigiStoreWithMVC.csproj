@@ -290,6 +290,9 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\demo.css" />
+    <Content Include="Content\dropify.css" />
+    <Content Include="Content\dropify.min.css" />
     <Content Include="Content\icon.css" />
     <Content Include="Content\map.css" />
     <Content Include="Content\materialize.min.css" />
@@ -367,8 +370,12 @@
     <Content Include="fonts\Roboto-Thin.woff" />
     <Content Include="fonts\Roboto-Thin.woff2" />
     <None Include="Properties\PublishProfiles\KN.pubxml" />
+    <Content Include="Scripts\demo.scss" />
+    <Content Include="Scripts\dropify.scss" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\DatabaseDataBackup.sql" />
+    <Content Include="Scripts\dropify.js" />
+    <Content Include="Scripts\dropify.min.js" />
     <Content Include="Scripts\init.js" />
     <Content Include="Scripts\jquery-2.2.4.js" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
@@ -450,6 +457,7 @@
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\Paypal\FailureView.cshtml" />
     <Content Include="Views\Paypal\SuccessView.cshtml" />
+    <Content Include="Scripts\_dropify-font.scss" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
