@@ -1,44 +1,40 @@
 ﻿@model DigiStoreWithMVC.Models.Item
-
 @using (Html.BeginForm("StoreInventory", "Store", FormMethod.Post, new {enctype = "multipart/form-data"}))
 {
     @Html.AntiForgeryToken()
         <div class="row">
-            <div class="col s12 m6">
+            <div class="col s12 m6 input-field">
                 @Html.LabelFor(item => item.Name)
                 @Html.EditorFor(item => item.Name)
                 @Html.ValidationMessageFor(item => item.Name, "", new { @class = "red-text" })
             </div>
-            <div class="col s12 m6">
+            <div class="col s12 m6 input-field">
                 @Html.LabelFor(item => item.Description)
                 @Html.EditorFor(item => item.Description)
                 @Html.ValidationMessageFor(item => item.Description, "", new { @class = "red-text" })
             </div>
         </div>
         <div class="row">
-            <div class="col s12 m6">
+            <div class="col s12 m4 input-field">
                 @Html.LabelFor(item => item.Price)
                 @Html.EditorFor(item => item.Price)
                 @Html.ValidationMessageFor(item => item.Price, "", new { @class = "red-text" })
             </div>
-            <div class="col s12 m6">
+            <div class="col s12 m4 input-field">
                 @Html.LabelFor(item => item.Quantity)
                 @Html.EditorFor(item => item.Quantity)
                 @Html.ValidationMessageFor(item => item.Quantity, "", new { @class = "red-text" })
             </div>
-        </div>
-        <div class="row">
-            <div class="col s12 m6">
+            <div class="col s12 m4 input-field">
                 @Html.LabelFor(item => item.Weight, "Item Weight (kg)")
                 @Html.EditorFor(item => item.Weight)
                 @Html.ValidationMessageFor(item => item.Weight, "", new { @class = "red-text" })
             </div>
-            <div class="col s12 m6">
-                @*@Html.LabelFor(model => model.ImagePath)
-                @Html.EditorFor(model => model.ImagePath)
-                @Html.ValidationMessageFor(model => model.ImagePath, "", new { @class = "red-text" })*@
-                <input type="file" class="dropify" data-default-file="url_of_your_file" />
-
+        </div>
+        <div class="row">
+            <div class="col s12 m12">
+                <label for="picture">Upload Image Here</label>
+                <input name="picture" type="file" class="dropify" />
             </div>
         </div>
         <div class="row">
@@ -49,11 +45,7 @@
                 </button>
             </div>
         </div>
-        @Scripts.Render("~/bundles/dropify")
 }
-<script>
-        $('.dropify').dropify();
-</script>
 <script>
     $('.dropify').dropify({
         messages: {

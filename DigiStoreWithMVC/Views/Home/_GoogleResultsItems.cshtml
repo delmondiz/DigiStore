@@ -11,25 +11,36 @@
     foreach (DigiStoreWithMVC.Models.Item i in Model)
     {
         DigiStoreWithMVC.Models.Store store = i.Users.Where(u => u.Items.Contains(i)).FirstOrDefault().Store;
-        <a href=@Url.Action("Index", "Store", new { storeName = @i.Name }) id="@store.Name)">
+        string storeMessage = "";
+        DigiStoreWithMVC.Models.StoreHours today = store.StoreHours.ToList().Find(h => h.DayOfTheWeek.Equals(DateTime.Now.DayOfWeek.ToString()));
+        if (DateTime.Now.TimeOfDay >= today.StartTime.TimeOfDay &&
+             DateTime.Now.TimeOfDay <= today.EndTime.TimeOfDay)
+        {
+            storeMessage = "Open! Today's Hours: " + today.StartTime.TimeOfDay + " - " + today.EndTime.TimeOfDay;
+        }
+        else
+        {
+            if (today.StartTime.TimeOfDay == today.EndTime.TimeOfDay)
+            {
+                storeMessage = "Closed!";
+            }
+            else
+            {
+                storeMessage = "Closed! Today's Hours: " + today.StartTime.TimeOfDay + " - " + today.EndTime.TimeOfDay;
+            }
+        }
+        <a href=@Url.Action("Index", "Store", new { storeName = @store.Name }) id="@store.Name">
             <li class='collection-item blue darken-3 yellow-text accent-3'>
-                @i.Name | @i.Price <br />
-                @*@if (DateTime.Now.TimeOfDay <= @s.StoreHours.ToList().Find(h => h.DayOfTheWeek.Equals(DateTime.Now.DayOfWeek.ToString())).EndTime.TimeOfDay &&
-                    DateTime.Now.TimeOfDay >= @s.StoreHours.ToList().Find(h => h.DayOfTheWeek.Equals(DateTime.Now.DayOfWeek.ToString())).StartTime.TimeOfDay)
-                {
-                    <p>Open! Today's Hours: @s.StoreHours.ToList().Find(h => h.DayOfTheWeek.Equals(DateTime.Now.DayOfWeek.ToString())).StartTime.TimeOfDay - @s.StoreHours.ToList().Find(h => h.DayOfTheWeek.Equals(DateTime.Now.DayOfWeek.ToString())).EndTime.TimeOfDay</p>
-                }
-                else
-                {
-                    <p>Closed! Today's Hours: @s.StoreHours.ToList().Find(h => h.DayOfTheWeek.Equals(DateTime.Now.DayOfWeek.ToString())).StartTime.TimeOfDay - @s.StoreHours.ToList().Find(h => h.DayOfTheWeek.Equals(DateTime.Now.DayOfWeek.ToString())).EndTime.TimeOfDay</p>
-                }*@
+                $@i.Price - @i.Name <br />
+                @store.Address, @store.City @store.PostalCode <br />
+                @storeMessage
             </li>
         </a>
         if (store.Address != null)
         {
             <script>
                 var decodedName = $('<textarea/>').html("@store.Name").text();
-                searchForAddress("@store.Address", decodedName);
+                searchForAddress("@store.Address @store.City @store.PostalCode", decodedName);
             </script>
         }
     }
@@ -37,6 +48,6 @@
 else
 {
     <script>
-        Materialize.toast("No results found!", 4000, "rounded");
+        Materialize.toast("No items found!", 4000, "rounded");
     </script>
 }
