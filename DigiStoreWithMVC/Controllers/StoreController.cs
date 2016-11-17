@@ -145,12 +145,25 @@ namespace DigiStoreWithMVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult StoreInventory([Bind(Include = "Id,Name,Description,Price,Weight,Quantity,ImagePath")]Item item)
+        public ActionResult StoreInventory(Item item, HttpPostedFileBase picture)
         {
             if (User.Identity.IsAuthenticated)
             {
                 // Get our current user.
                 User currentUser = ModelHelpers.GetCurrentUser(db);
+                if (picture != null && picture.ContentLength > 0)
+                {   
+                    string path = Server.MapPath("~/img/sub/pic" + db.Items.Last().Id + "." + picture.FileName.Split('.').Last());
+                    string modelPath = "/KTDigistore/img/sub/pic" + db.Items.Last().Id + "." + picture.FileName.Split('.').Last();
+                    picture.SaveAs(path);
+                    item.ImagePath = modelPath;
+                    ModelState.SetModelValue("ImagePath", new ValueProviderResult(modelPath, modelPath, System.Globalization.CultureInfo.CurrentCulture));
+                }
+                else
+                {
+                    item.ImagePath = "";
+                }
+                ModelState.Remove("ImagePath");
                 if (ModelState.IsValid)
                 {
                     // Add the item to our current user.
