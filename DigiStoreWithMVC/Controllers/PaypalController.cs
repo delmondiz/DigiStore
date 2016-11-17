@@ -278,7 +278,7 @@ namespace MvcApplication1.Controllers
             transactionList.Add(new Transaction()
             {
                 description = "Transaction description.",
-                invoice_number = "your invoice number123",
+                invoice_number = "your invoicew1",
                 amount = amount,
                 item_list = itemList
             });
