@@ -28,6 +28,7 @@ namespace DigiStoreWithMVC.Models
         public string PostalCode { get; set; }
         public string PhoneNumber { get; set; }
         public string StateProv { get; set; }
+        public string StorePicture { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<StoreHours> StoreHours { get; set; }

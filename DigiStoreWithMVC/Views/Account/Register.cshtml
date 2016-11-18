@@ -25,13 +25,13 @@
                     <h2 style="margin-top: 0">Account Information</h2>
                     <div class="divider"></div>
                 </div>
-                <div class="input-field col s8">
+                <div class="input-field col s12">
                     @Html.LabelFor(m => m.Username)
                     @Html.EditorFor(m => m.Username, new { @placeholder = "coolone1234", @id = "username" })
                 </div>
-                <div class="col s4">
+                @*<div class="col s4">
                     @Html.ActionLink("Check Username", null, null, new { @class = "btn btn-large waves-effect blue darken-3 yellow-text accent-3", @style = "padding: 0; width: 100%", @id = "checkUsername" })
-                </div>
+                </div>*@
             </div>
             <div class="row">
                 <div class="input-field col s6">
