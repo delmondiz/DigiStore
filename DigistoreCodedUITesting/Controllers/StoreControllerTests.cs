@@ -1,10 +1,12 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using System.Net;
+using System.Web.Mvc;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DigiStoreWithMVC.Controllers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DigiStoreWithMVC.Models;
+
+
+
 
 namespace DigiStoreWithMVC.Controllers.Tests
 {
@@ -12,15 +14,29 @@ namespace DigiStoreWithMVC.Controllers.Tests
     public class StoreControllerTests
     {
         [TestMethod()]
-        public void IndexTest()
+        public void IndexTest_ValidStoreName_ReturnValidStoreIndex()
         {
-            Assert.Fail();
+            string storeName = "TestUser1";
+            StoreController sc = new StoreController();
+            ViewResult actualResult = sc.Index(storeName) as ViewResult;
+            string actualViewName = actualResult.ViewName;
+
+            //Assert
+            string expectedViewName = "Index";
+            Assert.AreEqual(expectedViewName, actualViewName);
         }
 
-        [TestMethod()]
-        public void IndexTest1()
+        
+        public void IndexTest_InvalidStoreName_ReturnSomething()
         {
-            Assert.Fail();
+            string storeName = "TestUser1";
+            StoreController sc = new StoreController();
+            ViewResult actualResult = sc.Index(storeName) as ViewResult;
+            string actualViewName = actualResult.ViewName;
+
+            //Assert
+            string expectedViewName = "Index";
+            Assert.AreEqual(expectedViewName, actualViewName);
         }
 
         [TestMethod()]
