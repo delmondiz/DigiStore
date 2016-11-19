@@ -128,7 +128,7 @@ function initMap() {
 function searchForAddress(address, storeName) {
     if (address.length > 0) {
         geocoder = new google.maps.Geocoder();
-        geocoder.geocode({ 'address': address, 'region': "ca", 'bounds': map.getBounds() }, function (results, status) {
+        geocoder.geocode({ 'address': address, 'region': "ca", 'location': map.getCenter()}, function (results, status) {
             if (status === 'OK') {
                 var marker = new google.maps.Marker({
                     map: map,
@@ -148,7 +148,7 @@ function searchForAddress(address, storeName) {
                 markers.push(marker);
             }
             else {
-                console.log("f-failure! Reason: " + status);
+                console.log("F-failure! Reason: " + status);
             }
         });
     }

@@ -12,7 +12,7 @@ namespace MvcApplication1.Controllers
     {
         //
         // GET: /Paypal/
-
+        private DigiStoreDBModelContainer db = new DigiStoreDBModelContainer();
         public ActionResult Index()
         {
             return View();
@@ -129,6 +129,7 @@ namespace MvcApplication1.Controllers
             }
             catch (PayPal.PayPalException ex)
             {
+                ViewData["hjgh"] = "fhfhfg";
                 Logger.Log("Error: " + ex.Message);
                 return View("FailureView");
             }
@@ -207,6 +208,7 @@ namespace MvcApplication1.Controllers
 
                     if (executedPayment.state.ToLower() != "approved")
                     {
+                        ViewData["high"] = "Your Payment Cannot be Proccessed please Try Again";
                         return View("FailureView");
                     }
 
@@ -214,6 +216,7 @@ namespace MvcApplication1.Controllers
             }
             catch (Exception ex)
             {
+                ViewData["high"] = "Your Payment Cannot be Proccessed please Try Again";
                 Logger.Log("Error"+ ex.Message);
                 return View("FailureView");
             }
@@ -275,7 +278,7 @@ namespace MvcApplication1.Controllers
             transactionList.Add(new Transaction()
             {
                 description = "Transaction description.",
-                invoice_number = "your invoice number",
+                invoice_number = "your invoicew1",
                 amount = amount,
                 item_list = itemList
             });

@@ -4,6 +4,8 @@
     <title>@ViewBag.Title</title>
     <!-- Compiled and minified CSS -->
     @Styles.Render("~/Content/digistore")
+    @Styles.Render("~/Content/dropify")
+    @Styles.Render("~/Content/dropify.min")
 </head>
 <body>
     <header>
@@ -128,6 +130,21 @@
     </footer>
 
     @Scripts.Render("~/bundles/digistore")
+    @Scripts.Render("~/bundles/dropify")
     @RenderSection("scripts", required: false)
+    <script>
+        $('.dropify').dropify();
+    </script>
+    <script>
+    $('.dropify').dropify({
+        messages: {
+            'default': 'Drag and drop a file here or click',
+            'replace': 'Drag and drop or click to replace',
+            'remove':  'Remove',
+            'error':   'Ooops, something wrong appended.'
+        }
+    })
+    </script>
 </body>
+
 </html>

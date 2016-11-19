@@ -68,6 +68,39 @@ namespace DigiStoreWithMVC.Controllers
                 return RedirectToAction("Login", "Account");
         }
 
+        public ActionResult SubmitReview()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult SubmitReview(Review model)
+        {
+            if (ModelState.IsValid)
+            {
+                using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
+                {
+                    Review newReview = db.Reviews.Create();
+                    newReview.Id = db.Reviews.Count();
+                    if (model.ReviewText != null)
+                        newReview.ReviewText = model.ReviewText;
+                    //if (model.ReviewRating != 0)
+                    //newReview.Rating = model.ReviewRating;
+                    newReview.Rating = 5;
+                    newReview.Date = DateTime.Now;
+                    db.Reviews.Add(newReview);
+                    db.SaveChanges();
+                    return RedirectToAction("Index", "Store");
+                }
+
+
+            }
+            else
+            {
+                return RedirectToAction("Index", "Store");
+            }
+        }
+
         public ActionResult RandomStore()
         {
             int max = db.Users.Count();
@@ -112,20 +145,25 @@ namespace DigiStoreWithMVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult StoreInventory([Bind(Include = "Id,Name,Description,Price,Weight,Quantity")]Item item, HttpPostedFileBase picture)
+        public ActionResult StoreInventory(Item item, HttpPostedFileBase picture)
         {
             if (User.Identity.IsAuthenticated)
             {
                 // Get our current user.
                 User currentUser = ModelHelpers.GetCurrentUser(db);
                 if (picture != null && picture.ContentLength > 0)
-                {
-                    //var photo = new 
+                {   
+                    string path = Server.MapPath("~/img/sub/pic" + db.Items.Last().Id + "." + picture.FileName.Split('.').Last());
+                    string modelPath = "/KTDigistore/img/sub/pic" + db.Items.Last().Id + "." + picture.FileName.Split('.').Last();
+                    picture.SaveAs(path);
+                    item.ImagePath = modelPath;
+                    ModelState.SetModelValue("ImagePath", new ValueProviderResult(modelPath, modelPath, System.Globalization.CultureInfo.CurrentCulture));
                 }
                 else
                 {
                     item.ImagePath = "";
                 }
+                ModelState.Remove("ImagePath");
                 if (ModelState.IsValid)
                 {
                     // Add the item to our current user.

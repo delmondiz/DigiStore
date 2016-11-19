@@ -10,11 +10,12 @@
 
     foreach (DigiStoreWithMVC.Models.Store s in Model)
     {
+        DigiStoreWithMVC.Models.StoreHours today = s.StoreHours.ToList().Find(h => h.DayOfTheWeek.Equals(DateTime.Now.DayOfWeek.ToString()));
         <a href=@Url.Action("Index", "Store", new { storeName = @s.Name }) id="@s.Name">
             <li class='collection-item blue darken-3 yellow-text accent-3'>
-                @s.Name | @s.Address <br />
-                @if (DateTime.Now.TimeOfDay <= @s.StoreHours.ToList().Find(h => h.DayOfTheWeek.Equals(DateTime.Now.DayOfWeek.ToString())).EndTime.TimeOfDay &&
-                    DateTime.Now.TimeOfDay >= @s.StoreHours.ToList().Find(h => h.DayOfTheWeek.Equals(DateTime.Now.DayOfWeek.ToString())).StartTime.TimeOfDay)
+                @s.Name | @s.Address, @s.City @s.PostalCode <br />
+                @if (DateTime.Now.TimeOfDay >= today.StartTime.TimeOfDay &&
+                     DateTime.Now.TimeOfDay <= today.EndTime.TimeOfDay)
                 {
                     <p>Open! Today's Hours: @s.StoreHours.ToList().Find(h => h.DayOfTheWeek.Equals(DateTime.Now.DayOfWeek.ToString())).StartTime.TimeOfDay - @s.StoreHours.ToList().Find(h => h.DayOfTheWeek.Equals(DateTime.Now.DayOfWeek.ToString())).EndTime.TimeOfDay</p>
                 }
@@ -28,7 +29,7 @@
         {
             <script>
                 var decodedName = $('<textarea/>').html("@s.Name").text();
-                searchForAddress("@s.Address", decodedName);
+                searchForAddress("@s.Address @s.City @s.PostalCode", decodedName);
             </script>
         }
     }
@@ -36,6 +37,6 @@
 else
 {
     <script>
-        Materialize.toast("No results found!", 4000, "rounded");
+        Materialize.toast("No stores found!", 4000, "rounded");
     </script>
 }
