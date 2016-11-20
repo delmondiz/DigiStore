@@ -81,13 +81,28 @@ namespace DigiStoreWithMVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult GoogleSearch(string inputSearch)
+        public ActionResult GoogleSearch(string inputSearch, string searchOptions)
         {
-            List<Store> stores = (from s in db.Stores
-                                  where s.Name.ToLower().Contains(inputSearch.ToLower())
-                                  select s).ToList();
+            if (searchOptions != null)
+            {
+                if (searchOptions.ToLower().Equals("store"))
+                {
+                    List<Store> stores = (from s in db.Stores
+                                          where s.Name.ToLower().Contains(inputSearch.ToLower())
+                                          select s).ToList();
 
-            return PartialView("_GoogleResults", stores);
+                    return PartialView("_GoogleResultsStores", stores);
+                }
+                else
+                {
+                    List<Item> items = (from i in db.Items
+                                        where i.Name.ToLower().Contains(inputSearch.ToLower())
+                                        select i).ToList();
+                    return PartialView("_GoogleResultsItems", items);
+                }
+            }
+            else
+                return new EmptyResult();
         }
 
         protected override void Dispose(bool disposing)

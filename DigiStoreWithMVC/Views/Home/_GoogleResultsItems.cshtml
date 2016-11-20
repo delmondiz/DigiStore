@@ -1,0 +1,53 @@
+﻿@model IEnumerable<DigiStoreWithMVC.Models.Item>
+
+@if (Model.Count() > 0)
+{
+    <script>
+        $("#goggleResults").show();
+        $("#goggleMap").css("height", "60%");
+        deleteMarkers();
+    </script>
+
+    foreach (DigiStoreWithMVC.Models.Item i in Model)
+    {
+        DigiStoreWithMVC.Models.Store store = i.Users.Where(u => u.Items.Contains(i)).FirstOrDefault().Store;
+        string storeMessage = "";
+        DigiStoreWithMVC.Models.StoreHours today = store.StoreHours.ToList().Find(h => h.DayOfTheWeek.Equals(DateTime.Now.DayOfWeek.ToString()));
+        if (DateTime.Now.TimeOfDay >= today.StartTime.TimeOfDay &&
+             DateTime.Now.TimeOfDay <= today.EndTime.TimeOfDay)
+        {
+            storeMessage = "Open! Today's Hours: " + today.StartTime.TimeOfDay + " - " + today.EndTime.TimeOfDay;
+        }
+        else
+        {
+            if (today.StartTime.TimeOfDay == today.EndTime.TimeOfDay)
+            {
+                storeMessage = "Closed!";
+            }
+            else
+            {
+                storeMessage = "Closed! Today's Hours: " + today.StartTime.TimeOfDay + " - " + today.EndTime.TimeOfDay;
+            }
+        }
+        <a href=@Url.Action("Index", "Store", new { storeName = @store.Name }) id="@store.Name">
+            <li class='collection-item blue darken-3 yellow-text accent-3'>
+                $@i.Price - @i.Name <br />
+                @store.Address, @store.City @store.PostalCode <br />
+                @storeMessage
+            </li>
+        </a>
+        if (store.Address != null)
+        {
+            <script>
+                var decodedName = $('<textarea/>').html("@store.Name").text();
+                searchForAddress("@store.Address @store.City @store.PostalCode", decodedName);
+            </script>
+        }
+    }
+}
+else
+{
+    <script>
+        Materialize.toast("No items found!", 4000, "rounded");
+    </script>
+}

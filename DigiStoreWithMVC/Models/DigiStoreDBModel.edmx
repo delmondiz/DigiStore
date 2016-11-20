@@ -176,6 +176,7 @@
     <Property Name="PostalCode" Type="nvarchar(max)" Nullable="false" />
     <Property Name="PhoneNumber" Type="nvarchar(max)" Nullable="false" />
     <Property Name="StateProv" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="StorePicture" Type="nvarchar(max)" Nullable="false" />
     <Property Name="UserStore_Store_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="StoreHours">
@@ -661,6 +662,7 @@
           <Property Name="PhoneNumber" Type="String" Nullable="false" />
           <Property Name="StateProv" Type="String" Nullable="false" />
           <NavigationProperty Name="StoreHours" Relationship="DigiStoreDBModel.StoreStoreHours" FromRole="Store" ToRole="StoreHours" />
+          <Property Name="StorePicture" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="StoreHours" >
           <Key>
@@ -794,6 +796,7 @@
           <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
           <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
           <ScalarProperty Name="StateProv" ColumnName="StateProv" />
+          <ScalarProperty Name="StorePicture" ColumnName="StorePicture" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

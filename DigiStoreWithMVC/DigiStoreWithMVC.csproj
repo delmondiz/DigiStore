@@ -290,6 +290,9 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\demo.css" />
+    <Content Include="Content\dropify.css" />
+    <Content Include="Content\dropify.min.css" />
     <Content Include="Content\icon.css" />
     <Content Include="Content\map.css" />
     <Content Include="Content\materialize.min.css" />
@@ -313,6 +316,7 @@
     <Content Include="img\jinx.png" />
     <Content Include="img\kha.png" />
     <Content Include="img\kijiji.png" />
+    <Content Include="img\DigiStoreLogo.png" />
     <Content Include="img\mf.png" />
     <Content Include="img\powered_by_google_on_non_white.png" />
     <Content Include="img\powered_by_google_on_non_white_hdpi.png" />
@@ -367,8 +371,13 @@
     <Content Include="fonts\Roboto-Thin.woff" />
     <Content Include="fonts\Roboto-Thin.woff2" />
     <None Include="Properties\PublishProfiles\KN.pubxml" />
+    <Content Include="Models\DigiStoreDBModelwStorePicture.edmx.sql" />
+    <Content Include="Scripts\demo.scss" />
+    <Content Include="Scripts\dropify.scss" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\DatabaseDataBackup.sql" />
+    <Content Include="Scripts\dropify.js" />
+    <Content Include="Scripts\dropify.min.js" />
     <Content Include="Scripts\init.js" />
     <Content Include="Scripts\jquery-2.2.4.js" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
@@ -383,6 +392,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\search.js" />
     <Content Include="Scripts\materialize.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
@@ -445,14 +455,17 @@
     <Content Include="Views\Store\_StoreItem.cshtml" />
     <Content Include="Views\Store\_EditStoreInfo.cshtml" />
     <Content Include="Views\Store\_EditStoreHours.cshtml" />
-    <Content Include="Views\Home\_GoogleResults.cshtml" />
+    <Content Include="Views\Home\_GoogleResultsStores.cshtml" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\Paypal\FailureView.cshtml" />
     <Content Include="Views\Paypal\SuccessView.cshtml" />
+    <Content Include="Scripts\_dropify-font.scss" />
+    <Content Include="Views\Home\_GoogleResultsItems.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="img\sub\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
