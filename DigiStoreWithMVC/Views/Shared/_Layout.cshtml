@@ -15,11 +15,12 @@
                     @Html.ActionLink("DigiStore", "Index", new { controller = "Home", action = "Index", id = UrlParameter.Optional }, htmlAttributes: new { @class = "brand-logo center yellow-text accent-3" })
                     <ul class="right hide-on-med-and-down">
                         <li>@Html.ActionLink("Home", "Index", new { controller = "Home", action = "Index", id = UrlParameter.Optional }, htmlAttributes: new { @class = "yellow-text accent-3" })</li>
-                        <li>@Html.ActionLink("Search", "Map", new { controller = "Home", action = "Map", id = UrlParameter.Optional }, htmlAttributes: new { @class = "yellow-text accent-3" })</li>
+                        <li>@Html.ActionLink("Search ", "Map", new { controller = "Home", action = "Map", id = UrlParameter.Optional }, htmlAttributes: new { @class = "yellow-text accent-3"})</li>
                         @{
                             if (User.Identity.IsAuthenticated)
                             {
-                                <li>@Html.ActionLink("Cart", "ShoppingCart", new { controller = "Store", action = "ShoppingCart", id = UrlParameter.Optional }, htmlAttributes: new { @class = "yellow-text accent-3" })</li>
+                                @*<li>@Html.ActionLink("Cart", "ShoppingCart", new { controller = "Store", action = "ShoppingCart", id = UrlParameter.Optional }, htmlAttributes: new { @class = "yellow-text accent-3 badge" })</li>*@
+                                <li><a href="#!" class="collection-item"><span class="badge" >0</span></a></li>
                             }
                         }
                         <li>
@@ -152,6 +153,7 @@
             }
         })
     </script>
+
 </body>
 
 </html>
