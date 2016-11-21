@@ -44,7 +44,7 @@
                                 @*<li>@Html.ActionLink("Cart", "ShoppingCart", new { controller = "Store", action = "ShoppingCart", id = UrlParameter.Optional })</li>*@
                                 <li>@Html.ActionLink("Profile", "Index", new { controller = "Account", action = "Index" })</li>
                                 <li>@Html.ActionLink("Manage Store", "StoreInventory", new { controller = "Store", action = "Index", id = UrlParameter.Optional })</li>
-                                    <li><a href="#">Order History</a></li>
+                                <li><a href="#">Order History</a></li>
                                 using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { @name = "loggingOut" }))
                                 {
                                     @Html.AntiForgeryToken()
@@ -72,7 +72,7 @@
                                     <div class="divider"></div>
                                 </li>
                                 <li>@Html.ActionLink("Profile", "Index", new { controller = "Account", action = "Index" })</li>
-                                    <li>@Html.ActionLink("Manage Store", "StoreInventory", new { controller = "Store", action = "Index" })</li>
+                                <li>@Html.ActionLink("Manage Store", "StoreInventory", new { controller = "Store", action = "Index" })</li>
                                     <li><a href="#">Order History</a></li>
                                 using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { @name = "loggingOutMobile" }))
                                 {
@@ -96,37 +96,44 @@
         @RenderBody()
     </main>
     <footer class="page-footer blue darken-3">
-        <div class="container">
-            <div class="row">
-                <div class="col s12 l6">
-                    <h5 class="yellow-text accent-3">Company Bio</h5>
-                    <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
-                </div>
-                @{
-                    if (User.Identity.IsAuthenticated)
-                    {
-                        <div class="col s6 l3">
-                            <h5 class="yellow-text accent-3">Settings</h5>
-                            <ul>
-                                <li>@Html.ActionLink("Profile", "Index", new { controller = "Account", action = "Index" }, htmlAttributes: new { @class = "yellow-text accent-3" })</li>
-                                <li>@Html.ActionLink("My Store", "Index", new { controller = "Store", action = "Index" }, htmlAttributes: new { @class = "yellow-text accent-3" })</li>
-                            </ul>
-                        </div>
+
+        @*
+                OLD STUUUUUUFFF
+
+            <div class="container">
+                <div class="row">
+                    <div class="col s12 l6">
+                        <h5 class="yellow-text accent-3">Company Bio</h5>
+                        <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+                    </div>
+                    @{
+                        if (User.Identity.IsAuthenticated)
+                        {
+                            <div class="col s6 l3">
+                                <h5 class="yellow-text accent-3">Settings</h5>
+                                <ul>
+                                    <li>@Html.ActionLink("Profile", "Index", new { controller = "Account", action = "Index" }, htmlAttributes: new { @class = "yellow-text accent-3" })</li>
+                                    <li>@Html.ActionLink("My Store", "Index", new { controller = "Store", action = "Index" }, htmlAttributes: new { @class = "yellow-text accent-3" })</li>
+                                </ul>
+                            </div>
+                        }
                     }
-                }
-                <div class="col s6 l3">
-                    <h5 class="yellow-text accent-3">Connect</h5>
-                    <ul>
-                        <li>@Html.ActionLink("Contact Us", "Contact", new { controller = "Home", action = "Contact" }, htmlAttributes: new { @class = "yellow-text accent-3" })</li>
-                    </ul>
+                    <div class="col s6 l3">
+                        <h5 class="yellow-text accent-3">Connect</h5>
+                        <ul>
+                            <li>@Html.ActionLink("Contact Us", "Contact", new { controller = "Home", action = "Contact" }, htmlAttributes: new { @class = "yellow-text accent-3" })</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
+        *@
+
+
+
+        <div class="container yellow-text accent-3">
+            <p>Made by Oceans11 | Powered by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a> | @Html.ActionLink("Contact Us", "Contact", new { controller = "Home", action = "Contact" }, htmlAttributes: new { @class = "orange-text text-lighten-3" })</p>
         </div>
-        <div class="footer-copyright blue darken-4">
-            <div class="container yellow-text accent-3">
-                <p>Made by Oceans11 | Powered by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a></p>
-            </div>
-        </div>
+
     </footer>
 
     @Scripts.Render("~/bundles/digistore")
@@ -136,14 +143,14 @@
         $('.dropify').dropify();
     </script>
     <script>
-    $('.dropify').dropify({
-        messages: {
-            'default': 'Drag and drop a file here or click',
-            'replace': 'Drag and drop or click to replace',
-            'remove':  'Remove',
-            'error':   'Ooops, something wrong appended.'
-        }
-    })
+        $('.dropify').dropify({
+            messages: {
+                'default': 'Drag and drop a file here or click',
+                'replace': 'Drag and drop or click to replace',
+                'remove': 'Remove',
+                'error': 'Ooops, something wrong appended.'
+            }
+        })
     </script>
 </body>
 
