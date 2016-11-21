@@ -7,9 +7,9 @@
         <div class="row">
             <div class="container col s12">
                 <div class="parallax-container">
-                    <div class="parallax">
-                        <img src="~/img/sample_store.jpg">
-                    </div>
+                    @Html.Partial("_EditStoreLogo", Model)
+
+                        </div>
                 </div>
 
                 <div class="card-panel blue darken-3">
@@ -26,7 +26,7 @@
                             <div class="card-content">
                                 <span class="card-title">Store Hours</span>
                                 @*@Html.Partial("_EditStoreHours", Model)*@
-                                @{ Html.RenderPartial("_EditStoreHours", Model); }
+                                @{Html.RenderPartial("_EditStoreHours", Model); }
                             </div>
                         </div>
 
@@ -75,3 +75,13 @@
         </div>
     </div>
 </div>
+<script>
+    $('.dropify').dropify({
+        messages: {
+            'default': 'Drag and drop a file here or click',
+            'replace': 'Drag and drop or click to replace',
+            'remove':  'Remove',
+            'error':   'Ooops, something wrong appended.'
+        }
+    })
+</script>
