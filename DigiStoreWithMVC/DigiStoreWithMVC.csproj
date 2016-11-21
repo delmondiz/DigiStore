@@ -461,6 +461,7 @@
     <Content Include="Views\Paypal\SuccessView.cshtml" />
     <Content Include="Scripts\_dropify-font.scss" />
     <Content Include="Views\Home\_GoogleResultsItems.cshtml" />
+    <Content Include="Views\Home\_StoreListing.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
