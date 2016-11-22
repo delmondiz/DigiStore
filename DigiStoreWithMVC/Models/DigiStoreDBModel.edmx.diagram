@@ -23,7 +23,7 @@
         <EntityTypeShape EntityType="DigiStoreDBModel.Store" Width="1.5" PointX="6.125" PointY="0.5" />
         <EntityTypeShape EntityType="DigiStoreDBModel.StoreHours" Width="1.5" PointX="7.875" PointY="0.5" />
         <AssociationConnector Association="DigiStoreDBModel.StoreStoreHours" />
-        <EntityTypeShape EntityType="DigiStoreDBModel.Cart" Width="1.5" PointX="7.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DigiStoreDBModel.Cart" Width="1.5" PointX="8.125" PointY="3" IsExpanded="true" />
         <AssociationConnector Association="DigiStoreDBModel.UserCart" />
         <AssociationConnector Association="DigiStoreDBModel.UserStore" />
         <EntityTypeShape EntityType="DigiStoreDBModel.C__MigrationHistory" Width="1.5" PointX="7.75" PointY="6.75" />

@@ -123,6 +123,7 @@
     <Property Name="Quantity" Type="int" Nullable="false" />
     <Property Name="ImagePath" Type="nvarchar(max)" Nullable="true" />
     <Property Name="ItemType" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Deleted" Type="bit" Nullable="true" DefaultValue="false" />
   </EntityType>
   <EntityType Name="Reviews">
     <Key>
@@ -561,6 +562,7 @@
           <NavigationProperty Name="Users" Relationship="DigiStoreDBModel.UserItem" FromRole="Item" ToRole="User" />
           <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ItemType" Type="String" Nullable="true" />
+          <Property Name="Deleted" Type="Boolean" Nullable="true" annotation:StoreGeneratedPattern="None" DefaultValue="false" />
         </EntityType>
         <EntityType Name="Review">
           <Key>
@@ -740,6 +742,7 @@
           <ScalarProperty Name="Quantity" ColumnName="Quantity" />
           <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
           <ScalarProperty Name="ItemType" ColumnName="ItemType" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
