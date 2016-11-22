@@ -61,7 +61,12 @@ namespace DigiStoreWithMVC.Controllers
             {
                 PaymentMethod payment = currentUser.PaymentMethods.FirstOrDefault();
                 if (payment == null)
-                    payment = db.PaymentMethods.Create();
+                {
+                    payment = new PaymentMethod();
+                    payment.AccountNumber = "";
+                    payment.PaymentType = "";
+                    currentUser.PaymentMethods.Add(payment);
+                }
                 db.SaveChanges();
             }
         }
