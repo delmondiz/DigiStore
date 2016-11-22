@@ -21,6 +21,7 @@ namespace DigiStoreWithMVC.Controllers
         private DigiStoreDBModelContainer db = new DigiStoreDBModelContainer();
         string[] DAYS_OF_THE_WEEK = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
 
+        
         public ActionResult Index(string storeName)
         {
             if (storeName != null)
@@ -30,10 +31,10 @@ namespace DigiStoreWithMVC.Controllers
 
                 if (checkUser != null)
                 {
-                    return View(checkUser);
+                    return View("Index", checkUser);
                 }
                 else
-                    return View();
+                    return View("Index");
             }
             else if (User.Identity.IsAuthenticated)
             {
@@ -43,10 +44,10 @@ namespace DigiStoreWithMVC.Controllers
                 {
                     ModelHelpers.CreateUserStoreIfNotExisting(db, currentUser);
 
-                    return View(currentUser);
+                    return View("Index", currentUser);
                 }
                 else
-                    return View();
+                    return View("Index");
             }
             else
                 return RedirectToAction("Login", "Account");
@@ -60,9 +61,9 @@ namespace DigiStoreWithMVC.Controllers
                 User currentUser = ModelHelpers.GetCurrentUser(db);
 
                 if (currentUser != null)
-                    return View(currentUser);
+                    return View("Index", currentUser);
                 else
-                    return View();
+                    return View("Index");
             }
             else
                 return RedirectToAction("Login", "Account");
@@ -70,7 +71,7 @@ namespace DigiStoreWithMVC.Controllers
 
         public ActionResult SubmitReview()
         {
-            return View();
+            return View("Index");
         }
 
         [HttpPost]
@@ -135,7 +136,7 @@ namespace DigiStoreWithMVC.Controllers
                 User currentUser = ModelHelpers.GetCurrentUser(db);
 
                 if (currentUser != null)
-                    return View(currentUser);
+                    return View("StoreInventory", currentUser);
                 else
                     return RedirectToAction("Login", "Account");
             }
@@ -171,9 +172,9 @@ namespace DigiStoreWithMVC.Controllers
                     // Save the changes to the DB.
                     db.SaveChanges();
                     // Return the user to the Store Inventory
-                    return View(currentUser);
+                    return View("StoreInventory", currentUser);
                 }
-                return View(currentUser);
+                return View("StoreInventory", currentUser);
             }
             else
                 return RedirectToAction("Login", "Account");
@@ -223,7 +224,7 @@ namespace DigiStoreWithMVC.Controllers
         public ActionResult ShoppingCart()
         {
             if (User.Identity.IsAuthenticated)
-                return View();
+                return View("ShoppingCart");
             else
                 return RedirectToAction("Login", "Account");
         }
@@ -237,7 +238,7 @@ namespace DigiStoreWithMVC.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return View("EditStoreInfo", model);
             }
             
             User currentUser = ModelHelpers.GetCurrentUser(db);
@@ -268,7 +269,7 @@ namespace DigiStoreWithMVC.Controllers
                 return RedirectToAction("Index", "Store");
 
             }
-            return View();
+            return View("EditStoreInfo");
         }
 
 
@@ -301,7 +302,7 @@ namespace DigiStoreWithMVC.Controllers
                 return RedirectToAction("Index", "Store");
             }
 
-            return View();
+            return View("EditStoreHours");
         }
 
         protected override void Dispose(bool disposing)
@@ -314,7 +315,7 @@ namespace DigiStoreWithMVC.Controllers
 
         public ActionResult SendFeedback()
         {
-            return View();
+            return View("SendFeedback");
         }
 
         // On the view, the user will not see the add to cart button unless authenticated
