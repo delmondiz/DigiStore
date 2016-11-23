@@ -317,6 +317,18 @@ namespace DigiStoreWithMVC.Controllers
             return View();
         }
 
+        public ActionResult OrderNow(int id)
+        {
+            if (Session["cart"] == null)
+            {
+                List<ItemMetaData> cart = new List<ItemMetaData>();
+                cart.Add(new ItemMetaData(db.Items.Find(id), 1));
+                Session["cart"] = cart;
+            }
+            else { }
+            return View("ShoppingCart");
+        }
+
         // On the view, the user will not see the add to cart button unless authenticated
 
         public ContentResult AddToCart(Item item)
