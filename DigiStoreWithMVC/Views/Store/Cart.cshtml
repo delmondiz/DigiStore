@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "Cart";
+}
+@using DigiStoreWithMVC.Controllers;
+<h2>Cart</h2>
+<div class="container">
+    <div class="section">
+
+        <table cellpadding="2" cellspacing="2" border="1">
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Sub total</th>
+
+            </tr>
+            @foreach (nItem nitem in (List<nItem>)Session["cart"])
+            {
+
+                <tr>
+                    <td>@nitem.Ite.Name</td>
+                    <td>@nitem.Ite.Price</td>
+                    <td>@nitem.Quantity</td>
+                    <td>@(nitem.Ite.Price * nitem.Quantity)</td>
+
+
+                </tr>
+
+
+            }
+
+
+
+
+
+        </table>
+
+        @Html.ActionLink("Continue Shopping", "Map", new { controller = "Home", action = "Map" }, htmlAttributes: new { @class = "btn waves-effect blue darken-3 yellow-text accent-3" })
+        @Html.ActionLink("Pay with Paypal Account", "PaymentWithPaypal", "Paypal")
+        <!-- Modal Structure -->
+
+    </div>
