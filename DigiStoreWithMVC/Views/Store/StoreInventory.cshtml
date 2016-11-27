@@ -34,3 +34,15 @@
         <p>There are no items in the store inventory.</p>
     }
 </div>
+@section scripts {
+    <script>
+    $('.dropify').dropify({
+        messages: {
+            'default': 'Drag and drop a file here or click',
+            'replace': 'Drag and drop or click to replace',
+            'remove': 'Remove',
+            'error': 'Ooops, something wrong appended.'
+        }
+    });
+    </script>
+}

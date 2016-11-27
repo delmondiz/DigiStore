@@ -159,7 +159,7 @@ namespace DigiStoreWithMVC.Controllers
             {
                 User user = (from u in db.Users where u.Email == User.Identity.Name select u).FirstOrDefault();
                 Item item = (from i in db.Items where i.Id == id select i).FirstOrDefault();
-                user.Items.Remove(item);
+                item.Deleted = true;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

@@ -4,8 +4,6 @@
     <title>@ViewBag.Title</title>
     <!-- Compiled and minified CSS -->
     @Styles.Render("~/Content/digistore")
-    @Styles.Render("~/Content/dropify")
-    @Styles.Render("~/Content/dropify.min")
 </head>
 <body>
     <header>
@@ -44,8 +42,8 @@
                             {
                                 @*<li>@Html.ActionLink("Cart", "ShoppingCart", new { controller = "Store", action = "ShoppingCart", id = UrlParameter.Optional })</li>*@
                                 <li>@Html.ActionLink("Profile", "Index", new { controller = "Account", action = "Index" })</li>
-                                <li>@Html.ActionLink("Manage Store", "StoreInventory", new { controller = "Store", action = "Index", id = UrlParameter.Optional })</li>
-                                <li>@Html.ActionLink("My Store", "Index", new { controller = "Store", action = "Index" }, htmlAttributes: new { @class = "yellow-text accent-3" })</li>
+                                <li>@Html.ActionLink("Manage Store", "Index", new { controller = "Store", action = "Index", id = UrlParameter.Optional })</li>
+                                <li>@Html.ActionLink("Manage Items", "StoreInventory", new { controller = "Store", action = "StoreInventory", id = UrlParameter.Optional })</li>
                                 <li><a href="#">Order History</a></li>
                                 using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { @name = "loggingOut" }))
                                 {
@@ -69,12 +67,13 @@
                         @{
                             if (User.Identity.IsAuthenticated)
                             {
-                                @*<li>@Html.ActionLink("Cart", "ShoppingCart", new { controller = "Store", action = "ShoppingCart" })</li>*@
+                                <li>@Html.ActionLink("Cart", "ShoppingCart", new { controller = "Store", action = "ShoppingCart" })</li>
                                 <li>
                                     <div class="divider"></div>
                                 </li>
                                 <li>@Html.ActionLink("Profile", "Index", new { controller = "Account", action = "Index" })</li>
-                                <li>@Html.ActionLink("Manage Store", "StoreInventory", new { controller = "Store", action = "Index" })</li>
+                                <li>@Html.ActionLink("Manage Store", "Index", new { controller = "Store", action = "Index", id = UrlParameter.Optional })</li>
+                                <li>@Html.ActionLink("Manage Items", "StoreInventory", new { controller = "Store", action = "StoreInventory", id = UrlParameter.Optional })</li>
                                     <li><a href="#">Order History</a></li>
                                 using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { @name = "loggingOutMobile" }))
                                 {
@@ -133,28 +132,21 @@
 
 
         <div class="container yellow-text accent-3">
-            <p>Made by Oceans11 | Powered by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a> | @Html.ActionLink("Contact Us", "Contact", new { controller = "Home", action = "Contact" }, htmlAttributes: new { @class = "orange-text text-lighten-3" })</p>
+            <p>
+                Made by Oceans11 | Powered by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+                | @Html.ActionLink("Contact Us", "Contact", new { controller = "Home", action = "Contact" }, htmlAttributes: new { @class = "orange-text text-lighten-3" })
+            </p>
         </div>
 
     </footer>
 
     @Scripts.Render("~/bundles/digistore")
-    @Scripts.Render("~/bundles/dropify")
     @RenderSection("scripts", required: false)
     <script>
-        $('.dropify').dropify();
+        //$(document).ready(function () {
+        //    $('.dropify').dropify();
+        //});
     </script>
-    <script>
-        $('.dropify').dropify({
-            messages: {
-                'default': 'Drag and drop a file here or click',
-                'replace': 'Drag and drop or click to replace',
-                'remove': 'Remove',
-                'error': 'Ooops, something wrong appended.'
-            }
-        })
-    </script>
-
 </body>
 
 </html>

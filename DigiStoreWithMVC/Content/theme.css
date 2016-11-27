@@ -20,3 +20,13 @@ input:focus:not([readonly])+label
 {
     color: #0D47A1 !important;
 }
+
+ body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
