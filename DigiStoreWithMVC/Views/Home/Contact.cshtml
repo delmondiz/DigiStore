@@ -6,83 +6,53 @@
 }
 <div class="container">
     <div class="section">
-
         <div class="row">
-            <div class="section no-pad-bot" id="index-banner">
-                <h1 class="header center blue-text darken-3">Contact Us</h1>
-            </div>
-
-            <div class="row">
-                <div class="card-panel blue darken-3">
-                    <div class="card-content row">
-                        <div class="col s12 m6">
-                            <div class="card">
-                                <div class="card-content">
-                                    <span class="card-title">Info</span>
-                                    <br />
-                                    <p>
-                                        <i class="material-icons">location_on</i>
-                                        5555 Main St.<br />
-                                        Toronto, Ontario<br />
-                                        ABC 123
-                                    </p>
-                                    <br />
-                                    <p>
-                                        <i class="material-icons">phone</i>
-                                        (555) 555-5555
-                                    </p>
-                                    <br />
-                                    <p>
-                                        <i class="material-icons">email</i>
-                                        contact@digistore.com
-                                    </p>
-                                </div>
-                            </div>
+            <div class="card-content row">
+                <div class="col s12 m12 l4">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">Contact Us</span>
+                            <br />
+                            <p>
+                                <i class="material-icons">phone</i>
+                                (555) 555-5555
+                            </p>
+                            <br />
+                            <p>
+                                <i class="material-icons">email</i>
+                                contact@digistore.com
+                            </p>
+                            <br />
+                            <p>
+                                <a href="#">Digistore Page</a>
+                            </p>
+                            <br />
+                            <p>
+                                <a href="https://www.facebook.com/">Facebook</a> |
+                                <a href="https://twitter.com/">Twitter</a> |
+                                <a href="https://www.instagram.com/">Instagram</a>
+                            </p>
                         </div>
+                    </div>
 
-                        <div class="col s12 m6">
-                            <div class="card">
-                                <div class="card-content">
-                                    <span class="card-title">Social Media</span>
-                                    <br />
-                                    <p>
-                                        <i class="material-icons">thumb_up</i>
-                                        <a href="https://www.facebook.com/">Facebook</a>
+                </div>
 
-                                    </p>
-                                    <br />
-                                    <p>
-                                        <i class="material-icons">delete</i>
-                                        <a href="https://twitter.com/">Twitter</a>
-
-                                    </p>
-                                    <br />
-                                    <p>
-                                        <i class="material-icons">radio</i>
-                                        <a href="https://instagram.com/">Instagram</a>
-
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col s12">
-                            <div class="card">
-                                <div class="card-content">
-                                    <span class="card-title">Give us feedback!</span>
-                                    <br />
-                                    <br />
-                                    @using (Html.BeginForm())
-                                    {
-                                        @Html.EditorFor(model => model.ReviewText, new { @id = "ReviewText", @type = "text", @class = "validate" })
-                                        @*@Html.EditorFor(model => model.ReviewRating, new { @id = "ReviewRating", @class="validate" })*@
-                                        <button class="btn waves-effect waves-light blue darken-3 yellow-text accent-3" type="submit" name="submitButton">
-                                            Submit<i class="material-icons right">send</i>
-                                        </button>
-                                        <p>@ViewBag.Message</p>
-                                    }
-                                </div>
-                            </div>
+                <div class="col s12 m12 l8">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">Give us feedback!</span>
+                            <br />
+                            <p>We're always looking to improve Digistore to make it the best platform it can be! Find a bug or have a suggestion? Give us your anonymous feedback here!</p>
+                            <br />
+                            @using (Html.BeginForm())
+                            {
+                                @Html.EditorFor(model => model.ReviewText, new { @id = "ReviewText", @type = "text", @class = "validate" })
+                                @*@Html.EditorFor(model => model.ReviewRating, new { @id = "ReviewRating", @class="validate" })*@
+                                <button class="btn waves-effect waves-light blue darken-3 yellow-text accent-3" type="submit" name="submitButton">
+                                    Submit<i class="material-icons right">send</i>
+                                </button>
+                                <p>@ViewBag.Message</p>
+                            }
                         </div>
                     </div>
                 </div>

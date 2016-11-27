@@ -7,7 +7,7 @@
     @Styles.Render("~/Content/dropify")
     @Styles.Render("~/Content/dropify.min")
 </head>
-<body>
+<body bgcolor="#F2F3F4">
     <header>
         <div class="navbar-fixed">
             <nav class="blue darken-3" role="navigation">
@@ -43,8 +43,8 @@
                             {
                                 @*<li>@Html.ActionLink("Cart", "ShoppingCart", new { controller = "Store", action = "ShoppingCart", id = UrlParameter.Optional })</li>*@
                                 <li>@Html.ActionLink("Profile", "Index", new { controller = "Account", action = "Index" })</li>
-                                <li>@Html.ActionLink("Manage Store", "StoreInventory", new { controller = "Store", action = "Index", id = UrlParameter.Optional })</li>
-                                <li><a href="#">Order History</a></li>
+                                    <li>@Html.ActionLink("Manage Store", "StoreInventory", new { controller = "Store", action = "Index", id = UrlParameter.Optional })</li>
+                                    <li><a href="#">Order History</a></li>
                                 using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { @name = "loggingOut" }))
                                 {
                                     @Html.AntiForgeryToken()
@@ -71,8 +71,8 @@
                                 <li>
                                     <div class="divider"></div>
                                 </li>
-                                <li>@Html.ActionLink("Profile", "Index", new { controller = "Account", action = "Index" })</li>
-                                <li>@Html.ActionLink("Manage Store", "StoreInventory", new { controller = "Store", action = "Index" })</li>
+                                    <li>@Html.ActionLink("Profile", "Index", new { controller = "Account", action = "Index" })</li>
+                                    <li>@Html.ActionLink("Manage Store", "StoreInventory", new { controller = "Store", action = "Index" })</li>
                                     <li><a href="#">Order History</a></li>
                                 using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { @name = "loggingOutMobile" }))
                                 {
@@ -92,7 +92,7 @@
             </nav>
         </div>
     </header>
-    <main>
+    <main style="min-height:calc(100vh - 154px);">
         @RenderBody()
     </main>
     <footer class="page-footer blue darken-3">
@@ -131,7 +131,7 @@
 
 
         <div class="container yellow-text accent-3">
-            <p>Made by Oceans11 | Powered by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a> | @Html.ActionLink("Contact Us", "Contact", new { controller = "Home", action = "Contact" }, htmlAttributes: new { @class = "orange-text text-lighten-3" })</p>
+            <p style="margin:0px;padding:14px;">Made by Oceans11 | Powered by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a> | @Html.ActionLink("Contact Us", "Contact", new { controller = "Home", action = "Contact" }, htmlAttributes: new { @class = "orange-text text-lighten-3" })</p>
         </div>
 
     </footer>
