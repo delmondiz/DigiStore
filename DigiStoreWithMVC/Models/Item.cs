@@ -17,6 +17,7 @@ namespace DigiStoreWithMVC.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Item()
         {
+            this.Deleted = false;
             this.Orders = new HashSet<Order>();
             this.Users = new HashSet<User>();
         }
@@ -29,6 +30,7 @@ namespace DigiStoreWithMVC.Models
         public int Quantity { get; set; }
         public string ImagePath { get; set; }
         public string ItemType { get; set; }
+        public Nullable<bool> Deleted { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }

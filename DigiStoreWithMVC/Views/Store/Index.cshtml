@@ -9,10 +9,9 @@
             <div class="card-content row">
 
                 <div class="parallax-container">
-                    <div class="parallax">
-                        <img src="~/img/sample_store.jpg">
-                    </div>
+                    @Html.Partial("_EditStoreLogo", Model)
                 </div>
+            </div>
 
                 <div class="col s12 m12 l12">
                     <div class="card">
@@ -158,20 +157,36 @@
                             {
                                 @Html.Partial("_StoreItem", item)
                             }
-                        }
-                        else
-                        {
-                            <div class="card">
-                                <h2 class="center">This store is empty.</h2>
-                            </div>
+                            else if (!item.Deleted.Value)
+                            {
+                                @Html.Partial("_StoreItem", item)
+                            }
                         }
                     }
                     else
                     {
+                        <div class="card">
+                            <h2 class="center">This store is empty.</h2>
+                        </div>
                     }
                 }
-            </div>
+                else
+                {
+                }
+            }
         </div>
     </div>
 </div>
-*@
+@section scripts {
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script>
+    $('.dropify').dropify({
+        messages: {
+            'default': 'Drag and drop a file here or click',
+            'replace': 'Drag and drop or click to replace',
+            'remove': 'Remove',
+            'error': 'Ooops, something wrong appended.'
+        }
+    });
+</script>
+}

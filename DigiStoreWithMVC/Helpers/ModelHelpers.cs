@@ -61,7 +61,12 @@ namespace DigiStoreWithMVC.Controllers
             {
                 PaymentMethod payment = currentUser.PaymentMethods.FirstOrDefault();
                 if (payment == null)
-                    payment = db.PaymentMethods.Create();
+                {
+                    payment = new PaymentMethod();
+                    payment.AccountNumber = "";
+                    payment.PaymentType = "";
+                    currentUser.PaymentMethods.Add(payment);
+                }
                 db.SaveChanges();
             }
         }
@@ -102,5 +107,15 @@ namespace DigiStoreWithMVC.Controllers
                 db.SaveChanges();
             }
         }
+
+        //internal static string saveImageOnServer(DigiStoreDBModelContainer db, HttpPostedFileBase picture, int id)
+        //{
+        //    string imagePath = "";
+        //    string path = Server.MapPath("~/img/sub/pic" + id + "." + picture.FileName.Split('.').Last());
+        //    string modelPath = "/KTDigistore/img/sub/pic" + id + "." + picture.FileName.Split('.').Last();
+
+
+        //    return imagePath;
+        //}
     }
 }

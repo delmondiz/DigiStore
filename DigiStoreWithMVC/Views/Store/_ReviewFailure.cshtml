@@ -1,6 +1,7 @@
 ﻿@model DigiStoreWithMVC.Models.SubmitReviewViewModel
 
 <div id="newReview">
+    <span class="red-text">Please enter 1-5 for the rating, and a review.</span>
     @using (Ajax.BeginForm("SubmitReview", "Store", new AjaxOptions { HttpMethod = "post", InsertionMode = InsertionMode.Replace, UpdateTargetId = "newReview" }))
     {
         @Html.HiddenFor(model => model.StoreOwnerEmail)
