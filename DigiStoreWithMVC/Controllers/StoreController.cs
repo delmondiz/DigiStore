@@ -317,6 +317,57 @@ namespace DigiStoreWithMVC.Controllers
             return View();
         }
 
+        private int itemIsThere (int id) {
+            List<nItem> cart = (List<nItem>)Session["cart"];
+            for (int i = 0; i < cart.Count; i++)
+                if (cart[i].Ite.Id == id)
+                    return i;
+            return - 1;
+        }
+
+        public ActionResult Remove(int id) {
+            int index = itemIsThere(id);
+            List<nItem> cart = (List<nItem>)Session["cart"];
+            cart.RemoveAt(index);
+            Session["cart"] = cart;
+
+            return RedirectToAction("Cart", "Store");
+        }
+
+
+        public ActionResult OrderNow(int id)
+        {
+            if (Session["cart"] == null) {
+                List<nItem> cart = new List<nItem>();
+                cart.Add(new nItem(db.Items.Find(id), 1));
+                Session["cart"] = cart;
+            }
+            else
+            {
+                List<nItem> cart = (List <nItem>) Session["cart"];
+                int index = itemIsThere(id);
+                if (index == -1)
+                {
+                    cart.Add(new nItem(db.Items.Find(id), 1));
+
+                }
+
+                else {
+                    cart[index].Quantity++;
+                    Session["cart"] = cart;
+                }
+               
+            }
+
+            return RedirectToAction("Cart", "Store");
+        }
+        public ActionResult Cart()
+        {
+           
+                return View("Cart");
+        }
+
+
         // On the view, the user will not see the add to cart button unless authenticated
 
         public ContentResult AddToCart(Item item)

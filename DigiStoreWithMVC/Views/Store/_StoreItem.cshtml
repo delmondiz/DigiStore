@@ -24,8 +24,10 @@
             <div class="card-action">
                 @if (Model.Quantity > 0)
                 {
-                    using (Html.BeginForm())
+                    using (Html.BeginForm("OrderNow", "Store", FormMethod.Get))
                     {
+
+                        @Html.Hidden("id")
                         <select class="col s4">
                             @for (int i = 1; i <= Model.Quantity; i++)
                             {
