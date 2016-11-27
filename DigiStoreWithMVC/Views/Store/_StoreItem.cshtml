@@ -19,9 +19,18 @@
     </div>
     <div class="card-content">
         <span class="card-title activator grey-text text-darken-4">@Model.Name - $@Model.Price<i class="material-icons right">more_vert</i></span>
+        <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4">@Model.Name<i class="material-icons right">close</i></span>
+            <p><b>Description:</b> @Model.Description</p>
+            <p><b>Price:</b> $@Model.Price</p>
+            <p><b>Weight (kg):</b> @Model.Weight</p>
+            <p><b>Quantity Remaining:</b> @Model.Quantity</p>
+        </div>
         @if (User.Identity.IsAuthenticated)
         {
-            <div class="card-action">
+            if (Model.Users.FirstOrDefault().Email != User.Identity.Name)
+            {
+                <div class="card-action">
                 @if (Model.Quantity > 0)
                 {
                     using (Html.BeginForm())
@@ -45,17 +54,14 @@
                 {
                     <p>SOLD OUT!</p>
                 }
+            }
+                    
             </div>
+            }
         }
-        <div class="card-reveal">
-            <span class="card-title grey-text text-darken-4">@Model.Name<i class="material-icons right">close</i></span>
-            <p><b>Description:</b> @Model.Description</p>
-            <p><b>Price:</b> $@Model.Price</p>
-            <p><b>Weight (kg):</b> @Model.Weight</p>
-            <p><b>Quantity Remaining:</b> @Model.Quantity</p>
-        </div>
     </div>
 </div>
+
 @section scripts {
     <script type="text/javascript">
         $(function () {
