@@ -325,8 +325,14 @@ namespace DigiStoreWithMVC.Controllers
                 Session["cart"] = cart;
             }
 
-            return View(); 
+            return RedirectToAction("Cart", "Store");
         }
+        public ActionResult Cart()
+        {
+           
+                return View("Cart");
+        }
+
 
         // On the view, the user will not see the add to cart button unless authenticated
 
