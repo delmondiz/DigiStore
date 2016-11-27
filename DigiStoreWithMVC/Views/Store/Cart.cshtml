@@ -3,6 +3,10 @@
     ViewBag.Title = "Cart";
 }
 @using DigiStoreWithMVC.Controllers;
+@{ 
+    decimal s = 0;
+
+}
 <h2>Cart</h2>
 <div class="container">
     <div class="section">
@@ -13,23 +17,33 @@
                 <th>Price</th>
                 <th>Quantity</th>
                 <th>Sub total</th>
+                <th>Option</th>
 
             </tr>
+           
+
             @foreach (nItem nitem in (List<nItem>)Session["cart"])
             {
-
+                s += (nitem.Ite.Price * nitem.Quantity);
                 <tr>
                     <td>@nitem.Ite.Name</td>
                     <td>@nitem.Ite.Price</td>
                     <td>@nitem.Quantity</td>
                     <td>@(nitem.Ite.Price * nitem.Quantity)</td>
+                    <td>@Html.ActionLink("Remove", "Remove", "Store", new { id = nitem.Ite.Id }, null)</td>
 
 
                 </tr>
 
 
             }
+      
+           
+            <tr>
+                <th align="right" colspan="5" >Sum</th>
+                <td>@s</td>
 
+            </tr>
 
 
 
