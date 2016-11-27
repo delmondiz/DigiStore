@@ -62,7 +62,10 @@
                             }
                             else if (!item.Deleted.Value)
                             {
-                                @Html.Partial("_StoreItem", item)
+                                if (!item.Deleted.Value)
+                                { 
+                                    @Html.Partial("_StoreItem", item)
+                                }
                             }
                         }
                     }

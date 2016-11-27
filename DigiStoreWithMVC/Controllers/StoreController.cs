@@ -152,9 +152,9 @@ namespace DigiStoreWithMVC.Controllers
                 // Get our current user.
                 User currentUser = ModelHelpers.GetCurrentUser(db);
                 if (picture != null && picture.ContentLength > 0)
-                {   
+                {
                     string path = Server.MapPath("~/img/sub/pic" + db.Items.Last().Id + "." + picture.FileName.Split('.').Last());
-                    string modelPath = "/KTDigistore/img/sub/pic" + db.Items.Last().Id + "." + picture.FileName.Split('.').Last();
+                    string modelPath = "kt.digilife.me" + "/KTDigistore/img/sub/pic" + db.Items.Last().Id + "." + picture.FileName.Split('.').Last();
                     picture.SaveAs(path);
                     item.ImagePath = modelPath;
                     ModelState.SetModelValue("ImagePath", new ValueProviderResult(modelPath, modelPath, System.Globalization.CultureInfo.CurrentCulture));
@@ -213,6 +213,7 @@ namespace DigiStoreWithMVC.Controllers
                 User currentUser = ModelHelpers.GetCurrentUser(db);
                 Item dbItem = ModelHelpers.GetItemById(db, item.Id);
                 currentUser.Items.Remove(dbItem);
+                dbItem.Deleted = true;
                 db.SaveChanges();
                 return RedirectToAction("StoreInventory", "Store");
             }
