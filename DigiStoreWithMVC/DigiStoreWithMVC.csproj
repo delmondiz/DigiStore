@@ -218,7 +218,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\nItem.cs" />
+    <Compile Include="Models\nItem.cs" />
     <Compile Include="Controllers\PaypalController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Global.asax.cs">
@@ -452,6 +452,9 @@
     <Content Include="Views\Store\_InventoryItem.cshtml" />
     <Content Include="Views\Store\_StoreHours.cshtml" />
     <Content Include="Views\Store\Cart.cshtml" />
+    <Content Include="Views\Store\_ReviewSuccess.cshtml" />
+    <Content Include="Views\Store\_ReviewFailure.cshtml" />
+    <Content Include="Views\Store\_StoreReviews.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

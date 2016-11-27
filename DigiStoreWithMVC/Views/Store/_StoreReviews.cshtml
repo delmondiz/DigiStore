@@ -1,0 +1,23 @@
+﻿@model DigiStoreWithMVC.Models.User
+
+@if (Model != null)
+{
+    if (Model.Reviews.Count > 0)
+    {
+        <ul>
+            @foreach (DigiStoreWithMVC.Models.Review review in Model.Reviews)
+            {
+                <li>
+                    Review by: @review.Users.Where(u => u.UserName != Model.UserName).FirstOrDefault().UserName <br />
+                    Reviewed on: @review.Date.ToShortDateString(); <br />
+                    Rating: @review.Rating <br />
+                    Review: @review.ReviewText <br />
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        <h6>This store has no reviews.</h6>
+    }
+}

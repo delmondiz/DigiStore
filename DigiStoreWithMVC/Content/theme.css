@@ -4,6 +4,34 @@
     box-shadow: 0 1px 0 0 #ffeb3b !important;
 }
 
+input[type="range"]+.thumb {
+    background-color: #1565C0 !important;
+}
+
+input[type="range"]::-moz-range-thumb {
+    background: #ffeb3b !important;
+}
+
+input[type="range"]:active::-moz-range-thumb {
+    background: #ffeb3b !important;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    background: #ffeb3b !important;
+}
+
+input[type="range"]:active::-webkit-slider-thumb {
+    background: #ffeb3b !important;
+}
+
+input[type="range"]::-ms-thumb {
+    background: #ffeb3b !important;
+}
+
+input[type="range"]:active::-ms-thumb {
+    background: #ffeb3b !important;
+}
+
 input[type=password]:focus:not([readonly])
 {
     border-bottom: 1px #ffeb3b !important;

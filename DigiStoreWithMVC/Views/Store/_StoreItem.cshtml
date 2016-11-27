@@ -31,34 +31,28 @@
             if (Model.Users.FirstOrDefault().Email != User.Identity.Name)
             {
                 <div class="card-action">
-                @if (Model.Quantity > 0)
-                {
-                    using (Html.BeginForm("OrderNow", "Store", FormMethod.Get))
+                    @if (Model.Quantity > 0)
                     {
-
-                        @Html.Hidden("id")
-                        <select class="col s4">
-                            @for (int i = 1; i <= Model.Quantity; i++)
-                            {
-                                <option value="@i">@i</option>
-                            }
-                        </select>
-                        <div id="@Model.Id AddToCartItem" align="right">
-                            @*<a href="@Url.Action("AddToCart", "Store")" class="waves-effect waves-light btn blue darken-3 yellow-text accent-3">
-                                <span class="hide-on-med-and-down"><i class="material-icons left">add_shopping_cart</i>Add to Cart</span>
-                                <span class="hide-on-large-only"><i class="material-icons center">add_shopping_cart</i></span>
-                            </a>*@
-                            <input type="submit" class="waves-effect waves-light btn blue darken-3 yellow-text accent-3" value="Add to Cart"/>
-                        </div>
+                        using (Html.BeginForm("OrderNow", "Store", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.Hidden("id")
+                            <select id="quantity" name="quantity" class="col s4">
+                                @for (int i = 1; i <= Model.Quantity; i++)
+                                {
+                                    <option value="@i">@i</option>
+                                }
+                            </select>
+                            <div id="@Model.Id AddToCartItem" align="right">
+                                <input type="submit" class="waves-effect waves-light btn blue darken-3 yellow-text accent-3" value="Add to Cart"/>
+                            </div>
+                        }
                     }
-                }
-                else
-                {
-                    <p>SOLD OUT!</p>
-                }
-            }
-                    
-            </div>
+                    else
+                    {
+                        <p>SOLD OUT!</p>
+                    }   
+                </div>
             }
         }
     </div>

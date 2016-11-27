@@ -6,18 +6,16 @@ using DigiStoreWithMVC.Models;
 using System.Data.Entity;
 
 
-namespace DigiStoreWithMVC.Controllers
+namespace DigiStoreWithMVC.Models
 {
     public class nItem
     {
-        private DigiStoreDBModelContainer db = new DigiStoreDBModelContainer();
-
         private Item ite = new Item();
         private int quantity;
 
+        public nItem() {
+        }
 
-
-        public nItem() { }
         public nItem(Item item, int quantity)
         {
             this.ite = item;

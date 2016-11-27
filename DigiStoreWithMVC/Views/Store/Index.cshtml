@@ -24,22 +24,23 @@
                     <div class="card col l6 m6 s12">
                         <div class="card-content">
                             <span class="card-title">Store Hours</span>
-                            @*@Html.Partial("_EditStoreHours", Model)*@
-                            @{Html.RenderPartial("_EditStoreHours", Model); }
+                            @Html.Partial("_EditStoreHours", Model)
                         </div>
                     </div>
-
-                    <div class="card col l6 m6 s12">
-                        <div class="card-content">
-                            <span class="card-title">Rate this store</span>
-                            @Html.Partial("_SubmitReview", new DigiStoreWithMVC.Models.SubmitReviewViewModel())
+                    @if (User.Identity.Name != Model.Email)
+                    {
+                        <div class="card col l6 m6 s12">
+                            <div class="card-content">
+                                <span class="card-title">Rate this store</span>
+                                @Html.Partial("_SubmitReview", new DigiStoreWithMVC.Models.SubmitReviewViewModel(Model.Email))
+                            </div>
                         </div>
-                    </div>
+                    }
 
                     <div class="card col l6 m6 s12">
                         <div class="card-content">
                             <span class="card-title">Reviews</span>
-                            <p>Populated from Database.</p>
+                            @Html.Partial("_StoreReviews", Model)
                         </div>
                     </div>
                 </div>
@@ -62,10 +63,7 @@
                             }
                             else if (!item.Deleted.Value)
                             {
-                                if (!item.Deleted.Value)
-                                { 
-                                    @Html.Partial("_StoreItem", item)
-                                }
+                                @Html.Partial("_StoreItem", item)
                             }
                         }
                     }
@@ -84,6 +82,7 @@
     </div>
 </div>
 @section scripts {
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 <script>
     $('.dropify').dropify({
         messages: {

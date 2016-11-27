@@ -74,30 +74,29 @@ namespace DigiStoreWithMVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult SubmitReview(Review model)
+        public ActionResult SubmitReview(SubmitReviewViewModel model)
         {
             if (ModelState.IsValid)
             {
                 using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
                 {
+                    User storeOwner = ModelHelpers.GetUserByEmail(db, model.StoreOwnerEmail);
                     Review newReview = db.Reviews.Create();
-                    newReview.Id = db.Reviews.Count();
                     if (model.ReviewText != null)
                         newReview.ReviewText = model.ReviewText;
-                    //if (model.ReviewRating != 0)
-                    //newReview.Rating = model.ReviewRating;
+                    if (model.ReviewRating != 0)
+                    newReview.Rating = model.ReviewRating;
                     newReview.Rating = 5;
                     newReview.Date = DateTime.Now;
-                    db.Reviews.Add(newReview);
+                    newReview.Users.Add(ModelHelpers.GetCurrentUser(db));
+                    storeOwner.Reviews.Add(newReview);
                     db.SaveChanges();
-                    return RedirectToAction("Index", "Store");
+                    return PartialView("_ReviewSuccess");
                 }
-
-
             }
             else
             {
-                return RedirectToAction("Index", "Store");
+                return PartialView("_ReviewFailure");
             }
         }
 
@@ -282,7 +281,6 @@ namespace DigiStoreWithMVC.Controllers
             User currentUser = ModelHelpers.GetCurrentUser(db);
             if (currentUser != null)
             {
-                //StoreHours[] hours = new StoreHours[7];
                 for (int i = 0; i < 7; i++)
                 {
                     StoreHours hours = currentUser.Store.StoreHours.ElementAt(i);
@@ -335,37 +333,41 @@ namespace DigiStoreWithMVC.Controllers
             return RedirectToAction("Cart", "Store");
         }
 
-
-        public ActionResult OrderNow(int id)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult OrderNow(int id, int quantity)
         {
-            if (Session["cart"] == null) {
+            if (Session["cart"] == null)
+            {
                 List<nItem> cart = new List<nItem>();
-                cart.Add(new nItem(db.Items.Find(id), 1));
+                cart.Add(new nItem(db.Items.Find(id), quantity));
                 Session["cart"] = cart;
             }
             else
             {
-                List<nItem> cart = (List <nItem>) Session["cart"];
+                List<nItem> cart = (List<nItem>)Session["cart"];
                 int index = itemIsThere(id);
                 if (index == -1)
                 {
-                    cart.Add(new nItem(db.Items.Find(id), 1));
-
+                    cart.Add(new nItem(db.Items.Find(id), quantity));
                 }
 
-                else {
-                    cart[index].Quantity++;
+                else
+                {
+                    cart[index].Quantity += quantity;
                     Session["cart"] = cart;
                 }
-               
+
             }
 
             return RedirectToAction("Cart", "Store");
         }
+
         public ActionResult Cart()
         {
-           
-                return View("Cart");
+            if (Session["cart"] == null)
+                Session["cart"] = new List<nItem>();
+             return View("Cart");
         }
 
 
