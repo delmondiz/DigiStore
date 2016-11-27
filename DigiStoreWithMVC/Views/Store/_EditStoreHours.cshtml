@@ -47,7 +47,6 @@
             foreach (DigiStoreWithMVC.Models.StoreHours hours in Model.Store.StoreHours)
             {
                 Html.ValidationSummary(true, "", new { @class = "red-text" });
-
                 <div class="row">
                     <span class="col s12">
                         <b>@hours.DayOfTheWeek</b>

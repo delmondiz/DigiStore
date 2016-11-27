@@ -107,5 +107,15 @@ namespace DigiStoreWithMVC.Controllers
                 db.SaveChanges();
             }
         }
+
+        //internal static string saveImageOnServer(DigiStoreDBModelContainer db, HttpPostedFileBase picture, int id)
+        //{
+        //    string imagePath = "";
+        //    string path = Server.MapPath("~/img/sub/pic" + id + "." + picture.FileName.Split('.').Last());
+        //    string modelPath = "/KTDigistore/img/sub/pic" + id + "." + picture.FileName.Split('.').Last();
+
+
+        //    return imagePath;
+        //}
     }
 }
