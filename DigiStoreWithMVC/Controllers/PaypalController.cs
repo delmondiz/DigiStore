@@ -217,7 +217,7 @@ namespace MvcApplication1.Controllers
             catch (Exception ex)
             {
                 ViewData["high"] = "Your Payment Cannot be Proccessed please Try Again";
-                Logger.Log("Error"+ ex.Message);
+                Logger.Log("Error" + ex.Message);
                 return View("FailureView");
             }
 
@@ -239,7 +239,7 @@ namespace MvcApplication1.Controllers
             //similar to credit card create itemlist and add item objects to it
             var itemList = new ItemList() { items = new List<PayPal.Api.Item>() };
             List<PayPal.Api.Item> items = new List<PayPal.Api.Item>();
-            
+
             decimal calculatetax = 0;
             decimal calculatesub = 0;
             decimal calculatetotal = 0;
@@ -254,13 +254,10 @@ namespace MvcApplication1.Controllers
                     price = cartitem.Ite.Price.ToString(),
                     quantity = cartitem.Quantity.ToString(),
                     sku = cartitem.Ite.Id.ToString()
-                    
+
                 });
                 calculatetax += Convert.ToDecimal(cartitem.Ite.Price * cartitem.Quantity * (decimal)0.13);
                 calculatesub += Convert.ToDecimal(cartitem.Ite.Price * cartitem.Quantity);
-
-
-
             }
 
             var details = new Details()
@@ -281,7 +278,7 @@ namespace MvcApplication1.Controllers
                 details = details
             };
             amount.total = calculatetotal.ToString();
-            
+
 
             var payer = new Payer() { payment_method = "paypal" };
 
@@ -293,10 +290,10 @@ namespace MvcApplication1.Controllers
             };
 
             // similar as we did for credit card, do here and create details object
-          
+
 
             // similar as we did for credit card, do here and create amount object
-           
+
 
             var transactionList = new List<Transaction>();
 
