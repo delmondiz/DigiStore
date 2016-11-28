@@ -245,7 +245,7 @@ namespace DigiStoreWithMVC.Controllers
             // Empty the current cart.
             Session["cart"] = new List<nItem>();
 
-            return View("SuccessView");
+            return View("SuccessView", currentUser );
         }
 
         private PayPal.Api.Payment payment;
