@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace MvcApplication1.Controllers
+namespace DigiStoreWithMVC.Controllers
 {
     public class PaypalController : Controller
     {
@@ -220,6 +220,28 @@ namespace MvcApplication1.Controllers
                 Logger.Log("Error" + ex.Message);
                 return View("FailureView");
             }
+
+            // If we reach here, the payment was successful.
+            // Creating a Order for the User
+            User currentUser = ModelHelpers.GetCurrentUser(db);
+            Models.Order order = new Models.Order();
+            order.Id = db.Orders.Count() + 1;
+            order.Tax = 0;
+            order.TotalPrice = 0;
+            foreach (nItem item in (List<nItem>)Session["cart"])
+            {
+                order.Items.Add(item.Ite);
+                order.Tax += item.Ite.Price * 0.13M;
+                order.TotalPrice += item.Ite.Price;
+
+                // Modifying the current Items' Quantities
+                db.Items.Where(i => i.Id == item.Ite.Id).First().Quantity -= item.Quantity;
+            }
+            order.TotalPrice += order.Tax;
+            currentUser.Orders.Add(order);
+
+            // Empty the current cart.
+            Session["cart"] = new List<nItem>();
 
             return View("SuccessView");
         }
