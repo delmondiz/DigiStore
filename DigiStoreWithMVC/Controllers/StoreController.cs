@@ -11,40 +11,93 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Data.Entity;
 
+
+
+
 namespace DigiStoreWithMVC.Controllers
 {
     public class StoreController : Controller
     {
         private DigiStoreDBModelContainer db = new DigiStoreDBModelContainer();
+        string[] DAYS_OF_THE_WEEK = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
 
         public ActionResult Index(string storeName)
         {
             if (storeName != null)
             {
-                using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
-                {
-                    User checkUser = (from u in db.Users where u.UserName == storeName select u).FirstOrDefault();
+                User checkUser = ModelHelpers.GetUserByStorename(db, storeName);
+                ModelHelpers.CreateUserStoreIfNotExisting(db, checkUser);
 
-                    if (checkUser != null)
-                        return View(checkUser);
-                    else
-                        return View();
+                if (checkUser != null)
+                {
+                    return View(checkUser);
                 }
+                else
+                    return View();
             }
             else if (User.Identity.IsAuthenticated)
             {
+                User currentUser = ModelHelpers.GetCurrentUser(db);
+
+                if (currentUser != null)
+                {
+                    ModelHelpers.CreateUserStoreIfNotExisting(db, currentUser);
+
+                    return View(currentUser);
+                }
+                else
+                    return View();
+            }
+            else
+                return RedirectToAction("Login", "Account");
+        }
+
+        [HttpPost]
+        public ActionResult Index(Store store)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                User currentUser = ModelHelpers.GetCurrentUser(db);
+
+                if (currentUser != null)
+                    return View(currentUser);
+                else
+                    return View();
+            }
+            else
+                return RedirectToAction("Login", "Account");
+        }
+
+        public ActionResult SubmitReview()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult SubmitReview(SubmitReviewViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
                 using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
                 {
-                    User currentUser = (from u in db.Users where u.Email == User.Identity.Name select u).FirstOrDefault();
-
-                    if (currentUser != null)
-                        return View(currentUser);
-                    else
-                        return View();    
+                    User storeOwner = ModelHelpers.GetUserByEmail(db, model.StoreOwnerEmail);
+                    Review newReview = db.Reviews.Create();
+                    if (model.ReviewText != null)
+                        newReview.ReviewText = model.ReviewText;
+                    if (model.ReviewRating != 0)
+                    newReview.Rating = model.ReviewRating;
+                    newReview.Rating = 5;
+                    newReview.Date = DateTime.Now;
+                    newReview.Users.Add(ModelHelpers.GetCurrentUser(db));
+                    storeOwner.Reviews.Add(newReview);
+                    db.SaveChanges();
+                    return PartialView("_ReviewSuccess");
                 }
             }
             else
-                return View();
+            {
+                return PartialView("_ReviewFailure");
+            }
         }
 
         public ActionResult RandomStore()
@@ -57,58 +110,72 @@ namespace DigiStoreWithMVC.Controllers
             do
             {
                 randomUser = (from u in db.Users
-                              where (u.Id == randUserNum)
+                              where (u.Id == randUserNum && u.Items.Count > 0 && u.Email != User.Identity.Name)
                               select u).FirstOrDefault();
+                if (randomUser != null)
+                    ModelHelpers.CreateUserStoreIfNotExisting(db, randomUser);
                 if (count > 1000)
                     randomUser = new User();
                 count++;
+                randUserNum = rand.Next(0, (max - 1));
             } while (randomUser == null);
 
             // This won't be reached any time soon.
             if (count > 1000)
                 return RedirectToActionPermanent("Index", "Home", new { controller = "Home", action = "Index" });
 
-            return RedirectToAction("Index", "Store", new { storeName = randomUser.UserName }); 
+            return RedirectToAction("Index", "Store", new { storeName = randomUser.Store.Name });
         }
 
         public ActionResult StoreInventory()
         {
             if (User.Identity.IsAuthenticated)
             {
-                User currentUser = (from u in db.Users
-                                    where u.Email == User.Identity.Name
-                                    select u).FirstOrDefault();
+                User currentUser = ModelHelpers.GetCurrentUser(db);
 
                 if (currentUser != null)
                     return View(currentUser);
                 else
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Login", "Account");
             }
             else
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Account");
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult StoreInventory([Bind(Include = "Id,Name,Description,Price,Weight,Quantity,ImagePath")]Item item)
+        public ActionResult StoreInventory(Item item, HttpPostedFileBase picture)
         {
             if (User.Identity.IsAuthenticated)
             {
                 // Get our current user.
-                User user = (from u in db.Users where u.Email == User.Identity.Name select u).FirstOrDefault();
+                User currentUser = ModelHelpers.GetCurrentUser(db);
+                if (picture != null && picture.ContentLength > 0)
+                {
+                    string path = Server.MapPath("~/img/sub/pic" + db.Items.Last().Id + "." + picture.FileName.Split('.').Last());
+                    string modelPath = "kt.digilife.me" + "/KTDigistore/img/sub/pic" + db.Items.Last().Id + "." + picture.FileName.Split('.').Last();
+                    picture.SaveAs(path);
+                    item.ImagePath = modelPath;
+                    ModelState.SetModelValue("ImagePath", new ValueProviderResult(modelPath, modelPath, System.Globalization.CultureInfo.CurrentCulture));
+                }
+                else
+                {
+                    item.ImagePath = "";
+                }
+                ModelState.Remove("ImagePath");
                 if (ModelState.IsValid)
                 {
                     // Add the item to our current user.
-                    user.Items.Add(item);
+                    currentUser.Items.Add(item);
                     // Save the changes to the DB.
                     db.SaveChanges();
                     // Return the user to the Store Inventory
-                    return View(user);
+                    return View(currentUser);
                 }
-                return View(user);
+                return View(currentUser);
             }
             else
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Account");
         }
 
 
@@ -122,17 +189,17 @@ namespace DigiStoreWithMVC.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                User user = (from u in db.Users where u.Email == User.Identity.Name select u).FirstOrDefault();
+                User currentUser = ModelHelpers.GetCurrentUser(db);
                 if (ModelState.IsValid)
                 {
                     db.Entry(item).State = EntityState.Modified;
                     db.SaveChanges();
-                    return View("StoreInventory", user);
+                    return RedirectToAction("StoreInventory", "Store");
                 }
-                return View("StoreInventory", user);
+                return RedirectToAction("StoreInventory", "Store");
             }
             else
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Account");
         }
 
         // POST: Items/Delete/5
@@ -142,14 +209,15 @@ namespace DigiStoreWithMVC.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                User user = (from u in db.Users where u.Email == User.Identity.Name select u).FirstOrDefault();
-                Item dbItem = (from i in db.Items where i.Id == item.Id select i).FirstOrDefault();
-                user.Items.Remove(dbItem);
+                User currentUser = ModelHelpers.GetCurrentUser(db);
+                Item dbItem = ModelHelpers.GetItemById(db, item.Id);
+                currentUser.Items.Remove(dbItem);
+                dbItem.Deleted = true;
                 db.SaveChanges();
-                return View("StoreInventory", user);
+                return RedirectToAction("StoreInventory", "Store");
             }
             else
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Account");
         }
 
         public ActionResult ShoppingCart()
@@ -157,20 +225,165 @@ namespace DigiStoreWithMVC.Controllers
             if (User.Identity.IsAuthenticated)
                 return View();
             else
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Account");
         }
 
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (disposing)
-        //        db.Dispose();
 
-        //    base.Dispose(disposing);
-        //}
+        //
+        // POST: /Manage/ChangePayment
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditStoreInfo(User model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            
+            User currentUser = ModelHelpers.GetCurrentUser(db);
+            if (currentUser != null)
+            {
+                if (model.Store.Name != null)
+                    currentUser.Store.Name = model.Store.Name;
+
+                if (model.Store.Address != null)
+                    currentUser.Store.Address = model.Store.Address;
+
+                if (model.Store.City != null)
+                    currentUser.Store.City = model.Store.City;
+
+                if (model.Store.StateProv != null)
+                    currentUser.Store.StateProv = model.Store.StateProv;
+
+                if (model.Store.PostalCode != null)
+                    currentUser.Store.PostalCode = model.Store.PostalCode;
+
+                if (model.Store.Country != null)
+                    currentUser.Store.Country = model.Store.Country;
+
+                if (model.Store.PhoneNumber != null)
+                    currentUser.Store.PhoneNumber = model.Store.PhoneNumber;
+                db.SaveChanges();
+                TempData["storeInfoResultMessage"] = "Contact Info Successfully Updated!";
+                return RedirectToAction("Index", "Store");
+
+            }
+            return View();
+        }
+
+
+        //
+        // POST: /Store/Index
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditStoreHours(FormCollection formResults)
+        {
+            User currentUser = ModelHelpers.GetCurrentUser(db);
+            if (currentUser != null)
+            {
+                for (int i = 0; i < 7; i++)
+                {
+                    StoreHours hours = currentUser.Store.StoreHours.ElementAt(i);
+                    string startTime = formResults.GetValues("StartTime").ElementAt(i).ToString();
+                    string endTime = formResults.GetValues("EndTime").ElementAt(i).ToString();
+
+                    int startHour = int.Parse(startTime.Split(':')[0]);
+                    int startMinute = int.Parse(startTime.Split(':')[1].Split(' ')[0]);
+                    hours.StartTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, startHour, startMinute, 0);
+
+                    int endHour = int.Parse(endTime.Split(':')[0]);
+                    int endMinute = int.Parse(endTime.Split(':')[1].Split(' ')[0]);
+                    hours.EndTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, endHour, endMinute, 0);
+                }
+                db.SaveChanges();
+                TempData["storeHoursResultMessage"] = "Hours successfully updated!";
+                return RedirectToAction("Index", "Store");
+            }
+
+            return View();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+                db.Dispose();
+
+            base.Dispose(disposing);
+        }
 
         public ActionResult SendFeedback()
         {
             return View();
+        }
+
+        private int itemIsThere (int id) {
+            List<nItem> cart = (List<nItem>)Session["cart"];
+            for (int i = 0; i < cart.Count; i++)
+                if (cart[i].Ite.Id == id)
+                    return i;
+            return - 1;
+        }
+
+        public ActionResult Remove(int id) {
+            int index = itemIsThere(id);
+            List<nItem> cart = (List<nItem>)Session["cart"];
+            cart.RemoveAt(index);
+            Session["cart"] = cart;
+
+            return RedirectToAction("Cart", "Store");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult OrderNow(int id, int quantity)
+        {
+            if (Session["cart"] == null)
+            {
+                List<nItem> cart = new List<nItem>();
+                cart.Add(new nItem(db.Items.Find(id), quantity));
+                Session["cart"] = cart;
+            }
+            else
+            {
+                List<nItem> cart = (List<nItem>)Session["cart"];
+                int index = itemIsThere(id);
+                if (index == -1)
+                {
+                    cart.Add(new nItem(db.Items.Find(id), quantity));
+                }
+
+                else
+                {
+                    cart[index].Quantity += quantity;
+                    Session["cart"] = cart;
+                }
+
+            }
+
+            return RedirectToAction("Cart", "Store");
+        }
+
+        public ActionResult Cart()
+        {
+            if (Session["cart"] == null)
+                Session["cart"] = new List<nItem>();
+             return View("Cart");
+        }
+
+
+        // On the view, the user will not see the add to cart button unless authenticated
+
+        public ContentResult AddToCart(Item item)
+        {
+            // We double check anyways, because no sneaking around.
+            if (!User.Identity.IsAuthenticated)
+            {
+                User currentUser = ModelHelpers.GetCurrentUser(db);
+                currentUser.Cart.Items.Add(item);
+                db.SaveChanges();
+            }
+
+            return Content("Good");
         }
     }
 }

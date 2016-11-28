@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "FailureView";
+}
+
+ @ViewData["high"]
+<div class="container">
+    <div class="section">
+        <ul class="collapsible collapsible-accordion" data-collapsible="accordion">
+            <li class="">
+                <div class="collapsible-header">
+                    <i class="material-icons">
+                        <img src="~/img/download.jpg" height="28" width="43" />
+                    </i>Beauty
+                </div>
+                <div class="collapsible-body">
+                    <div class="row">
+                        <div class="col s3">
+                            <img class="responsive-img" src="~/img/download.jpg" />
+                        </div>
+                        <div class="col s7 m3">
+                            Here We can put the detail of this cup cake it does look mighty delicious man im hungry
+                        </div>
+                        <br />
+                        <div class="col s3 m2">
+                            <a href="#">Remove</a><br />
+                            <br />
+                            <a href="#">Edit</a>
+                        </div>
+                        <div class="col s4 m2">
+                            <td class="product-cart-actions" data-rwd-label="Qty">
+                                <div><strong>Quantity</strong></div>
+                                <input type="number" pattern="\d*" name="cart[184090][qty]" value="1" size="4" data-cart-item-id="GGR-T7P-M" title="Qty" class="input-text qty" maxlength="12">
+                                <button type="submit" name="update_cart_action" data-cart-item-update="" value="update_qty" title="Update" class="button btn-update hide">
+                                    <span><span>Update</span></span>
+                                </button>
+                                <ul class="cart-links hide">
+                                    <li></li>
+                                </ul>
+                            </td>
+                            <a href="#">update</a><br />
+                        </div>
+
+                        <div class="col s4 m2"><strong>price:</strong>$5.99</div>
+                    </div>
+
+
+                </div>
+
+            </li>
+        </ul>
+
+    </div>
+    <h4>Total:$5.99</h4>
+    <h7>Tax:$.77</h7>
+    <h4>Grand Total:$7.56</h4>
+
+    @Html.ActionLink("Continue Shopping", "Map", new { controller = "Home", action = "Map" }, htmlAttributes: new { @class = "btn waves-effect blue darken-3 yellow-text accent-3" })
+    @Html.ActionLink("Pay with Paypal Account", "PaymentWithPaypal", "Paypal")
+    <!-- Modal Structure -->
+
+</div>
+<script>
+    $(document).ready(function(){
+        $('.modal-trigger').leanModal();
+    });
+</script>

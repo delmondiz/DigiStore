@@ -5,13 +5,20 @@
 }
 <br/>
 <div class="container">
-    <form id="form2" onsubmit="return performUserSearch()">
-    @*@using (Ajax.BeginForm(new AjaxOptions { HttpMethod = "post", InsertionMode = InsertionMode.Replace, UpdateTargetId = "goggleResultsList" }))
-    {*@
+    @*<form id="form2" onsubmit="return performUserSearch()">*@
+    @using (Ajax.BeginForm("GoogleSearch", "Home", new AjaxOptions { HttpMethod = "post", InsertionMode = InsertionMode.Replace, UpdateTargetId = "goggleResultsList" }))
+    {
         <div class="row">
-            <div class="col input-field s9">
-                <input type="text" id="inputSearch" class="validate" />
-                <label for="inputSearch">Store Name</label>
+            <div class="col input-field s6">
+                <label id="searchLabel" for="inputSearch">Store Name</label>
+                <input type="text" id="inputSearch" name="inputSearch" class="validate" />
+            </div>
+            <div class="col input-field s3">
+                <select id="searchOptions" name="searchOptions">
+                    <option>Store</option>
+                    <option>Item</option>
+                </select>
+                <label for="searchOptions">Search For</label>
             </div>
             <div class="col s3 valign-wrapper">
                 <button class="btn btn-large valign waves-effect waves-light blue darken-3 yellow-text accent-3" type="submit" name="submitSearch" style="padding:0; width:100%">
@@ -20,8 +27,8 @@
                 </button>
             </div>
         </div>
-    </form>
-    @* } *@
+    @*</form>*@
+    } 
 </div>
 
 <div class="center container">
@@ -35,207 +42,13 @@
 @section scripts {
 <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3d4spAr0FMskq0UBEVofzNutc9Q9lrig&callback=initMap&libraries=places,visualization" async defer></script>
+<script src="~/Scripts/search.js"></script>
+    <script>
+        $("#searchOptions").change(function () {
+            if ($("#searchOptions").val() == "Store")
+                $("#searchLabel").text("Store Name");
+            else
+                $("#searchLabel").text("Item Name");
+        });
+    </script>
 }
-<script>
-    startUpFunctions();
-
-    /*
-    * The application asks for your location.  If the user accepts, it'll move the map close to the user's location.
-    * Otherwise, it'll show up over toronto.
-    */
-    // Holds the Google map.
-    var map;
-    // Used to make queries to Google's Map API.
-    var service;
-    // Holds the markers placed onto the Google Map.
-    var markers = [];
-    // Contains the contents of the marker's popup.
-    var infowindow;
-
-    function startUpFunctions() {
-        //hideBeforeSearch();
-        detectCurrentPosition();
-        detectBrowser();
-    }
-
-    // CURRENTLY UNUSED - The results are hidden by default now, and shown once searched.
-    // Hides the google results div before the user has searched at least once.
-    // Also makes the google map full size within it's containing div.
-    function hideBeforeSearch() {
-        $("#goggleResults").hide();
-        $("#goggleMap").css("height", "100%");
-    }
-
-    // Shows the google results div before the user has searched at least once.
-    // Also makes the google map return to 60% size within it's containing div
-    // so it shares the space with the google results.
-    function unHideBeforeSearch() {
-        $("#goggleResults").show();
-        $("#goggleMap").css("height", "60%");
-    }
-
-    // Prompt the user for their physical location.  If they agree, this will set
-    // the map to their current location.
-    function detectCurrentPosition() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(createMapWithPosition);
-        }
-    }
-
-    function detectBrowser() {
-        var useragent = navigator.userAgent;
-        var mapdiv = document.getElementById("map");
-
-        if (useragent.indexOf('iPhone') != -1 || useragent.indexOf('Android') != -1) {
-            mapdiv.style.width = '100%';
-            mapdiv.style.height = '100%';
-        }
-    }
-
-    function createMapWithPosition(userInfo) {
-        initMapOnUser(userInfo.coords.latitude, userInfo.coords.longitude);
-    }
-
-    function initMap() {
-        map = new google.maps.Map(document.getElementById('goggleMap'), {
-            center: { lat: 43.6532, lng: -79.3832 }, // Toronto by Default
-            zoom: 15,
-            mapTypeControl: false,
-            styles: [{
-                stylers: [{ visibility: 'simplified' }]
-            }, {
-                elementType: 'labels',
-                stylers: [{ visibility: 'on' }]
-            }]
-        });
-
-        infoWindow = new google.maps.InfoWindow();
-        service = new google.maps.places.PlacesService(map);
-
-        // The idle event is a debounced event, so we can query & listen without
-        // throwing too many requests at the server.
-        //map.addListener('idle', performSearch);
-    }
-
-    function initMapOnUser(lati, longi) {
-        map = new google.maps.Map(document.getElementById('goggleMap'), {
-            center: { lat: lati, lng: longi },
-            zoom: 15,
-            mapTypeControl: false,
-            styles: [{
-                stylers: [{ visibility: 'simplified' }]
-            }, {
-                elementType: 'labels',
-                stylers: [{ visibility: 'on' }]
-            }]
-        });
-        service = new google.maps.places.PlacesService(map);
-        //map.addListener('idle', performUserSearch);
-    }
-
-    //function performSearch() {
-    //    var request = {
-    //        location: map.getCenter(),
-    //        radius: '100',
-    //        query: 'wendy'
-    //    };
-    //    service.textSearch(request, callback);
-    //}
-
-    function performUserSearch() {
-        unHideBeforeSearch();
-        var userQuery = document.getElementById('inputSearch').value;
-        if (userQuery.length > 0)
-            var request = {
-                location: map.getCenter(),
-                radius: '1000',
-                query: userQuery
-            };
-        
-        service.textSearch(request, callback);
-        return false;
-    }
-
-    function callback(results, status) {
-        if (status !== google.maps.places.PlacesServiceStatus.OK) {
-            console.error(status);
-            return;
-        }
-        if (markers.length > 0) {
-            deleteMarkers();
-            clearResultsList();
-        }
-
-        for (var i = 0, result; result = results[i]; i++) {
-            addMarker(result);
-        }
-        setMapOnAll(map);
-    }
-
-    function getResultsDiv(result) {
-        var open = "";
-        if (result.opening_hours.open_now)
-            open = "Open!";
-        else if (result.permanently_closed)
-            open = "PERMANENTLY CLOSED!";
-        else
-            open = "Closed!";
-        var resultsHTML = "<img class='circle' src='" + result.icon + "' alt='Store Icon' width='25' height='25' />";
-        resultsHTML += "<span class='title'><b>Store Name: </b></span>" + result.name;
-        resultsHTML += "<div><b>Address: </b>" + result.formatted_address + "</div><br/>";
-        if (result.opening_hours.open_now != null)
-            resultsHTML += "<div><b>Open Now: </b>" + open + "</div><br/>";
-        if (result.rating != null)
-            resultsHTML += "<div><b>Rating: </b>" + result.rating + "/5</div><br/>";
-        return resultsHTML;
-    }
-
-    function addMarker(place) {
-        var marker = new google.maps.Marker({
-            map: map,
-            position: place.geometry.location,
-            nid: document.getElementById("goggleResultsList").childElementCount
-        });
-        service.getDetails(place, function (result, status) {
-            if (status !== google.maps.places.PlacesServiceStatus.OK) {
-                console.error(status);
-                return;
-            }
-            
-            console.log(document.getElementById("goggleResultsList").childElementCount);
-            console.log(marker.get("position"));
-            document.getElementById("goggleResultsList").innerHTML +=
-                "<li class='collection-item blue darken-3' id='" + document.getElementById("goggleResultsList").childElementCount + "'>" +
-                getResultsDiv(result)
-            "</li>";
-        });
-
-        google.maps.event.addListener(marker, 'click', function () {
-            infoWindow.setContent(
-                document.getElementById("goggleResultsList").children[marker.get("nid")].innerHTML
-                );
-            infoWindow.open(map, marker);
-        });
-        markers.push(marker);
-    }
-
-    function setMapOnAll(map) {
-        for (var i = 0 ; i < markers.length; i++) {
-            markers[i].setMap(map);
-        }
-    }
-
-    function clearMarkers() {
-        setMapOnAll(null);
-    }
-
-    function clearResultsList() {
-        document.getElementById("goggleResultsList").innerHTML = "";
-    }
-
-    function deleteMarkers() {
-        clearMarkers();
-        markers = [];
-    }
-
-</script>

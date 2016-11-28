@@ -1,30 +1,29 @@
 ﻿@model DigiStoreWithMVC.Models.User
-
 @{
     ViewBag.Title = Model.UserName + "'s Profile";
 }
-
 <div class="container">
     <div class="section">
         <div class="row">
-            <div class="section no-pad-bot" id="index-banner">
+            <div class="section no-pad" id="index-banner">
                 <h1 class="header center blue-text darken-3">@Model.UserName's Profile</h1>
             </div>
-            <h4 class="center green-text">@ViewBag.Message</h4>
+            <h4 class="center green-text">@TempData["resultMessage"]</h4>
+            @{TempData["resultMessage"] = null; }
             <div class="row">
                 <div class="card-panel blue darken-3">
                     <div class="card-content row">
-                        @using (Html.BeginForm("Index", "Account", FormMethod.Post))
-                        {
-                            @Html.AntiForgeryToken()
-                            @Html.Partial("_UserDetails")
-                        }
-                        <div class="col s12">
-                            <div class="row">
-                                @Html.ActionLink("Change Password", "ChangePassword", "Account", new { @class = "col s12 m6 btn waves-effect blue darken-3 yellow-text accent-3" })
-                                @Html.ActionLink("Change Payment Info", "ChangePayment", "Account", new { @class = "col s12 m6 btn waves-effect blue darken-3 yellow-text accent-3" })
-                            </div>
-                        </div>
+                        @Html.Partial("_UserDetails", new DigiStoreWithMVC.Models.UserDetailsViewModel(Model))
+                    </div>
+                </div>
+                <div class="card-panel blue darken-3">
+                    <div class="card-content row">
+                        @Html.Partial("_ChangePassword", new DigiStoreWithMVC.Models.ChangePasswordViewModel())
+                    </div>
+                </div>
+                <div class="card-panel blue darken-3">
+                    <div class="card-content row">
+                        @Html.Partial("_ChangePayment", new DigiStoreWithMVC.Models.ChangePaymentViewModel(Model.PaymentMethods.FirstOrDefault()))
                     </div>
                 </div>
             </div>

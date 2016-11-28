@@ -11,38 +11,18 @@ namespace DigiStoreWithMVC.Controllers
 {
     public class HomeController : Controller
     {
+        private DigiStoreDBModelContainer db = new DigiStoreDBModelContainer();
+
         public ActionResult Index()
         {
-            using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
+            User currentUser = ModelHelpers.GetCurrentUser(db);
+
+            if (currentUser == null)
             {
-                User user = (from u in db.Users
-                                where u.Email == User.Identity.Name
-                                select u).FirstOrDefault();
-
-                if (user == null)
-                {
-                    return View();
-                }
-
-                return View(user);
+                return View();
             }
-        }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Index(User user)
-        //{
-        //    using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
-        //    {
-        //        return View(user);
-        //    }
-        //}
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            return View(currentUser);
         }
 
         public ActionResult Contact()
@@ -50,7 +30,7 @@ namespace DigiStoreWithMVC.Controllers
             return View();
         }
 
- 
+
         [HttpPost]
         public ActionResult Contact(HomeViewModels model)
         {
@@ -58,15 +38,18 @@ namespace DigiStoreWithMVC.Controllers
             {
                 using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
                 {
+                    //messing with this for the time being
                     Review newReview = db.Reviews.Create();
                     newReview.Id = db.Reviews.Count();
                     if(model.ReviewText != null)
                         newReview.ReviewText = model.ReviewText;
-                    newReview.Rating = 1;
+                    //if(model.ReviewRating != 0)
+                    //    newReview.Rating = model.ReviewRating;
+                    newReview.Rating = 1; //temp line
                     newReview.Date = DateTime.Now;
                     db.Reviews.Add(newReview);
                     db.SaveChanges();
-                    ViewBag.Message = "Thanks!";
+                    ViewBag.Message = "Review Submitted! Thanks!";
                     return View();
                 }
             }
@@ -86,17 +69,48 @@ namespace DigiStoreWithMVC.Controllers
         [HttpPost]
         public ActionResult Map(string inputSearch)
         {
-            using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
+            List<User> users = (from u in db.Users
+                                where u.UserName.ToLower().Contains(inputSearch.ToLower())
+                                select u).ToList();
+            if (users != null)
             {
-                List<User> users = (from u in db.Users
-                                    where u.UserName.ToLower().Contains(inputSearch.ToLower())
-                                    select u).ToList();
-                if (users != null)
-                {
-                    ViewData["users"] = users;
-                }
-                return PartialView("_MapResults");
+                ViewData["users"] = users;
             }
+
+            return PartialView("_MapResults");
+        }
+
+        [HttpPost]
+        public ActionResult GoogleSearch(string inputSearch, string searchOptions)
+        {
+            if (searchOptions != null)
+            {
+                if (searchOptions.ToLower().Equals("store"))
+                {
+                    List<Store> stores = (from s in db.Stores
+                                          where s.Name.ToLower().Contains(inputSearch.ToLower())
+                                          select s).ToList();
+
+                    return PartialView("_GoogleResultsStores", stores);
+                }
+                else
+                {
+                    List<Item> items = (from i in db.Items
+                                        where i.Name.ToLower().Contains(inputSearch.ToLower())
+                                        select i).ToList();
+                    return PartialView("_GoogleResultsItems", items);
+                }
+            }
+            else
+                return new EmptyResult();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+                db.Dispose();
+
+            base.Dispose(disposing);
         }
     }
 }

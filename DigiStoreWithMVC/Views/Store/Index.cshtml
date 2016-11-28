@@ -1,5 +1,4 @@
 ﻿@model DigiStoreWithMVC.Models.User
-
 @{
     ViewBag.Title = "StorePage";
 }
@@ -7,100 +6,141 @@
 <div class="container">
     <div class="section">
         <div class="row">
-            <div class="container col s12">
+            <div class="card-content row">
+
+                <div class="parallax-container">
+                    @Html.Partial("_EditStoreLogo", Model)
+                </div>
+            </div>
+
+                <div class="col s12 m12 l12">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">Store Information</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col s12 m12 l6">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">Contact</span>
+                            @Html.Partial("_EditStoreInfo", Model)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col s12 m12 l6">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">Rate This Store</span>
+                            @Html.Partial("_SubmitReview", new DigiStoreWithMVC.Models.SubmitReviewViewModel())
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col s12 m12 l6">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">Store Hours</span>
+                            @{ Html.RenderPartial("_EditStoreHours", Model); }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col s12 m12 l6">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">Reviews</span>
+                            <p>Populated from Database.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card-content row">
+                @{
+                    if (Model != null)
+                    {
+                        if (Model.Items.Count() > 0)
+                        {
+                            <div class="col s12 m12 l12">
+                                <div class="card">
+                                    <div class="card-content">
+                                        <span class="card-title">Products</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col s12 m12 l12">
+                                <div class="card">
+                                    <div class="card-content">
+
+                                        @foreach (DigiStoreWithMVC.Models.Item item in Model.Items)
+                                        {
+                                            @Html.Partial("_StoreItem", item)
+                                        }
+                                    </div>
+                                </div>
+                            </div>  
+                        }
+                        else
+                        {
+                        }
+                    }
+                    else
+                    {
+                    }
+                }
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@*
+<div class="container">
+    <div class="section">
+        <div class="row">
+            <div class="card-content row">
                 <div class="parallax-container">
                     <div class="parallax">
                         <img src="~/img/sample_store.jpg">
                     </div>
                 </div>
 
-                <div class="card-panel blue darken-3">
-                    <h5 class="card-title yellow-text accent-3">Store Information</h5>
-                    <div class="card-content row">
-                        <div class="card col l6 m6 s12">
-                            <div class="card-content">
-                                <span class="card-title">Contact</span>
+                <div class="card col s12">
+                    <div class="card-content">
+                        <span class="card-title">Store Information</span>
+                    </div>
+                </div>
 
-                                @using (Html.BeginForm())
-                                {
-                                    <p>
-                                        @Html.LabelFor(model => model.Address)
-                                        @Html.DisplayTextFor(model => model.Address)
-                                        <br />
-                                        @Html.LabelFor(model => model.City)
-                                        @Html.DisplayTextFor(model => model.City)
-                                        <br />
-                                        @Html.LabelFor(model => model.StateProv)
-                                        @Html.DisplayTextFor(model => model.StateProv)
-                                        <br />
-                                        @Html.LabelFor(model => model.Country)
-                                        @Html.DisplayTextFor(model => model.Country)
-                                        <br />
-                                        @Html.LabelFor(model => model.PostalCode)
-                                        @Html.DisplayTextFor(model => model.PostalCode)
-                                        <br />
-                                        @Html.LabelFor(model => model.PhoneNumber)
-                                        @Html.DisplayTextFor(model => model.PhoneNumber)
-                                        <br />
-                                        @Html.LabelFor(model => model.Email)
-                                        @Html.DisplayTextFor(model => model.Email)
-                                    </p>
-                                }
-                            </div>
-                        </div>
+                <div class="card col s6">
+                    <div class="card-content">
+                        <span class="card-title">Contact</span>
+                        @Html.Partial("_EditStoreInfo", Model)
+                    </div>
+                </div>
 
-                        <div class="card col l6 m6 s12">
-                            <div class="card-content">
-                                <span class="card-title">Store Hours</span>
+                <div class="card col s6">
+                    <div class="card-content">
+                        <span class="card-title">Rate This Store</span>
+                        @Html.Partial("_SubmitReview", new DigiStoreWithMVC.Models.SubmitReviewViewModel())
+                    </div>
+                </div>
 
-                                @*@using (Html.BeginForm())
-                                    {
-                                    <p>
-                                    @Html.LabelFor(model => model.Monday)
-                                    @Html.DisplayTextFor(model => model.Address)
-                                    <br />
-                                    </p>
-                                    }*@
-                                <p>
-                                    Monday: 9am - 5pm<br />
-                                    Tuesday: 9am - 5pm<br />
-                                    Wednesday: 9am - 5pm<br />
-                                    Thursday: 9am - 5pm<br />
-                                    Friday: 9am - 5pm<br />
-                                    Saturday: 9am - 5pm<br />
-                                    Sunday: 9am - 5pm<br />
-                                </p>
-                            </div>
-                        </div>
+                <div class="card col s6">
+                    <div class="card-content">
+                        <span class="card-title">Store Hours</span>
+                        @{ Html.RenderPartial("_EditStoreHours", Model); }
+                    </div>
+                </div>
 
-                        <div class="card col l6 m6 s12">
-                            <div class="card-content">
-                                <span class="card-title">Rate this store</span>
-                                <p class="range-field">
-                                    Select a rating between 1 - 5.
-                                    <input style="background-color: #1565c0" type="range" id="test5" min="1" max="5" />
-                                </p>
-
-                                @*
-                                    @using (Html.BeginForm())
-                                    {
-                                    @Html.EditorFor(model => model.ReviewText, new { @id = "ReviewText", @type = "text", @class = "validate" })
-                                    <button class="btn waves-effect waves-light blue darken-3 yellow-text accent-3" type="submit" name="submitButton">
-                                    Submit<i class="material-icons right">send</i>
-                                    </button>
-                                    <p>@ViewBag.Message</p>
-                                    }
-                                *@
-
-                            </div>
-                        </div>
-
-                        <div class="card col l6 m6 s12">
-                            <div class="card-content">
-                                <span class="card-title">Reviews</span>
-                                <p>Populated from Database.</p>
-                            </div>
-                        </div>
+                <div class="card col s6">
+                    <div class="card-content">
+                        <span class="card-title">Reviews</span>
+                        <p>Populated from Database.</p>
                     </div>
                 </div>
             </div>
@@ -108,42 +148,45 @@
         <div class="card-panel blue darken-3">
             <h5 class="card-title yellow-text accent-3">Products</h5>
             <div class="card-content row">
-
-                @*
-                    The below for loop is an example of our html generator. This style will allow
-                    us to generate a list of products from our database while keeping the
-                    formatting (visual style) of our site.
-                *@
-
-                @for (int i = 0; i < 3; i++)
-                {
-
-                    <div class="card col s12 m6 l6">
-                        <div class="card-image waves-effect waves-block waves-light" align="center">
-                            <img class="activator" src="~/img/whitedressshirt.png" style="width: 125px">
+                @{
+                    if (Model != null)
+                    {
+                        if (Model.Items.Count() > 0)
+                        {
+                            foreach (DigiStoreWithMVC.Models.Item item in Model.Items)
+                            {
+                                @Html.Partial("_StoreItem", item)
+                            }
+                            else if (!item.Deleted.Value)
+                            {
+                                @Html.Partial("_StoreItem", item)
+                            }
+                        }
+                    }
+                    else
+                    {
+                        <div class="card">
+                            <h2 class="center">This store is empty.</h2>
                         </div>
-                        <div class="card-content">
-                            <span class="card-title activator grey-text text-darken-4">Product Name<i class="material-icons right">more_vert</i></span>
-                            <div class="card-action">                          
-                                    <select class="col s4">
-                                        <option value="" disabled selected>Qty</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                    </select>
-                                <div align="right">
-                                    <a class="waves-effect waves-light btn blue darken-3 yellow-text accent-3"><i class="material-icons left">add_shopping_cart</i>Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-reveal">
-                            <span class="card-title grey-text text-darken-4">Product Name<i class="material-icons right">close</i></span>
-                            <p>Product Description.</p>
-                        </div>
-                    </div>
-
+                    }
                 }
-            </div>
+                else
+                {
+                }
+            }
         </div>
     </div>
 </div>
+@section scripts {
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script>
+    $('.dropify').dropify({
+        messages: {
+            'default': 'Drag and drop a file here or click',
+            'replace': 'Drag and drop or click to replace',
+            'remove': 'Remove',
+            'error': 'Ooops, something wrong appended.'
+        }
+    });
+</script>
+}

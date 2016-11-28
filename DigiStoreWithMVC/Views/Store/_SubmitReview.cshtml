@@ -1,0 +1,17 @@
+﻿@model DigiStoreWithMVC.Models.SubmitReviewViewModel
+
+<div id="newReview">
+    @using (Ajax.BeginForm("SubmitReview", "Store", new AjaxOptions { HttpMethod = "post", InsertionMode = InsertionMode.Replace, UpdateTargetId = "newReview" }))
+    {
+        @Html.HiddenFor(model => model.StoreOwnerEmail)
+        <p class="range-field">
+            Select a rating between 1 - 5.
+            @Html.TextBoxFor(model => model.ReviewRating, new { @id = "ReviewRating", @type = "range", @min = "1", @max = "5" })
+        </p>
+
+        @Html.EditorFor(model => model.ReviewText, new { @id = "ReviewText", @type = "text", @class = "validate" })
+        <button class="btn waves-effect waves-light blue darken-3 yellow-text accent-3" type="submit" name="submitButton">
+            Submit<i class="material-icons right">send</i>
+        </button>
+    }
+</div>

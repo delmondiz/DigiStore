@@ -31,5 +31,8 @@ namespace DigiStoreWithMVC.Models
         public virtual DbSet<PaymentMethod> PaymentMethods { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Appointment> Appointments { get; set; }
+        public virtual DbSet<Store> Stores { get; set; }
+        public virtual DbSet<StoreHours> StoreHours { get; set; }
+        public virtual DbSet<Cart> Carts { get; set; }
     }
 }

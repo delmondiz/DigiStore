@@ -2,10 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>@ViewBag.Title</title>
-    <!-- Compiled and minified CSS -->
     @Styles.Render("~/Content/digistore")
 </head>
-<body>
+<body bgcolor="#F2F3F4">
     <header>
         <div class="navbar-fixed">
             <nav class="blue darken-3" role="navigation">
@@ -13,18 +12,26 @@
                     @Html.ActionLink("DigiStore", "Index", new { controller = "Home", action = "Index", id = UrlParameter.Optional }, htmlAttributes: new { @class = "brand-logo center yellow-text accent-3" })
                     <ul class="right hide-on-med-and-down">
                         <li>@Html.ActionLink("Home", "Index", new { controller = "Home", action = "Index", id = UrlParameter.Optional }, htmlAttributes: new { @class = "yellow-text accent-3" })</li>
-                        <li>@Html.ActionLink("Search", "Map", new { controller = "Home", action = "Map", id = UrlParameter.Optional }, htmlAttributes: new { @class = "yellow-text accent-3" })</li>
+                        <li>@Html.ActionLink("Search ", "Map", new { controller = "Home", action = "Map", id = UrlParameter.Optional }, htmlAttributes: new { @class = "yellow-text accent-3"})</li>
                         @{
+                            int badge = 0;
                             if (User.Identity.IsAuthenticated)
                             {
-                                <li>@Html.ActionLink("Cart", "ShoppingCart", new { controller = "Store", action = "ShoppingCart", id = UrlParameter.Optional }, htmlAttributes: new { @class = "yellow-text accent-3" })</li>
+                                if (Session["cart"] != null)
+                                {
+                                    foreach (DigiStoreWithMVC.Models.nItem item in (List<DigiStoreWithMVC.Models.nItem>)Session["cart"])
+                                    {
+                                        badge += item.Quantity;
+                                    }
+                                }
+                                <li ><a class="yellow-text accent-3" href="@Url.Action("Cart", "store")">@badge<i class="material-icons left">shopping_cart</i></a></li>
                             }
                         }
                         <li>
                             @{
                                 if (User.Identity.IsAuthenticated)
                                 {
-                                    <a class="dropdown-button centered" href="#" data-activates="accountDropdown" style="height: 100%">
+                                    <a class="dropdown-button center" href="#" data-activates="accountDropdown" style="height: 100%">
                                         <img class="circle" src="~/img/icon.png" height="30" width="30" />
                                     </a>
                                 }
@@ -35,99 +42,75 @@
                             }
                         </li>
                     </ul>
-                        <ul id="accountDropdown" class="dropdown-content">
-                            @{
-                                if (User.Identity.IsAuthenticated)
+                    <ul id="accountDropdown" class="dropdown-content">
+                        @{
+                            if (User.Identity.IsAuthenticated)
+                            {
+                                <li>@Html.ActionLink("Profile", "Index", new { controller = "Account", action = "Index" })</li>
+                                <li>@Html.ActionLink("Manage Store", "Index", new { controller = "Store", action = "Index", id = UrlParameter.Optional })</li>
+                                <li>@Html.ActionLink("Manage Items", "StoreInventory", new { controller = "Store", action = "StoreInventory", id = UrlParameter.Optional })</li>
+                                <li><a href="#">Order History</a></li>
+                                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { @name = "loggingOut" }))
                                 {
-                                    @*<li>@Html.ActionLink("Cart", "ShoppingCart", new { controller = "Store", action = "ShoppingCart", id = UrlParameter.Optional })</li>*@
-                                    <li>@Html.ActionLink("Profile", "Index", new { controller = "Account", action = "Index" })</li>
-                                    <li>@Html.ActionLink("Manage Store", "StoreInventory", new { controller = "Store", action = "Index", id = UrlParameter.Optional })</li>
-                                    <li><a href="#">Order History</a></li>
-                                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { @name = "loggingOut" }))
-                                    {
-                                        @Html.AntiForgeryToken()
-                                        <li><a href="#" onclick="document.forms['loggingOut'].submit(); ;return false;">Log Off</a></li>
-                                    }
-                                }
-                                else
-                                {
-                                    <li>@Html.ActionLink("Log In", "Login", new { controller = "Account", action = "Login" })</li>
+                                    @Html.AntiForgeryToken()
+                                    <li><a href="#" onclick="document.forms['loggingOut'].submit(); ;return false;">Log Off</a></li>
                                 }
                             }
-                        </ul>
-                        <ul id="nav-mobile" class="side-nav">
-                            <h4 class="center blue-text darken-3">Digistore</h4>
-                            <li>
-                                <div class="divider"></div>
-                            </li>
-                            <li>@Html.ActionLink("Home", "Index", new { controller = "Home", action = "Index" })</li>
-                            <li>@Html.ActionLink("Search", "Map", new { controller = "Home", action = "Map" })</li>
-                            @{
-                                if (User.Identity.IsAuthenticated)
-                                {
-                                    @*<li>@Html.ActionLink("Cart", "ShoppingCart", new { controller = "Store", action = "ShoppingCart" })</li>*@
-                                    <li>
-                                        <div class="divider"></div>
-                                    </li>
-                                    <li>@Html.ActionLink("Profile", "Index", new { controller = "Account", action = "Index" })</li>
-                                    <li>@Html.ActionLink("Manage Store", "StoreInventory", new { controller = "Store", action = "Index" })</li>
-                                    <li><a href="#">Order History</a></li>
-                                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { @name = "loggingOutMobile" }))
-                                    {
-                                        @Html.AntiForgeryToken()
-                                        <li><a href="#" onclick="document.forms['loggingOutMobile'].submit(); ;return false;">Log Off</a></li>
-                                    }
-                                }
-                                else
-                                {
-                                    <li>@Html.ActionLink("Log In", "Login", new { controller = "Account", action = "Login" })</li>
-                                }
+                            else
+                            {
+                                <li>@Html.ActionLink("Log In", "Login", new { controller = "Account", action = "Login" })</li>
                             }
-                        </ul>
-
-                        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-                    </div>
-                </nav>
-            </div>
-        </header>
-        <main>
-            @RenderBody()
-        </main>
-        <footer class="page-footer blue darken-3">
-            <div class="container">
-                <div class="row">
-                    <div class="col s12 l6">
-                        <h5 class="yellow-text accent-3">Company Bio</h5>
-                        <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
-                    </div>
-                    @{
-                        if (User.Identity.IsAuthenticated)
-                        {
-                            <div class="col l3 m3 s12">
-                                <h5 class="yellow-text accent-3">Settings</h5>
-                                <ul>
-                                    <li>@Html.ActionLink("Profile", "Index", new { controller = "Account", action = "Index" }, htmlAttributes: new { @class = "yellow-text accent-3" })</li>
-                                    <li>@Html.ActionLink("My Store", "Index", new { controller = "Store", action = "Index" }, htmlAttributes: new { @class = "yellow-text accent-3" })</li>
-                                </ul>
-                            </div>
                         }
-                    }
-                    <div class="col s12 m3 l3">
-                        <h5 class="yellow-text accent-3">Connect</h5>
-                        <ul>
-                            <li>@Html.ActionLink("Contact Us", "Contact", new { controller = "Home", action = "Contact" }, htmlAttributes: new { @class = "yellow-text accent-3" })</li>
-                        </ul>
-                    </div>
+                    </ul>
+                    <ul id="nav-mobile" class="side-nav">
+                        <h4 class="center blue-text darken-3">Digistore</h4>
+                        <li>
+                            <div class="divider"></div>
+                        </li>
+                        <li>@Html.ActionLink("Home", "Index", new { controller = "Home", action = "Index" })</li>
+                        <li>@Html.ActionLink("Search", "Map", new { controller = "Home", action = "Map" })</li>
+                        @{
+                            if (User.Identity.IsAuthenticated)
+                            {
+                                <li>@Html.ActionLink("Cart", "Cart", new { controller = "Store", action = "Cart" })</li>
+                                <li>
+                                    <div class="divider"></div>
+                                </li>
+                                <li>@Html.ActionLink("Profile", "Index", new { controller = "Account", action = "Index" })</li>
+                                <li>@Html.ActionLink("Manage Store", "Index", new { controller = "Store", action = "Index", id = UrlParameter.Optional })</li>
+                                <li>@Html.ActionLink("Manage Items", "StoreInventory", new { controller = "Store", action = "StoreInventory", id = UrlParameter.Optional })</li>
+                                    <li><a href="#">Order History</a></li>
+                                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { @name = "loggingOutMobile" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <li><a href="#" onclick="document.forms['loggingOutMobile'].submit(); ;return false;">Log Off</a></li>
+                                }
+                            }
+                            else
+                            {
+                                <li>@Html.ActionLink("Log In", "Login", new { controller = "Account", action = "Login" })</li>
+                            }
+                        }
+                    </ul>
+                    <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
                 </div>
-            </div>
-            <div class="footer-copyright blue darken-4">
-                <div class="container yellow-text accent-3">
-                    <p>Made by Oceans4 | Powered by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a></p>
-                </div>
-            </div>
-        </footer>
+            </nav>
+        </div>
+    </header>
+    <main style="min-height:calc(100vh - 154px);">
+        @RenderBody()
+    </main>
+    <footer class="page-footer blue darken-3">
+        <div class="container yellow-text accent-3">
+            <p>
+                Made by Oceans11 | Powered by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+                | @Html.ActionLink("Contact Us", "Contact", new { controller = "Home", action = "Contact" }, htmlAttributes: new { @class = "orange-text text-lighten-3" })
+            </p>
+        </div>
+    </footer>
 
-        @Scripts.Render("~/bundles/digistore")
-        @RenderSection("scripts", required: false)
-    </body>
+    @Scripts.Render("~/bundles/digistore")
+    @RenderSection("scripts", required: false)
+</body>
+
 </html>
