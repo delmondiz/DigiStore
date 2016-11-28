@@ -31,14 +31,25 @@
                                         s += (nitem.Ite.Price * nitem.Quantity);
                                         <tr>
                                             <td>@nitem.Ite.Name</td>
-                                            <td>@nitem.Ite.Price</td>
+                                            <td>$@nitem.Ite.Price</td>
                                             <td>@nitem.Quantity</td>
-                                            <td>@(nitem.Ite.Price * nitem.Quantity)</td>
+                                            <td>$@(nitem.Ite.Price * nitem.Quantity)</td>
                                             <td>@Html.ActionLink("Remove", "Remove", "Store", new { id = nitem.Ite.Id }, null)</td>
                                         </tr>
                                     }
+                                    @{
+                                        decimal t = s * (decimal)0.13;
+                                        decimal gt = s + t;
+
+                                    }
                                     <tr>
-                                        <th>Total: @s</th>
+                                        <th>Total: $@s</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Tax: $@t</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Grad Total: $@gt</th>
                                     </tr>
                                 </tbody>
                             </table>
