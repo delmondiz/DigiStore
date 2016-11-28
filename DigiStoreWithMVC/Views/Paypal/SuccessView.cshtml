@@ -1,204 +1,78 @@
 ﻿@model DigiStoreWithMVC.Models.User
 @{
     ViewBag.Title = "SuccessView";
-    DigiStoreWithMVC.Models.Order order = Model.Orders.Last();
+    DigiStoreWithMVC.Models.Order order = Model.Orders.ElementAt(Model.Orders.Count - 1);
 }
-@{ 
+@{
     decimal sub = 0;
 
 }
-<div id="main">
-    <!-- START WRAPPER -->
-    <div class="wrapper">
-        <!-- START CONTENT -->
-        <section id="content">
 
-            <!--breadcrumbs start-->
-            <div id="breadcrumbs-wrapper">
-                <!-- Search for small screen -->
-                <div  class="header-search-wrapper grey hide-on-large-only">
-                    <i class="mdi-action-search active"></i>
-                    <input type="text" name="Search" class="header-search-input z-depth-2" placeholder="Explore Materialize">
-                </div>
-                <div class="container">
-                    <div class="row">
-                        <div class="col s12 m12 l12">
-                            <h5 class="breadcrumbs-title">Invoice</h5>
-                            <ol class="breadcrumbs">
-                                <li>
-                                    <a href="#">Dashboard</a>
-                                </li>
-                                <li>
-                                    <a href="#">Pages</a>
-                                </li>
-                                <li class="active">Invoice</li>
-                            </ol>
-                        </div>
+<div class="container">
+    <div class="section">
+        <div clss="row">
+            <div class="col s12 m12 l6">
+                <div class="card">
+                    <div class="card-content">
+                        <img src="~/img/DigiStoreLogo.png" style="width:100px;height:100px;" /><br />
+                        <span class="card-title">Invoice</span><br />
+                        <p class="left-align">
+                            <span class="strong">Company Name LLC</span>
+                            <br>
+                            <span>1234, Main St.</span>
+                            <br>
+                            <span>New York, USA</span>
+                            <br>
+                            <span>(555) 555-5555</span>
+                            <br />
+                            <span>www.exampledomain.com</span>
+                        </p>
+                        <br />
+                        <p>Invoice Number: MT_A_124563</p>
+                        <p>Payment Method: Paypal</p><br />
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (DigiStoreWithMVC.Models.Item orderItem in order.Items)
+                                {
+                                    sub = (orderItem.Price * orderItem.Quantity);
+
+                                    <tr>
+                                        <td>@orderItem.Id</td>
+                                        <td>@orderItem.Name</td>
+                                        <td>@orderItem.Quantity</td>
+                                        <td>$@orderItem.Price</td>
+                                    </tr>
+
+                                }
+                                <tr>
+                                    <td colspan="2"></td>
+                                    <td><b>Sub Total:</b></td>
+                                    <td>$@sub</td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="2"></td>
+                                    <td><b>Service Tax:</b></td>
+                                    <td>13.00%</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"></td>
+                                    <td><b>Grand Total:</b></td>
+                                    <td>$@order.TotalPrice</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-            <!--breadcrumbs end-->
-            <!--start container-->
-            <div class="container">
-                <div id="invoice">
-                    <div class="invoice-header">
-                        <div class="row section">
-                            <div class="col s12 m6 l6">
-                                <img src="~/img/DigiStoreLogo.png" />
-                                @*here we will place the Customer Information*@
-                                <p>
-                                    To,
-                                    <br>
-                                    <span class="strong">Jonathan Doe</span>
-                                    <br>
-                                    <span>125, ABC Street,</span>
-                                    <br>
-                                    <span>New Yourk, USA</span>
-                                    <br>
-                                    <span>+91-(444)-(333)-(221)</span>
-                                </p>
-                            </div>
-
-                            <div class="col s12 m6 l6">
-                                <div class="invoce-company-address right-align">
-                                    <span class="invoice-icon"><i class="mdi-social-location-city cyan-text"></i></span>
-                                    @*maybe we can put the company information here unless is from muiltiple but i guess we can discuss this*@
-                                    <p>
-                                        <span class="strong">Company Name LLC</span>
-                                        <br>
-                                        <span>125, ABC Street,</span>
-                                        <br>
-                                        <span>New Yourk, USA</span>
-                                        <br>
-                                        <span>+91-(444)-(333)-(221)</span>
-                                    </p>
-                                </div>
-
-                                <div class="invoce-company-contact right-align">
-                                    <span class="invoice-icon"><i class="mdi-communication-quick-contacts-mail cyan-text"></i></span>
-                                    <p>
-                                        <span class="strong">www.exampledomain.com</span>
-                                        <br>
-                                        <span>info@exampledomain.com</span>
-                                        <br>
-                                        <span>admin@exampledomain.com</span>
-                                    </p>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="invoice-lable">
-                        <div class="row">
-                            <div class="col s12 m3 l3 cyan">
-                                <h4 class="white-text invoice-text">INVOICE</h4>
-                            </div>
-                            <div class="col s12 m9 l9 invoice-brief cyan white-text">
-                                <div class="row">
-                                    <div class="col s12 m3 l3">
-                                        <p class="strong">Invoice No</p>
-                                        <h3 class="header">MT_A_124563</h3>
-                                    </div>
-                                
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="invoice-table">
-                        <div class="row">
-                            <div class="col s12 m12 l12">
-                                <table class="striped">
-                                    <thead>
-                                        <tr>
-                                            <th data-field="no">No</th>
-                                            <th data-field="item">Item</th>
-                                            <th data-field="uprice">Quantity</th>
-                                            <th data-field="price">Unit Price</th>
-                                            <th data-field="price">Total</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                        @foreach (DigiStoreWithMVC.Models.Item orderItem in order.Items)
-                                        {
-                                            sub = (orderItem.Price * orderItem.Quantity);
-                                            <tr>
-                                                <td>@orderItem.Id</td>
-                                                <td>@orderItem.Name</td>
-                                                <td>@orderItem.Quantity</td>
-                                                <td>$@orderItem.Price</td> 
-                                            </tr>
-                                            
-                                        }
-                                        <tr>
-                                            <td colspan="3"></td>
-                                            <td>Sub Total:</td>
-                                            <td>$@sub</td>
-                                        </tr>
-                                     
-                                        <tr>
-                                            <td colspan="3"></td>
-                                            <td>Service Tax</td>
-                                            <td>13.00%</td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="3"></td>
-                                            <td class="cyan white-text">Grand Total</td>
-                                            <td class="cyan strong white-text">$@order.TotalPrice</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="invoice-footer">
-                        <div class="row">
-                            <div class="col s12 m6 l6">
-                                <p class="strong">Payment Method</p>
-                                <p>Please make the cheque to: AMANDA ORTON</p>
-                                <p class="strong">Terms &amp; Condition</p>
-                                <ul>
-                                    <li>You know, being a test pilot isn't always the healthiest business in the world.</li>
-                                    <li>We predict too much for the next year and yet far too little for the next 10.</li>
-                                </ul>
-                            </div>
-                            <div class="col s12 m6 l6 center-align">
-                                <p>Approved By</p>
-                                <img src="images/signature-scan.png" alt="signature">
-                                <p class="header">AMANDA ORTON</p>
-                                <p>Managing Director</p>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <!-- Floating Action Button -->
-                <div class="fixed-action-btn" style="bottom: 50px; right: 19px;">
-                    <a class="btn-floating btn-large">
-                        <i class="mdi-action-stars"></i>
-                    </a>
-                    <ul>
-                        <li><a href="css-helpers.html" class="btn-floating red"><i class="large mdi-communication-live-help"></i></a></li>
-                        <li><a href="app-widget.html" class="btn-floating yellow darken-1"><i class="large mdi-device-now-widgets"></i></a></li>
-                        <li><a href="app-calendar.html" class="btn-floating green"><i class="large mdi-editor-insert-invitation"></i></a></li>
-                        <li><a href="app-email.html" class="btn-floating blue"><i class="large mdi-communication-email"></i></a></li>
-                    </ul>
-                </div>
-                <!-- Floating Action Button -->
-            </div>
-            <!--end container-->
-
-        </section>
-        <!-- END CONTENT -->
-        <!-- //////////////////////////////////////////////////////////////////////////// -->
-        <!-- START RIGHT SIDEBAR NAV-->
-
+        </div>
     </div>
-    <!-- END WRAPPER -->
-
 </div>
-
