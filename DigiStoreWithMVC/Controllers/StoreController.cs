@@ -380,32 +380,21 @@ namespace DigiStoreWithMVC.Controllers
             if (Session["cart"] == null)
             {
                 List<nItem> cart = new List<nItem>();
-                Item itemForCart = db.Items.Find(id);
-                if (itemForCart.Quantity >= quantity)
-                    cart.Add(new nItem(itemForCart, quantity));
-                else
-                    cart.Add(new nItem(itemForCart, itemForCart.Quantity));
+                cart.Add(new nItem(db.Items.Find(id), quantity));
                 Session["cart"] = cart;
             }
             else
             {
                 List<nItem> cart = (List<nItem>)Session["cart"];
                 int index = itemIsThere(id);
-                Item itemForCart = db.Items.Find(id);
                 if (index == -1)
                 {
-                    if (itemForCart.Quantity >= quantity)
-                        cart.Add(new nItem(itemForCart, quantity));
-                    else
-                        cart.Add(new nItem(itemForCart, itemForCart.Quantity));
+                    cart.Add(new nItem(db.Items.Find(id), quantity));
                 }
 
                 else
                 {
-                    if (itemForCart.Quantity >= cart[index].Quantity + quantity)
-                        cart[index].Quantity += quantity;
-                    else
-                        cart[index].Quantity = itemForCart.Quantity;
+                    cart[index].Quantity += quantity;
                     Session["cart"] = cart;
                 }
 

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace DigiStoreWithMVC.Controllers
+namespace MvcApplication1.Controllers
 {
     public class PaypalController : Controller
     {
@@ -208,42 +208,18 @@ namespace DigiStoreWithMVC.Controllers
 
                     if (executedPayment.state.ToLower() != "approved")
                     {
-                        Session["cartError"] = "Your Payment Cannot be Processed. Please Try Again";
-                        return RedirectToAction("Cart", "Store");
+                        ViewData["high"] = "Your Payment Cannot be Proccessed please Try Again";
+                        return View("FailureView");
                     }
 
                 }
             }
             catch (Exception ex)
             {
-                Session["cartError"] = "Your Payment Cannot be Processed. Please Try Again";
+                ViewData["high"] = "Your Payment Cannot be Proccessed please Try Again";
                 Logger.Log("Error" + ex.Message);
-                return RedirectToAction("Cart", "Store");
+                return View("FailureView");
             }
-
-            // If we reach here, the payment was successful.
-            // Creating a Order for the User
-            User currentUser = ModelHelpers.GetCurrentUser(db);
-            Models.Order order = new Models.Order();
-            order.Id = db.Orders.Count() + 8;
-            order.Tax = 0;
-            order.TotalPrice = 0;
-            foreach (nItem item in (List<nItem>)Session["cart"])
-            {
-                order.Items.Add(item.Ite);
-                order.Tax += item.Ite.Price * item.Ite.Quantity * 0.13M;
-                order.TotalPrice += item.Ite.Price * item.Ite.Quantity;
-
-                // Modifying the current Items' Quantities
-                db.Items.Where(i => i.Id == item.Ite.Id).First().Quantity -= item.Quantity;
-            }
-            order.TotalPrice += order.Tax;
-            currentUser.Orders.Add(order);
-            
-            // Lest we forgetti, Save the Spaghetti
-            db.SaveChanges();
-            // Empty the current cart.
-            Session["cart"] = new List<nItem>();
 
             return View("SuccessView");
         }
@@ -317,7 +293,7 @@ namespace DigiStoreWithMVC.Controllers
             transactionList.Add(new Transaction()
             {
                 description = "DigiStore Purchase",
-                invoice_number = (db.Orders.Count() + 8).ToString(),
+                invoice_number = (db.Orders.Count() + 1).ToString(),
                 amount = amount,
                 item_list = itemList
             });
