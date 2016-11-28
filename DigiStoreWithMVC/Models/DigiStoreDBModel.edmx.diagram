@@ -7,7 +7,7 @@
       <Diagram DiagramId="5d6163ca174e477481c502ee09929921" Name="Diagram1" >
         <EntityTypeShape EntityType="DigiStoreDBModel.User" Width="1.5" PointX="2.5" PointY="0.5" />
         <EntityTypeShape EntityType="DigiStoreDBModel.Item" Width="1.5" PointX="4.375" PointY="0.5" />
-        <EntityTypeShape EntityType="DigiStoreDBModel.Review" Width="1.5" PointX="6.5" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DigiStoreDBModel.Review" Width="1.5" PointX="6.375" PointY="3.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DigiStoreDBModel.PaymentMethod" Width="1.5" PointX="0.5" PointY="0.5" />
         <EntityTypeShape EntityType="DigiStoreDBModel.Order" Width="1.5" PointX="4.375" PointY="4" />
         <AssociationConnector Association="DigiStoreDBModel.UserPaymentMethod" />
