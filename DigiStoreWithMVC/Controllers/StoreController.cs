@@ -76,26 +76,34 @@ namespace DigiStoreWithMVC.Controllers
         [HttpPost]
         public ActionResult SubmitReview(SubmitReviewViewModel model)
         {
-            if (ModelState.IsValid)
+            if (User.Identity.IsAuthenticated)
             {
-                using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
+                if (ModelState.IsValid)
                 {
-                    User storeOwner = ModelHelpers.GetUserByEmail(db, model.StoreOwnerEmail);
-                    Review newReview = db.Reviews.Create();
-                    if (model.ReviewText != null)
-                        newReview.ReviewText = model.ReviewText;
-                    if (model.ReviewRating != 0)
-                        newReview.Rating = model.ReviewRating;
-                    newReview.Date = DateTime.Now;
-                    storeOwner.Reviews.Add(newReview);
-                    db.SaveChanges();
-                    return PartialView("_ReviewSuccess");
+                    using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
+                    {
+                        User storeOwner = ModelHelpers.GetUserByEmail(db, model.StoreOwnerEmail);
+                        Review newReview = db.Reviews.Create();
+                        if (model.ReviewText != null)
+                            newReview.ReviewText = model.ReviewText;
+                        if (model.ReviewRating != 0)
+                            newReview.Rating = model.ReviewRating;
+                        newReview.Date = DateTime.Now;
+                        User existingUser = ModelHelpers.GetCurrentUser(db);
+                        newReview.ReviewerName = existingUser.UserName;
+                        storeOwner.Reviews.Add(newReview);
+                        db.SaveChanges();
+                        return PartialView("_ReviewSuccess");
+                    }
+                }
+                else
+                {
+                    ViewBag.ReviewError = "Please enter 1-5 for the rating, and a review.";
+                    return PartialView("_SubmitReview", model);
                 }
             }
             else
-            {
-                return PartialView("_ReviewFailure");
-            }
+                return RedirectToAction("Login", "Account");
         }
 
         public ActionResult RandomStore()

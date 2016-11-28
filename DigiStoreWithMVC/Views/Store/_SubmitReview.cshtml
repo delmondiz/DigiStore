@@ -4,6 +4,7 @@
     if (User.Identity.Name != Model.StoreOwnerEmail)
     {
         <div id="newReview">
+            <span class="red-text">@ViewBag.ReviewError</span>
             @using (Ajax.BeginForm("SubmitReview", "Store", new AjaxOptions { HttpMethod = "post", InsertionMode = InsertionMode.Replace, UpdateTargetId = "newReview" }))
             {
                 @Html.HiddenFor(model => model.StoreOwnerEmail)

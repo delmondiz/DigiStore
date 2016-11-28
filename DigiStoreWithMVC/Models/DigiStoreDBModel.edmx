@@ -133,6 +133,7 @@
     <Property Name="ReviewText" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Rating" Type="int" Nullable="false" />
     <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="ReviewerName" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="PaymentMethods">
     <Key>
@@ -573,6 +574,7 @@
           <NavigationProperty Name="Users" Relationship="DigiStoreDBModel.UserReview" FromRole="Review" ToRole="User" />
           <Property Name="Rating" Type="Int32" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ReviewerName" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="PaymentMethod">
           <Key>
@@ -753,6 +755,7 @@
           <ScalarProperty Name="ReviewText" ColumnName="ReviewText" />
           <ScalarProperty Name="Rating" ColumnName="Rating" />
           <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="ReviewerName" ColumnName="ReviewerName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

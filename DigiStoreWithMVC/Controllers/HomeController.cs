@@ -45,6 +45,7 @@ namespace DigiStoreWithMVC.Controllers
                         newReview.ReviewText = model.ReviewText;
                     newReview.Rating = 0;
                     newReview.Date = DateTime.Now;
+                    newReview.ReviewerName = "digistore@gmail.com";
                     db.Reviews.Add(newReview);
                     db.SaveChanges();
                     ViewBag.Message = "Review Submitted! Thanks!";

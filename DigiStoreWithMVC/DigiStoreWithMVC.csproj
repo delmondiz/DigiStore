@@ -326,6 +326,7 @@
     <Content Include="img\sample_store.jpg" />
     <Content Include="img\shoe_store_2.jpeg" />
     <Content Include="img\steam.png" />
+    <Content Include="img\sub\pic6.jpg" />
     <Content Include="img\tryn.png" />
     <Content Include="img\twitter.png" />
     <Content Include="img\vi.png" />
@@ -375,6 +376,7 @@
     <Content Include="fonts\dropify.woff" />
     <None Include="Properties\PublishProfiles\KN.pubxml" />
     <Content Include="Models\DigiStoreDBModelUpdatedItem.edmx.sql" />
+    <Content Include="Models\DigiStoreDBModelUpdatedReview.edmx.sql" />
     <Content Include="Models\DigiStoreDBModelwStorePicture.edmx.sql" />
     <Content Include="Scripts\demo.scss" />
     <Content Include="Scripts\dropify.scss" />
@@ -458,7 +460,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="img\sub\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
