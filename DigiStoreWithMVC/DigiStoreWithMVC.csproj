@@ -341,6 +341,7 @@
       <LastGenOutput>DigiStoreDBModel.cs</LastGenOutput>
       <DependentUpon>DigiStoreDBModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Models\DigiStoreDBModelBetaFinal.edmx.sql" />
     <Content Include="Models\DigiStoreDBModelLatest.edmx.sql" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

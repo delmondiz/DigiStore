@@ -16,8 +16,6 @@
         <EntityTypeShape EntityType="DigiStoreDBModel.Appointment" Width="1.5" PointX="0.5" PointY="2.875" />
         <AssociationConnector Association="DigiStoreDBModel.UserAppointment" />
         <AssociationConnector Association="DigiStoreDBModel.OrderAppointment" ></AssociationConnector>
-        <AssociationConnector Association="DigiStoreDBModel.OrderPaymentMethod" ManuallyRouted="false" >
-        </AssociationConnector>
         <AssociationConnector Association="DigiStoreDBModel.OrderItem" />
         <AssociationConnector Association="DigiStoreDBModel.UserItem" />
         <EntityTypeShape EntityType="DigiStoreDBModel.Store" Width="1.5" PointX="6.125" PointY="0.5" />

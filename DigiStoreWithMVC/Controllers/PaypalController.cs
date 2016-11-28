@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace MvcApplication1.Controllers
+namespace DigiStoreWithMVC.Controllers
 {
     public class PaypalController : Controller
     {
@@ -208,18 +208,42 @@ namespace MvcApplication1.Controllers
 
                     if (executedPayment.state.ToLower() != "approved")
                     {
-                        ViewData["high"] = "Your Payment Cannot be Proccessed please Try Again";
-                        return View("FailureView");
+                        Session["cartError"] = "Your Payment Cannot be Processed. Please Try Again";
+                        return RedirectToAction("Cart", "Store");
                     }
 
                 }
             }
             catch (Exception ex)
             {
-                ViewData["high"] = "Your Payment Cannot be Proccessed please Try Again";
-                Logger.Log("Error"+ ex.Message);
-                return View("FailureView");
+                Session["cartError"] = "Your Payment Cannot be Processed. Please Try Again";
+                Logger.Log("Error" + ex.Message);
+                return RedirectToAction("Cart", "Store");
             }
+
+            // If we reach here, the payment was successful.
+            // Creating a Order for the User
+            User currentUser = ModelHelpers.GetCurrentUser(db);
+            Models.Order order = new Models.Order();
+            order.Id = db.Orders.Count() + 8;
+            order.Tax = 0;
+            order.TotalPrice = 0;
+            foreach (nItem item in (List<nItem>)Session["cart"])
+            {
+                order.Items.Add(item.Ite);
+                order.Tax += item.Ite.Price * item.Ite.Quantity * 0.13M;
+                order.TotalPrice += item.Ite.Price * item.Ite.Quantity;
+
+                // Modifying the current Items' Quantities
+                db.Items.Where(i => i.Id == item.Ite.Id).First().Quantity -= item.Quantity;
+            }
+            order.TotalPrice += order.Tax;
+            currentUser.Orders.Add(order);
+            
+            // Lest we forgetti, Save the Spaghetti
+            db.SaveChanges();
+            // Empty the current cart.
+            Session["cart"] = new List<nItem>();
 
             return View("SuccessView");
         }
@@ -238,15 +262,46 @@ namespace MvcApplication1.Controllers
 
             //similar to credit card create itemlist and add item objects to it
             var itemList = new ItemList() { items = new List<PayPal.Api.Item>() };
+            List<PayPal.Api.Item> items = new List<PayPal.Api.Item>();
 
-            itemList.items.Add(new PayPal.Api.Item()
+            decimal calculatetax = 0;
+            decimal calculatesub = 0;
+            decimal calculatetotal = 0;
+
+            foreach (var cartitem in (List<nItem>)Session["cart"])
             {
-                name = "Item Name",
+
+                itemList.items.Add(new PayPal.Api.Item()
+                {
+                    name = cartitem.Ite.Name,
+                    currency = "USD",
+                    price = cartitem.Ite.Price.ToString(),
+                    quantity = cartitem.Quantity.ToString(),
+                    sku = cartitem.Ite.Id.ToString()
+
+                });
+                calculatetax += Convert.ToDecimal(cartitem.Ite.Price * cartitem.Quantity * (decimal)0.13);
+                calculatesub += Convert.ToDecimal(cartitem.Ite.Price * cartitem.Quantity);
+            }
+
+            var details = new Details()
+            {
+                tax = "0",
+                shipping = "0",
+                subtotal = "0"
+            };
+            calculatetotal = calculatetax + calculatesub;
+            details.tax = calculatetax.ToString();
+            details.subtotal = calculatesub.ToString();
+
+            var amount = new Amount()
+            {
                 currency = "USD",
-                price = "5",
-                quantity = "1",
-                sku = "sku"
-            });
+                total = "0", // Total must be equal to sum of shipping, tax and subtotal.
+                details = details
+            };
+            amount.total = calculatetotal.ToString();
+
 
             var payer = new Payer() { payment_method = "paypal" };
 
@@ -257,28 +312,12 @@ namespace MvcApplication1.Controllers
                 return_url = redirectUrl
             };
 
-            // similar as we did for credit card, do here and create details object
-            var details = new Details()
-            {
-                tax = "1",
-                shipping = "1",
-                subtotal = "5"
-            };
-
-            // similar as we did for credit card, do here and create amount object
-            var amount = new Amount()
-            {
-                currency = "USD",
-                total = "7", // Total must be equal to sum of shipping, tax and subtotal.
-                details = details
-            };
-
             var transactionList = new List<Transaction>();
 
             transactionList.Add(new Transaction()
             {
-                description = "Transaction description.",
-                invoice_number = "your invoicew1",
+                description = "DigiStore Purchase",
+                invoice_number = (db.Orders.Count() + 8).ToString(),
                 amount = amount,
                 item_list = itemList
             });
