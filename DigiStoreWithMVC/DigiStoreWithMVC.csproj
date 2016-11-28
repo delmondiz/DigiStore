@@ -458,6 +458,7 @@
     <Content Include="Views\Store\_ReviewFailure.cshtml" />
     <Content Include="Views\Store\_StoreReviews.cshtml" />
     <Content Include="Views\Home\_StoreImagesWithLinks.cshtml" />
+    <Content Include="Views\Store\orderHistory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

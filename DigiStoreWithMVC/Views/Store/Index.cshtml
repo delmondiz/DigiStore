@@ -23,7 +23,19 @@
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title">Rate This Store</span>
-                        @Html.Partial("_SubmitReview", new DigiStoreWithMVC.Models.SubmitReviewViewModel())
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            if (User.Identity.Name != Model.Email)
+                            {
+                                @Html.Partial("_SubmitReview", new DigiStoreWithMVC.Models.SubmitReviewViewModel(Model.Email))
+                            }
+                        }
+                        else
+                        {
+                            <div>
+                                <p>Login to leave a review.</p>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
@@ -32,7 +44,7 @@
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title">Store Hours</span>
-                        @{ Html.RenderPartial("_EditStoreHours", Model); }
+                        @Html.Partial("_EditStoreHours", Model)
                     </div>
                 </div>
             </div>
