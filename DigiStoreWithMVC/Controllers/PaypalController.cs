@@ -238,15 +238,50 @@ namespace MvcApplication1.Controllers
 
             //similar to credit card create itemlist and add item objects to it
             var itemList = new ItemList() { items = new List<PayPal.Api.Item>() };
+            List<PayPal.Api.Item> items = new List<PayPal.Api.Item>();
+            
+            decimal calculatetax = 0;
+            decimal calculatesub = 0;
+            decimal calculatetotal = 0;
 
-            itemList.items.Add(new PayPal.Api.Item()
+            foreach (var cartitem in (List<nItem>)Session["cart"])
             {
-                name = "Item Name",
+
+                itemList.items.Add(new PayPal.Api.Item()
+                {
+                    name = cartitem.Ite.Name,
+                    currency = "USD",
+                    price = cartitem.Ite.Price.ToString(),
+                    quantity = cartitem.Quantity.ToString(),
+                    sku = cartitem.Ite.Id.ToString()
+                    
+                });
+                calculatetax += Convert.ToDecimal(cartitem.Ite.Price * cartitem.Quantity * (decimal)0.13);
+                calculatesub += Convert.ToDecimal(cartitem.Ite.Price * cartitem.Quantity);
+
+
+
+            }
+
+            var details = new Details()
+            {
+
+                tax = "0",
+                shipping = "0",
+                subtotal = "0"
+            };
+            calculatetotal = calculatetax + calculatesub;
+            details.tax = calculatetax.ToString();
+            details.subtotal = calculatesub.ToString();
+
+            var amount = new Amount()
+            {
                 currency = "USD",
-                price = "5",
-                quantity = "1",
-                sku = "sku"
-            });
+                total = "0", // Total must be equal to sum of shipping, tax and subtotal.
+                details = details
+            };
+            amount.total = calculatetotal.ToString();
+            
 
             var payer = new Payer() { payment_method = "paypal" };
 
@@ -258,27 +293,17 @@ namespace MvcApplication1.Controllers
             };
 
             // similar as we did for credit card, do here and create details object
-            var details = new Details()
-            {
-                tax = "1",
-                shipping = "1",
-                subtotal = "5"
-            };
+          
 
             // similar as we did for credit card, do here and create amount object
-            var amount = new Amount()
-            {
-                currency = "USD",
-                total = "7", // Total must be equal to sum of shipping, tax and subtotal.
-                details = details
-            };
+           
 
             var transactionList = new List<Transaction>();
 
             transactionList.Add(new Transaction()
             {
-                description = "Transaction description.",
-                invoice_number = "your invoicew1",
+                description = "DigiStore Purchase",
+                invoice_number = (db.Orders.Count() + 1).ToString(),
                 amount = amount,
                 item_list = itemList
             });
