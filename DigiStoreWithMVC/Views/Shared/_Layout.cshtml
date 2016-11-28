@@ -19,8 +19,8 @@
                         @{
                             if (User.Identity.IsAuthenticated)
                             {
-                                @*<li>@Html.ActionLink("Cart", "ShoppingCart", new { controller = "Store", action = "ShoppingCart", id = UrlParameter.Optional }, htmlAttributes: new { @class = "yellow-text accent-3 badge" })</li>*@
-                                <li><a href="#!" class="collection-item"><span class="badge" >0</span></a></li>
+                                <li>@Html.ActionLink("Cart", "Cart", new { controller = "Store", action = "cart", id = UrlParameter.Optional }, htmlAttributes: new { @class = "yellow-text accent-3 badge" })</li>
+                    
                             }
                         }
                         <li>
