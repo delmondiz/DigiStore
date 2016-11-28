@@ -262,7 +262,6 @@ namespace MvcApplication1.Controllers
 
             var details = new Details()
             {
-
                 tax = "0",
                 shipping = "0",
                 subtotal = "0"
@@ -288,12 +287,6 @@ namespace MvcApplication1.Controllers
                 cancel_url = redirectUrl,
                 return_url = redirectUrl
             };
-
-            // similar as we did for credit card, do here and create details object
-
-
-            // similar as we did for credit card, do here and create amount object
-
 
             var transactionList = new List<Transaction>();
 
