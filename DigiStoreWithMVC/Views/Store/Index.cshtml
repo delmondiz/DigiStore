@@ -50,7 +50,7 @@
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title">Reviews</span>
-                        <p>Populated from Database.</p>
+                        @Html.Partial("_StoreReviews", Model)
                     </div>
                 </div>
             </div>
@@ -72,15 +72,11 @@
                         </div>
 
                             <div class="col s12 m12 l12">
-                                <div class="card">
-                                    <div class="card-content">
 
                                         @foreach (DigiStoreWithMVC.Models.Item item in Model.Items)
                                         {
                                             @Html.Partial("_StoreItem", item)
                                         }
-                                    </div>
-                                </div>
                             </div>
                     }
                     else
