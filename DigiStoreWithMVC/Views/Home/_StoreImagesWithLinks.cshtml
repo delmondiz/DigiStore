@@ -1,0 +1,17 @@
+﻿@model IEnumerable<DigiStoreWithMVC.Models.Store>
+
+<div class="carousel carousel-slider center" data-indicators="true">
+    <div class="carousel-fixed-item center">
+        <h3 class="white-text" style="font-size:28px">Featured Stores</h3>
+    </div>
+
+    @foreach (DigiStoreWithMVC.Models.Store item in Model)
+    {
+            if (item.StorePicture != null)
+            {
+                <a class="carousel-item" href="~/store?storeName=@item.Name">
+                    <img src="@item.StorePicture">
+                </a>
+            }
+    }
+</div>

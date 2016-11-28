@@ -109,6 +109,13 @@ namespace DigiStoreWithMVC.Controllers
             }
         }
 
+        internal static List<Store> GetStores(DigiStoreDBModelContainer db)
+        {
+            List<Store> allStores = (from stores in db.Stores
+                                     where stores.StorePicture != null
+                                     select stores).ToList();
+            return allStores;
+        }
         //internal static string saveImageOnServer(DigiStoreDBModelContainer db, HttpPostedFileBase picture, int id)
         //{
         //    string imagePath = "";

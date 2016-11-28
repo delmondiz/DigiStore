@@ -15,14 +15,16 @@ namespace DigiStoreWithMVC.Controllers
 
         public ActionResult Index()
         {
-            User currentUser = ModelHelpers.GetCurrentUser(db);
+            StoreListingViewModel slvm = new StoreListingViewModel();
+            slvm.curUser = ModelHelpers.GetCurrentUser(db);
+            slvm.Stores = ModelHelpers.GetStores(db);
 
-            if (currentUser == null)
+            if (slvm.curUser == null)
             {
-                return View();
+                return View("Index", slvm);
             }
 
-            return View(currentUser);
+            return View("Index", slvm);
         }
 
         public ActionResult Contact()
@@ -103,6 +105,11 @@ namespace DigiStoreWithMVC.Controllers
             }
             else
                 return new EmptyResult();
+        }
+
+        public PartialViewResult _StoreImagesWithLinks(IEnumerable<Store> store)
+        {
+            return PartialView("_StoreImagesWithLinks");
         }
 
         protected override void Dispose(bool disposing)

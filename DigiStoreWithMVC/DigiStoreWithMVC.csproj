@@ -259,6 +259,7 @@
       <DependentUpon>DigiStoreDBModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\DigistoreIdentityModels.cs" />
+    <Compile Include="Models\StoreListingViewModel.cs" />
     <Compile Include="Models\SubmitReviewViewModel.cs" />
     <Compile Include="Models\HomeViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -456,6 +457,7 @@
     <Content Include="Views\Store\_ReviewSuccess.cshtml" />
     <Content Include="Views\Store\_ReviewFailure.cshtml" />
     <Content Include="Views\Store\_StoreReviews.cshtml" />
+    <Content Include="Views\Home\_StoreImagesWithLinks.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
