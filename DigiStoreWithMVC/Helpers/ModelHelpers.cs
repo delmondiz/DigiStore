@@ -88,6 +88,7 @@ namespace DigiStoreWithMVC.Controllers
                     user.Store.PostalCode = "";
                     user.Store.PhoneNumber = "";
                     user.Store.StateProv = "";
+                    user.Store.StorePicture = "";
                 }
 
                 // If the user's store doesn't have hours, we add them now.

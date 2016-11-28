@@ -43,9 +43,7 @@ namespace DigiStoreWithMVC.Controllers
                     newReview.Id = db.Reviews.Count();
                     if(model.ReviewText != null)
                         newReview.ReviewText = model.ReviewText;
-                    //if(model.ReviewRating != 0)
-                    //    newReview.Rating = model.ReviewRating;
-                    newReview.Rating = 1; //temp line
+                    newReview.Rating = 0;
                     newReview.Date = DateTime.Now;
                     db.Reviews.Add(newReview);
                     db.SaveChanges();
@@ -97,6 +95,7 @@ namespace DigiStoreWithMVC.Controllers
                 {
                     List<Item> items = (from i in db.Items
                                         where i.Name.ToLower().Contains(inputSearch.ToLower())
+                                        && i.Deleted.Value != true
                                         select i).ToList();
                     return PartialView("_GoogleResultsItems", items);
                 }

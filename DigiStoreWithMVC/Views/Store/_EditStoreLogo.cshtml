@@ -2,23 +2,26 @@
 
 @if (Model.Email == User.Identity.Name)
 {
-    <div class="col s12 m12">
-        <label for="picture">Upload Image Here</label>
-        <input name="picture" type="file" class="dropify" />
-    </div>
-    <div class="col s2">
-        <button class="btn btn-large valign waves-effect waves-light blue darken-3 yellow-text accent-3 col s2 m3" type="submit" name="submitSearch" style="padding:0; width:100%">
-            <span class="hide-on-med-and-down"><i class="material-icons right">library_add</i>Save Image</span>
-            <span class="hide-on-large-only"><i class="material-icons center">library_add</i></span>
-        </button>
-    </div>
-}
-else
-{
-    <div class="col s12 m12">
+    using (Html.BeginForm("EditStoreLogo", "Store", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="col s12 ">
+            <label for="picture">Upload Image Here</label>
+            <input name="picture" type="file" class="dropify" data-height="175"/>
+        </div>
+        <div class="col s2">
+            <button class="btn btn-large valign waves-effect waves-light blue darken-3 yellow-text accent-3 col s2 m3" type="submit" style="padding:0; width:100%">
+                <span class="hide-on-med-and-down"><i class="material-icons right">library_add</i>Save Image</span>
+                <span class="hide-on-large-only"><i class="material-icons center">library_add</i></span>
+            </button>
+        </div>
+        }
+    }
+    else
+    {
+    <div class="row">
         @if (Model.Store.StorePicture != null)
         {
-            <img src="@Model.Store.StorePicture" />
+            <img class="col s12" src="@Model.Store.StorePicture" />
         }
         else
         {

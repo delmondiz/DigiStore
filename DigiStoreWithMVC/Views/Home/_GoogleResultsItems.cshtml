@@ -12,10 +12,10 @@
         DigiStoreWithMVC.Models.Store store = i.Users.Where(u => u.Items.Contains(i)).FirstOrDefault().Store;
         string storeMessage = "";
         DigiStoreWithMVC.Models.StoreHours today = store.StoreHours.ToList().Find(h => h.DayOfTheWeek.Equals(DateTime.Now.DayOfWeek.ToString()));
-        if (DateTime.Now.TimeOfDay >= today.StartTime.TimeOfDay &&
-             DateTime.Now.TimeOfDay <= today.EndTime.TimeOfDay)
+        if (DateTime.Now >= today.StartTime &&
+            DateTime.Now <= today.EndTime)
         {
-            storeMessage = "Open! Today's Hours: " + today.StartTime.TimeOfDay + " - " + today.EndTime.TimeOfDay;
+            storeMessage = "Open! Today's Hours: " + today.StartTime.ToString("t") + " - " + today.EndTime.ToString("t");
         }
         else
         {
@@ -25,7 +25,7 @@
             }
             else
             {
-                storeMessage = "Closed! Today's Hours: " + today.StartTime.TimeOfDay + " - " + today.EndTime.TimeOfDay;
+                storeMessage = "Closed! Today's Hours: " + today.StartTime.ToString("t") + " - " + today.EndTime.ToString("t");
             }
         }
         <a href=@Url.Action("Index", "Store", new { storeName = @store.Name }) id="@store.Name">

@@ -85,10 +85,8 @@ namespace DigiStoreWithMVC.Controllers
                     if (model.ReviewText != null)
                         newReview.ReviewText = model.ReviewText;
                     if (model.ReviewRating != 0)
-                    newReview.Rating = model.ReviewRating;
-                    newReview.Rating = 5;
+                        newReview.Rating = model.ReviewRating;
                     newReview.Date = DateTime.Now;
-                    newReview.Users.Add(ModelHelpers.GetCurrentUser(db));
                     storeOwner.Reviews.Add(newReview);
                     db.SaveChanges();
                     return PartialView("_ReviewSuccess");
@@ -152,15 +150,15 @@ namespace DigiStoreWithMVC.Controllers
                 User currentUser = ModelHelpers.GetCurrentUser(db);
                 if (picture != null && picture.ContentLength > 0)
                 {
-                    string path = Server.MapPath("~/img/sub/pic" + db.Items.Last().Id + "." + picture.FileName.Split('.').Last());
-                    string modelPath = "kt.digilife.me" + "/KTDigistore/img/sub/pic" + db.Items.Last().Id + "." + picture.FileName.Split('.').Last();
+                    string path = Server.MapPath("~/img/sub/pic" + (db.Items.Count() + 1) + "." + picture.FileName.Split('.').Last());
+                    string modelPath = "http://kt.digilife.me" + "/img/sub/pic" + (db.Items.Count() + 1) + "." + picture.FileName.Split('.').Last();
                     picture.SaveAs(path);
                     item.ImagePath = modelPath;
                     ModelState.SetModelValue("ImagePath", new ValueProviderResult(modelPath, modelPath, System.Globalization.CultureInfo.CurrentCulture));
                 }
                 else
                 {
-                    item.ImagePath = "";
+                    item.ImagePath = "http://kt.digilife.me" + "/img/help.png";
                 }
                 ModelState.Remove("ImagePath");
                 if (ModelState.IsValid)
@@ -271,12 +269,37 @@ namespace DigiStoreWithMVC.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult EditStoreLogo(HttpPostedFileBase picture)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                // Get our current user.
+                User currentUser = ModelHelpers.GetCurrentUser(db);
+                if (picture != null && picture.ContentLength > 0)
+                {
+                    string path = Server.MapPath("~/img/sub/pic" + currentUser.Store.Id + "." + picture.FileName.Split('.').Last());
+                    string modelPath = "http://kt.digilife.me" + "/img/sub/pic" + currentUser.Store.Id + "." + picture.FileName.Split('.').Last();
+                    picture.SaveAs(path);
+                    currentUser.Store.StorePicture = modelPath;
+                    db.SaveChanges();
+                    return View("Index", currentUser);
+                }
+                else
+                {
+                    currentUser.Store.StorePicture = "http://kt.digilife.me" + "/img/sample_store.jpg";
+                }
+                return View("Index", currentUser);
+            }
+            else
+                return RedirectToAction("Login", "Account");
+        }
 
         //
         // POST: /Store/Index
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditStoreHours(FormCollection formResults)
+        public ActionResult EditStoreHours(FormCollection formResults, User model)
         {
             User currentUser = ModelHelpers.GetCurrentUser(db);
             if (currentUser != null)
@@ -284,16 +307,25 @@ namespace DigiStoreWithMVC.Controllers
                 for (int i = 0; i < 7; i++)
                 {
                     StoreHours hours = currentUser.Store.StoreHours.ElementAt(i);
-                    string startTime = formResults.GetValues("StartTime").ElementAt(i).ToString();
-                    string endTime = formResults.GetValues("EndTime").ElementAt(i).ToString();
+                    if (formResults.GetValues("StartTime").ElementAt(i).ToString().Length != 0)
+                    {
+                        string startTime = formResults.GetValues("StartTime").ElementAt(i).ToString();
+                        int startHour = int.Parse(startTime.Split(':')[0]);
+                        int startMinute = int.Parse(startTime.Split(':')[1].Split(' ')[0]);
+                        hours.StartTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, startHour, startMinute, 0);
+                    }
 
-                    int startHour = int.Parse(startTime.Split(':')[0]);
-                    int startMinute = int.Parse(startTime.Split(':')[1].Split(' ')[0]);
-                    hours.StartTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, startHour, startMinute, 0);
-
-                    int endHour = int.Parse(endTime.Split(':')[0]);
-                    int endMinute = int.Parse(endTime.Split(':')[1].Split(' ')[0]);
-                    hours.EndTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, endHour, endMinute, 0);
+                    if (formResults.GetValues("endTime").ElementAt(i).ToString().Length != 0)
+                    {
+                        string endTime = formResults.GetValues("EndTime").ElementAt(i).ToString();
+                        int endHour = int.Parse(endTime.Split(':')[0]);
+                        int endMinute = int.Parse(endTime.Split(':')[1].Split(' ')[0]);
+                        // If the end time is earlier than the start time
+                        // We set the month to next month.  It'll be easier that way.
+                        hours.EndTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, endHour, endMinute, 0);
+                    }
+                    if (hours.EndTime.TimeOfDay < hours.StartTime.TimeOfDay)
+                        hours.EndTime = hours.EndTime.AddMonths(1);
                 }
                 db.SaveChanges();
                 TempData["storeHoursResultMessage"] = "Hours successfully updated!";
