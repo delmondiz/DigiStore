@@ -225,7 +225,7 @@ namespace DigiStoreWithMVC.Controllers
             // Creating a Order for the User
             User currentUser = ModelHelpers.GetCurrentUser(db);
             Models.Order order = new Models.Order();
-            order.Id = db.Orders.Count() + 6;
+            order.Id = db.Orders.Count() + 8;
             order.Tax = 0;
             order.TotalPrice = 0;
             foreach (nItem item in (List<nItem>)Session["cart"])
@@ -239,7 +239,6 @@ namespace DigiStoreWithMVC.Controllers
             }
             order.TotalPrice += order.Tax;
             currentUser.Orders.Add(order);
-            order.PaymentMethod = currentUser.PaymentMethods.FirstOrDefault(); // Needs a payment Method.  Currently unused.
             
             // Lest we forgetti, Save the Spaghetti
             db.SaveChanges();
@@ -318,7 +317,7 @@ namespace DigiStoreWithMVC.Controllers
             transactionList.Add(new Transaction()
             {
                 description = "DigiStore Purchase",
-                invoice_number = (db.Orders.Count() + 6).ToString(),
+                invoice_number = (db.Orders.Count() + 8).ToString(),
                 amount = amount,
                 item_list = itemList
             });

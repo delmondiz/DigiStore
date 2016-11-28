@@ -53,10 +53,6 @@
       <End Role="Order" EntitySet="Orders" />
       <End Role="Appointment" EntitySet="Appointments" />
     </AssociationSet>
-    <AssociationSet Name="OrderPaymentMethod" Association="DigiStoreDBModel.Store.OrderPaymentMethod">
-      <End Role="Order" EntitySet="Orders" />
-      <End Role="PaymentMethod" EntitySet="PaymentMethods" />
-    </AssociationSet>
     <AssociationSet Name="FK_OrderItem_Order" Association="DigiStoreDBModel.Store.FK_OrderItem_Order">
       <End Role="Order" EntitySet="Orders" />
       <End Role="OrderItem" EntitySet="OrderItem" />
@@ -151,7 +147,6 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Tax" Type="decimal" Nullable="false" Precision="18" Scale="0" />
     <Property Name="TotalPrice" Type="decimal" Nullable="false" Precision="18" Scale="0" />
-    <Property Name="PaymentMethod_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Appointments">
     <Key>
@@ -267,18 +262,6 @@
       </Principal>
       <Dependent Role="Appointment">
         <PropertyRef Name="Order_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="OrderPaymentMethod">
-    <End Role="Order" Type="DigiStoreDBModel.Store.Orders" Multiplicity="*" />
-    <End Role="PaymentMethod" Type="DigiStoreDBModel.Store.PaymentMethods" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="PaymentMethod">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Order">
-        <PropertyRef Name="PaymentMethod_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -493,10 +476,6 @@
             <End Role="Order" EntitySet="Orders" />
             <End Role="Appointment" EntitySet="Appointments" />
           </AssociationSet>
-          <AssociationSet Name="OrderPaymentMethod" Association="DigiStoreDBModel.OrderPaymentMethod">
-            <End Role="Order" EntitySet="Orders" />
-            <End Role="PaymentMethod" EntitySet="PaymentMethods" />
-          </AssociationSet>
           <AssociationSet Name="OrderItem" Association="DigiStoreDBModel.OrderItem">
             <End Role="Order" EntitySet="Orders" />
             <End Role="Item" EntitySet="Items" />
@@ -585,7 +564,6 @@
           <Property Name="AccountNumber" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="User" Relationship="DigiStoreDBModel.UserPaymentMethod" FromRole="PaymentMethod" ToRole="User" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Order" Relationship="DigiStoreDBModel.OrderPaymentMethod" FromRole="PaymentMethod" ToRole="Order" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -596,7 +574,6 @@
           <NavigationProperty Name="Users" Relationship="DigiStoreDBModel.UserOrder" FromRole="Order" ToRole="User" />
           <Property Name="TotalPrice" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <NavigationProperty Name="Appointment" Relationship="DigiStoreDBModel.OrderAppointment" FromRole="Order" ToRole="Appointment" />
-          <NavigationProperty Name="PaymentMethod" Relationship="DigiStoreDBModel.OrderPaymentMethod" FromRole="Order" ToRole="PaymentMethod" />
           <NavigationProperty Name="Items" Relationship="DigiStoreDBModel.OrderItem" FromRole="Order" ToRole="Item" />
         </EntityType>
         <Association Name="UserPaymentMethod">
@@ -640,10 +617,6 @@
         <Association Name="OrderAppointment">
           <End Type="DigiStoreDBModel.Order" Role="Order" Multiplicity="0..1" />
           <End Type="DigiStoreDBModel.Appointment" Role="Appointment" Multiplicity="0..1" />
-        </Association>
-        <Association Name="OrderPaymentMethod">
-          <End Type="DigiStoreDBModel.Order" Role="Order" Multiplicity="0..1" />
-          <End Type="DigiStoreDBModel.PaymentMethod" Role="PaymentMethod" Multiplicity="1" />
         </Association>
         <Association Name="OrderItem">
           <End Type="DigiStoreDBModel.Order" Role="Order" Multiplicity="*" />
@@ -856,14 +829,6 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
       <Condition ColumnName="Order_Id" IsNull="false" />
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="OrderPaymentMethod" TypeName="DigiStoreDBModel.OrderPaymentMethod" StoreEntitySet="Orders">
-      <EndProperty Name="PaymentMethod">
-        <ScalarProperty Name="Id" ColumnName="PaymentMethod_Id" />
-      </EndProperty>
-      <EndProperty Name="Order">
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
     </AssociationSetMapping>
     <AssociationSetMapping Name="OrderItem" TypeName="DigiStoreDBModel.OrderItem" StoreEntitySet="OrderItem">
       <EndProperty Name="Order">
