@@ -21,6 +21,7 @@ namespace DigiStoreWithMVC.Controllers
         private DigiStoreDBModelContainer db = new DigiStoreDBModelContainer();
         string[] DAYS_OF_THE_WEEK = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
 
+        
         public ActionResult Index(string storeName)
         {
             if (storeName != null)
@@ -30,10 +31,10 @@ namespace DigiStoreWithMVC.Controllers
 
                 if (checkUser != null)
                 {
-                    return View(checkUser);
+                    return View("Index", checkUser);
                 }
                 else
-                    return View();
+                    return View("Index");
             }
             else if (User.Identity.IsAuthenticated)
             {
@@ -43,10 +44,10 @@ namespace DigiStoreWithMVC.Controllers
                 {
                     ModelHelpers.CreateUserStoreIfNotExisting(db, currentUser);
 
-                    return View(currentUser);
+                    return View("Index", currentUser);
                 }
                 else
-                    return View();
+                    return View("Index");
             }
             else
                 return RedirectToAction("Login", "Account");
@@ -60,9 +61,9 @@ namespace DigiStoreWithMVC.Controllers
                 User currentUser = ModelHelpers.GetCurrentUser(db);
 
                 if (currentUser != null)
-                    return View(currentUser);
+                    return View("Index", currentUser);
                 else
-                    return View();
+                    return View("Index");
             }
             else
                 return RedirectToAction("Login", "Account");
@@ -70,7 +71,7 @@ namespace DigiStoreWithMVC.Controllers
 
         public ActionResult SubmitReview()
         {
-            return View();
+            return View("Index");
         }
 
         [HttpPost]
@@ -140,7 +141,7 @@ namespace DigiStoreWithMVC.Controllers
                 User currentUser = ModelHelpers.GetCurrentUser(db);
 
                 if (currentUser != null)
-                    return View(currentUser);
+                    return View("StoreInventory", currentUser);
                 else
                     return RedirectToAction("Login", "Account");
             }
@@ -176,9 +177,9 @@ namespace DigiStoreWithMVC.Controllers
                     // Save the changes to the DB.
                     db.SaveChanges();
                     // Return the user to the Store Inventory
-                    return View(currentUser);
+                    return View("StoreInventory", currentUser);
                 }
-                return View(currentUser);
+                return View("StoreInventory", currentUser);
             }
             else
                 return RedirectToAction("Login", "Account");
@@ -229,7 +230,7 @@ namespace DigiStoreWithMVC.Controllers
         public ActionResult ShoppingCart()
         {
             if (User.Identity.IsAuthenticated)
-                return View();
+                return View("ShoppingCart");
             else
                 return RedirectToAction("Login", "Account");
         }
@@ -243,7 +244,7 @@ namespace DigiStoreWithMVC.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return View("EditStoreInfo", model);
             }
             
             User currentUser = ModelHelpers.GetCurrentUser(db);
@@ -274,7 +275,7 @@ namespace DigiStoreWithMVC.Controllers
                 return RedirectToAction("Index", "Store");
 
             }
-            return View();
+            return View("EditStoreInfo");
         }
 
         [HttpPost]
@@ -309,43 +310,38 @@ namespace DigiStoreWithMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditStoreHours(FormCollection formResults, User model)
         {
-            if (User.Identity.IsAuthenticated)
+            User currentUser = ModelHelpers.GetCurrentUser(db);
+            if (currentUser != null)
             {
-                User currentUser = ModelHelpers.GetCurrentUser(db);
-                if (currentUser != null)
+                for (int i = 0; i < 7; i++)
                 {
-                    for (int i = 0; i < 7; i++)
+                    StoreHours hours = currentUser.Store.StoreHours.ElementAt(i);
+                    if (formResults.GetValues("StartTime").ElementAt(i).ToString().Length != 0)
                     {
-                        StoreHours hours = currentUser.Store.StoreHours.ElementAt(i);
-                        if (formResults.GetValues("StartTime").ElementAt(i).ToString().Length != 0)
-                        {
-                            string startTime = formResults.GetValues("StartTime").ElementAt(i).ToString();
-                            int startHour = int.Parse(startTime.Split(':')[0]);
-                            int startMinute = int.Parse(startTime.Split(':')[1].Split(' ')[0]);
-                            hours.StartTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, startHour, startMinute, 0);
-                        }
-
-                        if (formResults.GetValues("endTime").ElementAt(i).ToString().Length != 0)
-                        {
-                            string endTime = formResults.GetValues("EndTime").ElementAt(i).ToString();
-                            int endHour = int.Parse(endTime.Split(':')[0]);
-                            int endMinute = int.Parse(endTime.Split(':')[1].Split(' ')[0]);
-                            // If the end time is earlier than the start time
-                            // We set the month to next month.  It'll be easier that way.
-                            hours.EndTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, endHour, endMinute, 0);
-                        }
-                        if (hours.EndTime.TimeOfDay < hours.StartTime.TimeOfDay)
-                            hours.EndTime = hours.EndTime.AddMonths(1);
+                        string startTime = formResults.GetValues("StartTime").ElementAt(i).ToString();
+                        int startHour = int.Parse(startTime.Split(':')[0]);
+                        int startMinute = int.Parse(startTime.Split(':')[1].Split(' ')[0]);
+                        hours.StartTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, startHour, startMinute, 0);
                     }
-                    db.SaveChanges();
-                    TempData["storeHoursResultMessage"] = "Hours successfully updated!";
-                    return RedirectToAction("Index", "Store");
-                }
 
-                return View();
+                    if (formResults.GetValues("endTime").ElementAt(i).ToString().Length != 0)
+                    {
+                        string endTime = formResults.GetValues("EndTime").ElementAt(i).ToString();
+                        int endHour = int.Parse(endTime.Split(':')[0]);
+                        int endMinute = int.Parse(endTime.Split(':')[1].Split(' ')[0]);
+                        // If the end time is earlier than the start time
+                        // We set the month to next month.  It'll be easier that way.
+                        hours.EndTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, endHour, endMinute, 0);
+                    }
+                    if (hours.EndTime.TimeOfDay < hours.StartTime.TimeOfDay)
+                        hours.EndTime = hours.EndTime.AddMonths(1);
+                }
+                db.SaveChanges();
+                TempData["storeHoursResultMessage"] = "Hours successfully updated!";
+                return RedirectToAction("Index", "Store");
             }
-            else
-                return RedirectToAction("Login", "Account");
+
+            return View("EditStoreHours");
         }
 
         protected override void Dispose(bool disposing)
@@ -358,7 +354,7 @@ namespace DigiStoreWithMVC.Controllers
 
         public ActionResult SendFeedback()
         {
-            return View();
+            return View("SendFeedback");
         }
 
         private int itemIsThere (int id) {
@@ -378,15 +374,6 @@ namespace DigiStoreWithMVC.Controllers
             return RedirectToAction("Cart", "Store");
         }
 
-        public ActionResult orderHistory() {
-            if (User.Identity.IsAuthenticated)
-            {
-                return View("orderHistory", ModelHelpers.GetCurrentUser(db));
-            }
-            else
-                return RedirectToAction("Login", "Account");
-        }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult OrderNow(int id, int quantity)
@@ -394,32 +381,21 @@ namespace DigiStoreWithMVC.Controllers
             if (Session["cart"] == null)
             {
                 List<nItem> cart = new List<nItem>();
-                Item itemForCart = db.Items.Find(id);
-                if (itemForCart.Quantity >= quantity)
-                    cart.Add(new nItem(itemForCart, quantity));
-                else
-                    cart.Add(new nItem(itemForCart, itemForCart.Quantity));
+                cart.Add(new nItem(db.Items.Find(id), quantity));
                 Session["cart"] = cart;
             }
             else
             {
                 List<nItem> cart = (List<nItem>)Session["cart"];
                 int index = itemIsThere(id);
-                Item itemForCart = db.Items.Find(id);
                 if (index == -1)
                 {
-                    if (itemForCart.Quantity >= quantity)
-                        cart.Add(new nItem(itemForCart, quantity));
-                    else
-                        cart.Add(new nItem(itemForCart, itemForCart.Quantity));
+                    cart.Add(new nItem(db.Items.Find(id), quantity));
                 }
 
                 else
                 {
-                    if (itemForCart.Quantity >= cart[index].Quantity + quantity)
-                        cart[index].Quantity += quantity;
-                    else
-                        cart[index].Quantity = itemForCart.Quantity;
+                    cart[index].Quantity += quantity;
                     Session["cart"] = cart;
                 }
 

@@ -259,6 +259,7 @@
       <DependentUpon>DigiStoreDBModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\DigistoreIdentityModels.cs" />
+    <Compile Include="Models\StoreListingViewModel.cs" />
     <Compile Include="Models\SubmitReviewViewModel.cs" />
     <Compile Include="Models\HomeViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -341,7 +342,6 @@
       <LastGenOutput>DigiStoreDBModel.cs</LastGenOutput>
       <DependentUpon>DigiStoreDBModel.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\DigiStoreDBModelBetaFinal.edmx.sql" />
     <Content Include="Models\DigiStoreDBModelLatest.edmx.sql" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -426,6 +426,7 @@
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\_ChangePassword.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Map.cshtml" />
@@ -456,8 +457,7 @@
     <Content Include="Views\Store\_ReviewSuccess.cshtml" />
     <Content Include="Views\Store\_ReviewFailure.cshtml" />
     <Content Include="Views\Store\_StoreReviews.cshtml" />
-    <Content Include="Views\Account\_ChangePassword.cshtml" />
-    <Content Include="Views\Store\orderHistory.cshtml" />
+    <Content Include="Views\Home\_StoreImagesWithLinks.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
