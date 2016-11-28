@@ -208,38 +208,41 @@ namespace DigiStoreWithMVC.Controllers
 
                     if (executedPayment.state.ToLower() != "approved")
                     {
-                        ViewData["high"] = "Your Payment Cannot be Proccessed please Try Again";
-                        return View("FailureView");
+                        Session["cartError"] = "Your Payment Cannot be Processed. Please Try Again";
+                        return RedirectToAction("Cart", "Store");
                     }
 
                 }
             }
             catch (Exception ex)
             {
-                ViewData["high"] = "Your Payment Cannot be Proccessed please Try Again";
+                Session["cartError"] = "Your Payment Cannot be Processed. Please Try Again";
                 Logger.Log("Error" + ex.Message);
-                return View("FailureView");
+                return RedirectToAction("Cart", "Store");
             }
 
             // If we reach here, the payment was successful.
             // Creating a Order for the User
             User currentUser = ModelHelpers.GetCurrentUser(db);
             Models.Order order = new Models.Order();
-            order.Id = db.Orders.Count() + 1;
+            order.Id = db.Orders.Count() + 6;
             order.Tax = 0;
             order.TotalPrice = 0;
             foreach (nItem item in (List<nItem>)Session["cart"])
             {
                 order.Items.Add(item.Ite);
-                order.Tax += item.Ite.Price * 0.13M;
-                order.TotalPrice += item.Ite.Price;
+                order.Tax += item.Ite.Price * item.Ite.Quantity * 0.13M;
+                order.TotalPrice += item.Ite.Price * item.Ite.Quantity;
 
                 // Modifying the current Items' Quantities
                 db.Items.Where(i => i.Id == item.Ite.Id).First().Quantity -= item.Quantity;
             }
             order.TotalPrice += order.Tax;
             currentUser.Orders.Add(order);
-
+            order.PaymentMethod = currentUser.PaymentMethods.FirstOrDefault(); // Needs a payment Method.  Currently unused.
+            
+            // Lest we forgetti, Save the Spaghetti
+            db.SaveChanges();
             // Empty the current cart.
             Session["cart"] = new List<nItem>();
 
@@ -315,7 +318,7 @@ namespace DigiStoreWithMVC.Controllers
             transactionList.Add(new Transaction()
             {
                 description = "DigiStore Purchase",
-                invoice_number = (db.Orders.Count() + 1).ToString(),
+                invoice_number = (db.Orders.Count() + 6).ToString(),
                 amount = amount,
                 item_list = itemList
             });

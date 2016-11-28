@@ -3,13 +3,18 @@
     ViewBag.Title = "Cart";
 }
 @using DigiStoreWithMVC.Models;
-@{ 
+@{
     decimal s = 0;
 
 }
 <h2>Cart</h2>
 <div class="container">
     <div class="section center">
+        @if (Session["cartError"] != null)
+        {
+            <span class="red-text">@Session["cartError"]</span>
+            Session["cartError"] = null;
+        }
         @if (((List<nItem>)Session["cart"]).Count > 0)
         {
             <table cellpadding="2" cellspacing="2" border="1">
