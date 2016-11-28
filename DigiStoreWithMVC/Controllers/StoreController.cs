@@ -309,38 +309,43 @@ namespace DigiStoreWithMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditStoreHours(FormCollection formResults, User model)
         {
-            User currentUser = ModelHelpers.GetCurrentUser(db);
-            if (currentUser != null)
+            if (User.Identity.IsAuthenticated)
             {
-                for (int i = 0; i < 7; i++)
+                User currentUser = ModelHelpers.GetCurrentUser(db);
+                if (currentUser != null)
                 {
-                    StoreHours hours = currentUser.Store.StoreHours.ElementAt(i);
-                    if (formResults.GetValues("StartTime").ElementAt(i).ToString().Length != 0)
+                    for (int i = 0; i < 7; i++)
                     {
-                        string startTime = formResults.GetValues("StartTime").ElementAt(i).ToString();
-                        int startHour = int.Parse(startTime.Split(':')[0]);
-                        int startMinute = int.Parse(startTime.Split(':')[1].Split(' ')[0]);
-                        hours.StartTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, startHour, startMinute, 0);
-                    }
+                        StoreHours hours = currentUser.Store.StoreHours.ElementAt(i);
+                        if (formResults.GetValues("StartTime").ElementAt(i).ToString().Length != 0)
+                        {
+                            string startTime = formResults.GetValues("StartTime").ElementAt(i).ToString();
+                            int startHour = int.Parse(startTime.Split(':')[0]);
+                            int startMinute = int.Parse(startTime.Split(':')[1].Split(' ')[0]);
+                            hours.StartTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, startHour, startMinute, 0);
+                        }
 
-                    if (formResults.GetValues("endTime").ElementAt(i).ToString().Length != 0)
-                    {
-                        string endTime = formResults.GetValues("EndTime").ElementAt(i).ToString();
-                        int endHour = int.Parse(endTime.Split(':')[0]);
-                        int endMinute = int.Parse(endTime.Split(':')[1].Split(' ')[0]);
-                        // If the end time is earlier than the start time
-                        // We set the month to next month.  It'll be easier that way.
-                        hours.EndTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, endHour, endMinute, 0);
+                        if (formResults.GetValues("endTime").ElementAt(i).ToString().Length != 0)
+                        {
+                            string endTime = formResults.GetValues("EndTime").ElementAt(i).ToString();
+                            int endHour = int.Parse(endTime.Split(':')[0]);
+                            int endMinute = int.Parse(endTime.Split(':')[1].Split(' ')[0]);
+                            // If the end time is earlier than the start time
+                            // We set the month to next month.  It'll be easier that way.
+                            hours.EndTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, endHour, endMinute, 0);
+                        }
+                        if (hours.EndTime.TimeOfDay < hours.StartTime.TimeOfDay)
+                            hours.EndTime = hours.EndTime.AddMonths(1);
                     }
-                    if (hours.EndTime.TimeOfDay < hours.StartTime.TimeOfDay)
-                        hours.EndTime = hours.EndTime.AddMonths(1);
+                    db.SaveChanges();
+                    TempData["storeHoursResultMessage"] = "Hours successfully updated!";
+                    return RedirectToAction("Index", "Store");
                 }
-                db.SaveChanges();
-                TempData["storeHoursResultMessage"] = "Hours successfully updated!";
-                return RedirectToAction("Index", "Store");
-            }
 
-            return View();
+                return View();
+            }
+            else
+                return RedirectToAction("Login", "Account");
         }
 
         protected override void Dispose(bool disposing)
@@ -371,6 +376,15 @@ namespace DigiStoreWithMVC.Controllers
             Session["cart"] = cart;
 
             return RedirectToAction("Cart", "Store");
+        }
+
+        public ActionResult orderHistory() {
+            if (User.Identity.IsAuthenticated)
+            {
+                return View("orderHistory", ModelHelpers.GetCurrentUser(db));
+            }
+            else
+                return RedirectToAction("Login", "Account");
         }
 
         [HttpPost]
