@@ -97,6 +97,7 @@ namespace DigiStoreWithMVC.Controllers
                     List<Item> items = (from i in db.Items
                                         where i.Name.ToLower().Contains(inputSearch.ToLower())
                                         && i.Deleted.Value != true
+                                        orderby i.Price ascending
                                         select i).ToList();
                     return PartialView("_GoogleResultsItems", items);
                 }
