@@ -1,19 +1,29 @@
 ﻿using System;
+using System.Fakes;
 using System.Net;
 using System.Web.Mvc;
+using System.Web.Fakes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DigiStoreWithMVC.Controllers;
 using DigiStoreWithMVC.Models;
+using DigiStoreWithMVC.Models.Fakes;
+using DigiStoreWithMVC.Fakes;
 
-
-
+/*
+ * So bad news... The unit testing for our project cannot move forward without heavy re-writes
+ * to our controller classes and creating many repository classes for dependancy injection.
+ * As it works right now we are directly using classes and objects from the .NET framework, 
+ * which are very secure. Using repository classes allow us to inject false objects into these
+ * secure classes and objects to create fake data to use in testing. This makes for fine working
+ * code but it is unfortunately untestable. I've read quite a bit of material that explains this.
+ */
 
 namespace DigiStoreWithMVC.Controllers.Tests
 {
-    [TestClass()]
+    [TestClass]
     public class StoreControllerTests
     {
-        [TestMethod()]
+        [TestMethod]
         public void IndexTest_ValidStoreName_ReturnStoreIndexView()
         {
             //Arrange
@@ -30,7 +40,7 @@ namespace DigiStoreWithMVC.Controllers.Tests
         }
 
         //Business logic on the index method is incorrect ECEC
-        [TestMethod()]
+        [TestMethod]
         public void IndexTest_InvalidStoreName_ReturnHomeIndexView()
         {
             //Arrange
@@ -49,7 +59,7 @@ namespace DigiStoreWithMVC.Controllers.Tests
             Assert.AreEqual(expectedViewName, actualViewName);
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void RandomStoreTest_ReturnStoreIndexView()
         {
             //Arrange
@@ -65,7 +75,7 @@ namespace DigiStoreWithMVC.Controllers.Tests
         }
 
         //This test needs to be revisted. How do you inject a count > 1000? ECEC
-        [TestMethod()]
+        [TestMethod]
         public void RandomStoreTest_ReturnHomeIndexView()
         {
             //Arrange
@@ -80,7 +90,7 @@ namespace DigiStoreWithMVC.Controllers.Tests
             Assert.AreEqual(expectedViewName, actualViewName);
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void StoreInventoryTest_UserNotAuthenticated_ReturnAccountLogin()
         {
             //Arrange
@@ -96,12 +106,13 @@ namespace DigiStoreWithMVC.Controllers.Tests
         }
 
         //This will need some work after I figure out how to fake User.Identity ECEC
-        [TestMethod()]
+        [TestMethod]
         public void StoreInventoryTest_UserAuthenticated_ReturnStoreInventory()
         {
             //Arrange
             StoreController sc = new StoreController();
             //Fake User.Identity
+            // :(
 
             //Act
             ViewResult actualResult = sc.StoreInventory() as ViewResult;
@@ -150,43 +161,43 @@ namespace DigiStoreWithMVC.Controllers.Tests
             Assert.AreEqual(expectedViewName, actualViewName);
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void UpdateItemTest_ModelStateValid_ReturnStoreInventory()
         {
             Assert.Fail();
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void UpdateItemTest_ModelStateInvalid_ReturnStoreInventory()
         {
             Assert.Fail();
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void DeleteItemTest()
         {
             Assert.Fail();
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void ShoppingCartTest()
         {
             Assert.Fail();
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void EditStoreInfoTest()
         {
             Assert.Fail();
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void EditStoreHoursTest()
         {
             Assert.Fail();
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void AddToCartTest()
         {
             Assert.Fail();
