@@ -49,7 +49,8 @@
                                 <li>@Html.ActionLink("Profile", "Index", new { controller = "Account", action = "Index" })</li>
                                 <li>@Html.ActionLink("Manage Store", "Index", new { controller = "Store", action = "Index", id = UrlParameter.Optional })</li>
                                 <li>@Html.ActionLink("Manage Items", "StoreInventory", new { controller = "Store", action = "StoreInventory", id = UrlParameter.Optional })</li>
-                                <li><a href="#">Order History</a></li>
+                                <li>@Html.ActionLink("Order History", "orderHistory", new { controller = "Store", action = "orderHistory", id = UrlParameter.Optional })</li>
+                                
                                 using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { @name = "loggingOut" }))
                                 {
                                     @Html.AntiForgeryToken()
