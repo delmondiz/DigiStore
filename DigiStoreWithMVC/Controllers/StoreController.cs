@@ -270,6 +270,10 @@ namespace DigiStoreWithMVC.Controllers
 
                 if (model.Store.PhoneNumber != null)
                     currentUser.Store.PhoneNumber = model.Store.PhoneNumber;
+                if (model.Store.StorePicture == null)
+                {
+                    currentUser.Store.StorePicture = "http://kt.digilife.me/img/sample_store.jpg";
+                }
                 db.SaveChanges();
                 TempData["storeInfoResultMessage"] = "Contact Info Successfully Updated!";
                 return RedirectToAction("Index", "Store");
