@@ -17,9 +17,21 @@ namespace DigiStoreWithMVC.Models
         [Display(Name = "Date")]
         public string ReviewDate { get; set; }
 
+        [Required]
         [Display(Name = "Rating")]
         [Range(1, 5)]
         public int ReviewRating { get; set; }
 
+        [DataType(DataType.Text)]
+        public string ReviewerName { get; set; }
+
+        [DataType(DataType.Text)]
+        public string StoreOwnerEmail { get; set; }
+
+        public SubmitReviewViewModel() { }
+
+        public SubmitReviewViewModel(string storeOwnerEmail) {
+            StoreOwnerEmail = storeOwnerEmail;
+        }
     }
 }

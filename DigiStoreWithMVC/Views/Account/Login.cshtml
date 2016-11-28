@@ -1,67 +1,4 @@
-﻿@*@using DigiStoreWithMVC.Models
-@model LoginViewModel
-@{
-    ViewBag.Title = "Log in";
-}
-
-<h2>@ViewBag.Title.</h2>
-<div class="row">
-    <div class="col-md-8">
-        <section id="loginForm">
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-            {
-                @Html.AntiForgeryToken()
-                <h4>Use a local account to log in.</h4>
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <div class="checkbox">
-                            @Html.CheckBoxFor(m => m.RememberMe)
-                            @Html.LabelFor(m => m.RememberMe)
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Log in" class="btn btn-default" />
-                    </div>
-                </div>
-                <p>
-                    @Html.ActionLink("Register as a new user", "Register")
-                </p>
-                @* Enable this once you have account confirmation enabled for password reset functionality
-                    <p>
-                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                    </p>
-            }
-        </section>
-    </div>
-    <div class="col-md-4">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-        </section>
-    </div>
-</div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}*@
-
+﻿
 @using DigiStoreWithMVC.Models
 @model LoginViewModel
 @{
@@ -73,41 +10,44 @@
     {
         @Html.AntiForgeryToken()
         <div class="col s12">
-            <div class="row center">
-                <div class="col s12">
-                    <h1>Login</h1>
-                </div>
-                <div class="col s12">
-                    <h5>Not a member? <br /> <a href="~/Account/Register" class="btn waves-light blue darken-3 yellow-text accent-3 truncate" style="width:100%">Sign up!</a></h5>
-                </div>
-            </div>
+
+            <br /><br /><br /><br />
+
             <div class="row">
-                @Html.ValidationSummary(true, "", new { @class = "col s12 red-text center" })
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    @Html.LabelFor(m => m.Email)
-                    @Html.EditorFor(m => m.Email, new { @placeholder = "example@email.com", @id = "email" })
-                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "red-text" })
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    @Html.LabelFor(m => m.Password)
-                    @Html.EditorFor(m => m.Password, new { @placeholder = "hunter2", @id = "password" })
-                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "red-text" })
-                </div>
-            </div>
-            <div class="row">
-                <div class="col s12">
-                    <input type="submit" value="Sign in" id="submitSignup" class="btn waves-light blue darken-3 yellow-text accent-3" style="width:100%" />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col s12">
-                    <a href="~/Account/ForgotPassword" class="btn waves-light red lighten-1" style="width:100%">Forgot Password?</a>
+                <div class="col s6 offset-s3">
+                    <div class="card center"> 
+                        <div class="card-content">
+                            <span class="card-title">Login</span>
+                            <div class="row">
+                                @Html.ValidationSummary(true, "", new { @class = "col s12 red-text center" })
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12" style="width:100%">
+                                    @Html.LabelFor(m => m.Email)
+                                    @Html.EditorFor(m => m.Email, new { @placeholder = "example@email.com", @id = "email" })
+                                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "red-text" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12" style="width:100%">
+                                    @Html.LabelFor(m => m.Password)
+                                    @Html.EditorFor(m => m.Password, new { @placeholder = "hunter2", @id = "password" })
+                                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "red-text" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s4">
+                                    <input type="submit" value="Sign in" id="submitSignup" class="btn waves-light blue darken-3 yellow-text accent-3" style="width:100%" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-action">
+                            <a class="blue-text darken-3" href="~/Account/Register">Not a member? Sign up!</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     }
 </div>
+

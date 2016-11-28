@@ -2,76 +2,92 @@
 @{
     ViewBag.Title = "StorePage";
 }
+
 <div class="container">
     <div class="section">
         <div class="row">
-            <div class="container col s12">
-                <div class="parallax-container">
-                    <div class="parallax">
-                        <img src="~/img/sample_store.jpg">
-                    </div>
-                </div>
 
-                <div class="card-panel blue darken-3">
-                    <h5 class="card-title yellow-text accent-3">Store Information</h5>
-                    <div class="card-content row">
-                        <div class="card col l6 m6 s12">
-                            <div class="card-content">
-                                <span class="card-title">Contact</span>
-                                @Html.Partial("_EditStoreInfo", Model)
-                            </div>
-                        </div>
+            <div class="col s12 m12 l12">
+                        @Html.Partial("_EditStoreLogo", Model)
+            </div>
 
-                        <div class="card col l6 m6 s12">
-                            <div class="card-content">
-                                <span class="card-title">Store Hours</span>
-                                @*@Html.Partial("_EditStoreHours", Model)*@
-                                @{ Html.RenderPartial("_EditStoreHours", Model); }
-                            </div>
-                        </div>
-
-                        <div class="card col l6 m6 s12">
-                            <div class="card-content">
-                                <span class="card-title">Rate this store</span>
-                                @Html.Partial("_SubmitReview", new DigiStoreWithMVC.Models.SubmitReviewViewModel())
-                            </div>
-                        </div>
-
-                        <div class="card col l6 m6 s12">
-                            <div class="card-content">
-                                <span class="card-title">Reviews</span>
-                                <p>Populated from Database.</p>
-                            </div>
-                        </div>
+            <div class="col s12 m12 l12">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">Store Information</span>
                     </div>
                 </div>
             </div>
+
+            <div class="col s12 m12 l6">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">Contact</span>
+                        @Html.Partial("_EditStoreInfo", Model)
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s12 m12 l6">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">Rate This Store</span>
+                        @Html.Partial("_SubmitReview", new DigiStoreWithMVC.Models.SubmitReviewViewModel())
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s12 m12 l6">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">Store Hours</span>
+                        @{ Html.RenderPartial("_EditStoreHours", Model); }
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s12 m12 l6">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">Reviews</span>
+                        @Html.Partial("_StoreReviews", Model)
+                    </div>
+                </div>
+            </div>
+
         </div>
-        <div class="card-panel blue darken-3">
-            <h5 class="card-title yellow-text accent-3">Products</h5>
-            <div class="card-content row">
-                @{
-                    if (Model != null)
+
+        <div class="card-content row">
+            @{
+                if (Model != null)
+                {
+                    if (Model.Items.Count() > 0)
                     {
-                        if (Model.Items.Count() > 0)
-                        {
-                            foreach (DigiStoreWithMVC.Models.Item item in Model.Items)
-                            {
-                                @Html.Partial("_StoreItem", item)
-                            }
-                        }
-                        else
-                        {
+                        <div class="col s12 m12 l12">
                             <div class="card">
-                                <h2 class="center">This store is empty.</h2>
+                                <div class="card-content">
+                                    <span class="card-title">Products</span>
+                                </div>
                             </div>
-                        }
+                        </div>
+
+                            <div class="col s12 m12 l12">
+
+                                        @foreach (DigiStoreWithMVC.Models.Item item in Model.Items)
+                                        {
+                                            @Html.Partial("_StoreItem", item)
+                                        }
+                            </div>
                     }
-                    else 
+                    else
                     {
                     }
                 }
-            </div>
+                else
+                {
+                }
+            }
         </div>
+
     </div>
 </div>

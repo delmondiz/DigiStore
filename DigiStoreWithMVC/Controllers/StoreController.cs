@@ -75,31 +75,36 @@ namespace DigiStoreWithMVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult SubmitReview(Review model)
+        public ActionResult SubmitReview(SubmitReviewViewModel model)
         {
-            if (ModelState.IsValid)
+            if (User.Identity.IsAuthenticated)
             {
-                using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
+                if (ModelState.IsValid)
                 {
-                    Review newReview = db.Reviews.Create();
-                    newReview.Id = db.Reviews.Count();
-                    if (model.ReviewText != null)
-                        newReview.ReviewText = model.ReviewText;
-                    //if (model.ReviewRating != 0)
-                    //newReview.Rating = model.ReviewRating;
-                    newReview.Rating = 5;
-                    newReview.Date = DateTime.Now;
-                    db.Reviews.Add(newReview);
-                    db.SaveChanges();
-                    return RedirectToAction("Index", "Store");
+                    using (DigiStoreDBModelContainer db = new DigiStoreDBModelContainer())
+                    {
+                        User storeOwner = ModelHelpers.GetUserByEmail(db, model.StoreOwnerEmail);
+                        Review newReview = db.Reviews.Create();
+                        if (model.ReviewText != null)
+                            newReview.ReviewText = model.ReviewText;
+                        if (model.ReviewRating != 0)
+                            newReview.Rating = model.ReviewRating;
+                        newReview.Date = DateTime.Now;
+                        User existingUser = ModelHelpers.GetCurrentUser(db);
+                        newReview.ReviewerName = existingUser.UserName;
+                        storeOwner.Reviews.Add(newReview);
+                        db.SaveChanges();
+                        return PartialView("_ReviewSuccess");
+                    }
                 }
-
-
+                else
+                {
+                    ViewBag.ReviewError = "Please enter 1-5 for the rating, and a review.";
+                    return PartialView("_SubmitReview", model);
+                }
             }
             else
-            {
-                return RedirectToAction("Index", "Store");
-            }
+                return RedirectToAction("Login", "Account");
         }
 
         public ActionResult RandomStore()
@@ -153,16 +158,16 @@ namespace DigiStoreWithMVC.Controllers
                 // Get our current user.
                 User currentUser = ModelHelpers.GetCurrentUser(db);
                 if (picture != null && picture.ContentLength > 0)
-                {   
-                    string path = Server.MapPath("~/img/sub/pic" + db.Items.Last().Id + "." + picture.FileName.Split('.').Last());
-                    string modelPath = "/KTDigistore/img/sub/pic" + db.Items.Last().Id + "." + picture.FileName.Split('.').Last();
+                {
+                    string path = Server.MapPath("~/img/sub/pic" + (db.Items.Count() + 1) + "." + picture.FileName.Split('.').Last());
+                    string modelPath = "http://kt.digilife.me" + "/img/sub/pic" + (db.Items.Count() + 1) + "." + picture.FileName.Split('.').Last();
                     picture.SaveAs(path);
                     item.ImagePath = modelPath;
                     ModelState.SetModelValue("ImagePath", new ValueProviderResult(modelPath, modelPath, System.Globalization.CultureInfo.CurrentCulture));
                 }
                 else
                 {
-                    item.ImagePath = "";
+                    item.ImagePath = "http://kt.digilife.me" + "/img/help.png";
                 }
                 ModelState.Remove("ImagePath");
                 if (ModelState.IsValid)
@@ -214,6 +219,7 @@ namespace DigiStoreWithMVC.Controllers
                 User currentUser = ModelHelpers.GetCurrentUser(db);
                 Item dbItem = ModelHelpers.GetItemById(db, item.Id);
                 currentUser.Items.Remove(dbItem);
+                dbItem.Deleted = true;
                 db.SaveChanges();
                 return RedirectToAction("StoreInventory", "Store");
             }
@@ -272,30 +278,63 @@ namespace DigiStoreWithMVC.Controllers
             return View("EditStoreInfo");
         }
 
+        [HttpPost]
+        public ActionResult EditStoreLogo(HttpPostedFileBase picture)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                // Get our current user.
+                User currentUser = ModelHelpers.GetCurrentUser(db);
+                if (picture != null && picture.ContentLength > 0)
+                {
+                    string path = Server.MapPath("~/img/sub/pic" + currentUser.Store.Id + "." + picture.FileName.Split('.').Last());
+                    string modelPath = "http://kt.digilife.me" + "/img/sub/pic" + currentUser.Store.Id + "." + picture.FileName.Split('.').Last();
+                    picture.SaveAs(path);
+                    currentUser.Store.StorePicture = modelPath;
+                    db.SaveChanges();
+                    return View("Index", currentUser);
+                }
+                else
+                {
+                    currentUser.Store.StorePicture = "http://kt.digilife.me" + "/img/sample_store.jpg";
+                }
+                return View("Index", currentUser);
+            }
+            else
+                return RedirectToAction("Login", "Account");
+        }
 
         //
         // POST: /Store/Index
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditStoreHours(FormCollection formResults)
+        public ActionResult EditStoreHours(FormCollection formResults, User model)
         {
             User currentUser = ModelHelpers.GetCurrentUser(db);
             if (currentUser != null)
             {
-                //StoreHours[] hours = new StoreHours[7];
                 for (int i = 0; i < 7; i++)
                 {
                     StoreHours hours = currentUser.Store.StoreHours.ElementAt(i);
-                    string startTime = formResults.GetValues("StartTime").ElementAt(i).ToString();
-                    string endTime = formResults.GetValues("EndTime").ElementAt(i).ToString();
+                    if (formResults.GetValues("StartTime").ElementAt(i).ToString().Length != 0)
+                    {
+                        string startTime = formResults.GetValues("StartTime").ElementAt(i).ToString();
+                        int startHour = int.Parse(startTime.Split(':')[0]);
+                        int startMinute = int.Parse(startTime.Split(':')[1].Split(' ')[0]);
+                        hours.StartTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, startHour, startMinute, 0);
+                    }
 
-                    int startHour = int.Parse(startTime.Split(':')[0]);
-                    int startMinute = int.Parse(startTime.Split(':')[1].Split(' ')[0]);
-                    hours.StartTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, startHour, startMinute, 0);
-
-                    int endHour = int.Parse(endTime.Split(':')[0]);
-                    int endMinute = int.Parse(endTime.Split(':')[1].Split(' ')[0]);
-                    hours.EndTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, endHour, endMinute, 0);
+                    if (formResults.GetValues("endTime").ElementAt(i).ToString().Length != 0)
+                    {
+                        string endTime = formResults.GetValues("EndTime").ElementAt(i).ToString();
+                        int endHour = int.Parse(endTime.Split(':')[0]);
+                        int endMinute = int.Parse(endTime.Split(':')[1].Split(' ')[0]);
+                        // If the end time is earlier than the start time
+                        // We set the month to next month.  It'll be easier that way.
+                        hours.EndTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, endHour, endMinute, 0);
+                    }
+                    if (hours.EndTime.TimeOfDay < hours.StartTime.TimeOfDay)
+                        hours.EndTime = hours.EndTime.AddMonths(1);
                 }
                 db.SaveChanges();
                 TempData["storeHoursResultMessage"] = "Hours successfully updated!";
@@ -317,6 +356,61 @@ namespace DigiStoreWithMVC.Controllers
         {
             return View("SendFeedback");
         }
+
+        private int itemIsThere (int id) {
+            List<nItem> cart = (List<nItem>)Session["cart"];
+            for (int i = 0; i < cart.Count; i++)
+                if (cart[i].Ite.Id == id)
+                    return i;
+            return - 1;
+        }
+
+        public ActionResult Remove(int id) {
+            int index = itemIsThere(id);
+            List<nItem> cart = (List<nItem>)Session["cart"];
+            cart.RemoveAt(index);
+            Session["cart"] = cart;
+
+            return RedirectToAction("Cart", "Store");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult OrderNow(int id, int quantity)
+        {
+            if (Session["cart"] == null)
+            {
+                List<nItem> cart = new List<nItem>();
+                cart.Add(new nItem(db.Items.Find(id), quantity));
+                Session["cart"] = cart;
+            }
+            else
+            {
+                List<nItem> cart = (List<nItem>)Session["cart"];
+                int index = itemIsThere(id);
+                if (index == -1)
+                {
+                    cart.Add(new nItem(db.Items.Find(id), quantity));
+                }
+
+                else
+                {
+                    cart[index].Quantity += quantity;
+                    Session["cart"] = cart;
+                }
+
+            }
+
+            return RedirectToAction("Cart", "Store");
+        }
+
+        public ActionResult Cart()
+        {
+            if (Session["cart"] == null)
+                Session["cart"] = new List<nItem>();
+             return View("Cart");
+        }
+
 
         // On the view, the user will not see the add to cart button unless authenticated
 

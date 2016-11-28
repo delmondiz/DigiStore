@@ -5,6 +5,8 @@
 
 @if (Model != null)
 {
+    <h4 class="center green-text">@TempData["storeHoursResultMessage"]</h4>
+    TempData["storeHoursResultMessage"] = null;
     <p>
         @if (User.Identity.Name == Model.Email)
         {
@@ -21,22 +23,20 @@
                     string two = times.Find(str => str == times.ElementAt(times.IndexOf(Model.Store.StoreHours.ElementAt(i).StartTime.ToString("t").Trim())));
                     <div class="row">
                         <span class="col s12 l4 center">
-                            @Html.DisplayTextFor(model => Model.Store.StoreHours.ElementAt(i).DayOfTheWeek)
+                            @Html.DisplayTextFor(model => model.Store.StoreHours.ElementAt(i).DayOfTheWeek)
                         </span>
                         <span class="input-field col s6 l4">
                             Open:
-                            @Html.DropDownListFor(model => Model.Store.StoreHours.ElementAt(i).StartTime, new SelectList(times), new { @id = "startTime" })
-                            @Html.ValidationMessageFor(model => Model.Store.StoreHours.ElementAt(i).StartTime)
+                            @Html.DropDownListFor(model => model.Store.StoreHours.ElementAt(i).StartTime, new SelectList(times), Model.Store.StoreHours.ElementAt(i).StartTime.ToString("t"), new { @value= Model.Store.StoreHours.ElementAt(i).StartTime.ToString("t") })
+                            @Html.ValidationMessageFor(model => model.Store.StoreHours.ElementAt(i).StartTime)
                         </span>
                         <span class="input-field col s6 l4">
                             Close:
-                            @Html.DropDownListFor(model => Model.Store.StoreHours.ElementAt(i).EndTime, new SelectList(times), new { @id = "endTime", @value = Model.Store.StoreHours.ElementAt(i).EndTime.ToString("t") })
-                            @Html.ValidationMessageFor(model => Model.Store.StoreHours.ElementAt(i).EndTime)
+                            @Html.DropDownListFor(model => model.Store.StoreHours.ElementAt(i).EndTime, new SelectList(times), Model.Store.StoreHours.ElementAt(i).EndTime.ToString("t"), new { @value = Model.Store.StoreHours.ElementAt(i).StartTime.ToString("t") })
+                            @Html.ValidationMessageFor(model => model.Store.StoreHours.ElementAt(i).EndTime)
                         </span>
                     </div>
                 }
-                <h4 class="center green-text">@TempData["storeHoursResultMessage"]</h4>
-                TempData["storeHoursResultMessage"] = null;
                 <div class="row">
                     <input type="submit" value="Save Store Hours" class="col s12 btn waves-effect blue darken-3 yellow-text accent-3" />
                 </div>
@@ -47,7 +47,6 @@
             foreach (DigiStoreWithMVC.Models.StoreHours hours in Model.Store.StoreHours)
             {
                 Html.ValidationSummary(true, "", new { @class = "red-text" });
-
                 <div class="row">
                     <span class="col s12">
                         <b>@hours.DayOfTheWeek</b>

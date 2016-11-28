@@ -3,25 +3,32 @@
 @if (Model.Count() > 0)
 {
     <script>
-        $("#goggleResults").show();
-        $("#goggleMap").css("height", "60%");
+        unHideBeforeSearch();
         deleteMarkers();
     </script>
 
     foreach (DigiStoreWithMVC.Models.Store s in Model)
     {
         DigiStoreWithMVC.Models.StoreHours today = s.StoreHours.ToList().Find(h => h.DayOfTheWeek.Equals(DateTime.Now.DayOfWeek.ToString()));
+
         <a href=@Url.Action("Index", "Store", new { storeName = @s.Name }) id="@s.Name">
             <li class='collection-item blue darken-3 yellow-text accent-3'>
                 @s.Name | @s.Address, @s.City @s.PostalCode <br />
-                @if (DateTime.Now.TimeOfDay >= today.StartTime.TimeOfDay &&
-                     DateTime.Now.TimeOfDay <= today.EndTime.TimeOfDay)
+                @if (DateTime.Now >= today.StartTime &&
+                     DateTime.Now <= today.EndTime)
                 {
-                    <p>Open! Today's Hours: @s.StoreHours.ToList().Find(h => h.DayOfTheWeek.Equals(DateTime.Now.DayOfWeek.ToString())).StartTime.TimeOfDay - @s.StoreHours.ToList().Find(h => h.DayOfTheWeek.Equals(DateTime.Now.DayOfWeek.ToString())).EndTime.TimeOfDay</p>
+                    <p>Open! Today's Hours: @today.StartTime.ToString("t") - @today.EndTime.ToString("t")</p>
                 }
                 else
                 {
-                    <p>Closed! Today's Hours: @s.StoreHours.ToList().Find(h => h.DayOfTheWeek.Equals(DateTime.Now.DayOfWeek.ToString())).StartTime.TimeOfDay - @s.StoreHours.ToList().Find(h => h.DayOfTheWeek.Equals(DateTime.Now.DayOfWeek.ToString())).EndTime.TimeOfDay</p>
+                    if (today.StartTime.TimeOfDay == today.EndTime.TimeOfDay)
+                    {
+                        <p>Closed!</p>
+                    }
+                    else
+                    {
+                        <p>Closed! Today's Hours: @today.StartTime.ToString("t") - @today.EndTime.ToString("t")</p>
+                    }
                 }
             </li>
         </a>
@@ -37,6 +44,7 @@
 else
 {
     <script>
+        hideBeforeSearch();
         Materialize.toast("No stores found!", 4000, "rounded");
     </script>
 }

@@ -11,98 +11,109 @@
     @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "row" }))
     {
         @Html.AntiForgeryToken()
-        <div class="col s12">
-            <div class="row center">
-                <div class="col s12">
-                    <h1>Sign up</h1>
-                </div>
-                <div class="col s12">
-                    <h5>Already a member? <a href="~/Account/Login" class="btn waves-light blue darken-3 yellow-text accent-3 truncate" style="width: 100%">Log In!</a></h5>
-                </div>
-            </div>
+        <div class="section">
             <div class="row">
-                <div class="col s12 center">
-                    <h2 style="margin-top: 0">Account Information</h2>
-                    <div class="divider"></div>
-                </div>
-                <div class="input-field col s8">
-                    @Html.LabelFor(m => m.Username)
-                    @Html.EditorFor(m => m.Username, new { @placeholder = "coolone1234", @id = "username" })
-                </div>
-                <div class="col s4">
-                    @Html.ActionLink("Check Username", null, null, new { @class = "btn btn-large waves-effect blue darken-3 yellow-text accent-3", @style = "padding: 0; width: 100%", @id = "checkUsername" })
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s6">
-                    @Html.LabelFor(m => m.Password)
-                    @Html.EditorFor(m => m.Password, new { @placeholder = "hunter2", @id = "password" })
-                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "red-text" })
-                </div>
-                <div class="input-field col s6">
-                    @Html.LabelFor(m => m.ConfirmPassword)
-                    @Html.EditorFor(m => m.ConfirmPassword, new { @placeholder = "hunter2", @id = "confirmPassword" })
-                    @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "red-text" })
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s6">
-                    @Html.LabelFor(m => m.FirstName)
-                    @Html.EditorFor(m => m.FirstName, new { @placeholder = "Jane", @id = "firstName" })
-                </div>
-                <div class="input-field col s6">
-                    @Html.LabelFor(m => m.LastName)
-                    @Html.EditorFor(m => m.LastName, new { @placeholder = "Doe", @id = "lastName" })
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    @Html.LabelFor(m => m.Email)
-                    @Html.EditorFor(m => m.Email, new { @placeholder = "example@email.com", @id = "email" })
-                    @Html.ViewBag.EmailInUse
-                </div>
-            </div>
-            <div class="row">
-                <div class="col s12 center">
-                    <h2 style="margin-top: 0">Personal Information</h2>
-                    <div class="divider"></div>
-                </div>
-                <div class="input-field col s12 l6">
-                    @Html.DropDownListFor(m => m.Country, new SelectList(countries), new { @id="country" })
-                    @Html.LabelFor(m => m.Country)
-                </div>
-                <div class="input-field col s12 l6">
-                    @Html.LabelFor(m => m.City)
-                    @Html.EditorFor(m => m.City, new { @placeholder = "Toronto", @id = "addressCity" })
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12 l6">
-                    @Html.LabelFor(m => m.Province)
-                    @Html.EditorFor(m => m.Province, new { @placeholder = "Ontario", @id = "addressProvince" })
-                </div>
-                <div class="input-field col s12 l6">
-                    @Html.LabelFor(m => m.PostalCode)
-                    @Html.EditorFor(m => m.PostalCode, new { @placeholder = "H0H0H0", @id = "addressPostal" })
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12 l6">
-                    @Html.LabelFor(m => m.Street)
-                    @Html.EditorFor(m => m.Street, new { @placeholder = "24 Sussex Drive", @id = "addressStreet" })
-                    @Html.ValidationMessageFor(m => m.Street, "", new { @class = "red-text" })
-                </div>
-                <div class="input-field col s12 l6">
-                    @Html.LabelFor(m => m.PhoneNumber)
-                    @Html.EditorFor(m => m.PhoneNumber, new { @placeholder = "444-555-6125", @id="phoneNumber" })
-                </div>
-            </div>
-            <div class="row">
-                @Html.ValidationSummary(true, "", new { @class = "col s12" })
-            </div>
-            <div class="row">
-                <div class="col s12">
-                    <input type="submit" value="Sign up" id="submitSignup" class="btn waves-light blue darken-3 yellow-text accent-3" style="width: 100%" />
+                <div class="card-content row">
+
+                    <div class="col s12 m12 l12">
+                        <div class="card">
+                            <div class="card-content">
+                                <span class="card-title">Sign Up</span>
+                                <p>
+                                    <a href="~/Account/Login">Already registered? Click here!</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12 m12 l12">
+                        <div class="card">
+                            <div class="card-content">
+                                <span class="card-title">Account Information</span>
+                                <div class="row">
+                                    <div class="input-field col s8">
+                                        @Html.LabelFor(m => m.Username)
+                                        @Html.EditorFor(m => m.Username, new { @placeholder = "coolone1234", @id = "username" })
+                                    </div>
+                                    @*<div class="col s4">
+                                            @Html.ActionLink("Check Username", null, null, new { @class = "btn btn-large waves-effect blue darken-3 yellow-text accent-3", @style = "padding: 0; width: 100%", @id = "checkUsername" })
+                                        </div>*@
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s8">
+                                        @Html.LabelFor(m => m.Email)
+                                        @Html.EditorFor(m => m.Email, new { @placeholder = "example@email.com", @id = "email" })
+                                        @Html.ViewBag.EmailInUse
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        @Html.LabelFor(m => m.Password)
+                                        @Html.EditorFor(m => m.Password, new { @placeholder = "hunter2", @id = "password" })
+                                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "red-text" })
+                                    </div>
+                                    <div class="input-field col s6">
+                                        @Html.LabelFor(m => m.ConfirmPassword)
+                                        @Html.EditorFor(m => m.ConfirmPassword, new { @placeholder = "hunter2", @id = "confirmPassword" })
+                                        @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "red-text" })
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        @Html.LabelFor(m => m.FirstName)
+                                        @Html.EditorFor(m => m.FirstName, new { @placeholder = "Jane", @id = "firstName" })
+                                    </div>
+                                    <div class="input-field col s6">
+                                        @Html.LabelFor(m => m.LastName)
+                                        @Html.EditorFor(m => m.LastName, new { @placeholder = "Doe", @id = "lastName" })
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col s12">
+                                        <h5 style="margin-top: 0">Personal Information</h5>
+                                        <br />
+                                    </div>
+                                    <div class="input-field col s12 l6">
+                                        @Html.DropDownListFor(m => m.Country, new SelectList(countries), new { @id = "country" })
+                                        @Html.LabelFor(m => m.Country)
+                                    </div>
+                                    <div class="input-field col s12 l6">
+                                        @Html.LabelFor(m => m.City)
+                                        @Html.EditorFor(m => m.City, new { @placeholder = "Toronto", @id = "addressCity" })
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12 l6">
+                                        @Html.LabelFor(m => m.Province)
+                                        @Html.EditorFor(m => m.Province, new { @placeholder = "Ontario", @id = "addressProvince" })
+                                    </div>
+                                    <div class="input-field col s12 l6">
+                                        @Html.LabelFor(m => m.PostalCode)
+                                        @Html.EditorFor(m => m.PostalCode, new { @placeholder = "H0H0H0", @id = "addressPostal" })
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12 l6">
+                                        @Html.LabelFor(m => m.Street)
+                                        @Html.EditorFor(m => m.Street, new { @placeholder = "24 Sussex Drive", @id = "addressStreet" })
+                                        @Html.ValidationMessageFor(m => m.Street, "", new { @class = "red-text" })
+                                    </div>
+                                    <div class="input-field col s12 l6">
+                                        @Html.LabelFor(m => m.PhoneNumber)
+                                        @Html.EditorFor(m => m.PhoneNumber, new { @placeholder = "444-555-6125", @id = "phoneNumber" })
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    @Html.ValidationSummary(true, "", new { @class = "col s12" })
+                                </div>
+                                <div class="row">
+                                    <div class="col s12">
+                                        <input type="submit" value="Sign up" id="submitSignup" class="btn waves-light blue darken-3 yellow-text accent-3" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

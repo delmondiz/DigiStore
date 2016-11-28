@@ -55,9 +55,8 @@
                 </div>
 
                 <div class="col s12 m6">
-                    @Html.LabelFor(model => model.ImagePath)
-                    @Html.EditorFor(model => model.ImagePath)
-                    @Html.ValidationMessageFor(model => model.ImagePath, "", new { @class = "red-text" })
+                    <label for="picture">Upload Image Here</label>
+                    <input name="picture" type="file" class="dropify" default-file-url="@Model.ImagePath" />
                 </div>
             </div>
             <div class="row">

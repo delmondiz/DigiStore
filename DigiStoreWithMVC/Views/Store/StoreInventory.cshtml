@@ -6,39 +6,6 @@
 
 <br />
 <div class="container">
-    <div class="row">
-        <div class="input-field col s4">
-            <select>
-                <option value="" disabled="disabled" selected="selected">How many items to show?</option>
-                <option value="1">
-                    5
-                </option>
-                <option value="2">
-                    25
-                </option>
-                <option value="3">
-                    50
-                </option>
-                <option value="4">
-                    100
-                </option>
-                <option value="5">
-                    200
-                </option>
-            </select>
-            <label>Number of Items Shown</label>
-        </div>
-        <div class="input-field col s6">
-            <input type="text" id="itemSearch" class="validate" />
-            <label for="itemSearch">Item Name or Serial #:</label>
-        </div>
-        <div class="col s2">
-            <button class="btn btn-large valign waves-effect waves-light blue darken-3 yellow-text accent-3 col s2 m3" type="submit" name="submitSearch" style="width: 100%">
-                <span class="hide-on-med-and-down"><i class="material-icons right">search</i>Search Item</span>
-                <span class="hide-on-large-only"><i class="material-icons center">search</i></span>
-            </button>
-        </div>
-    </div>
 
     <div class="divider"></div>
     <h2 class="center-align">Your Items</h2>
@@ -67,3 +34,15 @@
         <p>There are no items in the store inventory.</p>
     }
 </div>
+@section scripts {
+    <script>
+    $('.dropify').dropify({
+        messages: {
+            'default': 'Drag and drop a file here or click',
+            'replace': 'Drag and drop or click to replace',
+            'remove': 'Remove',
+            'error': 'Ooops, something wrong appended.'
+        }
+    });
+    </script>
+}

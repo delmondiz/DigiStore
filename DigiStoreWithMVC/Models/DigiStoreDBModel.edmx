@@ -123,6 +123,7 @@
     <Property Name="Quantity" Type="int" Nullable="false" />
     <Property Name="ImagePath" Type="nvarchar(max)" Nullable="true" />
     <Property Name="ItemType" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Deleted" Type="bit" Nullable="true" DefaultValue="false" />
   </EntityType>
   <EntityType Name="Reviews">
     <Key>
@@ -132,6 +133,7 @@
     <Property Name="ReviewText" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Rating" Type="int" Nullable="false" />
     <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="ReviewerName" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="PaymentMethods">
     <Key>
@@ -176,6 +178,7 @@
     <Property Name="PostalCode" Type="nvarchar(max)" Nullable="false" />
     <Property Name="PhoneNumber" Type="nvarchar(max)" Nullable="false" />
     <Property Name="StateProv" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="StorePicture" Type="nvarchar(max)" Nullable="false" />
     <Property Name="UserStore_Store_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="StoreHours">
@@ -560,6 +563,7 @@
           <NavigationProperty Name="Users" Relationship="DigiStoreDBModel.UserItem" FromRole="Item" ToRole="User" />
           <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ItemType" Type="String" Nullable="true" />
+          <Property Name="Deleted" Type="Boolean" Nullable="true" annotation:StoreGeneratedPattern="None" DefaultValue="false" />
         </EntityType>
         <EntityType Name="Review">
           <Key>
@@ -570,6 +574,7 @@
           <NavigationProperty Name="Users" Relationship="DigiStoreDBModel.UserReview" FromRole="Review" ToRole="User" />
           <Property Name="Rating" Type="Int32" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ReviewerName" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="PaymentMethod">
           <Key>
@@ -661,6 +666,7 @@
           <Property Name="PhoneNumber" Type="String" Nullable="false" />
           <Property Name="StateProv" Type="String" Nullable="false" />
           <NavigationProperty Name="StoreHours" Relationship="DigiStoreDBModel.StoreStoreHours" FromRole="Store" ToRole="StoreHours" />
+          <Property Name="StorePicture" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="StoreHours" >
           <Key>
@@ -738,6 +744,7 @@
           <ScalarProperty Name="Quantity" ColumnName="Quantity" />
           <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
           <ScalarProperty Name="ItemType" ColumnName="ItemType" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -748,6 +755,7 @@
           <ScalarProperty Name="ReviewText" ColumnName="ReviewText" />
           <ScalarProperty Name="Rating" ColumnName="Rating" />
           <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="ReviewerName" ColumnName="ReviewerName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -794,6 +802,7 @@
           <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
           <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
           <ScalarProperty Name="StateProv" ColumnName="StateProv" />
+          <ScalarProperty Name="StorePicture" ColumnName="StorePicture" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

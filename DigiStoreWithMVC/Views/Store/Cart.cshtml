@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Cart";
+}
+@using DigiStoreWithMVC.Models;
+@{
+    decimal s = 0;
+
+}
+<div class="container">
+    <div class="section">
+        <div clss="row">
+            @if (((List<nItem>)Session["cart"]).Count > 0)
+            {
+                <div class="col s12 m12 l6">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">Cart</span>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Subtotal</th>
+                                        <th>Quantity</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    @foreach (nItem nitem in (List<nItem>)Session["cart"])
+                                    {
+                                        s += (nitem.Ite.Price * nitem.Quantity);
+                                        <tr>
+                                            <td>@nitem.Ite.Name</td>
+                                            <td>@nitem.Ite.Price</td>
+                                            <td>@nitem.Quantity</td>
+                                            <td>@(nitem.Ite.Price * nitem.Quantity)</td>
+                                            <td>@Html.ActionLink("Remove", "Remove", "Store", new { id = nitem.Ite.Id }, null)</td>
+                                        </tr>
+                                    }
+                                    <tr>
+                                        <th>Total: @s</th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            @Html.ActionLink("Continue Shopping", "Map", new { controller = "Home", action = "Map" }, htmlAttributes: new { @class = "btn waves-effect blue darken-3 yellow-text accent-3" })
+                            @Html.ActionLink("Pay with Paypal Account", "PaymentWithPaypal", "Paypal")
+                        </div>
+                    </div>
+                </div>
+            }
+            </div>
+        </div>
+    </div>
