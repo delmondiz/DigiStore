@@ -22,43 +22,47 @@
             @Html.AntiForgeryToken()
             @Html.HiddenFor(model => model.Id)
             <div class="row">
-                <div class="col s12 m6 input-field">
+                <div class="col s12 m6">
                     @Html.LabelFor(model => model.Name)
                     @Html.EditorFor(model => model.Name)
                     @Html.ValidationMessageFor(model => model.Name, "", new { @class = "red-text" })
                 </div>
 
-                <div class="col s12 m6 input-field">
+                <div class="col s12 m6">
                     @Html.LabelFor(model => model.Description)
                     @Html.EditorFor(model => model.Description)
                     @Html.ValidationMessageFor(model => model.Description, "", new { @class = "red-text" })
                 </div>
             </div>
             <div class="row">
-                <div class="col s12 m4 input-field">
+                <div class="col s12 m6">
                     @Html.LabelFor(model => model.Price)
                     @Html.EditorFor(model => model.Price)
                     @Html.ValidationMessageFor(model => model.Price, "", new { @class = "red-text" })
                 </div>
-                <div class="col s12 m4 input-field">
+
+                <div class="col s12 m6">
                     @Html.LabelFor(model => model.Quantity)
                     @Html.EditorFor(model => model.Quantity)
                     @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "red-text" })
                 </div>
-                <div class="col s12 m4 input-field">
+            </div>
+            <div class="row">
+                <div class="col s12 m6">
                     @Html.LabelFor(model => model.Weight, "Item Weight (kg)")
                     @Html.EditorFor(model => model.Weight)
                     @Html.ValidationMessageFor(model => model.Weight, "", new { @class = "red-text" })
                 </div>
-            </div>
-            <div class="row">
-                <div class="col s12">
+
+                <div class="col s12 m6">
                     <label for="picture">Upload Image Here</label>
                     <input name="picture" type="file" class="dropify" default-file-url="@Model.ImagePath" />
                 </div>
             </div>
             <div class="row">
-                <input type="submit" class="waves-effect waves-light btn col s12 m6" value="Update Details" />
+                <div class="col s6">
+                    <input type="submit" class="waves-effect waves-light btn" value="Update Details" />
+                </div>
             </div>
         }
 
@@ -66,8 +70,8 @@
         {
             @Html.AntiForgeryToken()
             @Html.HiddenFor(model => model.Id)
-            <div class="row">
-                <input type="submit" class="waves-effect waves-light btn red col s12 m6" value="Delete Item" />
+            <div class="col s6">
+                <input type="submit" class="waves-effect waves-light btn red" value="Delete Item" />
             </div>
         }
     </div>
