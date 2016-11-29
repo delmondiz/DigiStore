@@ -415,6 +415,16 @@ namespace DigiStoreWithMVC.Controllers
              return View("Cart");
         }
 
+        public ActionResult orderHistory()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                return View("orderHistory", ModelHelpers.GetCurrentUser(db));
+            }
+            else
+                return RedirectToAction("Login","Account");
+        }
+
 
         // On the view, the user will not see the add to cart button unless authenticated
 

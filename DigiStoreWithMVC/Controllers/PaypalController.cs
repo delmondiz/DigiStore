@@ -39,8 +39,8 @@ namespace DigiStoreWithMVC.Controllers
 
                     // So we have provided URL of this controller only
 
-                    //string baseURI = Request.Url.Scheme + "://" + Request.Url.Authority + "/Paypal/PaymentWithPayPal?";
-                    string baseURI = "http://kt.digilife.me/Paypal/PaymentWithPayPal?";
+                    string baseURI = Request.Url.Scheme + "://" + Request.Url.Authority + "/Paypal/PaymentWithPayPal?";
+                    //string baseURI = "http://kt.digilife.me/Paypal/PaymentWithPayPal?";
 
                     //guid we are generating for storing the paymentID received in session
 
