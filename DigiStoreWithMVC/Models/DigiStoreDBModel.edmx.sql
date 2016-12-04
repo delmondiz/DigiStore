@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/20/2016 04:41:13
--- Generated from EDMX file: C:\Users\Crasy\Source\Repos\DigiStore\DigiStoreWithMVC\Models\DigiStoreDBModel.edmx
+-- Date Created: 12/04/2016 14:16:02
+-- Generated from EDMX file: F:\ewchr_000\Sheridan\Capstone\DigiStore\DigiStoreWithMVC\Models\DigiStoreDBModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [Digistore];
+USE [ECDigiStore];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -138,8 +138,8 @@ CREATE TABLE [dbo].[Users] (
     [City] nvarchar(max)  NULL,
     [Country] nvarchar(max)  NULL,
     [PostalCode] nvarchar(max)  NULL,
-    [PhoneNumber] int  NULL,
-    [StateProv] nvarchar(max)  NULL
+    [StateProv] nvarchar(max)  NULL,
+    [PhoneNumber] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -152,7 +152,8 @@ CREATE TABLE [dbo].[Items] (
     [Weight] float  NULL,
     [Quantity] int  NOT NULL,
     [ImagePath] nvarchar(max)  NULL,
-    [ItemType] nvarchar(max)  NULL
+    [ItemType] nvarchar(max)  NULL,
+    [Deleted] bit  NULL
 );
 GO
 
@@ -161,7 +162,8 @@ CREATE TABLE [dbo].[Reviews] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [ReviewText] nvarchar(max)  NOT NULL,
     [Rating] int  NOT NULL,
-    [Date] datetime  NOT NULL
+    [Date] datetime  NOT NULL,
+    [ReviewerName] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -206,6 +208,7 @@ CREATE TABLE [dbo].[Stores] (
     [PostalCode] nvarchar(max)  NOT NULL,
     [PhoneNumber] nvarchar(max)  NOT NULL,
     [StateProv] nvarchar(max)  NOT NULL,
+    [StorePicture] nvarchar(max)  NOT NULL,
     [UserStore_Store_Id] int  NOT NULL
 );
 GO
