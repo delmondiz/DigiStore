@@ -11,9 +11,6 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Data.Entity;
 
-
-
-
 namespace DigiStoreWithMVC.Controllers
 {
     public class StoreController : Controller
@@ -160,14 +157,14 @@ namespace DigiStoreWithMVC.Controllers
                 if (picture != null && picture.ContentLength > 0)
                 {
                     string path = Server.MapPath("~/img/sub/pic" + (db.Items.Count() + 1) + "." + picture.FileName.Split('.').Last());
-                    string modelPath = "http://kt.digilife.me" + "/img/sub/pic" + (db.Items.Count() + 1) + "." + picture.FileName.Split('.').Last();
+                    string modelPath = "http://digistore.azurewebsites.net" + "/img/sub/pic" + (db.Items.Count() + 1) + "." + picture.FileName.Split('.').Last();
                     picture.SaveAs(path);
                     item.ImagePath = modelPath;
                     ModelState.SetModelValue("ImagePath", new ValueProviderResult(modelPath, modelPath, System.Globalization.CultureInfo.CurrentCulture));
                 }
                 else
                 {
-                    item.ImagePath = "http://kt.digilife.me" + "/img/help.png";
+                    item.ImagePath = "http://digistore.azurewebsites.net" + "/img/help.png";
                 }
                 ModelState.Remove("ImagePath");
                 if (ModelState.IsValid)
@@ -288,7 +285,7 @@ namespace DigiStoreWithMVC.Controllers
                 if (picture != null && picture.ContentLength > 0)
                 {
                     string path = Server.MapPath("~/img/sub/pic" + currentUser.Store.Id + "." + picture.FileName.Split('.').Last());
-                    string modelPath = "http://kt.digilife.me" + "/img/sub/pic" + currentUser.Store.Id + "." + picture.FileName.Split('.').Last();
+                    string modelPath = "http://digistore.azurewebsites.net" + "/img/sub/pic" + currentUser.Store.Id + "." + picture.FileName.Split('.').Last();
                     picture.SaveAs(path);
                     currentUser.Store.StorePicture = modelPath;
                     db.SaveChanges();
@@ -296,7 +293,7 @@ namespace DigiStoreWithMVC.Controllers
                 }
                 else
                 {
-                    currentUser.Store.StorePicture = "http://kt.digilife.me" + "/img/sample_store.jpg";
+                    currentUser.Store.StorePicture = "http://digistore.azurewebsites.net" + "/img/sample_store.jpg";
                 }
                 return View("Index", currentUser);
             }
