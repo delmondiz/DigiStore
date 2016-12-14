@@ -29,20 +29,6 @@ namespace DigiStoreWithMVC.Models
         [Required]
         [Display(Name = "Image Filepath")]
         public string ImagePath { get; set; }
-
-        //public Item Ite{
-        //   get {return ite;}
-        //   set {ite = value;}
-        //}
-
-        //private Item ite = new Item();
-
-        //public ItemMetaData() {        }
-        //public ItemMetaData(Item items, int quantity)
-        //{
-        //    this.ite = items;
-        //    this.Quantity = quantity;
-        //}
     }
 
          

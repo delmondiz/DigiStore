@@ -216,8 +216,6 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ItemsController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Models\nItem.cs" />
     <Compile Include="Controllers\PaypalController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
@@ -336,13 +334,11 @@
       <LastGenOutput>DigiStoreDBModel.Context.cs</LastGenOutput>
       <DependentUpon>DigiStoreDBModel.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\DigiStoreDBModel.edmx.sql" />
     <Content Include="Models\DigiStoreDBModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DigiStoreDBModel.cs</LastGenOutput>
       <DependentUpon>DigiStoreDBModel.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\DigiStoreDBModelLatest.edmx.sql" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -376,13 +372,8 @@
     <Content Include="fonts\dropify.ttf" />
     <Content Include="fonts\dropify.woff" />
     <None Include="Properties\PublishProfiles\KN.pubxml" />
-    <Content Include="Models\DigiStoreDBModelUpdatedItem.edmx.sql" />
-    <Content Include="Models\DigiStoreDBModelUpdatedReview.edmx.sql" />
-    <Content Include="Models\DigiStoreDBModelwStorePicture.edmx.sql" />
-    <Content Include="Scripts\demo.scss" />
-    <Content Include="Scripts\dropify.scss" />
+    <Content Include="Models\DigiStoreDBModel.edmx.sql" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\DatabaseDataBackup.sql" />
     <Content Include="Scripts\dropify.js" />
     <Content Include="Scripts\dropify.min.js" />
     <Content Include="Scripts\init.js" />
@@ -406,7 +397,6 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="vs9151.txt" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -447,7 +437,6 @@
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\Paypal\FailureView.cshtml" />
     <Content Include="Views\Paypal\SuccessView.cshtml" />
-    <Content Include="Scripts\_dropify-font.scss" />
     <Content Include="Views\Home\_GoogleResultsItems.cshtml" />
     <Content Include="Views\Store\_EditStoreLogo.cshtml" />
     <Content Include="Views\Store\_SubmitReview.cshtml" />
@@ -464,7 +453,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
